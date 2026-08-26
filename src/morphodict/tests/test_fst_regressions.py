@@ -9,15 +9,15 @@ from morphodict.analysis import RichAnalysis, rich_analyze_relaxed, strict_gener
         (
             "ta-pe-kiwemakaniyiw",
             RichAnalysis(
-                (("PV/ta+", "PV/pe+"), "kîwêmakan", ("+V", "+II", "+Ind", "+4Sg"))
+                (("PV/ta+", "PV/pê+"), "kîwêmakan", ("+V", "+II", "+Ind", "+4Sg"))
             ),
         ),
         (
             # See: https://github.com/UAlbertaALTLab/morphodict/issues/897
             "ê-pim-nêhiyawêyahk",
             RichAnalysis(
-                (("PV/ê+", "PV/pimi+"), "nêhiýawêw", ("+V", "+AI", "+Cnj", "+12Pl"))
-                # PV/ê+PV/pimi+nêhiýawêw+V+AI+Cnj+12Pl
+                (("PV/ê+", "PV/pîmi+"), "nêhiýawêw", ("+V", "+AI", "+Cnj", "+21Pl"))
+                # PV/ê+PV/pîmi+nêhiýawêw+V+AI+Cnj+21Pl
                 # ê-pim-nêhiýawêyahk
             ),
         ),
@@ -34,5 +34,5 @@ def test_fst_analysis(query: str, expected: RichAnalysis):
 
 
 def test_fst_generation():
-    wordforms = set(strict_generator().lookup("PV/ta+PV/pe+kîwêmakan+V+II+Ind+4Sg"))
-    assert "ta-pê-kîwêmakaniyiw" in wordforms
+    wordforms = set(strict_generator().lookup("PV/ta+PV/pê+kîwêmakan+V+II+Ind+4Sg"))
+    assert "ta-pê-kîwêmakaniýiw" in wordforms

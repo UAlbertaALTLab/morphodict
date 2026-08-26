@@ -1306,7 +1306,7 @@
   11 wâpahtamwak	wâpahtam+V+TI+Ind+3Pl
   11 wâcistakâc	wâcistakâc+Ipc
   11 were	were+?
-  11 tapasîtân	tapasîw+V+AI+Imp+Imm+12Pl
+  11 tapasîtân	tapasîw+V+AI+Imp+Imm+21Pl
   11 takwahiminâna	takwahiminâna+N+I+Pl
   11 tahkonam	tahkonam+V+TI+Ind+3Sg
   11 sâyiman	sâyiman+?
@@ -1457,7 +1457,7 @@
   10 miskwamiya	miskwamiy+N+A+Obv
   10 miskotâkay	miskotâkay+N+I+D+PxX+Sg
   10 matotisân	matotisân+N+I+Sg
-  10 kîstanaw	kîstanaw+Pron+Pers+12Pl+Incl
+  10 kîstanaw	kîstanaw+Pron+Pers+21Pl+Incl
   10 kîsitêw	kîsitêw+V+II+Ind+3Sg
   10 kâhkâkiwa	kâhkâkiw+N+A+Obv
   10 kâ-sakâk	PV/kaa+sakâw+V+II+Cnj+3Sg
@@ -1485,7 +1485,7 @@
   10 k-âtâmitân	k-âtâmitân+?
   10 itêyimêw	itêyimêw+V+TA+Ind+3Sg+4Sg/PlO
   10 itwâniwiw	itwêw+V+AI+Ind+X
-  10 itohtêtân	itohtêw+V+AI+Imp+Imm+12Pl
+  10 itohtêtân	itohtêw+V+AI+Imp+Imm+21Pl
   10 ispatinâw	ispatinâw+V+II+Ind+3Sg
   10 ihtasiwak	ihtasiwak+V+AI+Ind+3Pl
   10 his	his+?
@@ -1812,7 +1812,7 @@
    8 kôsisiminawak	nôsisim+N+A+D+Px12Pl+Pl
    8 kônihk	kôna+N+A+Loc
    8 kôhkominaw	nôhkom+N+A+D+Px12Pl+Sg
-   8 kîwêtân	kîwêw+V+AI+Imp+Imm+12Pl
+   8 kîwêtân	kîwêw+V+AI+Imp+Imm+21Pl
    8 kîtim	nîtim+N+A+D+Px2Sg+Sg
    8 kîtahtaw	kîtahtaw+?
    8 kîskwêhkwasiw	kîskwêhkwasiw+V+AI+Ind+3Sg
@@ -1830,7 +1830,7 @@
    8 kâ-pê-sâkêwêyit	PV/kaa+PV/pe+sâkêwêw+V+AI+Cnj+4Sg/Pl
    8 kâ-pimâtisit	PV/kaa+pimâtisiw+V+AI+Cnj+3Sg
    8 kâ-nîmihitohk	PV/kaa+nîmihitow+V+AI+Cnj+X
-   8 kâ-nêhiyâwiyahk	PV/kaa+nêhiyâwiw+V+AI+Cnj+12Pl
+   8 kâ-nêhiyâwiyahk	PV/kaa+nêhiyâwiw+V+AI+Cnj+21Pl
    8 kâ-nipâkwêsimohk	PV/kaa+nipâkwêsimow+V+AI+Cnj+X
    8 kâ-kî-osîhtât	PV/kaa+PV/kî+osîhtâw+V+TI+Cnj+3Sg
    8 kâ-kî-itwêt	PV/kaa+PV/kî+itwêw+V+AI+Cnj+3Sg
@@ -1970,7 +1970,7 @@
    7 sâkihitowask	sâkihitowask+N+I+Sg
    7 some	some+?
    7 sipwêpayiwak	sipwêpayiw+V+AI+Ind+3Pl
-   7 sipwêhtêtân	sipwêhtêw+V+AI+Imp+Imm+12Pl
+   7 sipwêhtêtân	sipwêhtêw+V+AI+Imp+Imm+21Pl
    7 sipwêhtahêw	sipwêhtahêw+V+TA+Ind+3Sg+4Sg/PlO
    7 pônihêw	pônihêw+V+TA+Ind+3Sg+4Sg/PlO
    7 pônam	pônam+V+TI+Ind+3Sg
@@ -2091,13 +2091,13 @@
    7 kotawânâpiskohk	kotawânâpisk+N+I+Loc
    7 kititêyihtên	itêyihtam+V+TI+Ind+2Sg
    7 kitimâkêyimik	kitimâkêyimêw+V+TA+Ind+4Sg/Pl+3SgO
-   7 kitayânânaw	ayâw+V+AI+Ind+12Pl
+   7 kitayânânaw	ayâw+V+AI+Ind+21Pl
    7 kistikân	kistikân+N+A+Sg
    7 kiskinohamâtowikamik	kiskinohamâtowikamik+?
    7 kiskinohamawâkanak	kiskinohamawâkanak+?
    7 kimôhcôwin	kimôhcôwin+?
    7 kimanitôminaw	nimanitôm+N+A+D+Px12Pl+Sg
-   7 kikiskêyihtênânaw	kiskêyihtam+V+TI+Ind+12Pl
+   7 kikiskêyihtênânaw	kiskêyihtam+V+TI+Ind+21Pl
    7 kapê-pipon	kapê-pipon+Ipc
    7 kanawêyihta	kanawêyihtam+V+TI+Imp+Imm+2Sg
    7 ka-mîcisonânaw	ka-mîcisonânaw+?
@@ -2557,7 +2557,7 @@
    5 ê-wî-nakatahk	PV/ê+PV/wî+nakatam+V+TI+Cnj+3Sg
    5 ê-wâpiskisit	PV/ê+wâpiskisiw+V+AI+Cnj+3Sg
    5 ê-waniskâyit	PV/ê+waniskâw+V+AI+Cnj+4Sg/Pl
-   5 ê-wanisimâyahk	PV/ê+wanisimêw+V+TA+Cnj+12Pl+3SgO
+   5 ê-wanisimâyahk	PV/ê+wanisimêw+V+TA+Cnj+21Pl+3SgO
    5 ê-têpwêt	PV/ê+têpwêw+V+AI+Cnj+3Sg
    5 ê-têhtapicik	PV/ê+têhtapiw+V+AI+Cnj+3Pl
    5 ê-tipêyihtahk	PV/ê+tipêyihtam+V+TI+Cnj+3Sg
@@ -2961,7 +2961,7 @@
    5 ka-wîcêtin	ka-wîcêtin+?
    5 ka-tôtamân	PV/ka+tôtam+V+TI+Cnj+1Sg
    5 ka-tôtaman	PV/ka+tôtam+V+TI+Cnj+2Sg
-   5 ka-tôtamahk	PV/ka+tôtam+V+TI+Cnj+12Pl
+   5 ka-tôtamahk	PV/ka+tôtam+V+TI+Cnj+21Pl
    5 ka-sipwêhtânânaw	ka-sipwêhtânânaw+?
    5 ka-kapêsinânaw	ka-kapêsinânaw+?
    5 k-ôh-itwêyân	k-ôh-itwêyân+?
@@ -3062,7 +3062,7 @@
    4 ê-wîcêwâyâhk	PV/ê+wîcêwêw+V+TA+Cnj+1Pl+3SgO
    4 ê-wîcihak	PV/ê+wîcihêw+V+TA+Cnj+1Sg+3SgO
    4 ê-wîc-âyâmak	PV/ê+wîc-âyâmêw+V+TA+Cnj+1Sg+3SgO
-   4 ê-wî-âcimostâkoyahk	PV/ê+PV/wî+âcimostawêw+V+TA+Cnj+3Sg+12PlO
+   4 ê-wî-âcimostâkoyahk	PV/ê+PV/wî+âcimostawêw+V+TA+Cnj+3Sg+21PlO
    4 ê-wî-tipiskâyik	PV/ê+PV/wî+tipiskâw+V+II+Cnj+4Sg
    4 ê-wî-osîhtât	PV/ê+PV/wî+osîhtâw+V+TI+Cnj+3Sg
    4 ê-wî-nîmihitohk	PV/ê+PV/wî+nîmihitow+V+AI+Cnj+X
@@ -3218,12 +3218,12 @@
    4 ê-kî-is-âsotamâht	ê-kî-is-âsotamâht+?
    4 ê-kî-ayâhk	PV/ê+PV/kî+ayâw+V+AI+Cnj+X
    4 ê-kî-ahât	PV/ê+PV/kî+ahêw+V+TA+Cnj+3Sg+4Sg/PlO
-   4 ê-kêhtê-ayiwiyahk	PV/ê+kêhtê-ayiwiw+V+AI+Cnj+12Pl
+   4 ê-kêhtê-ayiwiyahk	PV/ê+kêhtê-ayiwiw+V+AI+Cnj+21Pl
    4 ê-kostahk	PV/ê+kostam+V+TI+Cnj+3Sg
    4 ê-kitimâkisiyin	ê-kitimâkisiyin+?
    4 ê-kitimâkahk	PV/ê+kitimâkan+V+II+Cnj+3Sg
    4 ê-kisêwâtisit	PV/ê+kisêwâtisiw+V+AI+Cnj+3Sg
-   4 ê-kiskêyihtamahk	PV/ê+kiskêyihtam+V+TI+Cnj+12Pl
+   4 ê-kiskêyihtamahk	PV/ê+kiskêyihtam+V+TI+Cnj+21Pl
    4 ê-kisitêk	PV/ê+kisitêw+V+II+Cnj+3Sg
    4 ê-kimiwahk	PV/ê+kimiwan+V+II+Cnj+3Sg
    4 ê-kikiskahk	PV/ê+kikiskam+V+TI+Cnj+3Sg
@@ -3611,7 +3611,7 @@
    4 mîhkawikiw	mîhkawikiw+V+AI+Ind+3Sg
    4 mîciwinis	mîciwinis+N+I+Sg
    4 mîciwak	mîciw+V+TI+Ind+3Pl
-   4 mîcisotân	mîcisow+V+AI+Imp+Imm+12Pl
+   4 mîcisotân	mîcisow+V+AI+Imp+Imm+21Pl
    4 mâtôwak	mâtôwak+?
    4 mâmihk	mâmihk+Ipc
    4 mâmawô	mâmawô+Ipc
@@ -3767,7 +3767,7 @@
    4 kimôhkomân	môhkomân+N+I+Px2Sg+Sg
    4 kimotisk	kimotisk+N+A+Sg
    4 kimiyikawin	kimiyikawin+?
-   4 kikî-itikonaw	PV/kî+itêw+V+TA+Ind+3Sg+12PlO
+   4 kikî-itikonaw	PV/kî+itêw+V+TA+Ind+3Sg+21PlO
    4 kikakêpâtisin	kakêpâtisiw+V+AI+Ind+2Sg
    4 kika-pimâtisin	PV/ka+pimâtisiw+V+AI+Ind+2Sg
    4 kika-isiyîhkâson	kika-isiyîhkâson+?
@@ -4464,7 +4464,7 @@
    3 tawayâk	tawayâw+V+AI+Imp+Imm+2Pl
    3 tapahtiskwêyiyiwa	tapahtiskwêyiw+V+AI+Ind+4Sg/Pl
    3 takosiniyani	takosin+V+AI+Fut+Cond+2Sg
-   3 takosiniyahko	takosin+V+AI+Fut+Cond+12Pl
+   3 takosiniyahko	takosin+V+AI+Fut+Cond+21Pl
    3 takosihki	takosin+V+AI+Fut+Cond+3Sg
    3 take	take+?
    3 tahkoskêw	tahkoskêw+V+AI+Ind+3Sg
@@ -4595,7 +4595,7 @@
    3 pakwâtik	pakwâtêw+V+TA+Ind+4Sg/Pl+3SgO
    3 pakwâtamwak	pakwâtam+V+TI+Ind+3Pl
    3 pakitinêw	pakitinêw+V+TA+Ind+3Sg+4Sg/PlO
-   3 pakitinâtân	pakitinêw+V+TA+Imp+Imm+12Pl+3SgO
+   3 pakitinâtân	pakitinêw+V+TA+Imp+Imm+21Pl+3SgO
    3 pakitinâsowin	pakitinâsowin+N+I+Sg
    3 pakamaham	pakamaham+V+TI+Ind+3Sg
    3 pahkêkinwêsâkaya	pahkêkinwêsâkay+N+I+Pl
@@ -4900,7 +4900,7 @@
    3 mînisîhkês	mînisîhkês+N+A+Sg
    3 mîkisak	mîkis+N+A+Pl
    3 mîcisowikamikohk	mîcisowikamik+N+I+Loc
-   3 mêtawêtân	mêtawêw+V+AI+Imp+Imm+12Pl
+   3 mêtawêtân	mêtawêw+V+AI+Imp+Imm+21Pl
    3 mêstihkasam	mêstihkasam+V+TI+Ind+3Sg
    3 mêscihêwak	mêscihêw+V+TA+Ind+3Pl+4Sg/PlO
    3 mênisk	mênisk+N+I+Sg
@@ -5065,7 +5065,7 @@
    3 kâ-tôtawiyin	kâ-tôtawiyin+?
    3 kâ-tôtaman	PV/kaa+tôtam+V+TI+Cnj+2Sg
    3 kâ-tâpwêhtaman	PV/kaa+tâpwêhtam+V+TI+Cnj+2Sg
-   3 kâ-tipêyimikoyahk	PV/kaa+tipêyimêw+V+TA+Cnj+3Sg+12PlO
+   3 kâ-tipêyimikoyahk	PV/kaa+tipêyimêw+V+TA+Cnj+3Sg+21PlO
    3 kâ-timikonik	PV/kaa+timikoniw+V+II+Cnj+3Sg
    3 kâ-tapasiyit	kâ-tapasiyit+?
    3 kâ-takopayit	PV/kaa+takopayiw+V+AI+Cnj+3Sg
@@ -5087,7 +5087,7 @@
    3 kâ-pâstêki	PV/kaa+pâstêw+V+II+Cnj+3Pl
    3 kâ-pâpayiyit	PV/kaa+pâpayiw+V+AI+Cnj+4Sg/Pl
    3 kâ-pâh-pîkiskwêt	PV/kaa+RdplS+pîkiskwêw+V+AI+Cnj+3Sg
-   3 kâ-pimohtêyahk	PV/kaa+pimohtêw+V+AI+Cnj+12Pl
+   3 kâ-pimohtêyahk	PV/kaa+pimohtêw+V+AI+Cnj+21Pl
    3 kâ-otinamân	PV/kaa+otinam+V+TI+Cnj+1Sg
    3 kâ-otinahkik	PV/kaa+otinam+V+TI+Cnj+3Pl
    3 kâ-otihtahk	PV/kaa+otihtam+V+TI+Cnj+3Sg
@@ -5229,7 +5229,7 @@
    3 kikâwînaw	nikâwiy+N+A+D+Px12Pl+Sg
    3 kikosâk	kikosâk+?
    3 kikitâsêw	kikitâsêw+V+AI+Ind+3Sg
-   3 kikitimâkisinânaw	kitimâkisiw+V+AI+Ind+12Pl
+   3 kikitimâkisinânaw	kitimâkisiw+V+AI+Ind+21Pl
    3 kikiskêyimâwâw	kiskêyimêw+V+TA+Ind+2Pl+3SgO
    3 kikiskisin	kiskisiw+V+AI+Ind+2Sg
    3 kikaskihtân	kaskihtâw+V+TI+Ind+2Sg
@@ -5242,7 +5242,7 @@
    3 kika-osâpamitin	PV/ka+osâpamêw+V+TA+Ind+1Sg+2SgO
    3 kika-nipahitin	PV/ka+nipahêw+V+TA+Ind+1Sg+2SgO
    3 kika-môwikwak	kika-môwikwak+?
-   3 kika-mîcinânaw	PV/ka+mîciw+V+TI+Ind+12Pl
+   3 kika-mîcinânaw	PV/ka+mîciw+V+TI+Ind+21Pl
    3 kika-isiyihkâtikwak	PV/ka+isiyihkâtêw+V+TA+Ind+3Pl+2SgO
    3 kik-âpacihtâyahk	kik-âpacihtâyahk+?
    3 kihiw	kihiw+N+A+Sg
@@ -5265,7 +5265,7 @@
    3 ka-pîkonahk	PV/ka+pîkonam+V+TI+Cnj+3Sg
    3 ka-pîkiskwêyân	PV/ka+pîkiskwêw+V+AI+Cnj+1Sg
    3 ka-pâhpinânaw	ka-pâhpinânaw+?
-   3 ka-pimohtâtamahk	PV/ka+pimohtâtam+V+TI+Cnj+12Pl
+   3 ka-pimohtâtamahk	PV/ka+pimohtâtam+V+TI+Cnj+21Pl
    3 ka-picinânaw	ka-picinânaw+?
    3 ka-pahkwatinamihk	PV/ka+pahkwatinam+V+TI+Cnj+X+3Sg
    3 ka-p	ka-p+?
@@ -5383,7 +5383,7 @@
    3 ay[a	ay[a+?
    3 ay-êtataw	ay-êtataw+?
    3 ay-âspîs	ay-âspîs+Ipc
-   3 ay-âcimostâtotân	RdplW+âcimostâtowak+V+AI+Imp+Imm+12Pl
+   3 ay-âcimostâtotân	RdplW+âcimostâtowak+V+AI+Imp+Imm+21Pl
    3 awêna	awêna+?
    3 awêkâ	awêkâ+Ipc
    3 awihin	awihêw+V+TA+Imp+Imm+2Sg+1SgO
@@ -5573,7 +5573,7 @@
    2 ê-wîcihihcik	PV/ê+wîcihêw+V+TA+Cnj+X+3PlO
    2 ê-wîc-âyâmakik	PV/ê+wîc-âyâmêw+V+TA+Cnj+1Sg+3PlO
    2 ê-wî-âhcîhtâhk	ê-wî-âhcîhtâhk+?
-   2 ê-wî-âcimostâkoyahk	PV/ê+PV/wî+âcimostawêw+V+TA+Cnj+4Sg/Pl+12PlO
+   2 ê-wî-âcimostâkoyahk	PV/ê+PV/wî+âcimostawêw+V+TA+Cnj+4Sg/Pl+21PlO
    2 ê-wî-âcimostawak	PV/ê+PV/wî+âcimostawêw+V+TA+Cnj+1Sg+3SgO
    2 ê-wî-âcimisot	PV/ê+PV/wî+âcimisow+V+AI+Cnj+3Sg
    2 ê-wî-wîkimitân	PV/ê+PV/wî+wîkimêw+V+TA+Cnj+1Sg+2SgO
@@ -5606,7 +5606,7 @@
    2 ê-wî-opêpîmiyit	PV/ê+PV/wî+opêpîmiw+V+AI+Cnj+4Sg/Pl
    2 ê-wî-ohpikihât	PV/ê+PV/wî+ohpikihêw+V+TA+Cnj+3Sg+4Sg/PlO
    2 ê-wî-nôtinât	PV/ê+PV/wî+nôtinêw+V+TA+Cnj+3Sg+4Sg/PlO
-   2 ê-wî-nôtinikoyahk	PV/ê+PV/wî+nôtinêw+V+TA+Cnj+3Sg+12PlO
+   2 ê-wî-nôtinikoyahk	PV/ê+PV/wî+nôtinêw+V+TA+Cnj+3Sg+21PlO
    2 ê-wî-nôhâwasoyân	PV/ê+PV/wî+nôhâwasow+V+AI+Cnj+1Sg
    2 ê-wî-nitonawât	PV/ê+PV/wî+nitonawêw+V+TA+Cnj+3Sg+4Sg/PlO
    2 ê-wî-nisiwanâcihtât	PV/ê+PV/wî+nisiwanâcihtâw+V+TI+Cnj+3Sg
@@ -5768,7 +5768,7 @@
    2 ê-pêsiwâcik	PV/ê+pêsiwêw+V+TA+Cnj+3Pl+4Sg/PlO
    2 ê-pêhât	PV/ê+pêhêw+V+TA+Cnj+3Sg+4Sg/PlO
    2 ê-pêhtawak	PV/ê+pêhtawêw+V+TA+Cnj+1Sg+3SgO
-   2 ê-pêhtamahk	PV/ê+pêhtam+V+TI+Cnj+12Pl
+   2 ê-pêhtamahk	PV/ê+pêhtam+V+TI+Cnj+21Pl
    2 ê-pêcitâpêt	PV/ê+pêcitâpêw+V+AI+Cnj+3Sg
    2 ê-pêci-âstamohtêyit	ê-pêci-âstamohtêyit+?
    2 ê-pê-yôtiniyik	PV/ê+PV/pe+yôtin+V+II+Cnj+4Sg
@@ -5870,7 +5870,7 @@
    2 ê-owîkiyit	PV/ê+owîkiw+V+AI+Cnj+4Sg/Pl
    2 ê-otâpêyit	PV/ê+otâpêw+V+AI+Cnj+4Sg/Pl
    2 ê-otâpahâcik	PV/ê+otâpahêw+V+TA+Cnj+3Pl+4Sg/PlO
-   2 ê-otisâpahtamahk	PV/ê+otisâpahtam+V+TI+Cnj+12Pl
+   2 ê-otisâpahtamahk	PV/ê+otisâpahtam+V+TI+Cnj+21Pl
    2 ê-otinâyit	PV/ê+otinêw+V+TA+Cnj+4Sg/Pl+5Sg/PlO
    2 ê-otinikêmakahk	PV/ê+otinikêmakan+V+II+Cnj+3Sg
    2 ê-otinikâtêk	PV/ê+otinikâtêw+V+II+Cnj+3Sg
@@ -5930,7 +5930,7 @@
    2 ê-nôhtêpayiyân	PV/ê+nôhtêpayiw+V+AI+Cnj+1Sg
    2 ê-nôhtêhkwasiyit	PV/ê+nôhtêhkwasiw+V+AI+Cnj+4Sg/Pl
    2 ê-nôhtêhkatêyit	PV/ê+nôhtêhkatêw+V+AI+Cnj+4Sg/Pl
-   2 ê-nôhtêhkatêyahk	PV/ê+nôhtêhkatêw+V+AI+Cnj+12Pl
+   2 ê-nôhtêhkatêyahk	PV/ê+nôhtêhkatêw+V+AI+Cnj+21Pl
    2 ê-nôhtê-kîwêtotahkik	PV/ê+PV/nohte+kîwêtotam+V+TI+Cnj+3Pl
    2 ê-nôhkwâtahkik	PV/ê+nôhkwâtam+V+TI+Cnj+3Pl
    2 ê-nôhay	ê-nôhay+?
@@ -6096,7 +6096,7 @@
    2 ê-misponiyik	PV/ê+mispon+V+II+Cnj+4Sg
    2 ê-miskwamîwiyik	PV/ê+miskwamîwiw+V+II+Cnj+4Sg
    2 ê-miskoskawât	PV/ê+miskoskawêw+V+TA+Cnj+3Sg+4Sg/PlO
-   2 ê-misiwanâcihtamâkoyahk	PV/ê+misiwanâcihtamawêw+V+TA+Cnj+3Sg+12PlO
+   2 ê-misiwanâcihtamâkoyahk	PV/ê+misiwanâcihtamawêw+V+TA+Cnj+3Sg+21PlO
    2 ê-misi-wanâtisiyit	ê-misi-wanâtisiyit+?
    2 ê-ministikôwiyik	ê-ministikôwiyik+?
    2 ê-minihkwêyâhk	PV/ê+minihkwêw+V+AI+Cnj+1Pl
@@ -6417,7 +6417,7 @@
    2 ê-kî-ihtatahk	ê-kî-ihtatahk+?
    2 ê-kî-ihtakohki	ê-kî-ihtakohki+?
    2 ê-kî-cîpayi-mâmawihitoyân	ê-kî-cîpayi-mâmawihitoyân+?
-   2 ê-kî-ayâyahk	PV/ê+PV/kî+ayâw+V+AI+Cnj+12Pl
+   2 ê-kî-ayâyahk	PV/ê+PV/kî+ayâw+V+AI+Cnj+21Pl
    2 ê-kî-ayâwâyit	PV/ê+PV/kî+ayâwêw+V+TA+Cnj+4Sg/Pl+5Sg/PlO
    2 ê-kî-ayâwak	PV/ê+PV/kî+ayâwêw+V+TA+Cnj+1Sg+3SgO
    2 ê-kî-ayâk	PV/ê+PV/kî+ayâw+V+II+Cnj+3Sg
@@ -6468,7 +6468,7 @@
    2 ê-kiyokawak	PV/ê+kiyokawêw+V+TA+Cnj+1Sg+3SgO
    2 ê-kitotikot	PV/ê+kitotêw+V+TA+Cnj+4Sg/Pl+3SgO
    2 ê-kitimâkêyimâcik	PV/ê+kitimâkêyimêw+V+TA+Cnj+3Pl+4Sg/PlO
-   2 ê-kitimâkêyimikoyahk	PV/ê+kitimâkêyimêw+V+TA+Cnj+3Sg+12PlO
+   2 ê-kitimâkêyimikoyahk	PV/ê+kitimâkêyimêw+V+TA+Cnj+3Sg+21PlO
    2 ê-kitimâkêyimikot	PV/ê+kitimâkêyimêw+V+TA+Cnj+4Sg/Pl+3SgO
    2 ê-kitimâkêyimiht	PV/ê+kitimâkêyimêw+V+TA+Cnj+X+3SgO
    2 ê-kitimâkinâtân	PV/ê+kitimâkinawêw+V+TA+Cnj+1Sg+2SgO
@@ -6538,14 +6538,14 @@
    2 ê-itêyihtâkwahk	PV/ê+itêyihtâkwan+V+II+Cnj+3Sg
    2 ê-itêyihtamiyit	PV/ê+itêyihtam+V+TI+Cnj+4Sg/Pl
    2 ê-itêyihtamihk	PV/ê+itêyihtam+V+TI+Cnj+X+3Sg
-   2 ê-itêyihtamahk	PV/ê+itêyihtam+V+TI+Cnj+12Pl
+   2 ê-itêyihtamahk	PV/ê+itêyihtam+V+TI+Cnj+21Pl
    2 ê-itâtisicik	PV/ê+itâtisiw+V+AI+Cnj+3Pl
    2 ê-itâpatakêyimoyân	PV/ê+itâpatakêyimow+V+AI+Cnj+1Sg
    2 ê-itâhkômak	PV/ê+itâhkômêw+V+TA+Cnj+1Sg+3SgO
    2 ê-itâcimostawakik	PV/ê+itâcimostawêw+V+TA+Cnj+1Sg+3PlO
    2 ê-itâcimostawak	PV/ê+itâcimostawêw+V+TA+Cnj+1Sg+3SgO
    2 ê-itâcihocik	PV/ê+itâcihow+V+AI+Cnj+3Pl
-   2 ê-itwêyahk	PV/ê+itwêw+V+AI+Cnj+12Pl
+   2 ê-itwêyahk	PV/ê+itwêw+V+AI+Cnj+21Pl
    2 ê-itwêstamâkawiyân	PV/ê+itwêstamawêw+V+TA+Cnj+X+1SgO
    2 ê-itohtatâcik	PV/ê+itohtatâw+V+TI+Cnj+3Pl
    2 ê-itohtahikot	PV/ê+itohtahêw+V+TA+Cnj+4Sg/Pl+3SgO
@@ -6563,7 +6563,7 @@
    2 ê-itastêyik	PV/ê+itastêw+V+II+Cnj+4Sg
    2 ê-itastât	PV/ê+itastâw+V+TI+Cnj+3Sg
    2 ê-itapihkêt	PV/ê+itapihkêw+V+AI+Cnj+3Sg
-   2 ê-itahtwapiyahk	PV/ê+itahtwapiwak+V+AI+Cnj+12Pl
+   2 ê-itahtwapiyahk	PV/ê+itahtwapiwak+V+AI+Cnj+21Pl
    2 ê-itahtopiponêcik	PV/ê+itahtopiponêw+V+AI+Cnj+3Pl
    2 ê-isîhot	PV/ê+isîhow+V+AI+Cnj+3Sg
    2 ê-ispîhtisît	PV/ê+ispîhtisîw+V+AI+Cnj+3Sg
@@ -6856,7 +6856,7 @@
    2 wâpastim	wâpastim+N+A+Sg
    2 wâpascimosa	wâpastim+N+A+Der/Dim+wâpastim+N+A+Obv
    2 wâpani-pimohtêwak	PV/wapani+pimohtêw+V+AI+Ind+3Pl
-   2 wâpamâyahkwâwi	wâpamêw+V+TA+Fut+Cond+12Pl+3PlO
+   2 wâpamâyahkwâwi	wâpamêw+V+TA+Fut+Cond+21Pl+3PlO
    2 wâpamona	wâpamon+N+I+Pl
    2 wâpamon	wâpamon+N+I+Sg
    2 wâpamitwâwi	wâpamêw+V+TA+Fut+Cond+3Pl+1SgO
@@ -6897,7 +6897,7 @@
    2 wedding	wedding+?
    2 we'll	we'll+?
    2 wayawîwin	wayawîwin+N+I+Sg
-   2 wayawîtân	wayawîw+V+AI+Imp+Imm+12Pl
+   2 wayawîtân	wayawîw+V+AI+Imp+Imm+21Pl
    2 wayawîtisahikêmakan	wayawîtisahikêmakan+V+II+Ind+3Sg
    2 wayawîtim-âyihk	wayawîtim-âyihk+Ipc
    2 wayawîhtatâw	wayawîhtatâw+V+TI+Ind+3Sg
@@ -7044,7 +7044,7 @@
    2 ta-tôtamân	PV/ta+tôtam+V+TI+Cnj+1Sg
    2 ta-tôtamâhk	PV/ta+tôtam+V+TI+Cnj+1Pl
    2 ta-tôtaman	PV/ta+tôtam+V+TI+Cnj+2Sg
-   2 ta-tôtamahk	PV/ta+tôtam+V+TI+Cnj+12Pl
+   2 ta-tôtamahk	PV/ta+tôtam+V+TI+Cnj+21Pl
    2 ta-tôtahk	PV/ta+tôtam+V+TI+Cnj+3Sg
    2 ta-tâsaham	PV/ta+tâsaham+V+TI+Ind+3Sg
    2 ta-tipiskâw	PV/ta+tipiskâw+V+II+Ind+3Sg
@@ -7103,13 +7103,13 @@
    2 ta-kîwêtotahkik	PV/ta+kîwêtotam+V+TI+Cnj+3Pl
    2 ta-kî-~	ta-kî-~+?
    2 ta-kî-nipahtâw	PV/ta-ki+nipahtâw+V+TI+Ind+3Sg
-   2 ta-kî-kîwêyahk	PV/ta-ki+kîwêw+V+AI+Cnj+12Pl
+   2 ta-kî-kîwêyahk	PV/ta-ki+kîwêw+V+AI+Cnj+21Pl
    2 ta-kî-kitât	PV/ta-ki+kitâw+V+TI+Cnj+3Sg
    2 ta-kî-ispayik	PV/ta-ki+ispayiw+V+II+Cnj+3Sg
    2 ta-kâhcitinêw	PV/ta+kâhcitinêw+V+TA+Ind+3Sg+4Sg/PlO
    2 ta-kitotâcik	PV/ta+kitotêw+V+TA+Cnj+3Pl+4Sg/PlO
    2 ta-kitotikot	PV/ta+kitotêw+V+TA+Cnj+4Sg/Pl+3SgO
-   2 ta-kisîhtoyahk	PV/ta+kisîhtowak+V+AI+Cnj+12Pl
+   2 ta-kisîhtoyahk	PV/ta+kisîhtowak+V+AI+Cnj+21Pl
    2 ta-kiskêyihtamêk	PV/ta+kiskêyihtam+V+TI+Cnj+2Pl
    2 ta-kiskisomiht	PV/ta+kiskisomêw+V+TA+Cnj+X+3SgO
    2 ta-kiskinohamâht	ta-kiskinohamâht+?
@@ -7117,7 +7117,7 @@
    2 ta-kawisimocik	PV/ta+kawisimow+V+AI+Cnj+3Pl
    2 ta-kaskêyihtam	PV/ta+kaskêyihtam+V+TI+Ind+3Sg
    2 ta-kaskihtâyân	PV/ta+kaskihtâw+V+TI+Cnj+1Sg
-   2 ta-kapêsiyahk	PV/ta+kapêsiw+V+AI+Cnj+12Pl
+   2 ta-kapêsiyahk	PV/ta+kapêsiw+V+AI+Cnj+21Pl
    2 ta-kakwê-nipahtâyan	PV/ta+PV/kakwe+nipahtâw+V+TI+Cnj+2Sg
    2 ta-itohtêw	PV/ta+itohtêw+V+AI+Ind+3Sg
    2 ta-isi-nipahiyêk	PV/ta+PV/isi+nipahêw+V+TA+Cnj+2Pl+1SgO
@@ -7187,7 +7187,7 @@
    2 sinikohtakinikan	sinikohtakinikan+N+I+Sg
    2 sinew	sinew+?
    2 sikâk	sikâk+N+A+Sg
-   2 sikitân	sikiw+V+AI+Imp+Imm+12Pl
+   2 sikitân	sikiw+V+AI+Imp+Imm+21Pl
    2 siki	sikiw+V+AI+Imp+Imm+2Sg
    2 sihkosiwayânasâkay	sihkosiwayânasâkay+N+I+Sg
    2 sihkosiwayân-astotin	sihkosiwayân-astotin+?
@@ -7224,7 +7224,7 @@
    2 pônihihk	pônihêw+V+TA+Imp+Imm+2Pl+3SgO
    2 pôni-pêhtâkwahki	PV/poni+pêhtâkwan+V+II+Fut+Cond+3Sg
    2 pôni-mâtôw	pôni-mâtôw+?
-   2 pôni-minihkwêtân	PV/poni+minihkwêw+V+AI+Imp+Imm+12Pl
+   2 pôni-minihkwêtân	PV/poni+minihkwêw+V+AI+Imp+Imm+21Pl
    2 pôn-âyamihâhki	pôn-âyamihâw+V+AI+Fut+Cond+X
    2 pômêw	pômêw+V+AI+Ind+3Sg
    2 pîwâpiskotâpân	pîwâpiskotâpân+N+A+Sg
@@ -7247,7 +7247,7 @@
    2 pîhtâsôw	pîhtâsôw+?
    2 pîhtwâwikamik	pîhtwâwikamik+N+I+Sg
    2 pîhtokêyâni	pîhtokêw+V+AI+Fut+Cond+1Sg
-   2 pîhtokêtân	pîhtokêw+V+AI+Imp+Imm+12Pl
+   2 pîhtokêtân	pîhtokêw+V+AI+Imp+Imm+21Pl
    2 pîhtokêtwâwi	pîhtokêw+V+AI+Fut+Cond+3Pl
    2 pîhtokêhkan	pîhtokêw+V+AI+Imp+Del+2Sg
    2 pîhtokahâw	pîhtokahêw+V+TA+Ind+X+3SgO
@@ -7340,7 +7340,7 @@
    2 pimîs	pimîs+N+I+Sg
    2 pimîhkân	pimîhkân+N+I+Sg
    2 pimîhk	pimiy+N+I+Loc
-   2 pimâtisiyahko	pimâtisiw+V+AI+Fut+Cond+12Pl
+   2 pimâtisiyahko	pimâtisiw+V+AI+Fut+Cond+21Pl
    2 pimâtisit	pimâtisit+?
    2 pimâcihêwak	pimâcihêw+V+TA+Ind+3Pl+4Sg/PlO
    2 pimâcihiyini	pimâcihiyini+?
@@ -7737,7 +7737,7 @@
    2 nitay-ayânân	RdplW+ayâw+V+AI+Ind+1Pl
    2 nitawêyihtamwak	nitawêyihtam+V+TI+Ind+3Pl
    2 nitawêyihtamani	nitawêyihtam+V+TI+Fut+Cond+2Sg
-   2 nitawâpamâtân	nitawâpamêw+V+TA+Imp+Imm+12Pl+3SgO
+   2 nitawâpamâtân	nitawâpamêw+V+TA+Imp+Imm+21Pl+3SgO
    2 nitawihik	awihêw+V+TA+Ind+3Sg+1SgO
    2 nitawi-wîhtamawêw	PV/nitawi+wîhtamawêw+V+TA+Ind+3Sg+4Sg/PlO
    2 nitawi-takosin	PV/nitawi+takosin+V+AI+Ind+3Sg
@@ -8092,7 +8092,7 @@
    2 mâtatoskê	mâtatoskêw+V+AI+Imp+Imm+2Sg
    2 mâskosiwâna	mâskosiwâna+?
    2 mâski-maskwa	mâski-maskwa+?
-   2 mâsihitotân	mâsihitowak+V+AI+Imp+Imm+12Pl
+   2 mâsihitotân	mâsihitowak+V+AI+Imp+Imm+21Pl
    2 mânokêw	mânokêw+V+AI+Ind+3Sg
    2 mâni	mâni+Ipc
    2 mâmawaci	mâmawaci+Ipc
@@ -8111,7 +8111,7 @@
    2 mâh-mihcêt	mâh-mihcêt+Ipc
    2 mâh-mihcêcôsêsiwak	mâh-mihcêcôsêsiwak+?
    2 mâh-maniswêw	RdplS+maniswêw+V+TA+Ind+3Sg+4Sg/PlO
-   2 mâcîtân	mâcîw+V+AI+Imp+Imm+12Pl
+   2 mâcîtân	mâcîw+V+AI+Imp+Imm+21Pl
    2 mâcipayin	mâcipayin+V+II+Ind+3Sg
    2 mâcikôtân	mâcikôtân+Ipc
    2 mâci-wawêyîwak	PV/maaci+wawêyîw+V+AI+Ind+3Pl
@@ -8275,7 +8275,7 @@
    2 kônisa	kôna+N+A+Der/Dim+kôna+N+A+Obv
    2 kôhkôsiwiyinwa	kôhkôsiwiyinwa+?
    2 kôhkominawak	nôhkom+N+A+D+Px12Pl+Pl
-   2 kîyânaw	kiyânaw+Pron+Pers+12Pl
+   2 kîyânaw	kiyânaw+Pron+Pers+21Pl
    2 kîya	kiya+Pron+Pers+2Sg
    2 kîwêyân	kîwêyân+?
    2 kîwêtisahwêw	kîwêtisahwêw+V+TA+Ind+3Sg+4Sg/PlO
@@ -8412,7 +8412,7 @@
    2 kêhkêhk	kêhkêhk+N+A+Sg
    2 kêhcinâhôwak	kêhcinâhôwak+?
    2 kê-wîhisot	PV/ke+wîhisow+V+AI+Cnj+3Sg
-   2 kê-tôtawâyahk	PV/ke+tôtawêw+V+TA+Cnj+12Pl+3SgO
+   2 kê-tôtawâyahk	PV/ke+tôtawêw+V+TA+Cnj+21Pl+3SgO
    2 kê-paskiyawiyin	kê-paskiyawiyin+?
    2 kê-pakamahotân	PV/ke+pakamahwêsiw+V+TA+Cnj+1Sg+2SgO
    2 kê-pahkihtiniyik	PV/ke+pahkihtin+V+II+Cnj+4Sg
@@ -8459,16 +8459,16 @@
    2 kâ-wîsâmât	PV/kaa+wîsâmêw+V+TA+Cnj+3Sg+4Sg/PlO
    2 kâ-wîsakitêhêyân	PV/kaa+wîsakitêhêw+V+AI+Cnj+1Sg
    2 kâ-wîkiyit	PV/kaa+wîkiw+V+AI+Cnj+4Sg/Pl
-   2 kâ-wîkiyahk	PV/kaa+wîkiw+V+AI+Cnj+12Pl
+   2 kâ-wîkiyahk	PV/kaa+wîkiw+V+AI+Cnj+21Pl
    2 kâ-wîkihtot	PV/kaa+wîkihtow+V+AI+Cnj+3Sg
    2 kâ-wîkihtohk	PV/kaa+wîkihtow+V+AI+Cnj+X
-   2 kâ-wîkihkêmoyahk	PV/kaa+wîkihkêmow+V+AI+Cnj+12Pl
+   2 kâ-wîkihkêmoyahk	PV/kaa+wîkihkêmow+V+AI+Cnj+21Pl
    2 kâ-wîhtamâtân	PV/kaa+wîhtamawêw+V+TA+Cnj+1Sg+2SgO
    2 kâ-wîhtamâkoyâhkik	PV/kaa+wîhtamawêw+V+TA+Cnj+3Pl+1PlO
    2 kâ-wîhkohtohk	kâ-wîhkohtohk+?
    2 kâ-wîhakik	PV/kaa+wîhêw+V+TA+Cnj+1Sg+3PlO
    2 kâ-wîcihiwêyân	PV/kaa+wîcihiwêw+V+AI+Cnj+1Sg
-   2 kâ-wî-âcimostâkoyahk	PV/kaa+PV/wî+âcimostawêw+V+TA+Cnj+3Sg+12PlO
+   2 kâ-wî-âcimostâkoyahk	PV/kaa+PV/wî+âcimostawêw+V+TA+Cnj+3Sg+21PlO
    2 kâ-wî-wîwiyan	PV/kaa+PV/wî+wîwiw+V+AI+Cnj+2Sg
    2 kâ-wî-tâhkôtamân	PV/kaa+PV/wî+tâhkôtam+V+TI+Cnj+1Sg
    2 kâ-wî-tipiskâk	PV/kaa+PV/wî+tipiskâw+V+II+Cnj+3Sg
@@ -8743,7 +8743,7 @@
    2 kâ-kî-ay-ayâyâhk	PV/kaa+PV/kî+RdplW+ayâw+V+AI+Cnj+1Pl
    2 kâ-kî-atâmât	PV/kaa+PV/kî+atâmêw+V+TA+Cnj+3Sg+4Sg/PlO
    2 kâ-kî-apisîsisicik	PV/kaa+PV/kî+apisîsisiw+V+AI+Cnj+3Pl
-   2 kâ-kêhtê-ayiwiyahk	PV/kaa+kêhtê-ayiwiw+V+AI+Cnj+12Pl
+   2 kâ-kêhtê-ayiwiyahk	PV/kaa+kêhtê-ayiwiw+V+AI+Cnj+21Pl
    2 kâ-kâhcitinât	PV/kaa+kâhcitinêw+V+TA+Cnj+3Sg+4Sg/PlO
    2 kâ-kwâsihtwât	PV/kaa+kwâsihtwâw+V+AI+Cnj+3Sg
    2 kâ-koskoskonikot	PV/kaa+koskoskonêw+V+TA+Cnj+4Sg/Pl+3SgO
@@ -8835,24 +8835,24 @@
    2 kosikwatiyiwa	kosikwatiw+V+AI+Ind+4Sg/Pl
    2 kosa	kosa+Ipc
    2 kocawâkanisa	kocawâkanis+N+I+Pl
-   2 kiyê-âpacihikoyahk	PV/kiye+âpacihêw+V+TA+Cnj+3Sg+12PlO
+   2 kiyê-âpacihikoyahk	PV/kiye+âpacihêw+V+TA+Cnj+3Sg+21PlO
    2 kiyâski	kiyâskiw+V+AI+Imp+Imm+2Sg
    2 kiyâmêwisiw	kiyâmêwisiw+V+AI+Ind+3Sg
    2 kiyâhkakiyôwêw	kiyâhkakiyôwêw+?
-   2 kiyokêtân	kiyokêw+V+AI+Imp+Imm+12Pl
+   2 kiyokêtân	kiyokêw+V+AI+Imp+Imm+21Pl
    2 kiy-êtikawiyân	kiy-êtikawiyân+?
    2 kiwîskwêpitâkan	wîskwêpitâkan+N+I+Px2Sg+Sg
    2 kiwîkimâkaninawak	niwîkimâkan+N+A+D+Px12Pl+Pl
    2 kiwîhkaskom	kiwîhkaskom+?
    2 kiwîcêwâkaninaw	niwîcêwâkan+N+A+D+Px12Pl+Sg
    2 kiwî-wîhtamâtin	PV/wî+wîhtamawêw+V+TA+Ind+1Sg+2SgO
-   2 kiwî-wanisimikonaw	PV/wî+wanisimêw+V+TA+Ind+3Sg+12PlO
-   2 kiwî-takosininaw	PV/wî+takosin+V+AI+Ind+12Pl
+   2 kiwî-wanisimikonaw	PV/wî+wanisimêw+V+TA+Ind+3Sg+21PlO
+   2 kiwî-takosininaw	PV/wî+takosin+V+AI+Ind+21Pl
    2 kiwî-pê-itohtân	PV/wî+pê-itohtêw+V+AI+Ind+2Sg
    2 kiwî-otinên	PV/wî+otinam+V+TI+Ind+2Sg
    2 kiwî-nipahin	PV/wî+nipahêw+V+TA+Ind+2Sg+1SgO
    2 kiwî-kakwê-âh-onâpêminâwâw	PV/wî+PV/kakwe+RdplS+onâpêmiw+V+AI+Ind+2Pl
-   2 kiwî-ispayinânaw	PV/wî+ispayiw+V+AI+Ind+12Pl
+   2 kiwî-ispayinânaw	PV/wî+ispayiw+V+AI+Ind+21Pl
    2 kiwâpamin	wâpamêw+V+TA+Ind+2Sg+1SgO
    2 kiwâhkômâkaninaw	niwâhkômâkan+N+A+D+Px12Pl+Sg
    2 kiwâhkômâkanak	niwâhkômâkan+N+A+D+Px2Sg+Pl
@@ -8861,7 +8861,7 @@
    2 kiwiyinoma	kiwiyinoma+?
    2 kiwawiyatisin	wawiyatisiw+V+AI+Ind+2Sg
    2 kiwaskawîwininaw	waskawîwin+N+I+Px12Pl+Sg
-   2 kiwanisimânaw	wanisimêw+V+TA+Ind+12Pl+3SgO
+   2 kiwanisimânaw	wanisimêw+V+TA+Ind+21Pl+3SgO
    2 kitôtêmak	nitôtêm+N+A+D+Px2Sg+Pl
    2 kitôn	mitôn+N+I+D+Px2Sg+Sg
    2 kitôkimâminaw	nitôkimâm+N+A+D+Px12Pl+Sg
@@ -8987,12 +8987,12 @@
    2 kinitomikawin	nitomêw+V+TA+Ind+X+2SgO
    2 kinitohtâtin	nitohtawêw+V+TA+Ind+1Sg+2SgO
    2 kinitawêyimitinâwâw	nitawêyimêw+V+TA+Ind+1Sg+2PlO
-   2 kinisitohtâkonaw	nisitohtawêw+V+TA+Ind+3Sg+12PlO
+   2 kinisitohtâkonaw	nisitohtawêw+V+TA+Ind+3Sg+21PlO
    2 kinipahik	nipahêw+V+TA+Ind+3Sg+2SgO
    2 kinihtâ-kakwê-cîsimâwâw	PV/nihta+kakwê-cîsimêw+V+TA+Ind+2Pl+3SgO
    2 kind	kind+?
    2 kinakatên	nakatam+V+TI+Ind+2Sg
-   2 kimêscihikonawak	mêscihêw+V+TA+Ind+3Pl+12PlO
+   2 kimêscihikonawak	mêscihêw+V+TA+Ind+3Pl+21PlO
    2 kimâton	mâtow+V+AI+Ind+2Sg
    2 kimwêsiskawâw	mwêsiskawêw+V+TA+Ind+2Sg+3SgO
    2 kimotiwak	kimotiw+V+AI+Ind+3Pl
@@ -9006,14 +9006,14 @@
    2 kimisinaw	nimis+N+A+D+Px12Pl+Sg
    2 kiminihkwêwin	minihkwêwin+N+I+Px2Sg+Sg
    2 kiminihkwân	minihkwêw+V+AI+Ind+2Sg
-   2 kikî-wîkinânaw	PV/kî+wîkiw+V+AI+Ind+12Pl
+   2 kikî-wîkinânaw	PV/kî+wîkiw+V+AI+Ind+21Pl
    2 kikî-wâpamâwak	PV/kî+wâpamêw+V+TA+Ind+2Sg+3PlO
    2 kikî-wâpamâw	PV/kî+wâpamêw+V+TA+Ind+2Sg+3SgO
    2 kikî-wâpahtên	PV/kî+wâpahtam+V+TI+Ind+2Sg
    2 kikî-wiyâhtên	PV/kî+wiyâhtam+V+TI+Ind+2Sg
    2 kikî-miyikawinânaw	kikî-miyikawinânaw+?
    2 kikî-isin	PV/kî+itêw+V+TA+Ind+2Sg+1SgO
-   2 kikêhtê-ayiwinânaw	kêhtê-ayiwiw+V+AI+Ind+12Pl
+   2 kikêhtê-ayiwinânaw	kêhtê-ayiwiw+V+AI+Ind+21Pl
    2 kikâtawin	kikâtawin+?
    2 kikwâpahên	kwâpaham+V+TI+Ind+2Sg
    2 kikitâpamikawin	kitâpamêw+V+TA+Ind+X+2SgO
@@ -9030,13 +9030,13 @@
    2 kika-ôh-pimâcihon	PV/ka+PV/oh+pimâcihow+V+AI+Ind+2Sg
    2 kika-âpacihtân	PV/ka+âpacihtâw+V+TI+Ind+2Sg
    2 kika-âpacihikowâw	PV/ka+âpacihêw+V+TA+Ind+3Sg+2PlO
-   2 kika-âcimonânaw	PV/ka+âcimow+V+AI+Ind+12Pl
+   2 kika-âcimonânaw	PV/ka+âcimow+V+AI+Ind+21Pl
    2 kika-wîkimitin	PV/ka+wîkimêw+V+TA+Ind+1Sg+2SgO
    2 kika-wâpamâwak	PV/ka+wâpamêw+V+TA+Ind+2Sg+3PlO
    2 kika-wâpamâw	PV/ka+wâpamêw+V+TA+Ind+2Sg+3SgO
    2 kika-wayêsihin	PV/ka+wayêsihêw+V+TA+Ind+2Sg+1SgO
    2 kika-pimâcihâw	PV/ka+pimâcihêw+V+TA+Ind+2Sg+3SgO
-   2 kika-picinânaw	PV/ka+piciw+V+AI+Ind+12Pl
+   2 kika-picinânaw	PV/ka+piciw+V+AI+Ind+21Pl
    2 kika-pakamahotin	PV/ka+pakamahwêsiw+V+TA+Ind+1Sg+2SgO
    2 kika-otinên	PV/ka+otinam+V+TI+Ind+2Sg
    2 kika-otihtên	PV/ka+otihtam+V+TI+Ind+2Sg
@@ -9045,7 +9045,7 @@
    2 kika-nîmihitonâwâw	PV/ka+nîmihitow+V+AI+Ind+2Pl
    2 kika-nipân	PV/ka+nipâw+V+AI+Ind+2Sg
    2 kika-nipahikwak	PV/ka+nipahêw+V+TA+Ind+3Pl+2SgO
-   2 kika-mêscihikonaw	PV/ka+mêscihêw+V+TA+Ind+3Sg+12PlO
+   2 kika-mêscihikonaw	PV/ka+mêscihêw+V+TA+Ind+3Sg+21PlO
    2 kika-miyin	PV/ka+miyêw+V+TA+Ind+2Sg+1SgO
    2 kika-miyik	kika-miyik+?
    2 kika-kî-kiki-sipwêhtân	kika-kî-kiki-sipwêhtân+?
@@ -9053,7 +9053,7 @@
    2 kika-itohtânâwâw	PV/ka+itohtêw+V+AI+Ind+2Pl
    2 kika-itikwak	PV/ka+itêw+V+TA+Ind+3Pl+2SgO
    2 kika-isîhitin	PV/ka+isîhêw+V+TA+Ind+1Sg+2SgO
-   2 kika-ayânânaw	PV/ka+ayâw+V+AI+Ind+12Pl
+   2 kika-ayânânaw	PV/ka+ayâw+V+AI+Ind+21Pl
    2 kika-atoskân	PV/ka+atoskêw+V+AI+Ind+2Sg
    2 kika-asamitin	PV/ka+asamêw+V+TA+Ind+1Sg+2SgO
    2 kika-anâskânâwâw	PV/ka+anâskêw+V+AI+Ind+2Pl
@@ -9117,7 +9117,7 @@
    2 kakwê-cîsi	kakwê-cîsi+?
    2 ka-wîsakêyihtamihâw	PV/ka+wîsakêyihtamihêw+V+TA+Ind+X+3SgO
    2 ka-wîkimânaw	ka-wîkimânaw+?
-   2 ka-wîhtamawâyahk	PV/ka+wîhtamawêw+V+TA+Cnj+12Pl+3SgO
+   2 ka-wîhtamawâyahk	PV/ka+wîhtamawêw+V+TA+Cnj+21Pl+3SgO
    2 ka-wîhtamawât	PV/ka+wîhtamawêw+V+TA+Cnj+3Sg+4Sg/PlO
    2 ka-wîhtamawakik	PV/ka+wîhtamawêw+V+TA+Cnj+1Sg+3PlO
    2 ka-wîcêwâwak	PV/ka+wîcêwêw+V+TA+Ind+X+3PlO
@@ -9161,7 +9161,7 @@
    2 ka-nâtâmototawêw	PV/ka+nâtâmototawêw+V+TA+Ind+3Sg+4Sg/PlO
    2 ka-nâtâmototamihk	PV/ka+nâtâmototam+V+TI+Cnj+X+3Sg
    2 ka-nitotamâht	PV/ka+nitotamawêw+V+TA+Cnj+X+3SgO
-   2 ka-nitotamawâyahk	PV/ka+nitotamawêw+V+TA+Cnj+12Pl+3SgO
+   2 ka-nitotamawâyahk	PV/ka+nitotamawêw+V+TA+Cnj+21Pl+3SgO
    2 ka-nitonawânawak	ka-nitonawânawak+?
    2 ka-nitohtawak	PV/ka+nitohtawêw+V+TA+Cnj+1Sg+3SgO
    2 ka-nipâyan	PV/ka+nipâw+V+AI+Cnj+2Sg
@@ -9171,9 +9171,9 @@
    2 ka-nanahihtawâcik	PV/ka+nanahihtawêw+V+TA+Cnj+3Pl+4Sg/PlO
    2 ka-nakiskâtin	ka-nakiskâtin+?
    2 ka-nakataskêt	PV/ka+nakataskêw+V+AI+Cnj+3Sg
-   2 ka-nakatamahk	PV/ka+nakatam+V+TI+Cnj+12Pl
+   2 ka-nakatamahk	PV/ka+nakatam+V+TI+Cnj+21Pl
    2 ka-mîciyân	PV/ka+mîciw+V+TI+Cnj+1Sg
-   2 ka-mîciyahk	PV/ka+mîciw+V+TI+Cnj+12Pl
+   2 ka-mîciyahk	PV/ka+mîciw+V+TI+Cnj+21Pl
    2 ka-mîcit	PV/ka+mîciw+V+TI+Cnj+3Sg
    2 ka-mîcisoyan	PV/ka+mîcisow+V+AI+Cnj+2Sg
    2 ka-mîcinânaw	ka-mîcinânaw+?
@@ -9197,7 +9197,7 @@
    2 ka-kî-nipahât	PV/ka-ki+nipahêw+V+TA+Cnj+3Sg+4Sg/PlO
    2 ka-kî-nanâskomot	PV/ka-ki+nanâskomow+V+AI+Cnj+3Sg
    2 ka-kî-miywâsinôpan	ka-kî-miywâsinôpan+?
-   2 ka-kostamahk	PV/ka+kostam+V+TI+Cnj+12Pl
+   2 ka-kostamahk	PV/ka+kostam+V+TI+Cnj+21Pl
    2 ka-koskonin	RdplW+koskonêw+V+TA+Imp+Imm+2Sg+1SgO
    2 ka-kitimâkêyimâyahkik	ka-kitimâkêyimâyahkik+?
    2 ka-kitimâkêyimik	PV/ka+kitimâkêyimêw+V+TA+Ind+4Sg/Pl+3SgO
@@ -9212,7 +9212,7 @@
    2 ka-kakwê-wîcihâyahkik	ka-kakwê-wîcihâyahkik+?
    2 ka-kakwê-pimâcihocik	PV/ka+PV/kakwe+pimâcihow+V+AI+Cnj+3Pl
    2 ka-kakwê-miskâkawiyâhk	PV/ka+PV/kakwe+miskawêw+V+TA+Cnj+X+1PlO
-   2 ka-kakwê-isi-pimâtisiyahk	PV/ka+PV/kakwe+PV/isi+pimâtisiw+V+AI+Cnj+12Pl
+   2 ka-kakwê-isi-pimâtisiyahk	PV/ka+PV/kakwe+PV/isi+pimâtisiw+V+AI+Cnj+21Pl
    2 ka-kakwâtakêyihtamiyit	PV/ka+kakwâtakêyihtam+V+TI+Cnj+4Sg/Pl
    2 ka-k	ka-k+?
    2 ka-itêyihtên	ka-itêyihtên+?
@@ -10276,7 +10276,7 @@
    1 ê-wîtatoskêmakik	PV/ê+wîtatoskêmêw+V+TA+Cnj+1Sg+3PlO
    1 ê-wîtaskîwêmâyahk	ê-wîtaskîwêmâyahk+?
    1 ê-wîtapimâyit	PV/ê+wîtapimêw+V+TA+Cnj+4Sg/Pl+5Sg/PlO
-   1 ê-wîtapimâyahk	PV/ê+wîtapimêw+V+TA+Cnj+12Pl+3SgO
+   1 ê-wîtapimâyahk	PV/ê+wîtapimêw+V+TA+Cnj+21Pl+3SgO
    1 ê-wîtapimât	PV/ê+wîtapimêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ê-wîtapimit	PV/ê+wîtapimêw+V+TA+Cnj+3Sg+1SgO
    1 ê-wîsâmisk	PV/ê+wîsâmêw+V+TA+Cnj+3Sg+2SgO
@@ -10285,7 +10285,7 @@
    1 ê-wîsakêyihtamâhk	PV/ê+wîsakêyihtam+V+TI+Cnj+1Pl
    1 ê-wîsakêyihtaman	PV/ê+wîsakêyihtam+V+TI+Cnj+2Sg
    1 ê-wîsakêyihcasiyân	ê-wîsakêyihcasiyân+?
-   1 ê-wîsakitêhêyahk	PV/ê+wîsakitêhêw+V+AI+Cnj+12Pl
+   1 ê-wîsakitêhêyahk	PV/ê+wîsakitêhêw+V+AI+Cnj+21Pl
    1 ê-wîsaki-kostât	PV/ê+PV/wisaki+kostêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ê-wîsaki-kosit	PV/ê+PV/wisaki+kostêw+V+TA+Cnj+3Sg+1SgO
    1 ê-wîsaki-cîsot	PV/ê+PV/wisaki+cîswêw+V+TA+Cnj+3Sg+1SgO
@@ -10393,7 +10393,7 @@
    1 ê-wî-wîhpêmât	PV/ê+PV/wî+wîhpêmêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ê-wî-wîhkohkahtahk	ê-wî-wîhkohkahtahk+?
    1 ê-wî-wîcêwât	PV/ê+PV/wî+wîcêwêw+V+TA+Cnj+3Sg+4Sg/PlO
-   1 ê-wî-wîcêwâkanimikoyahk	PV/ê+PV/wî+wîcêwâkanimêw+V+TA+Cnj+3Sg+12PlO
+   1 ê-wî-wîcêwâkanimikoyahk	PV/ê+PV/wî+wîcêwâkanimêw+V+TA+Cnj+3Sg+21PlO
    1 ê-wî-wîcihtâsoyân	PV/ê+PV/wî+wîcihtâsow+V+AI+Cnj+1Sg
    1 ê-wî-wîci-pîkiskwêmat	PV/ê+PV/wî+wîci-pîkiskwêmêw+V+TA+Cnj+2Sg+3SgO
    1 ê-wî-wîc-âyâmitân	PV/ê+PV/wî+wîc-âyâmêw+V+TA+Cnj+1Sg+2SgO
@@ -10405,7 +10405,7 @@
    1 ê-wî-wâpamisk	PV/ê+PV/wî+wâpamêw+V+TA+Cnj+3Sg+2SgO
    1 ê-wî-wâpamikot	PV/ê+PV/wî+wâpamêw+V+TA+Cnj+4Sg/Pl+3SgO
    1 ê-wî-wâpamakik	PV/ê+PV/wî+wâpamêw+V+TA+Cnj+1Sg+3PlO
-   1 ê-wî-wâpahtamahk	PV/ê+PV/wî+wâpahtam+V+TI+Cnj+12Pl
+   1 ê-wî-wâpahtamahk	PV/ê+PV/wî+wâpahtam+V+TI+Cnj+21Pl
    1 ê-wî-wâpahtahk	PV/ê+PV/wî+wâpahtam+V+TI+Cnj+3Sg
    1 ê-wî-wâp-~	ê-wî-wâp-~+?
    1 ê-wî-wiyâhkwêw-âcimoyân	ê-wî-wiyâhkwêw-âcimoyân+?
@@ -10424,8 +10424,8 @@
    1 ê-wî-tasinahk	PV/ê+PV/wî+tasinam+V+TI+Cnj+3Sg
    1 ê-wî-tapasîhikot	PV/ê+PV/wî+tapasîhêw+V+TA+Cnj+4Sg/Pl+3SgO
    1 ê-wî-takosiniyit	PV/ê+PV/wî+takosin+V+AI+Cnj+4Sg/Pl
-   1 ê-wî-takosiniyahk	PV/ê+PV/wî+takosin+V+AI+Cnj+12Pl
-   1 ê-wî-takohtêyahk	PV/ê+PV/wî+takohtêw+V+AI+Cnj+12Pl
+   1 ê-wî-takosiniyahk	PV/ê+PV/wî+takosin+V+AI+Cnj+21Pl
+   1 ê-wî-takohtêyahk	PV/ê+PV/wî+takohtêw+V+AI+Cnj+21Pl
    1 ê-wî-tahkamât	PV/ê+PV/wî+tahkamêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ê-wî-sîkahokot	PV/ê+PV/wî+sîkahwêw+V+TA+Cnj+4Sg/Pl+3SgO
    1 ê-wî-sâmahwât	PV/ê+PV/wî+sâmahwêw+V+TA+Cnj+3Sg+4Sg/PlO
@@ -10567,7 +10567,7 @@
    1 ê-wî-nipahiyâhk	PV/ê+PV/wî+nipahêw+V+TA+Cnj+2Pl+1PlO
    1 ê-wî-nipahisot	PV/ê+PV/wî+nipahisow+V+AI+Cnj+3Sg
    1 ê-wî-nipahisk	PV/ê+PV/wî+nipahêw+V+TA+Cnj+3Sg+2SgO
-   1 ê-wî-nipahikoyahk	PV/ê+PV/wî+nipahêw+V+TA+Cnj+3Sg+12PlO
+   1 ê-wî-nipahikoyahk	PV/ê+PV/wî+nipahêw+V+TA+Cnj+3Sg+21PlO
    1 ê-wî-nipahikocik	PV/ê+PV/wî+nipahêw+V+TA+Cnj+4Sg/Pl+3PlO
    1 ê-wî-nipahicik	PV/ê+PV/wî+nipahêw+V+TA+Cnj+3Pl+1SgO
    1 ê-wî-nipahi-wâpani-môcikihtâhk	PV/ê+PV/wî+PV/nipahi+PV/wapani+môcikihtâw+V+TI+Cnj+X
@@ -10611,7 +10611,7 @@
    1 ê-wî-mêscihât	PV/ê+PV/wî+mêscihêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ê-wî-mê	ê-wî-mê+?
    1 ê-wî-mâtot	PV/ê+PV/wî+mâtow+V+AI+Cnj+3Sg
-   1 ê-wî-mâkohikoyahk	PV/ê+PV/wî+mâkohêw+V+TA+Cnj+3Sg+12PlO
+   1 ê-wî-mâkohikoyahk	PV/ê+PV/wî+mâkohêw+V+TA+Cnj+3Sg+21PlO
    1 ê-wî-mâhiskamiyit	PV/ê+PV/wî+mâhiskam+V+AI+Cnj+4Sg/Pl
    1 ê-wî-mâcîyan	PV/ê+PV/wî+mâcîw+V+AI+Cnj+2Sg
    1 ê-wî-mâcîwiht	ê-wî-mâcîwiht+?
@@ -10622,7 +10622,7 @@
    1 ê-wî-miyâyit	PV/ê+PV/wî+miyêw+V+TA+Cnj+4Sg/Pl+5Sg/PlO
    1 ê-wî-miyâmât	PV/ê+PV/wî+miyâmêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ê-wî-miyâmitakok	PV/ê+PV/wî+miyâmêw+V+TA+Cnj+1Sg+2PlO
-   1 ê-wî-miywêyihtamahk	PV/ê+PV/wî+miywêyihtam+V+TI+Cnj+12Pl
+   1 ê-wî-miywêyihtamahk	PV/ê+PV/wî+miywêyihtam+V+TI+Cnj+21Pl
    1 ê-wî-miyo-wîcêhtahk	PV/ê+PV/wî+miyo-wîcêhtam+V+TI+Cnj+3Sg
    1 ê-wî-miyiyan	PV/ê+PV/wî+miyêw+V+TA+Cnj+2Sg+1SgO
    1 ê-wî-miyit	PV/ê+PV/wî+miyêw+V+TA+Cnj+3Sg+1SgO
@@ -10633,7 +10633,7 @@
    1 ê-wî-minihkwêyit	PV/ê+PV/wî+minihkwêw+V+AI+Cnj+4Sg/Pl
    1 ê-wî-minahoyit	PV/ê+PV/wî+minahow+V+AI+Cnj+4Sg/Pl
    1 ê-wî-minahot	PV/ê+PV/wî+minahow+V+AI+Cnj+3Sg
-   1 ê-wî-minahikoyahk	PV/ê+PV/wî+minahêw+V+TA+Cnj+3Sg+12PlO
+   1 ê-wî-minahikoyahk	PV/ê+PV/wî+minahêw+V+TA+Cnj+3Sg+21PlO
    1 ê-wî-minahicik	PV/ê+PV/wî+minahêw+V+TA+Cnj+3Pl+1SgO
    1 ê-wî-mihkowit	PV/ê+PV/wî+mihkowiw+V+AI+Cnj+3Sg
    1 ê-wî-masinahikêhitin	ê-wî-masinahikêhitin+?
@@ -10682,7 +10682,7 @@
    1 ê-wî-kakwê-âpahkaw-âyâyân	PV/ê+PV/wî+PV/kakwe+âpahkaw-âyâw+V+AI+Cnj+1Sg
    1 ê-wî-kakwê-âkayâsîmot	PV/ê+PV/wî+PV/kakwe+âkayâsîmow+V+AI+Cnj+3Sg
    1 ê-wî-kakwê-âhtastât	PV/ê+PV/wî+PV/kakwe+âhtastâw+V+TI+Cnj+3Sg
-   1 ê-wî-kakwê-wîcihikoyahk	PV/ê+PV/wî+PV/kakwe+wîcihêw+V+TA+Cnj+4Sg/Pl+12PlO
+   1 ê-wî-kakwê-wîcihikoyahk	PV/ê+PV/wî+PV/kakwe+wîcihêw+V+TA+Cnj+4Sg/Pl+21PlO
    1 ê-wî-kakwê-wêhtisihk	PV/ê+PV/wî+PV/kakwe+wêhtisiw+V+AI+Cnj+X
    1 ê-wî-kakwê-wâpamâyit	PV/ê+PV/wî+PV/kakwe+wâpamêw+V+TA+Cnj+4Sg/Pl+5Sg/PlO
    1 ê-wî-kakwê-wâpamak	PV/ê+PV/wî+PV/kakwe+wâpamêw+V+TA+Cnj+1Sg+3SgO
@@ -10694,14 +10694,14 @@
    1 ê-wî-kakwê-takohtêt	PV/ê+PV/wî+PV/kakwe+takohtêw+V+AI+Cnj+3Sg
    1 ê-wî-kakwê-sêkimak	PV/ê+PV/wî+PV/kakwe+sêkimêw+V+TA+Cnj+1Sg+3SgO
    1 ê-wî-kakwê-pimâcihâcik	PV/ê+PV/wî+PV/kakwe+pimâcihêw+V+TA+Cnj+3Pl+4Sg/PlO
-   1 ê-wî-kakwê-patitisahamâkoyahk	PV/ê+PV/wî+PV/kakwe+patitisahamawêw+V+TA+Cnj+4Sg/Pl+12PlO
+   1 ê-wî-kakwê-patitisahamâkoyahk	PV/ê+PV/wî+PV/kakwe+patitisahamawêw+V+TA+Cnj+4Sg/Pl+21PlO
    1 ê-wî-kakwê-pakonêhahk	PV/ê+PV/wî+PV/kakwe+pakonêham+V+TI+Cnj+3Sg
    1 ê-wî-kakwê-pahkwatinât	PV/ê+PV/wî+PV/kakwe+pahkwatinêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ê-wî-kakwê-otihtât	PV/ê+PV/wî+PV/kakwe+otihtêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ê-wî-kakwê-otihtinikocik	PV/ê+PV/wî+PV/kakwe+otihtinêw+V+TA+Cnj+4Sg/Pl+3PlO
    1 ê-wî-kakwê-otihtinak	PV/ê+PV/wî+PV/kakwe+otihtinêw+V+TA+Cnj+1Sg+3SgO
    1 ê-wî-kakwê-osâpamât	PV/ê+PV/wî+PV/kakwe+osâpamêw+V+TA+Cnj+3Sg+4Sg/PlO
-   1 ê-wî-kakwê-ohci-kanawêyimikoyahk	PV/ê+PV/wî+PV/kakwe+PV/ohci+kanawêyimêw+V+TA+Cnj+3Sg+12PlO
+   1 ê-wî-kakwê-ohci-kanawêyimikoyahk	PV/ê+PV/wî+PV/kakwe+PV/ohci+kanawêyimêw+V+TA+Cnj+3Sg+21PlO
    1 ê-wî-kakwê-nôhtêsimât	PV/ê+PV/wî+PV/kakwe+nôhtêsimêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ê-wî-kakwê-nôhtêhkwastimât	PV/ê+PV/wî+PV/kakwe+nôhtêhkwastimêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ê-wî-kakwê-nêstohkwastimât	PV/ê+PV/wî+PV/kakwe+nêstohkwastimêw+V+TA+Cnj+3Sg+4Sg/PlO
@@ -10717,7 +10717,7 @@
    1 ê-wî-kakwê-nihtâ-pimohtahkwêhât	ê-wî-kakwê-nihtâ-pimohtahkwêhât+?
    1 ê-wî-kakwê-mîcisot	PV/ê+PV/wî+PV/kakwe+mîcisow+V+AI+Cnj+3Sg
    1 ê-wî-kakwê-mêscihikocik	PV/ê+PV/wî+PV/kakwe+mêscihêw+V+TA+Cnj+4Sg/Pl+3PlO
-   1 ê-wî-kakwê-miyohtahikoyahk	PV/ê+PV/wî+PV/kakwe+miyohtahêw+V+TA+Cnj+3Sg+12PlO
+   1 ê-wî-kakwê-miyohtahikoyahk	PV/ê+PV/wî+PV/kakwe+miyohtahêw+V+TA+Cnj+3Sg+21PlO
    1 ê-wî-kakwê-miy-ôhpikihâcik	ê-wî-kakwê-miy-ôhpikihâcik+?
    1 ê-wî-kakwê-miskawât	PV/ê+PV/wî+PV/kakwe+miskawêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ê-wî-kakwê-miskahk	PV/ê+PV/wî+PV/kakwe+miskam+V+TI+Cnj+3Sg
@@ -10736,7 +10736,7 @@
    1 ê-wî-kakwê-kakayêyihisk	PV/ê+PV/wî+PV/kakwe+kakayêyihêw+V+TA+Cnj+3Sg+2SgO
    1 ê-wî-kakwê-ka-kitotikot	PV/ê+PV/wî+PV/kakwe+RdplW+kitotêw+V+TA+Cnj+4Sg/Pl+3SgO
    1 ê-wî-kakwê-itâcihocik	PV/ê+PV/wî+PV/kakwe+itâcihow+V+AI+Cnj+3Pl
-   1 ê-wî-kakwê-itakimikoyahk	PV/ê+PV/wî+PV/kakwe+itakimêw+V+TA+Cnj+3Sg+12PlO
+   1 ê-wî-kakwê-itakimikoyahk	PV/ê+PV/wî+PV/kakwe+itakimêw+V+TA+Cnj+3Sg+21PlO
    1 ê-wî-kakwê-isîhkawât	PV/ê+PV/wî+PV/kakwe+isîhkawêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ê-wî-kakwê-isi-sipwêhtêt	PV/ê+PV/wî+PV/kakwe+PV/isi+sipwêhtêw+V+AI+Cnj+3Sg
    1 ê-wî-kakwê-ayâwâcik	PV/ê+PV/wî+PV/kakwe+ayâwêw+V+TA+Cnj+3Pl+4Sg/PlO
@@ -10884,7 +10884,7 @@
    1 ê-wânaskêcik	PV/ê+wânaskêw+V+AI+Cnj+3Pl
    1 ê-wâkastêyit	ê-wâkastêyit+?
    1 ê-wâhwâpahkêcik	ê-wâhwâpahkêcik+?
-   1 ê-wâhkômâyahk	PV/ê+wâhkômêw+V+TA+Cnj+12Pl+3SgO
+   1 ê-wâhkômâyahk	PV/ê+wâhkômêw+V+TA+Cnj+21Pl+3SgO
    1 ê-wâhkêwacihk	ê-wâhkêwacihk+?
    1 ê-wâh-wîstihkêyâhk	PV/ê+RdplS+wîstihkêw+V+AI+Cnj+1Pl
    1 ê-wâh-wîscîhkêsit	ê-wâh-wîscîhkêsit+?
@@ -10986,7 +10986,7 @@
    1 ê-wanisîhocik	PV/ê+wanisîhow+V+AI+Cnj+3Pl
    1 ê-waniskâyâhk	PV/ê+waniskâw+V+AI+Cnj+1Pl
    1 ê-waniskâyan	PV/ê+waniskâw+V+AI+Cnj+2Sg
-   1 ê-wanisimikoyahk	PV/ê+wanisimêw+V+TA+Cnj+4Sg/Pl+12PlO
+   1 ê-wanisimikoyahk	PV/ê+wanisimêw+V+TA+Cnj+4Sg/Pl+21PlO
    1 ê-wanisimikot	PV/ê+wanisimêw+V+TA+Cnj+4Sg/Pl+3SgO
    1 ê-wanikiskisiyân	PV/ê+wanikiskisiw+V+AI+Cnj+1Sg
    1 ê-wanikiskisiyâhk	PV/ê+wanikiskisiw+V+AI+Cnj+1Pl
@@ -11045,7 +11045,7 @@
    1 ê-têpwâtikot	PV/ê+têpwâtêw+V+TA+Cnj+4Sg/Pl+3SgO
    1 ê-têpipayiyân	PV/ê+têpipayiw+V+AI+Cnj+1Sg
    1 ê-têpipayicik	PV/ê+têpipayiw+V+AI+Cnj+3Pl
-   1 ê-têpinêhamahk	PV/ê+têpinêham+V+TI+Cnj+12Pl
+   1 ê-têpinêhamahk	PV/ê+têpinêham+V+TI+Cnj+21Pl
    1 ê-têhtastâyâhk	PV/ê+têhtastâw+V+TI+Cnj+1Pl
    1 ê-têhtastât	PV/ê+têhtastâw+V+TI+Cnj+3Sg
    1 ê-têhtahât	PV/ê+têhtahêw+V+TA+Cnj+3Sg+4Sg/PlO
@@ -11109,11 +11109,11 @@
    1 ê-tipêyimisohk	PV/ê+tipêyimisow+V+AI+Cnj+X
    1 ê-tipêyimisk	PV/ê+tipêyimêw+V+TA+Cnj+3Sg+2SgO
    1 ê-tipêyimikoyêk	PV/ê+tipêyimêw+V+TA+Cnj+3Sg+2PlO
-   1 ê-tipêyimikoyahk	PV/ê+tipêyimêw+V+TA+Cnj+3Sg+12PlO
+   1 ê-tipêyimikoyahk	PV/ê+tipêyimêw+V+TA+Cnj+3Sg+21PlO
    1 ê-tipêyimakik	PV/ê+tipêyimêw+V+TA+Cnj+1Sg+3PlO
    1 ê-tipêyihtamâsohk	PV/ê+tipêyihtamâsow+V+AI+Cnj+X
    1 ê-tipêyihtamiyit	PV/ê+tipêyihtam+V+TI+Cnj+4Sg/Pl
-   1 ê-tipêyihtamahk	PV/ê+tipêyihtam+V+TI+Cnj+12Pl
+   1 ê-tipêyihtamahk	PV/ê+tipêyihtam+V+TI+Cnj+21Pl
    1 ê-tipinawâyik	PV/ê+tipinawâw+V+II+Cnj+4Sg
    1 ê-tipahwât	PV/ê+tipahwêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ê-tipahitân	PV/ê+tipahêw+V+TA+Cnj+1Sg+2SgO
@@ -11493,7 +11493,7 @@
    1 ê-pîsimowik	PV/ê+pîsimowiw+V+II+Cnj+3Sg
    1 ê-pîmakâmêskamiyit	PV/ê+pîmakâmêskam+V+TI+Cnj+4Sg/Pl
    1 ê-pîkwêyihtamihikoyan	ê-pîkwêyihtamihikoyan+?
-   1 ê-pîkwêyihtamihikoyahk	PV/ê+pîkwêyihtamihêw+V+TA+Cnj+3Sg+12PlO
+   1 ê-pîkwêyihtamihikoyahk	PV/ê+pîkwêyihtamihêw+V+TA+Cnj+3Sg+21PlO
    1 ê-pîkwâstahki	PV/ê+pîkwâstan+V+II+Cnj+3Pl
    1 ê-pîkwatamikot	ê-pîkwatamikot+?
    1 ê-pîkwasinahikêhk	PV/ê+pîkwasinahikêw+V+AI+Cnj+X
@@ -11504,7 +11504,7 @@
    1 ê-pîkopicikâtêk	PV/ê+pîkopicikâtêw+V+II+Cnj+3Sg
    1 ê-pîkopayiyiki	PV/ê+pîkopayiw+V+II+Cnj+4Pl
    1 ê-pîkopayiyik	PV/ê+pîkopayiw+V+II+Cnj+4Sg
-   1 ê-pîkonikoyahk	PV/ê+pîkonêw+V+TA+Cnj+3Sg+12PlO
+   1 ê-pîkonikoyahk	PV/ê+pîkonêw+V+TA+Cnj+3Sg+21PlO
    1 ê-pîkonamoht	ê-pîkonamoht+?
    1 ê-pîkohtiki	PV/ê+pîkohtin+V+II+Cnj+3Pl
    1 ê-pîkiskâtâyit	PV/ê+pîkiskâtêw+V+TA+Cnj+4Sg/Pl+5Sg/PlO
@@ -11528,7 +11528,7 @@
    1 ê-pîhtâpâwahak	PV/ê+pîhtâpâwahêw+V+TA+Cnj+1Sg+3SgO
    1 ê-pîhtwâyân	PV/ê+pîhtwâw+V+AI+Cnj+1Sg
    1 ê-pîhtwâyit	PV/ê+pîhtwâw+V+AI+Cnj+4Sg/Pl
-   1 ê-pîhtwâyahk	PV/ê+pîhtwâw+V+AI+Cnj+12Pl
+   1 ê-pîhtwâyahk	PV/ê+pîhtwâw+V+AI+Cnj+21Pl
    1 ê-pîhtwâhk	PV/ê+pîhtwâw+V+AI+Cnj+X
    1 ê-pîhtwâhit	PV/ê+pîhtwâhêw+V+TA+Cnj+3Sg+1SgO
    1 ê-pîhtwâcik	PV/ê+pîhtwâw+V+AI+Cnj+3Pl
@@ -11592,7 +11592,7 @@
    1 ê-pêsîhcik	PV/ê+pêsiwêw+V+TA+Cnj+X+3PlO
    1 ê-pêsiwâyâhkwâw	ê-pêsiwâyâhkwâw+?
    1 ê-pêsiwâyâhkik	PV/ê+pêsiwêw+V+TA+Cnj+1Pl+3PlO
-   1 ê-pêsiwâyahk	PV/ê+pêsiwêw+V+TA+Cnj+12Pl+3SgO
+   1 ê-pêsiwâyahk	PV/ê+pêsiwêw+V+TA+Cnj+21Pl+3SgO
    1 ê-pêsiwât	PV/ê+pêsiwêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ê-pêsiwihcik	ê-pêsiwihcik+?
    1 ê-pêsiwakik	PV/ê+pêsiwêw+V+TA+Cnj+1Sg+3PlO
@@ -11807,7 +11807,7 @@
    1 ê-pê-matâwisiyit	PV/ê+PV/pe+matâwisiw+V+AI+Cnj+4Sg/Pl
    1 ê-pê-matwêwêyik	PV/ê+PV/pe+matwêwêw+V+II+Cnj+4Sg
    1 ê-pê-maskamit	PV/ê+PV/pe+maskamêw+V+TA+Cnj+3Sg+1SgO
-   1 ê-pê-maskamikoyahk	PV/ê+PV/pe+maskamêw+V+TA+Cnj+3Sg+12PlO
+   1 ê-pê-maskamikoyahk	PV/ê+PV/pe+maskamêw+V+TA+Cnj+3Sg+21PlO
    1 ê-pê-mamisîtotâtân	PV/ê+PV/pe+mamisîtotawêw+V+TA+Cnj+1Sg+2SgO
    1 ê-pê-kîyokawit	ê-pê-kîyokawit+?
    1 ê-pê-kîwîyâhk	ê-pê-kîwîyâhk+?
@@ -11902,7 +11902,7 @@
    1 ê-pâswâ	ê-pâswâ+?
    1 ê-pâstêyik[i	ê-pâstêyik[i+?
    1 ê-pâstêyik	PV/ê+pâstêw+V+II+Cnj+4Sg
-   1 ê-pâstâhoyahk	PV/ê+pâstâhow+V+AI+Cnj+12Pl
+   1 ê-pâstâhoyahk	PV/ê+pâstâhow+V+AI+Cnj+21Pl
    1 ê-pâsohcik	PV/ê+pâswêw+V+TA+Cnj+X+3PlO
    1 ê-pâskît	PV/ê+pâskîw+V+AI+Cnj+3Sg
    1 ê-pâskiwêpinât	PV/ê+pâskiwêpinêw+V+TA+Cnj+3Sg+4Sg/PlO
@@ -12017,7 +12017,7 @@
    1 ê-pinasiwêt	PV/ê+pinasiwêw+V+AI+Cnj+3Sg
    1 ê-pimâtisiyâhk	PV/ê+pimâtisiw+V+AI+Cnj+1Pl
    1 ê-pimâtisiyan	PV/ê+pimâtisiw+V+AI+Cnj+2Sg
-   1 ê-pimâtisiyahk	PV/ê+pimâtisiw+V+AI+Cnj+12Pl
+   1 ê-pimâtisiyahk	PV/ê+pimâtisiw+V+AI+Cnj+21Pl
    1 ê-pimâtisiwinowiki	ê-pimâtisiwinowiki+?
    1 ê-pimâtisiwiniwik	PV/ê+pimâtisiwiniwiw+V+II+Cnj+3Sg
    1 ê-pimâmot	PV/ê+pimâmow+V+AI+Cnj+3Sg
@@ -12124,7 +12124,7 @@
    1 ê-pihcipowiniwahk	PV/ê+pihcipowiniwan+V+II+Cnj+3Sg
    1 ê-piciyâhk	PV/ê+piciw+V+AI+Cnj+1Pl
    1 ê-piciyit	PV/ê+piciw+V+AI+Cnj+4Sg/Pl
-   1 ê-piciyahk	PV/ê+piciw+V+AI+Cnj+12Pl
+   1 ê-piciyahk	PV/ê+piciw+V+AI+Cnj+21Pl
    1 ê-picit	PV/ê+piciw+V+AI+Cnj+3Sg
    1 ê-picihk	PV/ê+piciw+V+AI+Cnj+X
    1 ê-pici-~	ê-pici-~+?
@@ -12133,7 +12133,7 @@
    1 ê-pawâmit	PV/ê+pawâmêw+V+TA+Cnj+3Sg+1SgO
    1 ê-pawâmit	PV/ê+pawâmiw+V+AI+Cnj+3Sg
    1 ê-patowâtahk	PV/ê+patowâtam+V+TI+Cnj+3Sg
-   1 ê-patinikêyahk	PV/ê+patinikêw+V+AI+Cnj+12Pl
+   1 ê-patinikêyahk	PV/ê+patinikêw+V+AI+Cnj+21Pl
    1 ê-patakopitât	PV/ê+patakopitêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ê-paswêmâkwaniyik	ê-paswêmâkwaniyik+?
    1 ê-paswêmâkasikêt	ê-paswêmâkasikêt+?
@@ -12275,7 +12275,7 @@
    1 ê-pakwâtamâhk	PV/ê+pakwâtam+V+TI+Cnj+1Pl
    1 ê-pakwâtamâhcik	PV/ê+pakwâtamawêw+V+TA+Cnj+X+3PlO
    1 ê-pakwâtamawâyâhkok	ê-pakwâtamawâyâhkok+?
-   1 ê-pakwâtamawâyahk	PV/ê+pakwâtamawêw+V+TA+Cnj+12Pl+3SgO
+   1 ê-pakwâtamawâyahk	PV/ê+pakwâtamawêw+V+TA+Cnj+21Pl+3SgO
    1 ê-pakwâtamawak	PV/ê+pakwâtamawêw+V+TA+Cnj+1Sg+3SgO
    1 ê-pakwâcikâtêk	ê-pakwâcikâtêk+?
    1 ê-pakwahtêhoyit	PV/ê+pakwahtêhow+V+AI+Cnj+4Sg/Pl
@@ -12288,7 +12288,7 @@
    1 ê-pakitâpîhkênisocik	ê-pakitâpîhkênisocik+?
    1 ê-pakitâpêkinisot	ê-pakitâpêkinisot+?
    1 ê-pakitiniht	PV/ê+pakitinêw+V+TA+Cnj+X+3SgO
-   1 ê-pakitinamâkoyahk	PV/ê+pakitinamawêw+V+TA+Cnj+3Sg+12PlO
+   1 ê-pakitinamâkoyahk	PV/ê+pakitinamawêw+V+TA+Cnj+3Sg+21PlO
    1 ê-pakitinamâkawiyan	PV/ê+pakitinamawêw+V+TA+Cnj+X+2SgO
    1 ê-pakitinamâhk	PV/ê+pakitinam+V+TI+Cnj+1Pl
    1 ê-pakitinahk	PV/ê+pakitinam+V+TI+Cnj+3Sg
@@ -12375,7 +12375,7 @@
    1 ê-owîtimocik	ê-owîtimocik+?
    1 ê-owîstâwit	ê-owîstâwit+?
    1 ê-owîkit	PV/ê+owîkiw+V+AI+Cnj+3Sg
-   1 ê-owîcêwâkaniyahk	PV/ê+owîcêwâkaniw+V+AI+Cnj+12Pl
+   1 ê-owîcêwâkaniyahk	PV/ê+owîcêwâkaniw+V+AI+Cnj+21Pl
    1 ê-owîcêwâkanit	PV/ê+owîcêwâkaniw+V+AI+Cnj+3Sg
    1 ê-owîcisânihtot	ê-owîcisânihtot+?
    1 ê-owîcisânihtocik	ê-owîcisânihtocik+?
@@ -12384,7 +12384,7 @@
    1 ê-owâskahikaniyit	PV/ê+owâskahikaniw+V+AI+Cnj+4Sg/Pl
    1 ê-owiyahpitakik	ê-owiyahpitakik+?
    1 ê-owacistwaniyit	PV/ê+owacistwaniw+V+AI+Cnj+4Sg/Pl
-   1 ê-otônihkâyahk	PV/ê+otônihkâw+V+AI+Cnj+12Pl
+   1 ê-otônihkâyahk	PV/ê+otônihkâw+V+AI+Cnj+21Pl
    1 ê-otâpêyâhk	PV/ê+otâpêw+V+AI+Cnj+1Pl
    1 ê-otâpêcik	PV/ê+otâpêw+V+AI+Cnj+3Pl
    1 ê-otâpâsohk	PV/ê+otâpâsow+V+AI+Cnj+X
@@ -12402,7 +12402,7 @@
    1 ê-otinahkwâw	ê-otinahkwâw+?
    1 ê-otihtinât	PV/ê+otihtinêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ê-otihtinikot	PV/ê+otihtinêw+V+TA+Cnj+4Sg/Pl+3SgO
-   1 ê-otihtikoyahk	PV/ê+otihtêw+V+TA+Cnj+4Sg/Pl+12PlO
+   1 ê-otihtikoyahk	PV/ê+otihtêw+V+TA+Cnj+4Sg/Pl+21PlO
    1 ê-otihtamiyit	PV/ê+otihtam+V+TI+Cnj+4Sg/Pl
    1 ê-otihtak	PV/ê+otihtêw+V+TA+Cnj+1Sg+3SgO
    1 ê-otihkomit	PV/ê+otihkomiw+V+AI+Cnj+3Sg
@@ -12472,7 +12472,7 @@
    1 ê-oskaninêyit	PV/ê+oskaninêw+V+AI+Cnj+4Sg/Pl
    1 ê-osk-âyiwiyân	PV/ê+osk-âyiwiw+V+AI+Cnj+1Sg
    1 ê-osk-âyiwiyit	PV/ê+osk-âyiwiw+V+AI+Cnj+4Sg/Pl
-   1 ê-osk-âyiwiyahk	PV/ê+osk-âyiwiw+V+AI+Cnj+12Pl
+   1 ê-osk-âyiwiyahk	PV/ê+osk-âyiwiw+V+AI+Cnj+21Pl
    1 ê-osikwânâstêk	PV/ê+osikwânâstêw+V+II+Cnj+3Sg
    1 ê-osikwânâsamihk	PV/ê+osikwânâsam+V+TI+Cnj+X+3Sg
    1 ê-osikwânâsahkik	PV/ê+osikwânâsam+V+TI+Cnj+3Pl
@@ -12827,7 +12827,7 @@
    1 ê-nîso-tipiskwêcik	PV/ê+nîso-tipiskwêw+V+AI+Cnj+3Pl
    1 ê-nîso-sipwêhtêcik	PV/ê+PV/niso+sipwêhtêw+V+AI+Cnj+3Pl
    1 ê-nîsiyêk	PV/ê+nîsiwak+V+AI+Cnj+2Pl
-   1 ê-nîsiyahk	PV/ê+nîsiwak+V+AI+Cnj+12Pl
+   1 ê-nîsiyahk	PV/ê+nîsiwak+V+AI+Cnj+21Pl
    1 ê-nîpîwiyiki	PV/ê+nîpîwiw+V+II+Cnj+4Pl
    1 ê-nîpêpîstâkawiyan	PV/ê+nîpêpîstawêw+V+TA+Cnj+X+2SgO
    1 ê-nîpêpîstâht	PV/ê+nîpêpîstawêw+V+TA+Cnj+X+3SgO
@@ -12879,7 +12879,7 @@
    1 ê-nêstohtêt	PV/ê+nêstohtêw+V+AI+Cnj+3Sg
    1 ê-nêstohkwêkawiyit	PV/ê+nêstohkwêkawiw+V+AI+Cnj+4Sg/Pl
    1 ê-nêsowâtisicik	PV/ê+nêsowâtisiw+V+AI+Cnj+3Pl
-   1 ê-nêsowisiyahk	PV/ê+nêsowisiw+V+AI+Cnj+12Pl
+   1 ê-nêsowisiyahk	PV/ê+nêsowisiw+V+AI+Cnj+21Pl
    1 ê-nêsowisit	PV/ê+nêsowisiw+V+AI+Cnj+3Sg
    1 ê-nêpêwisîstahk	PV/ê+nêpêwisîstam+V+TI+Cnj+3Sg
    1 ê-nêpêwisiyân	PV/ê+nêpêwisiw+V+AI+Cnj+1Sg
@@ -12887,7 +12887,7 @@
    1 ê-nêpêwimit	PV/ê+nêpêwimêw+V+TA+Cnj+3Sg+1SgO
    1 ê-nêpêwimikot	PV/ê+nêpêwimêw+V+TA+Cnj+4Sg/Pl+3SgO
    1 ê-nêpêwihikot	PV/ê+nêpêwihêw+V+TA+Cnj+4Sg/Pl+3SgO
-   1 ê-nêhiyâwiyahk	PV/ê+nêhiyâwiw+V+AI+Cnj+12Pl
+   1 ê-nêhiyâwiyahk	PV/ê+nêhiyâwiw+V+AI+Cnj+21Pl
    1 ê-nêhiyawêyân	PV/ê+nêhiyawêw+V+AI+Cnj+1Sg
    1 ê-nêhiyawêyâhk	PV/ê+nêhiyawêw+V+AI+Cnj+1Pl
    1 ê-nêhiyawêmototâkot	PV/ê+nêhiyawêmototawêw+V+TA+Cnj+4Sg/Pl+3SgO
@@ -12970,14 +12970,14 @@
    1 ê-nitotamâkêstamawiyin	ê-nitotamâkêstamawiyin+?
    1 ê-nitotamâkêstamawit	PV/ê+nitotamâkêstamawêw+V+TA+Cnj+3Sg+1SgO
    1 ê-nitotamâkoyêkok	PV/ê+nitotamawêw+V+TA+Cnj+3Pl+2PlO
-   1 ê-nitotamâkoyahk	PV/ê+nitotamawêw+V+TA+Cnj+3Sg+12PlO
-   1 ê-nitotamâkawiyahk	PV/ê+nitotamawêw+V+TA+Cnj+X+12PlO
+   1 ê-nitotamâkoyahk	PV/ê+nitotamawêw+V+TA+Cnj+3Sg+21PlO
+   1 ê-nitotamâkawiyahk	PV/ê+nitotamawêw+V+TA+Cnj+X+21PlO
    1 ê-nitotamâhcik	PV/ê+nitotamawêw+V+TA+Cnj+X+3PlO
    1 ê-nitotamawiyan	PV/ê+nitotamawêw+V+TA+Cnj+2Sg+1SgO
    1 ê-nitotamawit	PV/ê+nitotamawêw+V+TA+Cnj+3Sg+1SgO
    1 ê-nitotahkik	PV/ê+nitotam+V+TI+Cnj+3Pl
    1 ê-nitopayîstawâcik	PV/ê+nitopayîstawêw+V+TA+Cnj+3Pl+4Sg/PlO
-   1 ê-nitopayiyahk	PV/ê+nitopayiw+V+AI+Cnj+12Pl
+   1 ê-nitopayiyahk	PV/ê+nitopayiw+V+AI+Cnj+21Pl
    1 ê-nitopayicik	PV/ê+nitopayiw+V+AI+Cnj+3Pl
    1 ê-nitopahtwâyân	PV/ê+nitopahtwâw+V+TI+Cnj+1Sg
    1 ê-nitonamân	PV/ê+nitonam+V+TI+Cnj+1Sg
@@ -13065,7 +13065,7 @@
    1 ê-nitawi-otinahk	PV/ê+PV/nitawi+otinam+V+TI+Cnj+3Sg
    1 ê-nitawi-otaskîcik	PV/ê+PV/nitawi+otaskîw+V+AI+Cnj+3Pl
    1 ê-nitawi-osîhtât	PV/ê+PV/nitawi+osîhtâw+V+TI+Cnj+3Sg
-   1 ê-nitawi-onâpêmiyahk	PV/ê+PV/nitawi+onâpêmiw+V+AI+Cnj+12Pl
+   1 ê-nitawi-onâpêmiyahk	PV/ê+PV/nitawi+onâpêmiw+V+AI+Cnj+21Pl
    1 ê-nitawi-nôhâwasot	PV/ê+PV/nitawi+nôhâwasow+V+AI+Cnj+3Sg
    1 ê-nitawi-nôcikinosêwêyâhk	PV/ê+PV/nitawi+nôcikinosêwêw+V+AI+Cnj+1Pl
    1 ê-nitawi-nîpawiyân	PV/ê+PV/nitawi+nîpawiw+V+AI+Cnj+1Sg
@@ -13207,7 +13207,7 @@
    1 ê-nipahâhkatosot	PV/ê+nipahâhkatosow+V+AI+Cnj+3Sg
    1 ê-nipahtâyâhk	PV/ê+nipahtâw+V+TI+Cnj+1Pl
    1 ê-nipahtâhk	PV/ê+nipahtâw+V+TI+Cnj+X
-   1 ê-nipahtamâkoyahk	PV/ê+nipahtamawêw+V+TA+Cnj+3Sg+12PlO
+   1 ê-nipahtamâkoyahk	PV/ê+nipahtamawêw+V+TA+Cnj+3Sg+21PlO
    1 ê-nipahtamâht	PV/ê+nipahtamawêw+V+TA+Cnj+X+3SgO
    1 ê-nipahtamawit	PV/ê+nipahtamawêw+V+TA+Cnj+3Sg+1SgO
    1 ê-nipahitân	PV/ê+nipahêw+V+TA+Cnj+1Sg+2SgO
@@ -13246,7 +13246,7 @@
    1 ê-nikamoyân	PV/ê+nikamow+V+AI+Cnj+1Sg
    1 ê-nikamohk	PV/ê+nikamow+V+AI+Cnj+X
    1 ê-nihtâwitêpocik	PV/ê+nihtâwitêpow+V+AI+Cnj+3Pl
-   1 ê-nihtâwikîstamahk	PV/ê+nihtâwikîstam+V+TI+Cnj+12Pl
+   1 ê-nihtâwikîstamahk	PV/ê+nihtâwikîstam+V+TI+Cnj+21Pl
    1 ê-nihtâwikwâsocik	PV/ê+nihtâwikwâsow+V+AI+Cnj+3Pl
    1 ê-nihtâwikit	PV/ê+nihtâwikiw+V+AI+Cnj+3Sg
    1 ê-nihtâwikinâwasot	PV/ê+nihtâwikinâwasow+V+AI+Cnj+3Sg
@@ -13384,7 +13384,7 @@
    1 ê-mônahaskwêyân	PV/ê+mônahaskwêw+V+AI+Cnj+1Sg
    1 ê-môminêt	PV/ê+môminêw+V+AI+Cnj+3Sg
    1 ê-môhkomânitôskwanêyit	PV/ê+môhkomânitôskwanêw+V+AI+Cnj+4Sg/Pl
-   1 ê-môhikoyahk	PV/ê+môhêw+V+TA+Cnj+3Sg+12PlO
+   1 ê-môhikoyahk	PV/ê+môhêw+V+TA+Cnj+3Sg+21PlO
    1 ê-môhcôwiyan	ê-môhcôwiyan+?
    1 ê-môhcwêyimakik	PV/ê+môhcwêyimêw+V+TA+Cnj+1Sg+3PlO
    1 ê-môhcwêyimak	PV/ê+môhcwêyimêw+V+TA+Cnj+1Sg+3SgO
@@ -13403,7 +13403,7 @@
    1 ê-mîkisistahahkik	PV/ê+mîkisistaham+V+TI+Cnj+3Pl
    1 ê-mîkisihkahtahk	PV/ê+mîkisihkahtam+V+TI+Cnj+3Sg
    1 ê-mîkisihkahcikêcik	PV/ê+mîkisihkahcikêw+V+AI+Cnj+3Pl
-   1 ê-mîciyahk	PV/ê+mîciw+V+TI+Cnj+12Pl
+   1 ê-mîciyahk	PV/ê+mîciw+V+TI+Cnj+21Pl
    1 ê-mîcitimiht	PV/ê+mîcitêw+V+TA+Cnj+X+4Sg/PlO
    1 ê-mîcisôwiht	ê-mîcisôwiht+?
    1 ê-mîciswâtamêk	PV/ê+mîciswâtam+V+TI+Cnj+2Pl
@@ -13459,7 +13459,7 @@
    1 ê-mâyiskamân	PV/ê+mâyiskam+V+TI+Cnj+1Sg
    1 ê-mâyiskamohtatâyâhk	ê-mâyiskamohtatâyâhk+?
    1 ê-mâyipayiyâhk	PV/ê+mâyipayiw+V+AI+Cnj+1Pl
-   1 ê-mâyipayiyahk	PV/ê+mâyipayiw+V+AI+Cnj+12Pl
+   1 ê-mâyipayiyahk	PV/ê+mâyipayiw+V+AI+Cnj+21Pl
    1 ê-mâyinikêcik	PV/ê+mâyinikêw+V+AI+Cnj+3Pl
    1 ê-mâyi-~-maci-mâmitonêyihtahkik	ê-mâyi-~-maci-mâmitonêyihtahkik+?
    1 ê-mâyi-tôtâmiht	PV/ê+mâyi-tôtawêw+V+TA+Cnj+X+4Sg/PlO
@@ -13537,7 +13537,7 @@
    1 ê-mâh-mêtawêcik	PV/ê+RdplS+mêtawêw+V+AI+Cnj+3Pl
    1 ê-mâh-mêscihtât	PV/ê+RdplS+mêscihtâw+V+TI+Cnj+3Sg
    1 ê-mâh-mâyi-tôtamiyit	PV/ê+RdplS+mâyi-tôtam+V+TI+Cnj+4Sg/Pl
-   1 ê-mâh-mâyi-nawasônikêyahk	PV/ê+RdplS+mâyi-nawasônikêw+V+AI+Cnj+12Pl
+   1 ê-mâh-mâyi-nawasônikêyahk	PV/ê+RdplS+mâyi-nawasônikêw+V+AI+Cnj+21Pl
    1 ê-mâh-mâtot	PV/ê+RdplS+mâtow+V+AI+Cnj+3Sg
    1 ê-mâh-mâsihitocik	PV/ê+RdplS+mâsihitowak+V+AI+Cnj+3Pl
    1 ê-mâh-mâmiskomâyahk	ê-mâh-mâmiskomâyahk+?
@@ -13718,9 +13718,9 @@
    1 ê-misiwanâtisiyit	PV/ê+misiwanâtisiw+V+AI+Cnj+4Sg/Pl
    1 ê-misiwanâcihât	PV/ê+misiwanâcihêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ê-misiwanâcihâcik	PV/ê+misiwanâcihêw+V+TA+Cnj+3Pl+4Sg/PlO
-   1 ê-misiwanâcihtâyahk	PV/ê+misiwanâcihtâw+V+TI+Cnj+12Pl
+   1 ê-misiwanâcihtâyahk	PV/ê+misiwanâcihtâw+V+TI+Cnj+21Pl
    1 ê-misiwanâcihtât	PV/ê+misiwanâcihtâw+V+TI+Cnj+3Sg
-   1 ê-misiwanâcihikoyahk	PV/ê+misiwanâcihêw+V+TA+Cnj+3Sg+12PlO
+   1 ê-misiwanâcihikoyahk	PV/ê+misiwanâcihêw+V+TA+Cnj+3Sg+21PlO
    1 ê-misiwanâcihikot	PV/ê+misiwanâcihêw+V+TA+Cnj+4Sg/Pl+3SgO
    1 ê-misiwanâcihiht	PV/ê+misiwanâcihêw+V+TA+Cnj+X+3SgO
    1 ê-misipotâhk	PV/ê+misipotâw+V+TI+Cnj+X
@@ -13810,7 +13810,7 @@
    1 ê-mawinêhokot	PV/ê+mawinêhwêw+V+TA+Cnj+4Sg/Pl+3SgO
    1 ê-mawinêhokawiyân	PV/ê+mawinêhwêw+V+TA+Cnj+X+1SgO
    1 ê-mawinêh	ê-mawinêh+?
-   1 ê-mawimostawâyahk	PV/ê+mawimostawêw+V+TA+Cnj+12Pl+3SgO
+   1 ê-mawimostawâyahk	PV/ê+mawimostawêw+V+TA+Cnj+21Pl+3SgO
    1 ê-mawihkâtamawât	ê-mawihkâtamawât+?
    1 ê-mawasoyâhk	ê-mawasoyâhk+?
    1 ê-mawasohk	ê-mawasohk+?
@@ -13854,10 +13854,10 @@
    1 ê-maskawi-miyw-âyâyân	ê-maskawi-miyw-âyâyân+?
    1 ê-maskamit	PV/ê+maskamêw+V+TA+Cnj+3Sg+1SgO
    1 ê-maskamikoyâhk	PV/ê+maskamêw+V+TA+Cnj+4Sg/Pl+1PlO
-   1 ê-maskamikoyahk	PV/ê+maskamêw+V+TA+Cnj+3Sg+12PlO
+   1 ê-maskamikoyahk	PV/ê+maskamêw+V+TA+Cnj+3Sg+21PlO
    1 ê-maskamikot	PV/ê+maskamêw+V+TA+Cnj+4Sg/Pl+3SgO
    1 ê-maskamikocik	PV/ê+maskamêw+V+TA+Cnj+4Sg/Pl+3PlO
-   1 ê-maskahcihikoyahk	PV/ê+maskahcihêw+V+TA+Cnj+3Sg+12PlO
+   1 ê-maskahcihikoyahk	PV/ê+maskahcihêw+V+TA+Cnj+3Sg+21PlO
    1 ê-masinipayicik	PV/ê+masinipayiw+V+AI+Cnj+3Pl
    1 ê-masinihtatâyâhk	PV/ê+masinihtatâw+V+TI+Cnj+1Pl
    1 ê-masinahikêyan	PV/ê+masinahikêw+V+AI+Cnj+2Sg
@@ -13869,7 +13869,7 @@
    1 ê-masinahamâtoyâhk	PV/ê+masinahamâtowak+V+AI+Cnj+1Pl
    1 ê-masinahamâsocik	PV/ê+masinahamâsow+V+AI+Cnj+3Pl
    1 ê-manêsiyâhk	PV/ê+manêsiw+V+AI+Cnj+1Pl
-   1 ê-manêsiyahk	PV/ê+manêsiw+V+AI+Cnj+12Pl
+   1 ê-manêsiyahk	PV/ê+manêsiw+V+AI+Cnj+21Pl
    1 ê-manâskocihtât	PV/ê+manâskocihtâw+V+TI+Cnj+3Sg
    1 ê-manâpâwêk	PV/ê+manâpâwêw+V+II+Cnj+3Sg
    1 ê-manâcimât	PV/ê+manâcimêw+V+TA+Cnj+3Sg+4Sg/PlO
@@ -14012,7 +14012,7 @@
    1 ê-kîsihâyit	PV/ê+kîsihêw+V+TA+Cnj+4Sg/Pl+5Sg/PlO
    1 ê-kîsihtâyêk	PV/ê+kîsihtâw+V+TI+Cnj+2Pl
    1 ê-kîsihtâyit	PV/ê+kîsihtâw+V+TI+Cnj+4Sg/Pl
-   1 ê-kîsihtâyahk	PV/ê+kîsihtâw+V+TI+Cnj+12Pl
+   1 ê-kîsihtâyahk	PV/ê+kîsihtâw+V+TI+Cnj+21Pl
    1 ê-kîsi-âtocikâtêk	PV/ê+PV/kisi+âtocikâtêw+V+II+Cnj+3Sg
    1 ê-kîsi-âmaciwêt	PV/ê+PV/kisi+âmaciwêw+V+AI+Cnj+3Sg
    1 ê-kîsi-~	ê-kîsi-~+?
@@ -14398,7 +14398,7 @@
    1 ê-kî-titipinahk	PV/ê+PV/kî+titipinam+V+TI+Cnj+3Sg
    1 ê-kî-titipihtik	PV/ê+PV/kî+titipihtin+V+II+Cnj+3Sg
    1 ê-kî-tipêyim-~	ê-kî-tipêyim-~+?
-   1 ê-kî-tipêyihtamahk	PV/ê+PV/kî+tipêyihtam+V+TI+Cnj+12Pl
+   1 ê-kî-tipêyihtamahk	PV/ê+PV/kî+tipêyihtam+V+TI+Cnj+21Pl
    1 ê-kî-tipêyihtahkik	PV/ê+PV/kî+tipêyihtam+V+TI+Cnj+3Pl
    1 ê-kî-tipiskahk	PV/ê+PV/kî+tipiskam+V+AI+Cnj+3Sg
    1 ê-kî-tipahikêstamâsoyâhk	PV/ê+PV/kî+tipahikêstamâsow+V+AI+Cnj+1Pl
@@ -14653,7 +14653,7 @@
    1 ê-kî-pê-kakâyawisîyit	PV/ê+PV/kî+PV/pe+kakâyawisîw+V+AI+Cnj+4Sg/Pl
    1 ê-kî-pê-kakwâtakihoyân	PV/ê+PV/kî+PV/pe+kakwâtakihow+V+AI+Cnj+1Sg
    1 ê-kî-pê-ka-kîmôcihitân	PV/ê+PV/kî+PV/pe+RdplW+kîmôcihêw+V+TA+Cnj+1Sg+2SgO
-   1 ê-kî-pê-itôtâkoyahk	PV/ê+PV/kî+PV/pe+itôtawêw+V+TA+Cnj+3Sg+12PlO
+   1 ê-kî-pê-itôtâkoyahk	PV/ê+PV/kî+PV/pe+itôtawêw+V+TA+Cnj+3Sg+21PlO
    1 ê-kî-pê-itwêyân	PV/ê+PV/kî+PV/pe+itwêw+V+AI+Cnj+1Sg
    1 ê-kî-pê-itwêcik	PV/ê+PV/kî+PV/pe+itwêw+V+AI+Cnj+3Pl
    1 ê-kî-pê-itohtêcik	PV/ê+PV/kî+pê-itohtêw+V+AI+Cnj+3Pl
@@ -14668,7 +14668,7 @@
    1 ê-kî-pê-isi-wîhtamawicik	PV/ê+PV/kî+PV/pe+PV/isi+wîhtamawêw+V+TA+Cnj+3Pl+1SgO
    1 ê-kî-pê-isi-tâpwêhtahkik	PV/ê+PV/kî+PV/pe+PV/isi+tâpwêhtam+V+TI+Cnj+3Pl
    1 ê-kî-pê-isi-postayiwinisahisocik	PV/ê+PV/kî+PV/pe+PV/isi+postayiwinisahisow+V+AI+Cnj+3Pl
-   1 ê-kî-pê-isi-pimâtisiyahk	PV/ê+PV/kî+PV/pe+PV/isi+pimâtisiw+V+AI+Cnj+12Pl
+   1 ê-kî-pê-isi-pimâtisiyahk	PV/ê+PV/kî+PV/pe+PV/isi+pimâtisiw+V+AI+Cnj+21Pl
    1 ê-kî-pê-isi-pimâcihâwasot	PV/ê+PV/kî+PV/pe+PV/isi+pimâcihâwasow+V+AI+Cnj+3Sg
    1 ê-kî-pê-isi-pimâcihoyêk	PV/ê+PV/kî+PV/pe+PV/isi+pimâcihow+V+AI+Cnj+2Pl
    1 ê-kî-pê-isi-pimâcihakik	PV/ê+PV/kî+PV/pe+PV/isi+pimâcihêw+V+TA+Cnj+1Sg+3PlO
@@ -14841,8 +14841,8 @@
    1 ê-kî-pakitinât	PV/ê+PV/kî+pakitinêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ê-kî-pakitinâcik	PV/ê+PV/kî+pakitinêw+V+TA+Cnj+3Pl+4Sg/PlO
    1 ê-kî-pakitinit	PV/ê+PV/kî+pakitinêw+V+TA+Cnj+3Sg+1SgO
-   1 ê-kî-pakitinikoyahk	PV/ê+PV/kî+pakitinêw+V+TA+Cnj+3Sg+12PlO
-   1 ê-kî-pakitinikowisiyahk	PV/ê+PV/kî+pakitinikowisiw+V+AI+Cnj+12Pl
+   1 ê-kî-pakitinikoyahk	PV/ê+PV/kî+pakitinêw+V+TA+Cnj+3Sg+21PlO
+   1 ê-kî-pakitinikowisiyahk	PV/ê+PV/kî+pakitinikowisiw+V+AI+Cnj+21Pl
    1 ê-kî-pakitinamân	PV/ê+PV/kî+pakitinam+V+TI+Cnj+1Sg
    1 ê-kî-pakitinamawât	PV/ê+PV/kî+pakitinamawêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ê-kî-pakitinahk	PV/ê+PV/kî+pakitinam+V+TI+Cnj+3Sg
@@ -15674,7 +15674,7 @@
    1 ê-kî-kitotak	PV/ê+PV/kî+kitotêw+V+TA+Cnj+1Sg+3SgO
    1 ê-kî-kitohcikêyâhk	PV/ê+PV/kî+kitohcikêw+V+AI+Cnj+1Pl
    1 ê-kî-kitimâkêyimiyêk	PV/ê+PV/kî+kitimâkêyimêw+V+TA+Cnj+2Pl+1SgO
-   1 ê-kî-kitimâkêyimikoyahk	PV/ê+PV/kî+kitimâkêyimêw+V+TA+Cnj+4Sg/Pl+12PlO
+   1 ê-kî-kitimâkêyimikoyahk	PV/ê+PV/kî+kitimâkêyimêw+V+TA+Cnj+4Sg/Pl+21PlO
    1 ê-kî-kitimâkêyimikot	PV/ê+PV/kî+kitimâkêyimêw+V+TA+Cnj+4Sg/Pl+3SgO
    1 ê-kî-kitimâkêyimicik	PV/ê+PV/kî+kitimâkêyimêw+V+TA+Cnj+3Pl+1SgO
    1 ê-kî-kitimâkisiyân	PV/ê+PV/kî+kitimâkisiw+V+AI+Cnj+1Sg
@@ -15837,7 +15837,7 @@
    1 ê-kî-itâhkômât	PV/ê+PV/kî+itâhkômêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ê-kî-itâhkômiyit	ê-kî-itâhkômiyit+?
    1 ê-kî-itâhkômisk	PV/ê+PV/kî+itâhkômêw+V+TA+Cnj+3Sg+2SgO
-   1 ê-kî-itâcimostâkawiyahk	PV/ê+PV/kî+itâcimostawêw+V+TA+Cnj+X+12PlO
+   1 ê-kî-itâcimostâkawiyahk	PV/ê+PV/kî+itâcimostawêw+V+TA+Cnj+X+21PlO
    1 ê-kî-itwît	ê-kî-itwît+?
    1 ê-kî-itwêyân	PV/ê+PV/kî+itwêw+V+AI+Cnj+1Sg
    1 ê-kî-itwêyâhk	PV/ê+PV/kî+itwêw+V+AI+Cnj+1Pl
@@ -15863,7 +15863,7 @@
    1 ê-kî-itisahamawak	PV/ê+PV/kî+itisahamawêw+V+TA+Cnj+1Sg+3SgO
    1 ê-kî-itinamihk	PV/ê+PV/kî+itinam+V+TI+Cnj+X+3Sg
    1 ê-kî-itikoyêk	PV/ê+PV/kî+itêw+V+TA+Cnj+3Sg+2PlO
-   1 ê-kî-itikoyahk	PV/ê+PV/kî+itêw+V+TA+Cnj+3Sg+12PlO
+   1 ê-kî-itikoyahk	PV/ê+PV/kî+itêw+V+TA+Cnj+3Sg+21PlO
    1 ê-kî-itikitiyâhk	PV/ê+PV/kî+itikitiw+V+AI+Cnj+1Pl
    1 ê-kî-itikawiyân	PV/ê+PV/kî+itêw+V+TA+Cnj+X+1SgO
    1 ê-kî-itihtamân	PV/ê+PV/kî+itihtam+V+TI+Cnj+1Sg
@@ -15894,7 +15894,7 @@
    1 ê-kî-isîhtâcik	PV/ê+PV/kî+isîhtâw+V+TI+Cnj+3Pl
    1 ê-kî-isîhoyâhk	PV/ê+PV/kî+isîhow+V+AI+Cnj+1Pl
    1 ê-kî-isîhot	PV/ê+PV/kî+isîhow+V+AI+Cnj+3Sg
-   1 ê-kî-isîhikoyahk	PV/ê+PV/kî+isîhêw+V+TA+Cnj+3Sg+12PlO
+   1 ê-kî-isîhikoyahk	PV/ê+PV/kî+isîhêw+V+TA+Cnj+3Sg+21PlO
    1 ê-kî-isîhcikêyâhk	PV/ê+PV/kî+isîhcikêw+V+AI+Cnj+1Pl
    1 ê-kî-isîhcikêhk	PV/ê+PV/kî+isîhcikêw+V+AI+Cnj+X
    1 ê-kî-isîhcikêcik	PV/ê+PV/kî+isîhcikêw+V+AI+Cnj+3Pl
@@ -15934,7 +15934,7 @@
    1 ê-kî-isi-wâpamât	PV/ê+PV/kî+PV/isi+wâpamêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ê-kî-isi-wâpamakik	PV/ê+PV/kî+PV/isi+wâpamêw+V+TA+Cnj+1Sg+3PlO
    1 ê-kî-isi-wâpahtahk	PV/ê+PV/kî+isi-wâpahtam+V+TI+Cnj+3Sg
-   1 ê-kî-isi-wiyakimikoyahk	PV/ê+PV/kî+PV/isi+wiyakimêw+V+TA+Cnj+3Sg+12PlO
+   1 ê-kî-isi-wiyakimikoyahk	PV/ê+PV/kî+PV/isi+wiyakimêw+V+TA+Cnj+3Sg+21PlO
    1 ê-kî-isi-tâpakwêyâhk	PV/ê+PV/kî+PV/isi+tâpakwêw+V+AI+Cnj+1Pl
    1 ê-kî-isi-tâh-tahkoskêt	PV/ê+PV/kî+PV/isi+RdplS+tahkoskêw+V+AI+Cnj+3Sg
    1 ê-kî-isi-tipahamâhk	PV/ê+PV/kî+PV/isi+tipaham+V+TI+Cnj+1Pl
@@ -15988,7 +15988,7 @@
    1 ê-kî-isi-mâci-kaskikwâsohk	PV/ê+PV/kî+PV/isi+PV/maaci+kaskikwâsow+V+AI+Cnj+X
    1 ê-kî-isi-mostohtêyâhk	PV/ê+PV/kî+PV/isi+mostohtêw+V+AI+Cnj+1Pl
    1 ê-kî-isi-miyôt	PV/ê+PV/kî+PV/isi+miyôw+V+AI+Cnj+3Sg
-   1 ê-kî-isi-miyosiyahk	PV/ê+PV/kî+PV/isi+miyosiw+V+AI+Cnj+12Pl
+   1 ê-kî-isi-miyosiyahk	PV/ê+PV/kî+PV/isi+miyosiw+V+AI+Cnj+21Pl
    1 ê-kî-isi-miyohtaskatât	ê-kî-isi-miyohtaskatât+?
    1 ê-kî-isi-miyo-pimâtisicik	PV/ê+PV/kî+PV/isi+miyo-pimâtisiw+V+AI+Cnj+3Pl
    1 ê-kî-isi-miyo-kiskinowâpahtihicik	PV/ê+PV/kî+PV/isi+PV/miyo+kiskinowâpahtihêw+V+TA+Cnj+3Pl+1SgO
@@ -16157,7 +16157,7 @@
    1 ê-kî-at[i]-âstâyân	ê-kî-at[i]-âstâyân+?
    1 ê-kî-at[i]-âpit	ê-kî-at[i]-âpit+?
    1 ê-kî-at-âstât	ê-kî-at-âstât+?
-   1 ê-kî-asêpitamahk	PV/ê+PV/kî+asêpitam+V+TI+Cnj+12Pl
+   1 ê-kî-asêpitamahk	PV/ê+PV/kî+asêpitam+V+TI+Cnj+21Pl
    1 ê-kî-aswahahkik	PV/ê+PV/kî+aswaham+V+TI+Cnj+3Pl
    1 ê-kî-astêyik	PV/ê+PV/kî+astêw+V+II+Cnj+4Sg
    1 ê-kî-astêk	PV/ê+PV/kî+astêw+V+II+Cnj+3Sg
@@ -16577,7 +16577,7 @@
    1 ê-kaskikwâsit	PV/ê+kaskikwâtêw+V+TA+Cnj+3Sg+1SgO
    1 ê-kaskikwâcikâkêyan	PV/ê+kaskikwâcikâkêw+V+AI+Cnj+2Sg
    1 ê-kaskihtâyâhk	PV/ê+kaskihtâw+V+TI+Cnj+1Pl
-   1 ê-kaskihtâyahk	PV/ê+kaskihtâw+V+TI+Cnj+12Pl
+   1 ê-kaskihtâyahk	PV/ê+kaskihtâw+V+TI+Cnj+21Pl
    1 ê-kaskihtamâsocik	PV/ê+kaskihtamâsow+V+AI+Cnj+3Pl
    1 ê-kaskihkaswât	PV/ê+kaskihkaswêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ê-kaskihcikêyân	PV/ê+kaskihcikêw+V+AI+Cnj+1Sg
@@ -16602,7 +16602,7 @@
    1 ê-kanawêyimâwasôstamâkoyâhk	PV/ê+kanawêyimâwasôstamawêw+V+TA+Cnj+3Sg+1PlO
    1 ê-kanawêyimâcik	PV/ê+kanawêyimêw+V+TA+Cnj+3Pl+4Sg/PlO
    1 ê-kanawêyimimiht	PV/ê+kanawêyimêw+V+TA+Cnj+X+4Sg/PlO
-   1 ê-kanawêyimikoyahk	PV/ê+kanawêyimêw+V+TA+Cnj+3Sg+12PlO
+   1 ê-kanawêyimikoyahk	PV/ê+kanawêyimêw+V+TA+Cnj+3Sg+21PlO
    1 ê-kanawêyimikot	PV/ê+kanawêyimêw+V+TA+Cnj+4Sg/Pl+3SgO
    1 ê-kanawêyimikocik	PV/ê+kanawêyimêw+V+TA+Cnj+4Sg/Pl+3PlO
    1 ê-kanawêyimiht	PV/ê+kanawêyimêw+V+TA+Cnj+X+3SgO
@@ -16658,7 +16658,7 @@
    1 ê-kakwê-kiskinohamâkawiyân	ê-kakwê-kiskinohamâkawiyân+?
    1 ê-kakwê-itêyimakik	PV/ê+PV/kakwe+itêyimêw+V+TA+Cnj+1Sg+3PlO
    1 ê-kakwê-isi-wîcôhkamawak	PV/ê+PV/kakwe+PV/isi+wîcôhkamawêw+V+TA+Cnj+1Sg+3SgO
-   1 ê-kakwê-cîsihikoyahk	PV/ê+PV/kakwe+cîsihêw+V+TA+Cnj+3Sg+12PlO
+   1 ê-kakwê-cîsihikoyahk	PV/ê+PV/kakwe+cîsihêw+V+TA+Cnj+3Sg+21PlO
    1 ê-kakwê-ayâwak	PV/ê+PV/kakwe+ayâwêw+V+TA+Cnj+1Sg+3SgO
    1 ê-kakwê-ayâhk	PV/ê+PV/kakwe+ayâw+V+AI+Cnj+X
    1 ê-kakwê-atâwâkêt	PV/ê+PV/kakwe+atâwâkêw+V+AI+Cnj+3Sg
@@ -16693,13 +16693,13 @@
    1 ê-itôtâkoyân	ê-itôtâkoyân+?
    1 ê-itôtamiyit	PV/ê+itôtam+V+TI+Cnj+4Sg/Pl
    1 ê-itôtamihk	PV/ê+itôtam+V+TI+Cnj+X+3Sg
-   1 ê-itôtamahk	PV/ê+itôtam+V+TI+Cnj+12Pl
+   1 ê-itôtamahk	PV/ê+itôtam+V+TI+Cnj+21Pl
    1 ê-itôtahkik	PV/ê+itôtam+V+TI+Cnj+3Pl
    1 ê-itêyimot	PV/ê+itêyimow+V+AI+Cnj+3Sg
    1 ê-itêyimiyâhk	PV/ê+itêyimêw+V+TA+Cnj+2Pl+1PlO
    1 ê-itêyimiyin	ê-itêyimiyin+?
    1 ê-itêyimitakok	PV/ê+itêyimêw+V+TA+Cnj+1Sg+2PlO
-   1 ê-itêyimikawiyahk	PV/ê+itêyimêw+V+TA+Cnj+X+12PlO
+   1 ê-itêyimikawiyahk	PV/ê+itêyimêw+V+TA+Cnj+X+21PlO
    1 ê-itêyimat	PV/ê+itêyimêw+V+TA+Cnj+2Sg+3SgO
    1 ê-itêyihtâkwaniyik	PV/ê+itêyihtâkwan+V+II+Cnj+4Sg
    1 ê-itêyihtot	ê-itêyihtot+?
@@ -16732,7 +16732,7 @@
    1 ê-itâcihot	PV/ê+itâcihow+V+AI+Cnj+3Sg
    1 ê-itâcihohk	PV/ê+itâcihow+V+AI+Cnj+X
    1 ê-itwêstamâkêhk	PV/ê+itwêstamâkêw+V+AI+Cnj+X
-   1 ê-itwêstamâkoyahk	PV/ê+itwêstamawêw+V+TA+Cnj+4Sg/Pl+12PlO
+   1 ê-itwêstamâkoyahk	PV/ê+itwêstamawêw+V+TA+Cnj+4Sg/Pl+21PlO
    1 ê-itwêmakaniyiki	PV/ê+itwêmakan+V+II+Cnj+4Pl
    1 ê-itohtêyân,' 	ê-itohtêyân,'+?
    1 ê-itohtatât	PV/ê+itohtatâw+V+TI+Cnj+3Sg
@@ -16745,7 +16745,7 @@
    1 ê-itohta-~	ê-itohta-~+?
    1 ê-ititân	PV/ê+itêw+V+TA+Cnj+1Sg+2SgO
    1 ê-ititâmot	ê-ititâmot+?
-   1 ê-ititoyahk	PV/ê+ititowak+V+AI+Cnj+12Pl
+   1 ê-ititoyahk	PV/ê+ititowak+V+AI+Cnj+21Pl
    1 ê-ititakok	PV/ê+itêw+V+TA+Cnj+1Sg+2PlO
    1 ê-itiskêyan	PV/ê+itiskêw+V+AI+Cnj+2Sg
    1 ê-itiskwêyiyit	PV/ê+itiskwêyiw+V+AI+Cnj+4Sg/Pl
@@ -16763,7 +16763,7 @@
    1 ê-itinamihk	PV/ê+itinam+V+TI+Cnj+X+3Sg
    1 ê-itikwamikohkêhk	ê-itikwamikohkêhk+?
    1 ê-itikoyêk	PV/ê+itêw+V+TA+Cnj+4Sg/Pl+2PlO
-   1 ê-itikoyahk	PV/ê+itêw+V+TA+Cnj+3Sg+12PlO
+   1 ê-itikoyahk	PV/ê+itêw+V+TA+Cnj+3Sg+21PlO
    1 ê-itikocik	PV/ê+itêw+V+TA+Cnj+4Sg/Pl+3PlO
    1 ê-itikawiyêk	PV/ê+itêw+V+TA+Cnj+X+2PlO
    1 ê-itikawiyâhk	PV/ê+itêw+V+TA+Cnj+X+1PlO
@@ -16823,7 +16823,7 @@
    1 ê-ispi-kîsikâyik	PV/ê+PV/ispi+kîsikâw+V+II+Cnj+4Sg
    1 ê-ispayiyâhk	PV/ê+ispayiw+V+AI+Cnj+1Pl
    1 ê-ispayiyit	PV/ê+ispayiw+V+AI+Cnj+4Sg/Pl
-   1 ê-ispayiyahk	PV/ê+ispayiw+V+AI+Cnj+12Pl
+   1 ê-ispayiyahk	PV/ê+ispayiw+V+AI+Cnj+21Pl
    1 ê-ispayiki	PV/ê+ispayin+V+II+Cnj+3Pl
    1 ê-ispayihot	PV/ê+ispayihow+V+AI+Cnj+3Sg
    1 ê-ispakwahk	PV/ê+ispakwan+V+II+Cnj+3Sg
@@ -16858,7 +16858,7 @@
    1 ê-isko-sâkôhtâyâhk	ê-isko-sâkôhtâyâhk+?
    1 ê-isko-pôsipayihoyân	PV/ê+PV/isko+pôsipayihow+V+AI+Cnj+1Sg
    1 ê-isko-kaskihtâyâhk	PV/ê+PV/isko+kaskihtâw+V+TI+Cnj+1Pl
-   1 ê-isko-kaskihtâyahk	PV/ê+PV/isko+kaskihtâw+V+TI+Cnj+12Pl
+   1 ê-isko-kaskihtâyahk	PV/ê+PV/isko+kaskihtâw+V+TI+Cnj+21Pl
    1 ê-iskipêyik	PV/ê+iskipêw+V+II+Cnj+4Sg
    1 ê-isiyîhkâtêk[i	ê-isiyîhkâtêk[i+?
    1 ê-isiyîhkâtâcik	ê-isiyîhkâtâcik+?
@@ -16897,7 +16897,7 @@
    1 ê-isi-wâhkôhtot	ê-isi-wâhkôhtot+?
    1 ê-isi-wâhkôhtocik	PV/ê+PV/isi+wâhkôhtowak+V+AI+Cnj+3Pl
    1 ê-isi-wayawîpahâcik	ê-isi-wayawîpahâcik+?
-   1 ê-isi-waniskâyahk	PV/ê+PV/isi+waniskâw+V+AI+Cnj+12Pl
+   1 ê-isi-waniskâyahk	PV/ê+PV/isi+waniskâw+V+AI+Cnj+21Pl
    1 ê-isi-tôtawât	PV/ê+PV/isi+tôtawêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ê-isi-têpwâtât	PV/ê+PV/isi+têpwâtêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ê-isi-tâwakisihkik	PV/ê+PV/isi+tâwakisin+V+AI+Cnj+3Pl
@@ -17002,7 +17002,7 @@
    1 ê-isi-kwâtakihât	ê-isi-kwâtakihât+?
    1 ê-isi-kwâskwêwêpinamân	ê-isi-kwâskwêwêpinamân+?
    1 ê-isi-kwâhkotêyik	PV/ê+PV/isi+kwâhkotêw+V+II+Cnj+4Sg
-   1 ê-isi-kitâpamikoyahk	PV/ê+PV/isi+kitâpamêw+V+TA+Cnj+3Sg+12PlO
+   1 ê-isi-kitâpamikoyahk	PV/ê+PV/isi+kitâpamêw+V+TA+Cnj+3Sg+21PlO
    1 ê-isi-kitotâyâhkok	ê-isi-kitotâyâhkok+?
    1 ê-isi-kitotât	PV/ê+PV/isi+kitotêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ê-isi-kitosit	PV/ê+PV/isi+kitotêw+V+TA+Cnj+3Sg+1SgO
@@ -17045,7 +17045,7 @@
    1 ê-ihtatêyimât	PV/ê+ihtatêyimêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ê-ihtatêyimâcik	PV/ê+ihtatêyimêw+V+TA+Cnj+3Pl+4Sg/PlO
    1 ê-ihtatêyimikot	PV/ê+ihtatêyimêw+V+TA+Cnj+4Sg/Pl+3SgO
-   1 ê-ihtasiyahk	PV/ê+ihtasiwak+V+AI+Cnj+12Pl
+   1 ê-ihtasiyahk	PV/ê+ihtasiwak+V+AI+Cnj+21Pl
    1 ê-ihtasit	ê-ihtasit+?
    1 ê-ihtakoniyik	PV/ê+ihtakon+V+II+Cnj+4Sg
    1 ê-ihtako	ê-ihtako+?
@@ -17091,7 +17091,7 @@
    1 ê-ayêskomoyit	PV/ê+ayêskomow+V+AI+Cnj+4Sg/Pl
    1 ê-ayâyêk	PV/ê+ayâw+V+AI+Cnj+2Pl
    1 ê-ayâyin	ê-ayâyin+?
-   1 ê-ayâyahk	PV/ê+ayâw+V+AI+Cnj+12Pl
+   1 ê-ayâyahk	PV/ê+ayâw+V+AI+Cnj+21Pl
    1 ê-ayâwâyâhkwâw	ê-ayâwâyâhkwâw+?
    1 ê-ayâwakwâw	ê-ayâwakwâw+?
    1 ê-ayâsô-wîkihkêmoyâhk	PV/ê+PV/ayaso+wîkihkêmow+V+AI+Cnj+1Pl
@@ -17151,7 +17151,7 @@
    1 ê-awâsisîwicik	PV/ê+awâsisîwiw+V+AI+Cnj+3Pl
    1 ê-awâhkêhk	ê-awâhkêhk+?
    1 ê-awihiwêt	PV/ê+awihiwêw+V+AI+Cnj+3Sg
-   1 ê-awihikoyahk	PV/ê+awihêw+V+TA+Cnj+3Sg+12PlO
+   1 ê-awihikoyahk	PV/ê+awihêw+V+TA+Cnj+3Sg+21PlO
    1 ê-awatâyâhk	ê-awatâyâhk+?
    1 ê-awasêwêyit	PV/ê+awasêwêw+V+AI+Cnj+4Sg/Pl
    1 ê-awasêwêt	PV/ê+awasêwêw+V+AI+Cnj+3Sg
@@ -17162,7 +17162,7 @@
    1 ê-atâwâkêhk	PV/ê+atâwâkêw+V+AI+Cnj+X
    1 ê-atâmâyâhkwâw	ê-atâmâyâhkwâw+?
    1 ê-atâmâcik	PV/ê+atâmêw+V+TA+Cnj+3Pl+4Sg/PlO
-   1 ê-atâmikawiyahk	PV/ê+atâmêw+V+TA+Cnj+X+12PlO
+   1 ê-atâmikawiyahk	PV/ê+atâmêw+V+TA+Cnj+X+21PlO
    1 ê-atâmiht	PV/ê+atâmêw+V+TA+Cnj+X+3SgO
    1 ê-atâmak	PV/ê+atâmêw+V+TA+Cnj+1Sg+3SgO
    1 ê-atotikocik	PV/ê+atotêw+V+TA+Cnj+4Sg/Pl+3PlO
@@ -17190,7 +17190,7 @@
    1 ê-ati-wâpaniyik	PV/ê+PV/ati+wâpan+V+II+Cnj+4Sg
    1 ê-ati-wâpanisimoyan	PV/ê+PV/ati+wâpanisimow+V+AI+Cnj+2Sg
    1 ê-ati-wâpamâyâhk	PV/ê+PV/ati+wâpamêw+V+TA+Cnj+1Pl+3SgO
-   1 ê-ati-wâpahtamahk	PV/ê+PV/ati+wâpahtam+V+TI+Cnj+12Pl
+   1 ê-ati-wâpahtamahk	PV/ê+PV/ati+wâpahtam+V+TI+Cnj+21Pl
    1 ê-ati-wâpahtahkik	PV/ê+PV/ati+wâpahtam+V+TI+Cnj+3Pl
    1 ê-ati-wayawîcik	PV/ê+PV/ati+wayawîw+V+AI+Cnj+3Pl
    1 ê-ati-wayawiyit	ê-ati-wayawiyit+?
@@ -17426,7 +17426,7 @@
    1 ê-astamâsoyan	PV/ê+astamâsow+V+AI+Cnj+2Sg
    1 ê-astamâsk	PV/ê+astamawêw+V+TA+Cnj+3Sg+2SgO
    1 ê-astamâkawiyan	PV/ê+astamawêw+V+TA+Cnj+X+2SgO
-   1 ê-astamawâyahk	PV/ê+astamawêw+V+TA+Cnj+12Pl+3SgO
+   1 ê-astamawâyahk	PV/ê+astamawêw+V+TA+Cnj+21Pl+3SgO
    1 ê-astamawacik	PV/ê+astamawêw+V+TA+Cnj+2Sg+3PlO
    1 ê-aspisiniyâhk	PV/ê+aspisin+V+AI+Cnj+1Pl
    1 ê-aspatisihk	PV/ê+aspatisin+V+AI+Cnj+3Sg
@@ -17510,7 +17510,7 @@
    1 ê-akohtitâhk	PV/ê+akohtitâw+V+TI+Cnj+X
    1 ê-akohtik	PV/ê+akohtin+V+II+Cnj+3Sg
    1 ê-akohcimihcik	PV/ê+akohcimêw+V+TA+Cnj+X+3PlO
-   1 ê-akocikêyahk	PV/ê+akocikêw+V+AI+Cnj+12Pl
+   1 ê-akocikêyahk	PV/ê+akocikêw+V+AI+Cnj+21Pl
    1 ê-akocihk	PV/ê+akocin+V+AI+Cnj+3Sg
    1 ê-akimâcik	PV/ê+akimêw+V+TA+Cnj+3Pl+4Sg/PlO
    1 ê-akimiht	PV/ê+akimêw+V+TA+Cnj+X+3SgO
@@ -17711,7 +17711,7 @@
    1 âmiskwâyowa	âmiskwâyowa+?
    1 âmisk	âmisk+?
    1 âmaciwêyâhk	âmaciwêyâhk+?
-   1 âmaciwêtân	âmaciwêw+V+AI+Imp+Imm+12Pl
+   1 âmaciwêtân	âmaciwêw+V+AI+Imp+Imm+21Pl
    1 âm-~	âm-~+?
    1 âkâwâtêw	âkâwâtêw+?
    1 âkâmahcâhk	âkâmahcâhk+?
@@ -17736,7 +17736,7 @@
    1 âhâcimowak	âhâcimowak+?
    1 âhâcimonâniwiw	âhâcimonâniwiw+?
    1 âhwiya	âhwiya+?
-   1 âhtokêtân	âhtokêw+V+AI+Imp+Imm+12Pl
+   1 âhtokêtân	âhtokêw+V+AI+Imp+Imm+21Pl
    1 âhtahpitamân	âhtahpitamân+?
    1 âhp	âhp+?
    1 âhkwatinah	âhkwatinah+?
@@ -17744,7 +17744,7 @@
    1 âhkwatihcikan	âhkwatihcikan+N+I+Sg
    1 âhkwaci	âhkwaciw+V+AI+Imp+Imm+2Sg
    1 âhkosiwak	âhkosiw+V+AI+Ind+3Pl
-   1 âhkamêyimotân	âhkamêyimow+V+AI+Imp+Imm+12Pl
+   1 âhkamêyimotân	âhkamêyimow+V+AI+Imp+Imm+21Pl
    1 âhkamêyimotâk	âhkamêyimotâk+?
    1 âhkami-wîsâmêw	PV/ahkami+wîsâmêw+V+TA+Ind+3Sg+4Sg/PlO
    1 âhkami-kitow	PV/ahkami+kitow+V+AI+Ind+3Sg
@@ -17898,7 +17898,7 @@
    1 wîkimin	wîkimêw+V+TA+Imp+Imm+2Sg+1SgO
    1 wîkimikotwâwi	wîkimêw+V+TA+Fut+Cond+4Sg/Pl+3PlO
    1 wîkihtow	wîkihtow+V+AI+Ind+3Sg
-   1 wîkihtotân	wîkihtow+V+AI+Imp+Imm+12Pl
+   1 wîkihtotân	wîkihtow+V+AI+Imp+Imm+21Pl
    1 wîkihkêmôw	wîkihkêmôw+?
    1 wîkihkêmo	wîkihkêmow+V+AI+Imp+Imm+2Sg
    1 wîk[i	wîk[i+?
@@ -17909,7 +17909,7 @@
    1 wîhtamâkôwisiw	wîhtamâkôwisiw+?
    1 wîhtamâkwak	wîhtamawêw+V+TA+Ind+4Sg/Pl+3PlO
    1 wîhtamâk	wîhtamawêw+V+TA+Ind+4Sg/Pl+3SgO
-   1 wîhtamawâyahko	wîhtamawêw+V+TA+Fut+Cond+12Pl+3SgO
+   1 wîhtamawâyahko	wîhtamawêw+V+TA+Fut+Cond+21Pl+3SgO
    1 wîhtamawâyahk[i	wîhtamawâyahk[i+?
    1 wîhtamawât	wîhtamawât+?
    1 wîhtamawâhkêk	wîhtamawêw+V+TA+Imp+Del+2Pl+3SgO
@@ -18238,8 +18238,8 @@
    1 wâpani-mîcisôwak	wâpani-mîcisôwak+?
    1 wâpamôw	wâpamôw+?
    1 wâpamâyêko	wâpamêw+V+TA+Fut+Cond+2Pl+3SgO
-   1 wâpamâyahko	wâpamêw+V+TA+Fut+Cond+12Pl+3SgO
-   1 wâpamâyahki	wâpamêw+V+TA+Fut+Cond+12Pl+3SgO
+   1 wâpamâyahko	wâpamêw+V+TA+Fut+Cond+21Pl+3SgO
+   1 wâpamâyahki	wâpamêw+V+TA+Fut+Cond+21Pl+3SgO
    1 wâpamâwak	wâpamêw+V+TA+Ind+X+3PlO
    1 wâpamâw	wâpamêw+V+TA+Ind+X+3SgO
    1 wâpamâtwâwi	wâpamêw+V+TA+Fut+Cond+3Pl+4Sg/PlO
@@ -18248,8 +18248,8 @@
    1 wâpamonâpiskohk	wâpamonâpisk+N+I+Loc
    1 wâpamit	wâpamit+?
    1 wâpamimâwa	wâpamimâwa+?
-   1 wâpamikoyahkwâwi	wâpamêw+V+TA+Fut+Cond+3Pl+12PlO
-   1 wâpamikoyahki	wâpamêw+V+TA+Fut+Cond+3Sg+12PlO
+   1 wâpamikoyahkwâwi	wâpamêw+V+TA+Fut+Cond+3Pl+21PlO
+   1 wâpamikoyahki	wâpamêw+V+TA+Fut+Cond+3Sg+21PlO
    1 wâpamikoci	wâpamêw+V+TA+Fut+Cond+4Sg/Pl+3SgO
    1 wâpamat	wâpamat+?
    1 wâpakwanîs[a	wâpakwanîs[a+?
@@ -18267,7 +18267,7 @@
    1 wâhkwana	wâhkwan+N+A+Obv
    1 wâh-wîkihtoyiwa	RdplS+wîkihtow+V+AI+Ind+4Sg/Pl
    1 wâh-wîhtamâtôwak	wâh-wîhtamâtôwak+?
-   1 wâh-wîhtamâtotân	RdplS+wîhtamâtowak+V+AI+Imp+Imm+12Pl
+   1 wâh-wîhtamâtotân	RdplS+wîhtamâtowak+V+AI+Imp+Imm+21Pl
    1 wâh-wîhta	wâh-wîhtam+V+TI+Imp+Imm+2Sg
    1 wâh-wîhkât	wâh-wîhkât+?
    1 wâh-wîhkwêhtakâhk	wâh-wîhkwêhtakâhk+?
@@ -18324,7 +18324,7 @@
    1 wâ-wâpamihtwâwi	PV/wa+wâpamêw+V+TA+Fut+Cond+X+3PlO
    1 wâ-wâpahtamwak	PV/wa+wâpahtam+V+TI+Ind+3Pl
    1 wâ-tôtawiyan	wâ-tôtawiyan+?
-   1 wâ-mîcisoyahki	PV/wa+mîcisow+V+AI+Fut+Cond+12Pl
+   1 wâ-mîcisoyahki	PV/wa+mîcisow+V+AI+Fut+Cond+21Pl
    1 wâ-mikoskâtisiyan	wâ-mikoskâtisiyan+?
    1 wâ-asamacik	wâ-asamacik+?
    1 writing	writing+?
@@ -18532,7 +18532,7 @@
    1 tôtamêko	tôtam+V+TI+Fut+Cond+2Pl
    1 tôtamiyiwa	tôtam+V+TI+Ind+4Sg/Pl
    1 tôtamihko	tôtamihko+?
-   1 tôtamahki	tôtam+V+TI+Fut+Cond+12Pl
+   1 tôtamahki	tôtam+V+TI+Fut+Cond+21Pl
    1 tôtahkwâwi	tôtam+V+TI+Fut+Cond+3Pl
    1 tôtahki	tôtam+V+TI+Fut+Cond+3Sg
    1 tôta	tôtam+V+TI+Imp+Imm+2Sg
@@ -18553,7 +18553,7 @@
    1 têpwêwak	têpwêw+V+AI+Ind+3Pl
    1 têpwâtimâwa	têpwâtimâwa+?
    1 têpwâtikwak	têpwâtêw+V+TA+Ind+4Sg/Pl+3PlO
-   1 têpwâtikoyahki	têpwâtêw+V+TA+Fut+Cond+4Sg/Pl+12PlO
+   1 têpwâtikoyahki	têpwâtêw+V+TA+Fut+Cond+4Sg/Pl+21PlO
    1 têpwâtik	têpwâtêw+V+TA+Ind+4Sg/Pl+3SgO
    1 têpwâtihk	têpwâtêw+V+TA+Imp+Imm+2Pl+3SgO
    1 têpwâtak	têpwâtak+?
@@ -18578,10 +18578,10 @@
    1 têhtahêwak	têhtahêw+V+TA+Ind+3Pl+4Sg/PlO
    1 têhtahik	têhtahêw+V+TA+Ind+4Sg/Pl+3SgO
    1 têhcipayihôw	têhcipayihôw+?
-   1 têhcipayihotân	têhcipayihow+V+AI+Imp+Imm+12Pl
+   1 têhcipayihotân	têhcipayihow+V+AI+Imp+Imm+21Pl
    1 têhcikâpawiw	têhcikâpawiw+V+AI+Ind+3Sg
    1 têh-kisipikamâyik	têh-kisipikamâyik+?
-   1 tê-tôtamahk	RdplW+tôtam+IC+V+TI+Cnj+12Pl
+   1 tê-tôtamahk	RdplW+tôtam+IC+V+TI+Cnj+21Pl
    1 tê-nîmihitocik	tê-nîmihitocik+?
    1 tê-nitotamêk	tê-nitotamêk+?
    1 tê-mîciyahk	tê-mîciyahk+?
@@ -18703,7 +18703,7 @@
    1 together	together+?
    1 toe	toe+?
    1 tiyôtaman	tôtam+IC+V+TI+Cnj+2Sg
-   1 tiyôtamahk	tôtam+IC+V+TI+Cnj+12Pl
+   1 tiyôtamahk	tôtam+IC+V+TI+Cnj+21Pl
    1 tiyôtahkwâwi	tiyôtahkwâwi+?
    1 tiyêpêyimoyin	tiyêpêyimoyin+?
    1 tiyêpwâtikawiyâni	tiyêpwâtikawiyâni+?
@@ -18731,15 +18731,15 @@
    1 tita-okimâwit	PV/tita+okimâwiw+V+AI+Cnj+3Sg
    1 tita-nêhiyawâniwan	PV/tita+nêhiyawêw+V+AI+Ind+X
    1 tita-nêhiyawi-nakamonâniwan	PV/tita+PV/nehiyawi+nakamow+V+AI+Ind+X
-   1 tita-nâh-nêhiyawêyahk	PV/tita+RdplS+nêhiyawêw+V+AI+Cnj+12Pl
+   1 tita-nâh-nêhiyawêyahk	PV/tita+RdplS+nêhiyawêw+V+AI+Cnj+21Pl
    1 tita-mîciyit	PV/tita+mîciw+V+TI+Cnj+4Sg/Pl
    1 tita-miyâhkasikâniwan	PV/tita+miyâhkasikêw+V+AI+Ind+X
    1 tita-mawimoscikêcik	PV/tita+mawimoscikêw+V+AI+Cnj+3Pl
    1 tita-kîsisikâtêki	PV/tita+kîsisikâtêw+V+II+Cnj+3Pl
-   1 tita-kitimâkinâkoyahkok	PV/tita+kitimâkinawêw+V+TA+Cnj+3Pl+12PlO
+   1 tita-kitimâkinâkoyahkok	PV/tita+kitimâkinawêw+V+TA+Cnj+3Pl+21PlO
    1 tita-kakwêcihkêmoyêk	PV/tita+kakwêcihkêmow+V+AI+Cnj+2Pl
    1 tita-kakwêcihkêmot	PV/tita+kakwêcihkêmow+V+AI+Cnj+3Sg
-   1 tita-kakwê-âkayâsîmoyahk	PV/tita+PV/kakwe+âkayâsîmow+V+AI+Cnj+12Pl
+   1 tita-kakwê-âkayâsîmoyahk	PV/tita+PV/kakwe+âkayâsîmow+V+AI+Cnj+21Pl
    1 tita-kakwê-sâpo-kiskinohamâht	tita-kakwê-sâpo-kiskinohamâht+?
    1 tita-kakwê-kimotiyan	PV/tita+PV/kakwe+kimotiw+V+AI+Cnj+2Sg
    1 tita-itâmoyan	PV/tita+itâmow+V+AI+Cnj+2Sg
@@ -18926,12 +18926,12 @@
    1 ta-wîhtaman	PV/ta+wîhtam+V+TI+Cnj+2Sg
    1 ta-wîhpêmak	PV/ta+wîhpêmêw+V+TA+Cnj+1Sg+3SgO
    1 ta-wîhisot	PV/ta+wîhisow+V+AI+Cnj+3Sg
-   1 ta-wîcêwâyahkok	PV/ta+wîcêwêw+V+TA+Cnj+12Pl+3PlO
-   1 ta-wîcêwâyahk	PV/ta+wîcêwêw+V+TA+Cnj+12Pl+3SgO
+   1 ta-wîcêwâyahkok	PV/ta+wîcêwêw+V+TA+Cnj+21Pl+3PlO
+   1 ta-wîcêwâyahk	PV/ta+wîcêwêw+V+TA+Cnj+21Pl+3SgO
    1 ta-wîcêwât	PV/ta+wîcêwêw+V+TA+Cnj+3Sg+4Sg/PlO
-   1 ta-wîcêwâkanimikoyahk	PV/ta+wîcêwâkanimêw+V+TA+Cnj+3Sg+12PlO
+   1 ta-wîcêwâkanimikoyahk	PV/ta+wîcêwâkanimêw+V+TA+Cnj+3Sg+21PlO
    1 ta-wîcêmâyâhk	PV/ta+wîcêwêw+V+TA+Cnj+1Pl+4Sg/PlO
-   1 ta-wîcêkoyahk	PV/ta+wîcêwêw+V+TA+Cnj+3Sg+12PlO
+   1 ta-wîcêkoyahk	PV/ta+wîcêwêw+V+TA+Cnj+3Sg+21PlO
    1 ta-wîcêhtahk	PV/ta+wîcêhtam+V+TI+Cnj+3Sg
    1 ta-wîcihiwêw	PV/ta+wîcihiwêw+V+AI+Ind+3Sg
    1 ta-wîcihitân	PV/ta+wîcihêw+V+TA+Cnj+1Sg+2SgO
@@ -18992,7 +18992,7 @@
    1 ta-têpêyimôw	ta-têpêyimôw+?
    1 ta-têpêyihtahkik	PV/ta+têpêyihtam+V+TI+Cnj+3Pl
    1 ta-têpiskamân	PV/ta+têpiskam+V+TI+Cnj+1Sg
-   1 ta-têpipayiyahk	PV/ta+têpipayiw+V+AI+Cnj+12Pl
+   1 ta-têpipayiyahk	PV/ta+têpipayiw+V+AI+Cnj+21Pl
    1 ta-têhtapiyân	PV/ta+têhtapiw+V+AI+Cnj+1Sg
    1 ta-têhtapiwak	PV/ta+têhtapiw+V+AI+Ind+3Pl
    1 ta-tâpwêwakêyihtahk	PV/ta+tâpwêwakêyihtam+V+TI+Cnj+3Sg
@@ -19011,9 +19011,9 @@
    1 ta-tipahamâht	PV/ta+tipahamawêw+V+TA+Cnj+X+3SgO
    1 ta-tipahaman	PV/ta+tipaham+V+TI+Cnj+2Sg
    1 ta-tihtipîw	PV/ta+tihtipîw+V+AI+Ind+3Sg
-   1 ta-tasîhtamahk	PV/ta+tasîhtam+V+TI+Cnj+12Pl
+   1 ta-tasîhtamahk	PV/ta+tasîhtam+V+TI+Cnj+21Pl
    1 ta-tas-âpinâniwiw	ta-tas-âpinâniwiw+?
-   1 ta-tapasîyahk	PV/ta+tapasîw+V+AI+Cnj+12Pl
+   1 ta-tapasîyahk	PV/ta+tapasîw+V+AI+Cnj+21Pl
    1 ta-tapasîwak	PV/ta+tapasîw+V+AI+Ind+3Pl
    1 ta-takosinwak	PV/ta+takosin+V+AI+Ind+3Pl
    1 ta-takosiniyit	PV/ta+takosin+V+AI+Cnj+4Sg/Pl
@@ -19032,8 +19032,8 @@
    1 ta-sôskwâsit	PV/ta+sôskwâsiw+V+AI+Cnj+3Sg
    1 ta-sîpêkipayiw	PV/ta+sîpêkipayiw+V+AI+Ind+3Sg
    1 ta-sîpahwakik	PV/ta+sîpahwêw+V+TA+Cnj+1Sg+3PlO
-   1 ta-sîkawîyahk	PV/ta+sîkawîwak+V+AI+Cnj+12Pl
-   1 ta-sîkawîstamawâyahkok	PV/ta+sîkawîstamawêw+V+TA+Cnj+12Pl+3PlO
+   1 ta-sîkawîyahk	PV/ta+sîkawîwak+V+AI+Cnj+21Pl
+   1 ta-sîkawîstamawâyahkok	PV/ta+sîkawîstamawêw+V+TA+Cnj+21Pl+3PlO
    1 ta-sîkahâhtawak	PV/ta+sîkahâhtawêw+V+TA+Cnj+1Sg+3SgO
    1 ta-sîhkimêw	PV/ta+sîhkimêw+V+TA+Ind+3Sg+4Sg/PlO
    1 ta-sîhkihkêmoyan	PV/ta+sîhkihkêmow+V+AI+Cnj+2Sg
@@ -19049,7 +19049,7 @@
    1 ta-sâkaskinêt	PV/ta+sâkaskinêw+V+AI+Cnj+3Sg
    1 ta-sâ-sêkihât	ta-sâ-sêkihât+?
    1 ta-sipwêhtêyân	PV/ta+sipwêhtêw+V+AI+Cnj+1Sg
-   1 ta-sipwêhtêyahk	PV/ta+sipwêhtêw+V+AI+Cnj+12Pl
+   1 ta-sipwêhtêyahk	PV/ta+sipwêhtêw+V+AI+Cnj+21Pl
    1 ta-sipwêhtêwak	PV/ta+sipwêhtêw+V+AI+Ind+3Pl
    1 ta-sipwêhtêw	PV/ta+sipwêhtêw+V+AI+Ind+3Sg
    1 ta-sipwêhtatâhk	PV/ta+sipwêhtatâw+V+TI+Cnj+X
@@ -19157,7 +19157,7 @@
    1 ta-pâsitohtêt	PV/ta+pâsitohtêw+V+AI+Cnj+3Sg
    1 ta-pâpiciwak	PV/ta+pâpiciw+V+AI+Ind+3Pl
    1 ta-pâhpihtâcik	PV/ta+pâhpihtâw+V+TI+Cnj+3Pl
-   1 ta-pâhpihikoyahkok	PV/ta+pâhpihêw+V+TA+Cnj+3Pl+12PlO
+   1 ta-pâhpihikoyahkok	PV/ta+pâhpihêw+V+TA+Cnj+3Pl+21PlO
    1 ta-pâhpakâsimon	ta-pâhpakâsimon+?
    1 ta-pwâna-waskawîw	PV/ta+PV/pwana+waskawîw+V+AI+Ind+3Sg
    1 ta-pwâhpinatamân	PV/ta+pwâhpinatam+V+TI+Cnj+1Sg
@@ -19185,7 +19185,7 @@
    1 ta-pimi-nistôskwêwêyân	PV/ta+PV/pimi+nistoskwêwêw+V+AI+Cnj+1Sg
    1 ta-pimakocihk	PV/ta+pimakocin+V+AI+Cnj+3Sg
    1 ta-pihkowiwa	PV/ta+pihkowiw+V+II+Ind+3Pl
-   1 ta-piciyahk	PV/ta+piciw+V+AI+Cnj+12Pl
+   1 ta-piciyahk	PV/ta+piciw+V+AI+Cnj+21Pl
    1 ta-pataham	PV/ta+pataham+V+TI+Ind+3Sg
    1 ta-paspâpiyêk	PV/ta+paspâpiw+V+AI+Cnj+2Pl
    1 ta-paspâpinâniwiw	PV/ta+paspâpiw+V+AI+Ind+X
@@ -19202,7 +19202,7 @@
    1 ta-papâ-wîcêtân	PV/ta+PV/papa+wîcêwêw+V+TA+Cnj+1Sg+2SgO
    1 ta-papâ-nitotamâw	PV/ta+PV/papa+nitotamâw+V+TI+Ind+3Sg
    1 ta-paminikocik	PV/ta+paminêw+V+TA+Cnj+4Sg/Pl+3PlO
-   1 ta-pamihâyahkok	PV/ta+pamihêw+V+TA+Cnj+12Pl+3PlO
+   1 ta-pamihâyahkok	PV/ta+pamihêw+V+TA+Cnj+21Pl+3PlO
    1 ta-pamihtâyân	PV/ta+pamihtâw+V+TI+Cnj+1Sg
    1 ta-pamihtâyit	PV/ta+pamihtâw+V+TI+Cnj+4Sg/Pl
    1 ta-pamihtâyan	PV/ta+pamihtâw+V+TI+Cnj+2Sg
@@ -19246,7 +19246,7 @@
    1 ta-okimâwiw	PV/ta+okimâwiw+V+AI+Ind+3Sg
    1 ta-okimâwihk	PV/ta+okimâwiw+V+AI+Cnj+X
    1 ta-ohtinamawâyêkok	PV/ta+ohtinamawêw+V+TA+Cnj+2Pl+3PlO
-   1 ta-ohtinamawâyahk	PV/ta+ohtinamawêw+V+TA+Cnj+12Pl+3SgO
+   1 ta-ohtinamawâyahk	PV/ta+ohtinamawêw+V+TA+Cnj+21Pl+3SgO
    1 ta-ohtinahk	PV/ta+ohtinam+V+TI+Cnj+3Sg
    1 ta-ohpikîmakaniyik	PV/ta+ohpikîmakan+V+II+Cnj+4Sg
    1 ta-ohpikihêwak	PV/ta+ohpikihêw+V+TA+Ind+3Pl+4Sg/PlO
@@ -19269,7 +19269,7 @@
    1 ta-nîpihk	PV/ta+nîpin+V+II+Cnj+3Sg
    1 ta-nîpawiw	PV/ta+nîpawiw+V+AI+Ind+3Sg
    1 ta-nîpawistamâkoyâhk	ta-nîpawistamâkoyâhk+?
-   1 ta-nîmâyahk	PV/ta+nîmâw+V+AI+Cnj+12Pl
+   1 ta-nîmâyahk	PV/ta+nîmâw+V+AI+Cnj+21Pl
    1 ta-nîmâwinihkêyêk	PV/ta+nîmâwinihkêw+V+AI+Cnj+2Pl
    1 ta-nîmât	PV/ta+nîmâw+V+AI+Cnj+3Sg
    1 ta-nîmihitôwinihkêyân	ta-nîmihitôwinihkêyân+?
@@ -19280,7 +19280,7 @@
    1 ta-nîhc-ôhpîyân	ta-nîhc-ôhpîyân+?
    1 ta-nêpêwisit	PV/ta+nêpêwisiw+V+AI+Cnj+3Sg
    1 ta-nêpêwimoyêk	PV/ta+nêpêwimow+V+AI+Cnj+2Pl
-   1 ta-nêhiyawêyahk	PV/ta+nêhiyawêw+V+AI+Cnj+12Pl
+   1 ta-nêhiyawêyahk	PV/ta+nêhiyawêw+V+AI+Cnj+21Pl
    1 ta-nêhiyawêt	PV/ta+nêhiyawêw+V+AI+Cnj+3Sg
    1 ta-nêhiyawêmototawâcik	PV/ta+nêhiyawêmototawêw+V+TA+Cnj+3Pl+4Sg/PlO
    1 ta-nâtêwak	PV/ta+nâtêw+V+TA+Ind+3Pl+4Sg/PlO
@@ -19300,11 +19300,11 @@
    1 ta-nitotamâht	PV/ta+nitotamawêw+V+TA+Cnj+X+3SgO
    1 ta-nitotamawâyêk	PV/ta+nitotamawêw+V+TA+Cnj+2Pl+3SgO
    1 ta-nitotamawâyit	PV/ta+nitotamawêw+V+TA+Cnj+4Sg/Pl+5Sg/PlO
-   1 ta-nitotamawâyahk	PV/ta+nitotamawêw+V+TA+Cnj+12Pl+3SgO
+   1 ta-nitotamawâyahk	PV/ta+nitotamawêw+V+TA+Cnj+21Pl+3SgO
    1 ta-nitotamawâcik	PV/ta+nitotamawêw+V+TA+Cnj+3Pl+4Sg/PlO
    1 ta-nitonâmiht	PV/ta+nitonawêw+V+TA+Cnj+X+4Sg/PlO
    1 ta-nitonikâtêk	PV/ta+nitonikâtêw+V+II+Cnj+3Sg
-   1 ta-nitomâyahkok	PV/ta+nitomêw+V+TA+Cnj+12Pl+3PlO
+   1 ta-nitomâyahkok	PV/ta+nitomêw+V+TA+Cnj+21Pl+3PlO
    1 ta-nitohtâkowisiyân	PV/ta+nitohtâkowisiw+V+AI+Cnj+1Sg
    1 ta-nitawêyimak	PV/ta+nitawêyimêw+V+TA+Cnj+1Sg+3SgO
    1 ta-nitawêyihtamân	PV/ta+nitawêyihtam+V+TI+Cnj+1Sg
@@ -19338,11 +19338,11 @@
    1 ta-nipôwisiw	ta-nipôwisiw+?
    1 ta-nipâyit	PV/ta+nipâw+V+AI+Cnj+4Sg/Pl
    1 ta-nipâyan	PV/ta+nipâw+V+AI+Cnj+2Sg
-   1 ta-nipâyahk	PV/ta+nipâw+V+AI+Cnj+12Pl
+   1 ta-nipâyahk	PV/ta+nipâw+V+AI+Cnj+21Pl
    1 ta-nipâw	PV/ta+nipâw+V+AI+Ind+3Sg
    1 ta-nipiyit	PV/ta+nipiw+V+AI+Cnj+4Sg/Pl
    1 ta-nipiyan	PV/ta+nipiw+V+AI+Cnj+2Sg
-   1 ta-nipiyahk	PV/ta+nipiw+V+AI+Cnj+12Pl
+   1 ta-nipiyahk	PV/ta+nipiw+V+AI+Cnj+21Pl
    1 ta-nipahâpasot	PV/ta+nipahâpasow+V+AI+Cnj+3Sg
    1 ta-nipahâcik	PV/ta+nipahêw+V+TA+Cnj+3Pl+4Sg/PlO
    1 ta-nipahtâyân	PV/ta+nipahtâw+V+TI+Cnj+1Sg
@@ -19354,7 +19354,7 @@
    1 ta-nipahikoyân	ta-nipahikoyân+?
    1 ta-nipahikawiyin	ta-nipahikawiyin+?
    1 ta-nipahat	PV/ta+nipahêw+V+TA+Cnj+2Sg+3SgO
-   1 ta-nikohtêyahk	PV/ta+nikohtêw+V+AI+Cnj+12Pl
+   1 ta-nikohtêyahk	PV/ta+nikohtêw+V+AI+Cnj+21Pl
    1 ta-nikamoyân	PV/ta+nikamow+V+AI+Cnj+1Sg
    1 ta-nikamot	PV/ta+nikamow+V+AI+Cnj+3Sg
    1 ta-nihtâwêw	PV/ta+nihtâwêw+V+AI+Ind+3Sg
@@ -19376,7 +19376,7 @@
    1 ta-nanâtawihat	PV/ta+nanâtawihêw+V+TA+Cnj+2Sg+3SgO
    1 ta-nanâskomôw	ta-nanâskomôw+?
    1 ta-nanahihtawâcik	PV/ta+nanahihtawêw+V+TA+Cnj+3Pl+4Sg/PlO
-   1 ta-nakîyahk	PV/ta+nakîw+V+AI+Cnj+12Pl
+   1 ta-nakîyahk	PV/ta+nakîw+V+AI+Cnj+21Pl
    1 ta-nakiskawâyâhk	PV/ta+nakiskawêw+V+TA+Cnj+1Pl+3SgO
    1 ta-nakayâwîyan	ta-nakayâwîyan+?
    1 ta-nakayâwiyan	ta-nakayâwiyan+?
@@ -19398,7 +19398,7 @@
    1 ta-mîkisihkahcikêcik	PV/ta+mîkisihkahcikêw+V+AI+Cnj+3Pl
    1 ta-mîciyin	ta-mîciyin+?
    1 ta-mîciyan	PV/ta+mîciw+V+TI+Cnj+2Sg
-   1 ta-mîciyahk	PV/ta+mîciw+V+TI+Cnj+12Pl
+   1 ta-mîciyahk	PV/ta+mîciw+V+TI+Cnj+21Pl
    1 ta-mîciwâyâhk	ta-mîciwâyâhk+?
    1 ta-mîciwak	PV/ta+mîciw+V+TI+Ind+3Pl
    1 ta-mîcisoyit	PV/ta+mîcisow+V+AI+Cnj+4Sg/Pl
@@ -19582,7 +19582,7 @@
    1 ta-kî-kwêskinikowisiw	ta-kî-kwêskinikowisiw+?
    1 ta-kî-koskohiwêyêk	PV/ta-ki+koskohiwêw+V+AI+Cnj+2Pl
    1 ta-kî-kisâtaman	PV/ta-ki+kisâtam+V+TI+Cnj+2Sg
-   1 ta-kî-kiskisiyahk	PV/ta-ki+kiskisiw+V+AI+Cnj+12Pl
+   1 ta-kî-kiskisiyahk	PV/ta-ki+kiskisiw+V+AI+Cnj+21Pl
    1 ta-kî-kaskikwâtasiw	ta-kî-kaskikwâtasiw+?
    1 ta-kî-kaskihtâyâhk	PV/ta-ki+kaskihtâw+V+TI+Cnj+1Pl
    1 ta-kî-kakwê-pâh-pahkwênamâht	PV/ta-ki+PV/kakwe+RdplS+pahkwênamawêw+V+TA+Cnj+X+3SgO
@@ -19679,7 +19679,7 @@
    1 ta-kakwê-~	ta-kakwê-~+?
    1 ta-kakwê-wanikiskisiyêk	PV/ta+PV/kakwe+wanikiskisiw+V+AI+Cnj+2Pl
    1 ta-kakwê-pônihtâyêk	PV/ta+PV/kakwe+pônihtâw+V+TI+Cnj+2Pl
-   1 ta-kakwê-pêhtamahk	PV/ta+PV/kakwe+pêhtam+V+TI+Cnj+12Pl
+   1 ta-kakwê-pêhtamahk	PV/ta+PV/kakwe+pêhtam+V+TI+Cnj+21Pl
    1 ta-kakwê-pê-kwâpikêw	PV/ta+PV/kakwe+PV/pe+kwâpikêw+V+AI+Ind+3Sg
    1 ta-kakwê-pâhpihiht	PV/ta+PV/kakwe+pâhpihêw+V+TA+Cnj+X+3SgO
    1 ta-kakwê-pimâcihâyit	PV/ta+PV/kakwe+pimâcihêw+V+TA+Cnj+4Sg/Pl+5Sg/PlO
@@ -19729,13 +19729,13 @@
    1 ta-isinâkosiyân	PV/ta+isinâkosiw+V+AI+Cnj+1Sg
    1 ta-isinâkosiyiwa	PV/ta+isinâkosiw+V+AI+Ind+4Sg/Pl
    1 ta-isi-wîcihiwêw	PV/ta+PV/isi+wîcihiwêw+V+AI+Ind+3Sg
-   1 ta-isi-pihkohoyahk	PV/ta+PV/isi+pihkohow+V+AI+Cnj+12Pl
+   1 ta-isi-pihkohoyahk	PV/ta+PV/isi+pihkohow+V+AI+Cnj+21Pl
    1 ta-isi-paciyawêhikot	PV/ta+PV/isi+paciyawêhêw+V+TA+Cnj+4Sg/Pl+3SgO
    1 ta-isi-ohpikihitôw	ta-isi-ohpikihitôw+?
    1 ta-isi-nôhtê-nipâyit	PV/ta+PV/isi+nôhtê-nipâw+V+AI+Cnj+4Sg/Pl
    1 ta-isi-nayôhtahkik	PV/ta+PV/isi+nayôhtam+V+TI+Cnj+3Pl
    1 ta-isi-môniyâwi-itwêhk	PV/ta+PV/isi+môniyâwi-itwêw+V+AI+Cnj+X
-   1 ta-isi-mêtawêyahk	PV/ta+PV/isi+mêtawêw+V+AI+Cnj+12Pl
+   1 ta-isi-mêtawêyahk	PV/ta+PV/isi+mêtawêw+V+AI+Cnj+21Pl
    1 ta-isi-mâmitonêyihtamihk	PV/ta+PV/isi+mâmitonêyihtam+V+TI+Cnj+X+3Sg
    1 ta-isi-kîsôwâyik	ta-isi-kîsôwâyik+?
    1 ta-isi-kostamiyit	PV/ta+PV/isi+kostam+V+TI+Cnj+4Sg/Pl
@@ -19753,7 +19753,7 @@
    1 ta-ayâyit	PV/ta+ayâw+V+AI+Cnj+4Sg/Pl
    1 ta-ayâpisâsinwa	ta-ayâpisâsinwa+?
    1 ta-ay-âhkosiw	PV/ta+RdplW+âhkosiw+V+AI+Ind+3Sg
-   1 ta-ay-ayâyahk	PV/ta+RdplW+ayâw+V+AI+Cnj+12Pl
+   1 ta-ay-ayâyahk	PV/ta+RdplW+ayâw+V+AI+Cnj+21Pl
    1 ta-atâwêyân	PV/ta+atâwêw+V+AI+Cnj+1Sg
    1 ta-atoskêw	PV/ta+atoskêw+V+AI+Ind+3Sg
    1 ta-atoskawêw	PV/ta+atoskawêw+V+TA+Ind+3Sg+4Sg/PlO
@@ -20000,11 +20000,11 @@
    1 sâkôcimik	sâkôcimêw+V+TA+Ind+4Sg/Pl+3SgO
    1 sâkôcihâw	sâkôcihêw+V+TA+Ind+X+3SgO
    1 sâkôcihitocik	sâkôcihitocik+?
-   1 sâkôcihikoyahko	sâkôcihêw+V+TA+Fut+Cond+3Sg+12PlO
+   1 sâkôcihikoyahko	sâkôcihêw+V+TA+Fut+Cond+3Sg+21PlO
    1 sâkôcihik	sâkôcihêw+V+TA+Ind+4Sg/Pl+3SgO
    1 sâkôcihici	sâkôcihêw+V+TA+Fut+Cond+3Sg+1SgO
    1 sâkôcihaci	sâkôcihêw+V+TA+Fut+Cond+2Sg+3SgO
-   1 sâkêwêtân	sâkêwêw+V+AI+Imp+Imm+12Pl
+   1 sâkêwêtân	sâkêwêw+V+AI+Imp+Imm+21Pl
    1 sâkêwêpahtâwak	sâkêwêpahtâw+V+AI+Ind+3Pl
    1 sâkêwêci	sâkêwêw+V+AI+Fut+Cond+3Sg
    1 sâkêwê	sâkêwêw+V+AI+Imp+Imm+2Sg
@@ -20416,7 +20416,7 @@
    1 pêkamahahki	pêkamahahki+?
    1 pêhôwak	pêhôwak+?
    1 pêhîhkan	pêhêw+V+TA+Imp+Del+2Sg+1SgO
-   1 pêhâtân	pêhêw+V+TA+Imp+Imm+12Pl+3SgO
+   1 pêhâtân	pêhêw+V+TA+Imp+Imm+21Pl+3SgO
    1 pêhtâkwaniw	pêhtâkwaniw+?
    1 pêhtâkwahki	pêhtâkwan+V+II+Fut+Cond+3Sg
    1 pêhtâkosiyiwa	pêhtâkosiw+V+AI+Ind+4Sg/Pl
@@ -20596,7 +20596,7 @@
    1 pâwanîwak	pâwanîw+V+AI+Ind+3Pl
    1 pâti	pâti+?
    1 pâsîl	pâsîl+?
-   1 pâsêtân	pâsam+V+TI+Imp+Imm+12Pl
+   1 pâsêtân	pâsam+V+TI+Imp+Imm+21Pl
    1 pâswêw	pâswêw+V+TA+Ind+3Sg+4Sg/PlO
    1 pâstêyiwa	pâstêw+V+II+Ind+4Pl
    1 pâstâhôtotamân	pâstâhôtotamân+?
@@ -20798,8 +20798,8 @@
    1 pimâhokôw	pimâhokôw+?
    1 pimâcihêw	pimâcihêw+V+TA+Ind+3Sg+4Sg/PlO
    1 pimâcihâyêko	pimâcihêw+V+TA+Fut+Cond+2Pl+3SgO
-   1 pimâcihâyahko	pimâcihêw+V+TA+Fut+Cond+12Pl+3SgO
-   1 pimâcihâtân	pimâcihêw+V+TA+Imp+Imm+12Pl+3SgO
+   1 pimâcihâyahko	pimâcihêw+V+TA+Fut+Cond+21Pl+3SgO
+   1 pimâcihâtân	pimâcihêw+V+TA+Imp+Imm+21Pl+3SgO
    1 pimâcihikwak	pimâcihêw+V+TA+Ind+4Sg/Pl+3PlO
    1 pimâcihik	pimâcihêw+V+TA+Ind+4Sg/Pl+3SgO
    1 pimwêyiwa	pimwêw+V+TA+Ind+4Sg/Pl+5Sg/PlO
@@ -20957,7 +20957,7 @@
    1 papâ-nitâhtâmôw	papâ-nitâhtâmôw+?
    1 papâ-nitonawêw	PV/papa+nitonawêw+V+TA+Ind+3Sg+4Sg/PlO
    1 papâ-nitonaw	PV/papa+nitonawêw+V+TA+Imp+Imm+2Sg+3SgO
-   1 papâ-nisikatisiyahko	PV/papa+nisikatisiw+V+AI+Fut+Cond+12Pl
+   1 papâ-nisikatisiyahko	PV/papa+nisikatisiw+V+AI+Fut+Cond+21Pl
    1 papâ-mîcisoyiwa	PV/papa+mîcisow+V+AI+Ind+4Sg/Pl
    1 papâ-mêtawê	PV/papa+mêtawêw+V+AI+Imp+Imm+2Sg
    1 papâ-mâtôw	papâ-mâtôw+?
@@ -21191,7 +21191,7 @@
    1 otihtin	otihtinêw+V+TA+Imp+Imm+2Sg+3SgO
    1 otihtimanâhtana	otihtimanâhtana+?
    1 otihtikôw	otihtikôw+?
-   1 otihtikoyahko	otihtêw+V+TA+Fut+Cond+3Sg+12PlO
+   1 otihtikoyahko	otihtêw+V+TA+Fut+Cond+3Sg+21PlO
    1 otihtamiyiwa	otihtam+V+TI+Ind+4Sg/Pl
    1 otihtakwâwi	otihtêw+V+TA+Fut+Cond+1Sg+3PlO
    1 otihtahêw	otihtahêw+V+TA+Ind+3Sg+4Sg/PlO
@@ -21264,7 +21264,7 @@
    1 osîhêyiwa	osîhêw+V+TA+Ind+4Sg/Pl+5Sg/PlO
    1 osîhêwak	osîhêw+V+TA+Ind+3Pl+4Sg/PlO
    1 osîhtâyani	osîhtâw+V+TI+Fut+Cond+2Sg
-   1 osîhtâtân	osîhtâw+V+TI+Imp+Imm+12Pl
+   1 osîhtâtân	osîhtâw+V+TI+Imp+Imm+21Pl
    1 osîhtâtâk	osîhtâtâk+?
    1 osîhtamâsowak	osîhtamâsow+V+AI+Ind+3Pl
    1 osîhtamâk	osîhtamawêw+V+TA+Ind+4Sg/Pl+3SgO
@@ -21935,7 +21935,7 @@
    1 nôcikwêsiw[a	nôcikwêsiw[a+?
    1 nôcihêw	nôcihêw+V+TA+Ind+3Sg+4Sg/PlO
    1 nôcihâw	nôcihêw+V+TA+Ind+X+3SgO
-   1 nôcihâtân	nôcihêw+V+TA+Imp+Imm+12Pl+3SgO
+   1 nôcihâtân	nôcihêw+V+TA+Imp+Imm+21Pl+3SgO
    1 nôcihtâyiwa	nôcihtâw+V+TI+Ind+4Sg/Pl
    1 nôcihtât	nôcihtât+?
    1 nôcihcikêwinihk	nôcihcikêwin+N+I+Loc
@@ -21982,7 +21982,7 @@
    1 nîso-~	nîso-~+?
    1 nîso-pîsim	nîso-pîsim+Ipc
    1 nîsiyiwa	nîsiwak+V+AI+Ind+4Sg/Pl
-   1 nîsihkahk	nîsiwak+V+AI+Imp+Del+12Pl
+   1 nîsihkahk	nîsiwak+V+AI+Imp+Del+21Pl
    1 nîpêpinâniwiw	nîpêpiw+V+AI+Ind+X
    1 nîpâ	nîpâ+?
    1 nîpiy[a	nîpiy[a+?
@@ -22085,7 +22085,7 @@
    1 nêpahimihci	nêpahimihci+?
    1 nêm	nêm+?
    1 nêkohtêyani	nêkohtêyani+?
-   1 nêkiskotâtoyahk	nakiskotâtowak+IC+V+AI+Cnj+12Pl
+   1 nêkiskotâtoyahk	nakiskotâtowak+IC+V+AI+Cnj+21Pl
    1 nêkatihci	nêkatihci+?
    1 nêhtâ-sôsimêt	PV/nihta+sôsimêw+IC+V+AI+Cnj+3Sg
    1 nêhiyâtik	nêhiyâtik+?
@@ -22116,8 +22116,8 @@
    1 nê	nê+?
    1 nââ	nââ+?
    1 nâwayês	nâwayês+Ipc
-   1 nâtêtân	nâtam+V+TI+Imp+Imm+12Pl
-   1 nâtâtân	nâtêw+V+TA+Imp+Imm+12Pl+3SgO
+   1 nâtêtân	nâtam+V+TI+Imp+Imm+21Pl
+   1 nâtâtân	nâtêw+V+TA+Imp+Imm+21Pl+3SgO
    1 nâtwâhtitâw	nâtwâhtitâw+V+TI+Ind+3Sg
    1 nâtwâhtiniyiw	nâtwâhtin+V+II+Ind+4Sg
    1 nâtwâhtin	nâtwâhtin+V+II+Ind+3Sg
@@ -22181,7 +22181,7 @@
    1 nâcowêw	nâcowêw+?
    1 nâciyôstawêwak	nâciyôstawêw+V+TA+Ind+3Pl+4Sg/PlO
    1 nâciwanihikanêci	nâciwanihikanêw+V+AI+Fut+Cond+3Sg
-   1 nâcipahâhkahk	nâcipahâw+V+AI+Imp+Del+12Pl
+   1 nâcipahâhkahk	nâcipahâw+V+AI+Imp+Del+21Pl
    1 nâcipahâci	nâcipahâw+V+AI+Fut+Cond+3Sg
    1 nâcimihtê	nâcimihtêw+V+AI+Imp+Imm+2Sg
    1 nâci	nâci+?
@@ -22465,7 +22465,7 @@
    1 nitotamâski	nitotamawêw+V+TA+Fut+Cond+3Sg+2SgO
    1 nitotamawêwak	nitotamawêw+V+TA+Ind+3Pl+4Sg/PlO
    1 nitotamawêw	nitotamawêw+V+TA+Ind+3Sg+4Sg/PlO
-   1 nitotamawâyahko	nitotamawêw+V+TA+Fut+Cond+12Pl+3SgO
+   1 nitotamawâyahko	nitotamawêw+V+TA+Fut+Cond+21Pl+3SgO
    1 nitotamawâtâk	nitotamawâtâk+?
    1 nitotam	nitotam+V+TI+Ind+3Sg
    1 nitonâhci	nitonawêw+V+TA+Fut+Cond+X+3SgO
@@ -22473,13 +22473,13 @@
    1 nitonikêyiwa	nitonikêw+V+AI+Ind+4Sg/Pl
    1 nitonikê	nitonikêw+V+AI+Imp+Imm+2Sg
    1 nitonikâniwiw	nitonikêw+V+AI+Ind+X
-   1 nitomâtânik	nitomêw+V+TA+Imp+Imm+12Pl+3PlO
+   1 nitomâtânik	nitomêw+V+TA+Imp+Imm+21Pl+3PlO
    1 nitomimâhkan	nitomimâhkan+?
    1 nitomik	nitomêw+V+TA+Ind+4Sg/Pl+3SgO
    1 nitohtâk	nitohtawêw+V+TA+Ind+4Sg/Pl+3SgO
    1 nitohtawêwak	nitohtawêw+V+TA+Ind+3Pl+4Sg/PlO
    1 nitohtawêw	nitohtawêw+V+TA+Ind+3Sg+4Sg/PlO
-   1 nitohtawâtânik	nitohtawêw+V+TA+Imp+Imm+12Pl+3PlO
+   1 nitohtawâtânik	nitohtawêw+V+TA+Imp+Imm+21Pl+3PlO
    1 nitohtawin	nitohtawêw+V+TA+Imp+Imm+2Sg+1SgO
    1 nitohtaman[i	nitohtaman[i+?
    1 nitohkêmôw	nitohkêmôw+?
@@ -22550,9 +22550,9 @@
    1 nitawâsisîhkâna	nitawâsisîhkâna+?
    1 nitawâsimisinânak	nitawâsimis+N+A+D+Px1Pl+Pl
    1 nitawâpênikêw	nitawâpênikêw+V+AI+Ind+3Sg
-   1 nitawâpênikêtân	nitawâpênikêw+V+AI+Imp+Imm+12Pl
+   1 nitawâpênikêtân	nitawâpênikêw+V+AI+Imp+Imm+21Pl
    1 nitawâpênikê	nitawâpênikêw+V+AI+Imp+Imm+2Sg
-   1 nitawâpitân	nitawâpiw+V+AI+Imp+Imm+12Pl
+   1 nitawâpitân	nitawâpiw+V+AI+Imp+Imm+21Pl
    1 nitawâpam	nitawâpamêw+V+TA+Imp+Imm+2Sg+3SgO
    1 nitawâpahtamwak	nitawâpahtam+V+TI+Ind+3Pl
    1 nitawâpahtahk	nitawâpahtahk+?
@@ -22563,7 +22563,7 @@
    1 nitawi-âcimostaw	PV/nitawi+âcimostawêw+V+TA+Imp+Imm+2Sg+3SgO
    1 nitawi-yôhtênamawêw	PV/nitawi+yôhtênamawêw+V+TA+Ind+3Sg+4Sg/PlO
    1 nitawi-wîwiw	PV/nitawi+wîwiw+V+AI+Ind+3Sg
-   1 nitawi-wîwitân	PV/nitawi+wîwiw+V+AI+Imp+Imm+12Pl
+   1 nitawi-wîwitân	PV/nitawi+wîwiw+V+AI+Imp+Imm+21Pl
    1 nitawi-wîkimihkok	PV/nitawi+wîkimêw+V+TA+Imp+Imm+2Pl+3PlO
    1 nitawi-wîhtamwak	PV/nitawi+wîhtam+V+TI+Ind+3Pl
    1 nitawi-wîhtamawâw	PV/nitawi+wîhtamawêw+V+TA+Ind+X+3SgO
@@ -22572,7 +22572,7 @@
    1 nitawi-wâpamêw	PV/nitawi+wâpamêw+V+TA+Ind+3Sg+4Sg/PlO
    1 nitawi-wâpamihk	PV/nitawi+wâpamêw+V+TA+Imp+Imm+2Pl+3SgO
    1 nitawi-wâh-ocipitêwak	PV/nitawi+PV/wah+ocipitêw+V+TA+Ind+3Pl+4Sg/PlO
-   1 nitawi-wiyanihtâkêtân	PV/nitawi+wiyanihtâkêw+V+AI+Imp+Imm+12Pl
+   1 nitawi-wiyanihtâkêtân	PV/nitawi+wiyanihtâkêw+V+AI+Imp+Imm+21Pl
    1 nitawi-wayawîwêpin	nitawi-wayawîwêpin+?
    1 nitawi-wawêyîw	PV/nitawi+wawêyîw+V+AI+Ind+3Sg
    1 nitawi-têpwâtêw	PV/nitawi+têpwâtêw+V+TA+Ind+3Sg+4Sg/PlO
@@ -22583,7 +22583,7 @@
    1 nitawi-sipwêhtêwak	PV/nitawi+sipwêhtêw+V+AI+Ind+3Pl
    1 nitawi-pîkiskwâtaki	PV/nitawi+pîkiskwâtêw+V+TA+Fut+Cond+1Sg+3SgO
    1 nitawi-pîhtokêw	PV/nitawi+pîhtokêw+V+AI+Ind+3Sg
-   1 nitawi-pâh-pâskiswâtânik	PV/nitawi+RdplS+pâskiswêw+V+TA+Imp+Imm+12Pl+3PlO
+   1 nitawi-pâh-pâskiswâtânik	PV/nitawi+RdplS+pâskiswêw+V+TA+Imp+Imm+21Pl+3PlO
    1 nitawi-pimwêw	PV/nitawi+pimwêw+V+TA+Ind+3Sg+4Sg/PlO
    1 nitawi-paspâpiw	PV/nitawi+paspâpiw+V+AI+Ind+3Sg
    1 nitawi-paspâpi	PV/nitawi+paspâpiw+V+AI+Imp+Imm+2Sg
@@ -22643,7 +22643,7 @@
    1 nitawi-astâ	PV/nitawi+astâw+V+TI+Imp+Imm+2Sg
    1 nitawi-askatâk	PV/nitawi+askatâw+V+AI+Imp+Imm+2Pl
    1 nitawi-asiwahâw	PV/nitawi+asiwahêw+V+TA+Ind+X+3SgO
-   1 nitawi-asamâtân	PV/nitawi+asamêw+V+TA+Imp+Imm+12Pl+3SgO
+   1 nitawi-asamâtân	PV/nitawi+asamêw+V+TA+Imp+Imm+21Pl+3SgO
    1 nitawi-asamik	PV/nitawi+asamêw+V+TA+Ind+4Sg/Pl+3SgO
    1 nitawi	nitawi+?
    1 nitaw-ôpêpîmiw	nitaw-ôpêpîmiw+?
@@ -22910,7 +22910,7 @@
    1 nipâyâni	nipâw+V+AI+Fut+Cond+1Sg
    1 nipâyini	nipâyini+?
    1 nipâyani	nipâw+V+AI+Fut+Cond+2Sg
-   1 nipâtân	nipâw+V+AI+Imp+Imm+12Pl
+   1 nipâtân	nipâw+V+AI+Imp+Imm+21Pl
    1 nipâskâpin	pâskâpiw+V+AI+Ind+1Sg
    1 nipâskisikaninâna	pâskisikan+N+I+Px1Pl+Pl
    1 nipâsiw	nipâsiw+V+AI+Ind+3Sg
@@ -22923,7 +22923,7 @@
    1 nipâhpinân	pâhpiw+V+AI+Ind+1Pl
    1 nipâhpihânân	pâhpihêw+V+TA+Ind+1Pl+3SgO
    1 nipâhpihik	pâhpihêw+V+TA+Ind+3Sg+1SgO
-   1 nipâhkahk	nipâw+V+AI+Imp+Del+12Pl
+   1 nipâhkahk	nipâw+V+AI+Imp+Del+21Pl
    1 nipâh-pôsiwêpinênân	nipâh-pôsiwêpinênân+?
    1 nipâh-pîkiskwâtik	RdplS+pîkiskwâtêw+V+TA+Ind+3Sg+1SgO
    1 nipâh-pâskêkinânânak	RdplS+pâskêkinêw+V+TA+Ind+1Pl+3PlO
@@ -22937,7 +22937,7 @@
    1 nipostamôhâw	postamôhêw+V+TA+Ind+1Sg+3SgO
    1 nipos	nipos+?
    1 nipohtiskên	nipohtiskên+?
-   1 nipiyahki	nipiw+V+AI+Fut+Cond+12Pl
+   1 nipiyahki	nipiw+V+AI+Fut+Cond+21Pl
    1 nipitikwahpitên	pitikwahpitam+V+TI+Ind+1Sg
    1 nipisohên	pisoham+V+TI+Ind+1Sg
    1 nipiskihcihonân	nipiskihcihonân+?
@@ -23724,7 +23724,7 @@
    1 nikwêski-pimâtisin	kwêski-pimâtisiw+V+AI+Ind+1Sg
    1 nikwâpahwâw	kwâpahwêw+V+TA+Ind+1Sg+3SgO
    1 nikwâhci-pimwasinân	PV/kwahci+pimwasinêw+V+AI+Ind+1Sg
-   1 nikwatisotân	nikwatisow+V+AI+Imp+Imm+12Pl
+   1 nikwatisotân	nikwatisow+V+AI+Imp+Imm+21Pl
    1 nikwatakimik	kwatakimêw+V+TA+Ind+3Sg+1SgO
    1 nikwatakihikon	nikwatakihikon+?
    1 nikwatakatotik	kwatakatotêw+V+TA+Ind+3Sg+1SgO
@@ -24315,8 +24315,8 @@
    1 nanâtawihin	nanâtawihêw+V+TA+Imp+Imm+2Sg+1SgO
    1 nanâtawih	nanâtawihêw+V+TA+Imp+Imm+2Sg+3SgO
    1 nanâskomêwak	nanâskomêw+V+TA+Ind+3Pl+4Sg/PlO
-   1 nanâskomâyahki	nanâskomêw+V+TA+Fut+Cond+12Pl+3SgO
-   1 nanâskomâtân	nanâskomêw+V+TA+Imp+Imm+12Pl+3SgO
+   1 nanâskomâyahki	nanâskomêw+V+TA+Fut+Cond+21Pl+3SgO
+   1 nanâskomâtân	nanâskomêw+V+TA+Imp+Imm+21Pl+3SgO
    1 nanâskomihk	nanâskomêw+V+TA+Imp+Imm+2Pl+3SgO
    1 nanâskom	nanâskomêw+V+TA+Imp+Imm+2Sg+3SgO
    1 nanânistihtawâw	nanânistihtawâw+?
@@ -24358,7 +24358,7 @@
    1 nakatamawin	nakatamawêw+V+TA+Imp+Imm+2Sg+1SgO
    1 nakatamani	nakatam+V+TI+Fut+Cond+2Sg
    1 nakataman[i	nakataman[i+?
-   1 nakatamahko	nakatam+V+TI+Fut+Cond+12Pl
+   1 nakatamahko	nakatam+V+TI+Fut+Cond+21Pl
    1 nakatamahk[i	nakatamahk[i+?
    1 nakatahwâw	nakatahwêw+V+TA+Ind+X+3SgO
    1 nakataci	nakatêw+V+TA+Fut+Cond+2Sg+3SgO
@@ -24488,7 +24488,7 @@
    1 mîcân	mîcân+?
    1 mîciyân	mîciyân+?
    1 mîcisôwin	mîcisôwin+?
-   1 mîcisôhâhkahk	mîcisôhêw+V+TA+Imp+Del+12Pl+3SgO
+   1 mîcisôhâhkahk	mîcisôhêw+V+TA+Imp+Del+21Pl+3SgO
    1 mîcisowinâhtikwa	mîcisowinâhtik+N+I+Pl
    1 mîcisowak	mîcisow+V+AI+Ind+3Pl
    1 mîcisonâniwiw	mîcisow+V+AI+Ind+X
@@ -24902,7 +24902,7 @@
    1 miskoskahkwâwi	miskoskam+V+TI+Fut+Cond+3Pl
    1 miskocâkâsa	miskocâkâs+N+I+D+PxX+Pl
    1 miskawêyiwa	miskawêw+V+TA+Ind+4Sg/Pl+5Sg/PlO
-   1 miskawâyahkwâwi	miskawêw+V+TA+Fut+Cond+12Pl+3PlO
+   1 miskawâyahkwâwi	miskawêw+V+TA+Fut+Cond+21Pl+3PlO
    1 miskawâtwâwi	miskawêw+V+TA+Fut+Cond+3Pl+4Sg/PlO
    1 miskawici	miskawêw+V+TA+Fut+Cond+3Sg+1SgO
    1 miskawakwâwi	miskawêw+V+TA+Fut+Cond+1Sg+3PlO
@@ -25091,9 +25091,9 @@
    1 matotisânihkêw	matotisânihkêw+V+AI+Ind+3Sg
    1 matotisânihkêhkan	matotisânihkêw+V+AI+Imp+Del+2Sg
    1 matotisânihkê	matotisânihkêw+V+AI+Imp+Imm+2Sg
-   1 matotisiyahko	matotisiw+V+AI+Fut+Cond+12Pl
+   1 matotisiyahko	matotisiw+V+AI+Fut+Cond+21Pl
    1 matotisiwak	matotisiw+V+AI+Ind+3Pl
-   1 matotisitân	matotisiw+V+AI+Imp+Imm+12Pl
+   1 matotisitân	matotisiw+V+AI+Imp+Imm+21Pl
    1 matokahp	matokahp+N+I+Sg
    1 mass	mass+?
    1 maskêkowi-~	maskêkowi-~+?
@@ -25129,7 +25129,7 @@
    1 maskawâkonêpayin	maskawâkonêpayin+?
    1 maskawisîwin	maskawisîwin+N+I+Sg
    1 maskamâw	maskamêw+V+TA+Ind+X+3SgO
-   1 maskamâtân	maskamêw+V+TA+Imp+Imm+12Pl+3SgO
+   1 maskamâtân	maskamêw+V+TA+Imp+Imm+21Pl+3SgO
    1 maskamik	maskamêw+V+TA+Ind+4Sg/Pl+3SgO
    1 maskahtwêw	maskahtwêw+V+AI+Ind+3Sg
    1 maskahtoyiwa	maskahtowak+V+AI+Ind+4Sg/Pl
@@ -25313,7 +25313,7 @@
    1 kîwêyin	kîwêyin+?
    1 kîwêyawêsiw	kîwêyawêsiw+?
    1 kîwêyani	kîwêw+V+AI+Fut+Cond+2Sg
-   1 kîwêyahko	kîwêw+V+AI+Fut+Cond+12Pl
+   1 kîwêyahko	kîwêw+V+AI+Fut+Cond+21Pl
    1 kîwêyahkahok	kîwêyahkahwêw+V+TA+Ind+4Sg/Pl+3SgO
    1 kîwêtâk	kîwêtâk+?
    1 kîwêtwâwi	kîwêw+V+AI+Fut+Cond+3Pl
@@ -25327,7 +25327,7 @@
    1 kîwêhtatâk	kîwêhtatâw+V+TI+Imp+Imm+2Pl
    1 kîwêhtatâ	kîwêhtatâw+V+TI+Imp+Imm+2Sg
    1 kîwêhtahâwak	kîwêhtahêw+V+TA+Ind+X+3PlO
-   1 kîwêhtahâtân	kîwêhtahêw+V+TA+Imp+Imm+12Pl+3SgO
+   1 kîwêhtahâtân	kîwêhtahêw+V+TA+Imp+Imm+21Pl+3SgO
    1 kîwêhtahiyan	kîwêhtahiyan+?
    1 kîwêcitâpâtik	kîwêcitâpâtêw+V+TA+Ind+4Sg/Pl+3SgO
    1 kîwê-wîcêwik	PV/kiwe+wîcêwêw+V+TA+Imp+Imm+2Sg+3PlO
@@ -26230,7 +26230,7 @@
    1 kêcikonamihk	kêcikonamihk+?
    1 kêcahcaw	kêcahcaw+?
    1 kê-ôh-kitimâkêyihtot	kê-ôh-kitimâkêyihtot+?
-   1 kê-âpacihtâyahk	PV/ke+âpacihtâw+V+TI+Cnj+12Pl
+   1 kê-âpacihtâyahk	PV/ke+âpacihtâw+V+TI+Cnj+21Pl
    1 kê-âpacihtât	PV/ke+âpacihtâw+V+TI+Cnj+3Sg
    1 kê-âpacihikoyan	kê-âpacihikoyan+?
    1 kê-~-pê-isi-kiskêyihtamân	kê-~-pê-isi-kiskêyihtamân+?
@@ -26244,16 +26244,16 @@
    1 kê-wâpamitân	PV/ke+wâpamêw+V+TA+Cnj+1Sg+2SgO
    1 kê-wâpahtamêk	PV/ke+wâpahtam+V+TI+Cnj+2Pl
    1 kê-wayawîhtahit	PV/ke+wayawîhtahêw+V+TA+Cnj+3Sg+1SgO
-   1 kê-tôtâkoyahk	PV/ke+tôtawêw+V+TA+Cnj+3Sg+12PlO
+   1 kê-tôtâkoyahk	PV/ke+tôtawêw+V+TA+Cnj+3Sg+21PlO
    1 kê-tôtawak	PV/ke+tôtawêw+V+TA+Cnj+1Sg+3SgO
-   1 kê-tôtamahk	PV/ke+tôtam+V+TI+Cnj+12Pl
+   1 kê-tôtamahk	PV/ke+tôtam+V+TI+Cnj+21Pl
    1 kê-tâpwêwakêyihtahk	PV/ke+tâpwêwakêyihtam+V+TI+Cnj+3Sg
    1 kê-tâpwêhtâkoyâhk	PV/ke+tâpwêhtawêw+V+TA+Cnj+4Sg/Pl+1PlO
    1 kê-tahkamiht	PV/ke+tahkamêw+V+TA+Cnj+X+3SgO
    1 kê-sâkikihki	kê-sâkikihki+?
    1 kê-sa-sawêyimit	PV/ke+RdplW+sawêyimêw+V+TA+Cnj+3Sg+1SgO
    1 kê-pîkonamâsoyan	PV/ke+pîkonamâsow+V+AI+Cnj+2Sg
-   1 kê-pîhtwâtamahk	PV/ke+pîhtwâtam+V+TI+Cnj+12Pl
+   1 kê-pîhtwâtamahk	PV/ke+pîhtwâtam+V+TI+Cnj+21Pl
    1 kê-pîhcâk	PV/ke+pîhcâw+V+II+Cnj+3Sg
    1 kê-pêtâyân	PV/ke+pêtâw+V+TI+Cnj+1Sg
    1 kê-pê-pêkopêt	PV/ke+PV/pe+pêkopêw+V+AI+Cnj+3Sg
@@ -26261,9 +26261,9 @@
    1 kê-pê-kîwêt	PV/ke+pê-kîwêw+V+AI+Cnj+3Sg
    1 kê-postayôwinisêt	kê-postayôwinisêt+?
    1 kê-pimâtisiyân	PV/ke+pimâtisiw+V+AI+Cnj+1Sg
-   1 kê-pimohtâtamahk	PV/ke+pimohtâtam+V+TI+Cnj+12Pl
-   1 kê-pimohtahikoyahk	PV/ke+pimohtahêw+V+TA+Cnj+4Sg/Pl+12PlO
-   1 kê-pimohtahikoyahk	PV/ke+pimohtahêw+V+TA+Cnj+3Sg+12PlO
+   1 kê-pimohtâtamahk	PV/ke+pimohtâtam+V+TI+Cnj+21Pl
+   1 kê-pimohtahikoyahk	PV/ke+pimohtahêw+V+TA+Cnj+4Sg/Pl+21PlO
+   1 kê-pimohtahikoyahk	PV/ke+pimohtahêw+V+TA+Cnj+3Sg+21PlO
    1 kê-pimohtahikocik	PV/ke+pimohtahêw+V+TA+Cnj+4Sg/Pl+3PlO
    1 kê-pimitisahotân	kê-pimitisahotân+?
    1 kê-pimi-wîcihiht	PV/ke+PV/pimi+wîcihêw+V+TA+Cnj+X+3SgO
@@ -26279,13 +26279,13 @@
    1 kê-nôkwaniyiw	kê-nôkwaniyiw+?
    1 kê-nôhtêhkatêyân	PV/ke+nôhtêhkatêw+V+AI+Cnj+1Sg
    1 kê-nîso-tipiskâki	kê-nîso-tipiskâki+?
-   1 kê-nâtamahk	PV/ke+nâtam+V+TI+Cnj+12Pl
+   1 kê-nâtamahk	PV/ke+nâtam+V+TI+Cnj+21Pl
    1 kê-nâcipahât	PV/ke+nâcipahâw+V+AI+Cnj+3Sg
    1 kê-nisitawêyimât	PV/ke+nisitawêyimêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 kê-nipiskêt	PV/ke+nipiskêw+V+AI+Cnj+3Sg
-   1 kê-nipahâyahk	PV/ke+nipahêw+V+TA+Cnj+12Pl+3SgO
+   1 kê-nipahâyahk	PV/ke+nipahêw+V+TA+Cnj+21Pl+3SgO
    1 kê-nipahâhkatosoyân	PV/ke+nipahâhkatosow+V+AI+Cnj+1Sg
-   1 kê-nipahâhkatosoyahk	PV/ke+nipahâhkatosow+V+AI+Cnj+12Pl
+   1 kê-nipahâhkatosoyahk	PV/ke+nipahâhkatosow+V+AI+Cnj+21Pl
    1 kê-nipahtât	PV/ke+nipahtâw+V+TI+Cnj+3Sg
    1 kê-nipahikawiyan	PV/ke+nipahêw+V+TA+Cnj+X+2SgO
    1 kê-nipahaki	kê-nipahaki+?
@@ -26293,16 +26293,16 @@
    1 kê-môwâyâhkok	kê-môwâyâhkok+?
    1 kê-môwâyâhk	kê-môwâyâhk+?
    1 kê-mîcisoyâhk	PV/ke+mîcisow+V+AI+Cnj+1Pl
-   1 kê-mîcisoyahk	PV/ke+mîcisow+V+AI+Cnj+12Pl
+   1 kê-mîcisoyahk	PV/ke+mîcisow+V+AI+Cnj+21Pl
    1 kê-mêtawêhk	PV/ke+mêtawêw+V+AI+Cnj+X
-   1 kê-mêkiyahk	PV/ke+mêkiw+V+AI+Cnj+12Pl
-   1 kê-mâsihitoyahk	PV/ke+mâsihitowak+V+AI+Cnj+12Pl
+   1 kê-mêkiyahk	PV/ke+mêkiw+V+AI+Cnj+21Pl
+   1 kê-mâsihitoyahk	PV/ke+mâsihitowak+V+AI+Cnj+21Pl
    1 kê-mânokêhk	PV/ke+mânokêw+V+AI+Cnj+X
    1 kê-mâcihtâyân	PV/ke+mâcihtâniwan+V+TI+Cnj+1Sg
-   1 kê-miywêyihtamahk	PV/ke+miywêyihtam+V+TI+Cnj+12Pl
+   1 kê-miywêyihtamahk	PV/ke+miywêyihtam+V+TI+Cnj+21Pl
    1 kê-miywêyihtahkik	PV/ke+miywêyihtam+V+TI+Cnj+3Pl
    1 kê-miyo-mîcisoyân	PV/ke+PV/miyo+mîcisow+V+AI+Cnj+1Sg
-   1 kê-miyo-mîcisoyahk	PV/ke+PV/miyo+mîcisow+V+AI+Cnj+12Pl
+   1 kê-miyo-mîcisoyahk	PV/ke+PV/miyo+mîcisow+V+AI+Cnj+21Pl
    1 kê-mawinêhwisk	kê-mawinêhwisk+?
    1 kê-manitôwit	PV/ke+manitôwiw+V+AI+Cnj+3Sg
    1 kê-kôta-mîciyân	PV/ke+PV/kota+mîciw+V+TI+Cnj+1Sg
@@ -26326,11 +26326,11 @@
    1 kê-kitimâkisicik	PV/ke+kitimâkisiw+V+AI+Cnj+3Pl
    1 kê-kitimâkinawit	PV/ke+kitimâkinawêw+V+TA+Cnj+3Sg+1SgO
    1 kê-kitimahit	PV/ke+kitimahêw+V+TA+Cnj+3Sg+1SgO
-   1 kê-kitimahikoyahk	PV/ke+kitimahêw+V+TA+Cnj+3Sg+12PlO
+   1 kê-kitimahikoyahk	PV/ke+kitimahêw+V+TA+Cnj+3Sg+21PlO
    1 kê-kitamokoyâhk	PV/ke+kitamwêw+V+TA+Cnj+3Sg+1PlO
    1 kê-kihtimit	PV/ke+kihtimiw+V+AI+Cnj+3Sg
    1 kê-kawacikwê	kê-kawacikwê+?
-   1 kê-kaskikwâtisoyahk	PV/ke+kaskikwâtisow+V+AI+Cnj+12Pl
+   1 kê-kaskikwâtisoyahk	PV/ke+kaskikwâtisow+V+AI+Cnj+21Pl
    1 kê-kanawêyimikoyêk	PV/ke+kanawêyimêw+V+TA+Cnj+3Sg+2PlO
    1 kê-kakwê-miskawât	PV/ke+PV/kakwe+miskawêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 kê-kakwâtakihtâw	kê-kakwâtakihtâw+?
@@ -26517,7 +26517,7 @@
    1 kâ-ôh-pê-ay-itohtêyan	PV/kaa+PV/oh+PV/pe+RdplW+itohtêw+V+AI+Cnj+2Sg
    1 kâ-ôh-pâskisoht	PV/kaa+PV/oh+pâskiswêw+V+TA+Cnj+X+3SgO
    1 kâ-ôh-pinasiwêyit	PV/kaa+PV/oh+pinasiwêw+V+AI+Cnj+4Sg/Pl
-   1 kâ-ôh-pimâtisiyahk	PV/kaa+PV/oh+pimâtisiw+V+AI+Cnj+12Pl
+   1 kâ-ôh-pimâtisiyahk	PV/kaa+PV/oh+pimâtisiw+V+AI+Cnj+21Pl
    1 kâ-ôh-pimâtisicik	PV/kaa+PV/oh+pimâtisiw+V+AI+Cnj+3Pl
    1 kâ-ôh-picit	PV/kaa+PV/oh+piciw+V+AI+Cnj+3Sg
    1 kâ-ôh-picicik	PV/kaa+PV/oh+piciw+V+AI+Cnj+3Pl
@@ -26539,7 +26539,7 @@
    1 kâ-ôh-nêstosit	PV/kaa+PV/oh+nêstosiw+V+AI+Cnj+3Sg
    1 kâ-ôh-nâtitisahwât	PV/kaa+PV/oh+nâtitisahwêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 kâ-ôh-nitâhtâmitân	PV/kaa+PV/oh+nitâhtâmêw+V+TA+Cnj+1Sg+2SgO
-   1 kâ-ôh-nitopayiyahk	PV/kaa+PV/oh+nitopayiw+V+AI+Cnj+12Pl
+   1 kâ-ôh-nitopayiyahk	PV/kaa+PV/oh+nitopayiw+V+AI+Cnj+21Pl
    1 kâ-ôh-nitomikawiyân	PV/kaa+PV/oh+nitomêw+V+TA+Cnj+X+1SgO
    1 kâ-ôh-nitomiht	PV/kaa+PV/oh+nitomêw+V+TA+Cnj+X+3SgO
    1 kâ-ôh-nipâkwêsimohk	PV/kaa+PV/oh+nipâkwêsimow+V+AI+Cnj+X
@@ -26755,7 +26755,7 @@
    1 kâ-wî-pahkopêyit	PV/kaa+PV/wî+pahkopêw+V+AI+Cnj+4Sg/Pl
    1 kâ-wî-otinâyit	PV/kaa+PV/wî+otinêw+V+TA+Cnj+4Sg/Pl+5Sg/PlO
    1 kâ-wî-otinahk	PV/kaa+PV/wî+otinam+V+TI+Cnj+3Sg
-   1 kâ-wî-otihtikoyahk	PV/kaa+PV/wî+otihtêw+V+TA+Cnj+3Sg+12PlO
+   1 kâ-wî-otihtikoyahk	PV/kaa+PV/wî+otihtêw+V+TA+Cnj+3Sg+21PlO
    1 kâ-wî-otihtat	PV/kaa+PV/wî+otihtêw+V+TA+Cnj+2Sg+3SgO
    1 kâ-wî-otihtak	PV/kaa+PV/wî+otihtêw+V+TA+Cnj+1Sg+3SgO
    1 kâ-wî-osîhtâyân	PV/kaa+PV/wî+osîhtâw+V+TI+Cnj+1Sg
@@ -26784,7 +26784,7 @@
    1 kâ-wî-nipahikot	PV/kaa+PV/wî+nipahêw+V+TA+Cnj+4Sg/Pl+3SgO
    1 kâ-wî-nihtâwikihâcik	PV/kaa+PV/wî+nihtâwikihêw+V+TA+Cnj+3Pl+4Sg/PlO
    1 kâ-wî-nanâtawâpit	PV/kaa+PV/wî+nanâtawâpiw+V+AI+Cnj+3Sg
-   1 kâ-wî-nakîyahk	PV/kaa+PV/wî+nakîw+V+AI+Cnj+12Pl
+   1 kâ-wî-nakîyahk	PV/kaa+PV/wî+nakîw+V+AI+Cnj+21Pl
    1 kâ-wî-nakît	PV/kaa+PV/wî+nakîw+V+AI+Cnj+3Sg
    1 kâ-wî-nakatât	PV/kaa+PV/wî+nakatêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 kâ-wî-nakatiht	PV/kaa+PV/wî+nakatêw+V+TA+Cnj+X+3SgO
@@ -26795,7 +26795,7 @@
    1 kâ-wî-mêtawêyin	kâ-wî-mêtawêyin+?
    1 kâ-wî-mâyitôtahk	kâ-wî-mâyitôtahk+?
    1 kâ-wî-mânokawakik	PV/kaa+PV/wî+mânokawêw+V+TA+Cnj+1Sg+3PlO
-   1 kâ-wî-mâkohikoyahk	PV/kaa+PV/wî+mâkohêw+V+TA+Cnj+3Sg+12PlO
+   1 kâ-wî-mâkohikoyahk	PV/kaa+PV/wî+mâkohêw+V+TA+Cnj+3Sg+21PlO
    1 kâ-wî-mâh-manicôkâhk	kâ-wî-mâh-manicôkâhk+?
    1 kâ-wî-mâcîcik	PV/kaa+PV/wî+mâcîw+V+AI+Cnj+3Pl
    1 kâ-wî-mâci-mîcisot	PV/kaa+PV/wî+mâci-mîcisow+V+AI+Cnj+3Sg
@@ -26818,7 +26818,7 @@
    1 kâ-wî-kâsîyâkanêyân	PV/kaa+PV/wî+kâsîyâkanêw+V+AI+Cnj+1Sg
    1 kâ-wî-kâ-kitosiyan	kâ-wî-kâ-kitosiyan+?
    1 kâ-wî-kitâpamikoyâhk	PV/kaa+PV/wî+kitâpamêw+V+TA+Cnj+3Sg+1PlO
-   1 kâ-wî-kitâpamikoyahk	PV/kaa+PV/wî+kitâpamêw+V+TA+Cnj+3Sg+12PlO
+   1 kâ-wî-kitâpamikoyahk	PV/kaa+PV/wî+kitâpamêw+V+TA+Cnj+3Sg+21PlO
    1 kâ-wî-kisîpêkistikwânêyâhk	PV/kaa+PV/wî+kisîpêkistikwânêw+V+AI+Cnj+1Pl
    1 kâ-wî-kisîhtocik	PV/kaa+PV/wî+kisîhtowak+V+AI+Cnj+3Pl
    1 kâ-wî-kiskêyihtamân	PV/kaa+PV/wî+kiskêyihtam+V+TI+Cnj+1Sg
@@ -26839,7 +26839,7 @@
    1 kâ-wî-itohtêt	PV/kaa+PV/wî+itohtêw+V+AI+Cnj+3Sg
    1 kâ-wî-itohtahât	PV/kaa+PV/wî+itohtahêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 kâ-wî-ititakok	PV/kaa+PV/wî+itêw+V+TA+Cnj+1Sg+2PlO
-   1 kâ-wî-itasiwâtikoyahk	PV/kaa+PV/wî+itasiwâtêw+V+TA+Cnj+3Sg+12PlO
+   1 kâ-wî-itasiwâtikoyahk	PV/kaa+PV/wî+itasiwâtêw+V+TA+Cnj+3Sg+21PlO
    1 kâ-wî-isîhcikêyâhk	PV/kaa+PV/wî+isîhcikêw+V+AI+Cnj+1Pl
    1 kâ-wî-isîhcikêhk	PV/kaa+PV/wî+isîhcikêw+V+AI+Cnj+X
    1 kâ-wî-ispayiniyik	PV/kaa+PV/wî+ispayin+V+II+Cnj+4Sg
@@ -26847,7 +26847,7 @@
    1 kâ-wî-isi-wâh-wîhtamâtân	PV/kaa+PV/wî+PV/isi+wâh-wîhtamawêw+V+TA+Cnj+1Sg+2SgO
    1 kâ-wî-ihtâcik	PV/kaa+PV/wî+ihtâw+V+AI+Cnj+3Pl
    1 kâ-wî-cîkahokot	PV/kaa+PV/wî+cîkahwêw+V+TA+Cnj+4Sg/Pl+3SgO
-   1 kâ-wî-ayâwâyahk	PV/kaa+PV/wî+ayâwêw+V+TA+Cnj+12Pl+3SgO
+   1 kâ-wî-ayâwâyahk	PV/kaa+PV/wî+ayâwêw+V+TA+Cnj+21Pl+3SgO
    1 kâ-wî-ayâtamihit	kâ-wî-ayâtamihit+?
    1 kâ-wî-aya-âtotamân	kâ-wî-aya-âtotamân+?
    1 kâ-wî-aya-kîkway-osîhtâyâhk	kâ-wî-aya-kîkway-osîhtâyâhk+?
@@ -26859,7 +26859,7 @@
    1 kâ-wêpâhtakahikêwihk	kâ-wêpâhtakahikêwihk+?
    1 kâ-wêpinâcik	PV/kaa+wêpinêw+V+TA+Cnj+3Pl+4Sg/PlO
    1 kâ-wêpinikawiyân	PV/kaa+wêpinêw+V+TA+Cnj+X+1SgO
-   1 kâ-wêpinikawiyahk	PV/kaa+wêpinêw+V+TA+Cnj+X+12PlO
+   1 kâ-wêpinikawiyahk	PV/kaa+wêpinêw+V+TA+Cnj+X+21PlO
    1 kâ-wêpinahkik	PV/kaa+wêpinam+V+TI+Cnj+3Pl
    1 kâ-wêpakocihk	kâ-wêpakocihk+?
    1 kâ-wâyoskîsikosîsiwayânisa	kâ-wâyoskîsikosîsiwayânisa+?
@@ -26880,7 +26880,7 @@
    1 kâ-wâpahtihit	PV/kaa+wâpahtihêw+V+TA+Cnj+3Sg+1SgO
    1 kâ-wâpahtihikâwiyân	kâ-wâpahtihikâwiyân+?
    1 kâ-wâpahtamân	PV/kaa+wâpahtam+V+TI+Cnj+1Sg
-   1 kâ-wâpahtamahk	PV/kaa+wâpahtam+V+TI+Cnj+12Pl
+   1 kâ-wâpahtamahk	PV/kaa+wâpahtam+V+TI+Cnj+21Pl
    1 kâ-wâpahk	PV/kaa+wâpan+V+II+Cnj+3Sg
    1 kâ-wâp	kâ-wâp+?
    1 kâ-wâkisicik	kâ-wâkisicik+Ipc
@@ -26919,7 +26919,7 @@
    1 kâ-waskawîyit	PV/kaa+waskawîw+V+AI+Cnj+4Sg/Pl
    1 kâ-waskawît	PV/kaa+waskawîw+V+AI+Cnj+3Sg
    1 kâ-wanêyihtahk	PV/kaa+wanêyihtam+V+TI+Cnj+3Sg
-   1 kâ-wanâhikoyahk	PV/kaa+wanâhêw+V+TA+Cnj+3Sg+12PlO
+   1 kâ-wanâhikoyahk	PV/kaa+wanâhêw+V+TA+Cnj+3Sg+21PlO
    1 kâ-wanwêhkâkawiyân	PV/kaa+wanwêhkawêw+V+TA+Cnj+X+1SgO
    1 kâ-waniskâyâhk	PV/kaa+waniskâw+V+AI+Cnj+1Pl
    1 kâ-waniskât	PV/kaa+waniskâw+V+AI+Cnj+3Sg
@@ -26930,7 +26930,7 @@
    1 kâ-wanisihk	PV/kaa+wanisin+V+AI+Cnj+3Sg
    1 kâ-wanikiskisiyân	PV/kaa+wanikiskisiw+V+AI+Cnj+1Sg
    1 kâ-wanihâyâhk	PV/kaa+wanihêw+V+TA+Cnj+1Pl+3SgO
-   1 kâ-wanihtâyahk	PV/kaa+wanihtâw+V+TI+Cnj+12Pl
+   1 kâ-wanihtâyahk	PV/kaa+wanihtâw+V+TI+Cnj+21Pl
    1 kâ-wanihikêt	PV/kaa+wanihikêw+V+AI+Cnj+3Sg
    1 kâ-wanihiht	PV/kaa+wanihêw+V+TA+Cnj+X+3SgO
    1 kâ-wanihcikêyân	PV/kaa+wanihcikêw+V+AI+Cnj+1Sg
@@ -27024,7 +27024,7 @@
    1 kâ-sôskwâstimêwi-pimohtêw	kâ-sôskwâstimêwi-pimohtêw+?
    1 kâ-sôskwâk	PV/kaa+sôskwâw+V+II+Cnj+3Sg
    1 kâ-sôskoskawât	PV/kaa+sôskoskawêw+V+TA+Cnj+3Sg+4Sg/PlO
-   1 kâ-sôsimêyahk	PV/kaa+sôsimêw+V+AI+Cnj+12Pl
+   1 kâ-sôsimêyahk	PV/kaa+sôsimêw+V+AI+Cnj+21Pl
    1 kâ-sôniyâhkêt	PV/kaa+sôniyâhkêw+V+AI+Cnj+3Sg
    1 kâ-sôniyâhkêsiyan	PV/kaa+sôniyâhkêsiw+V+AI+Cnj+2Sg
    1 kâ-sôhkahk	PV/kaa+sôhkan+V+II+Cnj+3Sg
@@ -27125,7 +27125,7 @@
    1 kâ-pîkopicikêhk	PV/kaa+pîkopicikêw+V+AI+Cnj+X
    1 kâ-pîkopayiyik	PV/kaa+pîkopayiw+V+II+Cnj+4Sg
    1 kâ-pîkonikêmakahk	PV/kaa+pîkonikêmakan+V+II+Cnj+3Sg
-   1 kâ-pîkonikoyahk	PV/kaa+pîkonêw+V+TA+Cnj+3Sg+12PlO
+   1 kâ-pîkonikoyahk	PV/kaa+pîkonêw+V+TA+Cnj+3Sg+21PlO
    1 kâ-pîkiskâtisit	PV/kaa+pîkiskâtisiw+V+AI+Cnj+3Sg
    1 kâ-pîkiskwêyân	PV/kaa+pîkiskwêw+V+AI+Cnj+1Sg
    1 kâ-pîkiskwêskicik	PV/kaa+pîkiskwêskiw+V+AI+Cnj+3Pl
@@ -27137,7 +27137,7 @@
    1 kâ-pîhtâkwahk	kâ-pîhtâkwahk+?
    1 kâ-pîhtwâwinihkêt	PV/kaa+pîhtwâwinihkêw+V+AI+Cnj+3Sg
    1 kâ-pîhtwâhikoyâhk	PV/kaa+pîhtwâhêw+V+TA+Cnj+3Sg+1PlO
-   1 kâ-pîhtwâhikoyahk	PV/kaa+pîhtwâhêw+V+TA+Cnj+3Sg+12PlO
+   1 kâ-pîhtwâhikoyahk	PV/kaa+pîhtwâhêw+V+TA+Cnj+3Sg+21PlO
    1 kâ-pîhtwâhikawiyâhk	PV/kaa+pîhtwâhêw+V+TA+Cnj+X+1PlO
    1 kâ-pîhtopitiht	PV/kaa+pîhtopitêw+V+TA+Cnj+X+3SgO
    1 kâ-pîhtokêkociniyit	PV/kaa+pîhtokêkocin+V+AI+Cnj+4Sg/Pl
@@ -27264,7 +27264,7 @@
    1 kâ-pê-nâtikawiyân	PV/kaa+pê-nâtêw+V+TA+Cnj+X+1SgO
    1 kâ-pê-nâsicik	PV/kaa+pê-nâtêw+V+TA+Cnj+3Pl+1SgO
    1 kâ-pê-nitopayîstâkocik	PV/kaa+PV/pe+nitopayîstawêw+V+TA+Cnj+4Sg/Pl+3PlO
-   1 kâ-pê-nitonawâyahkok	PV/kaa+PV/pe+nitonawêw+V+TA+Cnj+12Pl+3PlO
+   1 kâ-pê-nitonawâyahkok	PV/kaa+PV/pe+nitonawêw+V+TA+Cnj+21Pl+3PlO
    1 kâ-pê-nitomikowâw	kâ-pê-nitomikowâw+?
    1 kâ-pê-nitomikot	PV/kaa+PV/pe+nitomêw+V+TA+Cnj+4Sg/Pl+3SgO
    1 kâ-pê-nitomiht	PV/kaa+PV/pe+nitomêw+V+TA+Cnj+X+3SgO
@@ -27287,7 +27287,7 @@
    1 kâ-pê-nakasiwêyit	PV/kaa+PV/pe+nakasiwêw+V+AI+Cnj+4Sg/Pl
    1 kâ-pê-nak-~-nak-~-nakît	kâ-pê-nak-~-nak-~-nakît+?
    1 kâ-pê-nahâhkapit	PV/kaa+PV/pe+nahâhkapiw+V+AI+Cnj+3Sg
-   1 kâ-pê-mîcisoyahk	PV/kaa+pê-mîcisow+V+AI+Cnj+12Pl
+   1 kâ-pê-mîcisoyahk	PV/kaa+pê-mîcisow+V+AI+Cnj+21Pl
    1 kâ-pê-mêtawêyit	PV/kaa+pê-mêtawêw+V+AI+Cnj+4Sg/Pl
    1 kâ-pê-mêtawêyin	kâ-pê-mêtawêyin+?
    1 kâ-pê-mâsihât	PV/kaa+PV/pe+mâsihêw+V+TA+Cnj+3Sg+4Sg/PlO
@@ -27334,7 +27334,7 @@
    1 kâ-pê-atimikot	PV/kaa+PV/pe+atimêw+V+TA+Cnj+4Sg/Pl+3SgO
    1 kâ-pê-asotamawiyâhk	PV/kaa+PV/pe+asotamawêw+V+TA+Cnj+2Pl+1PlO
    1 kâ-pê	kâ-pê+?
-   1 kâ-pâstâhoyahk	PV/kaa+pâstâhow+V+AI+Cnj+12Pl
+   1 kâ-pâstâhoyahk	PV/kaa+pâstâhow+V+AI+Cnj+21Pl
    1 kâ-pâskisokot	PV/kaa+pâskiswêw+V+TA+Cnj+4Sg/Pl+3SgO
    1 kâ-pâskisoht	PV/kaa+pâskiswêw+V+TA+Cnj+X+3SgO
    1 kâ-pâpiciyit	PV/kaa+pâpiciw+V+AI+Cnj+4Sg/Pl
@@ -27374,7 +27374,7 @@
    1 kâ-piponihêwiyit	PV/kaa+piponihêwiw+V+AI+Cnj+4Sg/Pl
    1 kâ-pimîwit	kâ-pimîwit+?
    1 kâ-pimâwahât	PV/kaa+pimâwahêw+V+TA+Cnj+3Sg+4Sg/PlO
-   1 kâ-pimâtisîtotamahk	PV/kaa+pimâtisîtotam+V+TI+Cnj+12Pl
+   1 kâ-pimâtisîtotamahk	PV/kaa+pimâtisîtotam+V+TI+Cnj+21Pl
    1 kâ-pimâtisiyân	PV/kaa+pimâtisiw+V+AI+Cnj+1Sg
    1 kâ-pimâtisiyâhk	PV/kaa+pimâtisiw+V+AI+Cnj+1Pl
    1 kâ-pimâtisiyit	PV/kaa+pimâtisiw+V+AI+Cnj+4Sg/Pl
@@ -27550,7 +27550,7 @@
    1 kâ-ostostotaskêyit	kâ-ostostotaskêyit+?
    1 kâ-oskâcihko-mispohk	kâ-oskâcihko-mispohk+?
    1 kâ-osk-âyiwiyêk	PV/kaa+osk-âyiwiw+V+AI+Cnj+2Pl
-   1 kâ-osk-âyiwiyahk	PV/kaa+osk-âyiwiw+V+AI+Cnj+12Pl
+   1 kâ-osk-âyiwiyahk	PV/kaa+osk-âyiwiw+V+AI+Cnj+21Pl
    1 kâ-osikôhoyân	kâ-osikôhoyân+?
    1 kâ-osamâhk	PV/kaa+osam+V+TI+Cnj+1Pl
    1 kâ-osaman	PV/kaa+osam+V+TI+Cnj+2Sg
@@ -27606,7 +27606,7 @@
    1 kâ-nôhtêpayit	PV/kaa+nôhtêpayiw+V+AI+Cnj+3Sg
    1 kâ-nôhtêhkwasîpayit	kâ-nôhtêhkwasîpayit+?
    1 kâ-nôhtêhkwasit	PV/kaa+nôhtêhkwasiw+V+AI+Cnj+3Sg
-   1 kâ-nôhtêhkatêyahk	PV/kaa+nôhtêhkatêw+V+AI+Cnj+12Pl
+   1 kâ-nôhtêhkatêyahk	PV/kaa+nôhtêhkatêw+V+AI+Cnj+21Pl
    1 kâ-nôhtê-âtotamân	PV/kaa+PV/nohte+âtotam+V+TI+Cnj+1Sg
    1 kâ-nôhtê-âcimak	PV/kaa+PV/nohte+âcimêw+V+TA+Cnj+1Sg+3SgO
    1 kâ-nôhtê-wîhtamawak	PV/kaa+PV/nohte+wîhtamawêw+V+TA+Cnj+1Sg+3SgO
@@ -27672,7 +27672,7 @@
    1 kâ-nâkatâpamak	kâ-nâkatâpamak+?
    1 kâ-nâh-nôtinitocik	PV/kaa+RdplS+nôtinitowak+V+AI+Cnj+3Pl
    1 kâ-nâh-nâtâcik	PV/kaa+RdplS+nâtêw+V+TA+Cnj+3Pl+4Sg/PlO
-   1 kâ-nâh-nitâmisoyahk	PV/kaa+RdplS+nitâmisow+V+AI+Cnj+12Pl
+   1 kâ-nâh-nitâmisoyahk	PV/kaa+RdplS+nitâmisow+V+AI+Cnj+21Pl
    1 kâ-nâh-nitotamâkot	PV/kaa+RdplS+nitotamawêw+V+TA+Cnj+4Sg/Pl+3SgO
    1 kâ-nâh-nitawi-asamat	PV/kaa+RdplS+PV/nitawi+asamêw+V+TA+Cnj+2Sg+3SgO
    1 kâ-nâh-nipahât	PV/kaa+RdplS+nipahêw+V+TA+Cnj+3Sg+4Sg/PlO
@@ -27692,7 +27692,7 @@
    1 kâ-nitopayicik	PV/kaa+nitopayiw+V+AI+Cnj+3Pl
    1 kâ-nitonâhcik	PV/kaa+nitonawêw+V+TA+Cnj+X+3PlO
    1 kâ-nitonikêyân	PV/kaa+nitonikêw+V+AI+Cnj+1Sg
-   1 kâ-nitonikêyahk	PV/kaa+nitonikêw+V+AI+Cnj+12Pl
+   1 kâ-nitonikêyahk	PV/kaa+nitonikêw+V+AI+Cnj+21Pl
    1 kâ-nitonawâcik	PV/kaa+nitonawêw+V+TA+Cnj+3Pl+4Sg/PlO
    1 kâ-nitomât	PV/kaa+nitomêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 kâ-nitomitân	PV/kaa+nitomêw+V+TA+Cnj+1Sg+2SgO
@@ -27722,7 +27722,7 @@
    1 kâ-nitawi-pêyakoyâhk	PV/kaa+PV/nitawi+pêyakow+V+AI+Cnj+1Pl
    1 kâ-nitawi-nîpêpiyâhk	PV/kaa+PV/nitawi+nîpêpiw+V+AI+Cnj+1Pl
    1 kâ-nitawi-nîpawit	PV/kaa+PV/nitawi+nîpawiw+V+AI+Cnj+3Sg
-   1 kâ-nitawi-nîmihitoyahk	PV/kaa+PV/nitawi+nîmihitow+V+AI+Cnj+12Pl
+   1 kâ-nitawi-nîmihitoyahk	PV/kaa+PV/nitawi+nîmihitow+V+AI+Cnj+21Pl
    1 kâ-nitawi-nâtât	PV/kaa+PV/nitawi+nâtêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 kâ-nitawi-nânapâcihât	PV/kaa+PV/nitawi+nânapâcihêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 kâ-nitawi-nitâhtâmak	PV/kaa+PV/nitawi+nitâhtâmêw+V+TA+Cnj+1Sg+3SgO
@@ -27878,7 +27878,7 @@
    1 kâ-mêtawêhk	PV/kaa+mêtawêw+V+AI+Cnj+X
    1 kâ-mêsci-misi-wanâcihtât	kâ-mêsci-misi-wanâcihtât+?
    1 kâ-mêkwâ-tatahkamikisit	PV/kaa+PV/mêkwa+tatahkamikisiw+V+AI+Cnj+3Sg
-   1 kâ-mêkwâ-pimâtisiyahk	PV/kaa+mêkwâ-pimâtisiw+V+AI+Cnj+12Pl
+   1 kâ-mêkwâ-pimâtisiyahk	PV/kaa+mêkwâ-pimâtisiw+V+AI+Cnj+21Pl
    1 kâ-mêkwâ-mîcisot	PV/kaa+mêkwâ-mîcisow+V+AI+Cnj+3Sg
    1 kâ-mêkwâ-mâyi-kîsikâk	PV/kaa+PV/mêkwa+mâyi-kîsikâw+V+II+Cnj+3Sg
    1 kâ-mêkwâ-ay-apit	PV/kaa+PV/mêkwa+ay-apiw+V+AI+Cnj+3Sg
@@ -27892,7 +27892,7 @@
    1 kâ-mâyimahcihoyit	PV/kaa+mâyimahcihow+V+AI+Cnj+4Sg/Pl
    1 kâ-mâyimahcihot	PV/kaa+mâyimahcihow+V+AI+Cnj+3Sg
    1 kâ-mâyi-~	kâ-mâyi-~+?
-   1 kâ-mâyi-tôtâkoyahk	PV/kaa+mâyi-tôtawêw+V+TA+Cnj+3Sg+12PlO
+   1 kâ-mâyi-tôtâkoyahk	PV/kaa+mâyi-tôtawêw+V+TA+Cnj+3Sg+21PlO
    1 kâ-mâyi-tôtawât	PV/kaa+mâyi-tôtawêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 kâ-mâyi-kîsikâk	PV/kaa+mâyi-kîsikâw+V+II+Cnj+3Sg
    1 kâ-mâyamahcihoyân	PV/kaa+mâyamahcihow+V+AI+Cnj+1Sg
@@ -27936,7 +27936,7 @@
    1 kâ-mâmahkanawêt	kâ-mâmahkanawêt+?
    1 kâ-mâkohât	PV/kaa+mâkohêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 kâ-mâhtâhitohk	kâ-mâhtâhitohk+?
-   1 kâ-mâh-mîciyahk	PV/kaa+RdplS+mîciw+V+TI+Cnj+12Pl
+   1 kâ-mâh-mîciyahk	PV/kaa+RdplS+mîciw+V+TI+Cnj+21Pl
    1 kâ-mâh-mâcîyêk	PV/kaa+RdplS+mâcîw+V+AI+Cnj+2Pl
    1 kâ-mâh-miyikocik	kâ-mâh-miyikocik+?
    1 kâ-mâh-misiwanâcihisocik	PV/kaa+RdplS+misiwanâcihisow+V+AI+Cnj+3Pl
@@ -27956,7 +27956,7 @@
    1 kâ-mâci-pêhtâkosiyit	PV/kaa+PV/maaci+pêhtâkosiw+V+AI+Cnj+4Sg/Pl
    1 kâ-mâci-piciwiht	kâ-mâci-piciwiht+?
    1 kâ-mâci-okistikêwiyinîwit	PV/kaa+PV/maaci+okistikêwiyinîwiw+V+AI+Cnj+3Sg
-   1 kâ-mâci-nôtatâwâkanêyahk	PV/kaa+PV/maaci+nôtatâwâkanêw+V+AI+Cnj+12Pl
+   1 kâ-mâci-nôtatâwâkanêyahk	PV/kaa+PV/maaci+nôtatâwâkanêw+V+AI+Cnj+21Pl
    1 kâ-mâci-mâcîhk	PV/kaa+PV/maaci+mâcîw+V+AI+Cnj+X
    1 kâ-mâci-kîskwê-ayât	PV/kaa+PV/maaci+kîskwê-ayâw+V+AI+Cnj+3Sg
    1 kâ-mâci-kwâhkotênikêyâhk	PV/kaa+PV/maaci+kwâhkotênikêw+V+AI+Cnj+1Pl
@@ -27986,7 +27986,7 @@
    1 kâ-miyw-âyâyit	PV/kaa+miyw-âyâw+V+AI+Cnj+4Sg/Pl
    1 kâ-miyohtwât	PV/kaa+miyohtwâw+V+AI+Cnj+3Sg
    1 kâ-miyohtwâcik	PV/kaa+miyohtwâw+V+AI+Cnj+3Pl
-   1 kâ-miyo-tôtamahk	PV/kaa+miyo-tôtam+V+TI+Cnj+12Pl
+   1 kâ-miyo-tôtamahk	PV/kaa+miyo-tôtam+V+TI+Cnj+21Pl
    1 kâ-miyo-sîhkimikocik	PV/kaa+PV/miyo+sîhkimêw+V+TA+Cnj+4Sg/Pl+3PlO
    1 kâ-miyitakok	kâ-miyitakok+?
    1 kâ-miyikowisiyân	PV/kaa+miyikowisiw+V+AI+Cnj+1Sg
@@ -28104,7 +28104,7 @@
    1 kâ-mahkâskwêyâyik	PV/kaa+mahkâskwêyâw+V+II+Cnj+4Sg
    1 kâ-mahihkani-pimohtêw	kâ-mahihkani-pimohtêw+Ipc
    1 kâ-macihtwâyit	PV/kaa+macihtwâw+V+AI+Cnj+4Sg/Pl
-   1 kâ-maci-pimâtisiyahk	PV/kaa+PV/maci+pimâtisiw+V+AI+Cnj+12Pl
+   1 kâ-maci-pimâtisiyahk	PV/kaa+PV/maci+pimâtisiw+V+AI+Cnj+21Pl
    1 kâ-maci-itêyihtahk	PV/kaa+maci-itêyihtam+V+TI+Cnj+3Sg
    1 kâ-mac-âyiwiyan	PV/kaa+mac-âyiwiw+V+AI+Cnj+2Sg
    1 kâ-mac-âyiwit	PV/kaa+mac-âyiwiw+V+AI+Cnj+3Sg
@@ -28189,7 +28189,7 @@
    1 kâ-kî-âpatahki	PV/kaa+PV/kî+âpatan+V+II+Cnj+3Pl
    1 kâ-kî-âpacihtâyâhk	PV/kaa+PV/kî+âpacihtâw+V+TI+Cnj+1Pl
    1 kâ-kî-âpacihtâyit	PV/kaa+PV/kî+âpacihtâw+V+TI+Cnj+4Sg/Pl
-   1 kâ-kî-âpacihtâyahk	PV/kaa+PV/kî+âpacihtâw+V+TI+Cnj+12Pl
+   1 kâ-kî-âpacihtâyahk	PV/kaa+PV/kî+âpacihtâw+V+TI+Cnj+21Pl
    1 kâ-kî-âhkosicik	PV/kaa+PV/kî+âhkosiw+V+AI+Cnj+3Pl
    1 kâ-kî-âh-itohtêyâhk	PV/kaa+PV/kî+RdplS+itohtêw+V+AI+Cnj+1Pl
    1 kâ-kî-âcimak	PV/kaa+PV/kî+âcimêw+V+TA+Cnj+1Sg+3SgO
@@ -28256,7 +28256,7 @@
    1 kâ-kî-pônatoskêyân	PV/kaa+PV/kî+pônatoskêw+V+AI+Cnj+1Sg
    1 kâ-kî-pîmahohcik	PV/kaa+PV/kî+pîmahwêw+V+TA+Cnj+X+3PlO
    1 kâ-kî-pîkwatamikot	kâ-kî-pîkwatamikot+?
-   1 kâ-kî-pîkoswâyahk	PV/kaa+PV/kî+pîkoswêw+V+TA+Cnj+12Pl+3SgO
+   1 kâ-kî-pîkoswâyahk	PV/kaa+PV/kî+pîkoswêw+V+TA+Cnj+21Pl+3SgO
    1 kâ-kî-pîkonamiyit	PV/kaa+PV/kî+pîkonam+V+TI+Cnj+4Sg/Pl
    1 kâ-kî-pîkiskwêt	PV/kaa+PV/kî+pîkiskwêw+V+AI+Cnj+3Sg
    1 kâ-kî-pîkiskwâtât	PV/kaa+PV/kî+pîkiskwâtêw+V+TA+Cnj+3Sg+4Sg/PlO
@@ -28311,8 +28311,8 @@
    1 kâ-kî-pê-itohtêyân	PV/kaa+PV/kî+pê-itohtêw+V+AI+Cnj+1Sg
    1 kâ-kî-pê-itisahwât	PV/kaa+PV/kî+pê-itisahwêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 kâ-kî-pê-itisahomiht	PV/kaa+PV/kî+pê-itisahwêw+V+TA+Cnj+X+4Sg/PlO
-   1 kâ-kî-pê-isi-wâpahtamahk	PV/kaa+PV/kî+PV/pe+isi-wâpahtam+V+TI+Cnj+12Pl
-   1 kâ-kî-pê-isi-pakitinikowisiyahk	PV/kaa+PV/kî+PV/pe+PV/isi+pakitinikowisiw+V+AI+Cnj+12Pl
+   1 kâ-kî-pê-isi-wâpahtamahk	PV/kaa+PV/kî+PV/pe+isi-wâpahtam+V+TI+Cnj+21Pl
+   1 kâ-kî-pê-isi-pakitinikowisiyahk	PV/kaa+PV/kî+PV/pe+PV/isi+pakitinikowisiw+V+AI+Cnj+21Pl
    1 kâ-kî-pê-isi-miyâhkasikêcik	PV/kaa+PV/kî+PV/pe+PV/isi+miyâhkasikêw+V+AI+Cnj+3Pl
    1 kâ-kî-pê-isi-kanâci-pimâtisit	PV/kaa+PV/kî+PV/pe+PV/isi+kanâci-pimâtisiw+V+AI+Cnj+3Sg
    1 kâ-kî-pê-is-ôhpikihit	kâ-kî-pê-is-ôhpikihit+?
@@ -28355,7 +28355,7 @@
    1 kâ-kî-pamihicik	PV/kaa+PV/kî+pamihêw+V+TA+Cnj+3Pl+1SgO
    1 kâ-kî-pakwâtamân	PV/kaa+PV/kî+pakwâtam+V+TI+Cnj+1Sg
    1 kâ-kî-pakwâsit	PV/kaa+PV/kî+pakwâtêw+V+TA+Cnj+3Sg+1SgO
-   1 kâ-kî-pakitinikoyahk	PV/kaa+PV/kî+pakitinêw+V+TA+Cnj+3Sg+12PlO
+   1 kâ-kî-pakitinikoyahk	PV/kaa+PV/kî+pakitinêw+V+TA+Cnj+3Sg+21PlO
    1 kâ-kî-pakitinamawât	PV/kaa+PV/kî+pakitinamawêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 kâ-kî-pakitahwât	PV/kaa+PV/kî+pakitahwâw+V+AI+Cnj+3Sg
    1 kâ-kî-pakastawêhwat	PV/kaa+PV/kî+pakastawêhwêw+V+TA+Cnj+2Sg+3SgO
@@ -28695,7 +28695,7 @@
    1 kâ-kî-aspitonâmot	PV/kaa+PV/kî+aspitonâmow+V+AI+Cnj+3Sg
    1 kâ-kî-asiwatâcik	PV/kaa+PV/kî+asiwatâw+V+TI+Cnj+3Pl
    1 kâ-kî-asiwasot	PV/kaa+PV/kî+asiwasow+V+AI+Cnj+3Sg
-   1 kâ-kî-asamâyahk	PV/kaa+PV/kî+asamêw+V+TA+Cnj+12Pl+3SgO
+   1 kâ-kî-asamâyahk	PV/kaa+PV/kî+asamêw+V+TA+Cnj+21Pl+3SgO
    1 kâ-kî-asamihcik	PV/kaa+PV/kî+asamêw+V+TA+Cnj+X+3PlO
    1 kâ-kî-apit	PV/kaa+PV/kî+apiw+V+AI+Cnj+3Sg
    1 kâ-kî-apicik	PV/kaa+PV/kî+apiw+V+AI+Cnj+3Pl
@@ -28704,7 +28704,7 @@
    1 kâ-kî-akotâyit	PV/kaa+PV/kî+akotâw+V+TI+Cnj+4Sg/Pl
    1 kâ-kî-akotâwiht	kâ-kî-akotâwiht+?
    1 kâ-kî-ac	kâ-kî-ac+?
-   1 kâ-kêhtêyâtisiyahk	PV/kaa+kêhtêyâtisiw+V+AI+Cnj+12Pl
+   1 kâ-kêhtêyâtisiyahk	PV/kaa+kêhtêyâtisiw+V+AI+Cnj+21Pl
    1 kâ-kêhtêyâtisihk	PV/kaa+kêhtêyâtisiw+V+AI+Cnj+X
    1 kâ-kêhtê-ayiwit	PV/kaa+kêhtê-ayiwiw+V+AI+Cnj+3Sg
    1 kâ-kêhtê-ayiwihk	PV/kaa+kêhtê-ayiwiw+V+AI+Cnj+X
@@ -28754,7 +28754,7 @@
    1 kâ-kiyokêt	PV/kaa+kiyokêw+V+AI+Cnj+3Sg
    1 kâ-kiyakasêt	PV/kaa+kiyakasêw+V+AI+Cnj+3Sg
    1 kâ-kitâyit	PV/kaa+kitâw+V+TI+Cnj+4Sg/Pl
-   1 kâ-kitâpamikoyahk	PV/kaa+kitâpamêw+V+TA+Cnj+3Sg+12PlO
+   1 kâ-kitâpamikoyahk	PV/kaa+kitâpamêw+V+TA+Cnj+3Sg+21PlO
    1 kâ-kitâpamikot	PV/kaa+kitâpamêw+V+TA+Cnj+4Sg/Pl+3SgO
    1 kâ-kitâpamakik	PV/kaa+kitâpamêw+V+TA+Cnj+1Sg+3PlO
    1 kâ-kitâpahtamân	PV/kaa+kitâpahtam+V+TI+Cnj+1Sg
@@ -28868,7 +28868,7 @@
    1 kâ-kanawêyihcikâsoyit	PV/kaa+kanawêyihcikâsow+V+AI+Cnj+4Sg/Pl
    1 kâ-kanawitipiskwêt	PV/kaa+kanawitipiskwêw+V+AI+Cnj+3Sg
    1 kâ-kakêskimikoyâhk	PV/kaa+kakêskimêw+V+TA+Cnj+3Sg+1PlO
-   1 kâ-kakêskimikawiyahk	PV/kaa+kakêskimêw+V+TA+Cnj+X+12PlO
+   1 kâ-kakêskimikawiyahk	PV/kaa+kakêskimêw+V+TA+Cnj+X+21PlO
    1 kâ-kakêskihkêmot	PV/kaa+kakêskihkêmow+V+AI+Cnj+3Sg
    1 kâ-kakêskihkêmocik	PV/kaa+kakêskihkêmow+V+AI+Cnj+3Pl
    1 kâ-kakêpâtisit	PV/kaa+kakêpâtisiw+V+AI+Cnj+3Sg
@@ -28881,11 +28881,11 @@
    1 kâ-kakwê-wîhtamâht	PV/kaa+PV/kakwe+wîhtamawêw+V+TA+Cnj+X+3SgO
    1 kâ-kakwê-wîhtamawat	PV/kaa+PV/kakwe+wîhtamawêw+V+TA+Cnj+2Sg+3SgO
    1 kâ-kakwê-wîhtamawakik	PV/kaa+PV/kakwe+wîhtamawêw+V+TA+Cnj+1Sg+3PlO
-   1 kâ-kakwê-sâkihâyahk	PV/kaa+PV/kakwe+sâkihêw+V+TA+Cnj+12Pl+3SgO
+   1 kâ-kakwê-sâkihâyahk	PV/kaa+PV/kakwe+sâkihêw+V+TA+Cnj+21Pl+3SgO
    1 kâ-kakwê-pîkonahk	PV/kaa+PV/kakwe+pîkonam+V+TI+Cnj+3Sg
    1 kâ-kakwê-nipahtâcik	PV/kaa+PV/kakwe+nipahtâw+V+TI+Cnj+3Pl
    1 kâ-kakwê-miyo-pimâtisit	PV/kaa+PV/kakwe+miyo-pimâtisiw+V+AI+Cnj+3Sg
-   1 kâ-kakwê-maskamikoyahk	PV/kaa+PV/kakwe+maskamêw+V+TA+Cnj+3Sg+12PlO
+   1 kâ-kakwê-maskamikoyahk	PV/kaa+PV/kakwe+maskamêw+V+TA+Cnj+3Sg+21PlO
    1 kâ-kakwê-kitimâkêyimât	PV/kaa+PV/kakwe+kitimâkêyimêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 kâ-kakwê-kiskêyihtahkik	PV/kaa+PV/kakwe+kiskêyihtam+V+TI+Cnj+3Pl
    1 kâ-kakwê-kakêskimâcik	PV/kaa+PV/kakwe+kakêskimêw+V+TA+Cnj+3Pl+4Sg/PlO
@@ -28907,7 +28907,7 @@
    1 kâ-itêyihtâkwahk	PV/kaa+itêyihtâkwan+V+II+Cnj+3Sg
    1 kâ-itêyihtamiyit	PV/kaa+itêyihtam+V+TI+Cnj+4Sg/Pl
    1 kâ-itêyihtamihk	PV/kaa+itêyihtam+V+TI+Cnj+X+3Sg
-   1 kâ-itâyahk	PV/kaa+itêw+V+TA+Cnj+12Pl+3SgO
+   1 kâ-itâyahk	PV/kaa+itêw+V+TA+Cnj+21Pl+3SgO
    1 kâ-itâtisiyit	PV/kaa+itâtisiw+V+AI+Cnj+4Sg/Pl
    1 kâ-itâtisit	PV/kaa+itâtisiw+V+AI+Cnj+3Sg
    1 kâ-itâskonikâkêhk	PV/kaa+itâskonikâkêw+V+AI+Cnj+X
@@ -28958,9 +28958,9 @@
    1 kâ-isinâkwaniyik	PV/kaa+isinâkwan+V+II+Cnj+4Sg
    1 kâ-isinâkwahk	PV/kaa+isinâkwan+V+II+Cnj+3Sg
    1 kâ-isinâkosiyin	kâ-isinâkosiyin+?
-   1 kâ-isinâkosiyahk	PV/kaa+isinâkosiw+V+AI+Cnj+12Pl
+   1 kâ-isinâkosiyahk	PV/kaa+isinâkosiw+V+AI+Cnj+21Pl
    1 kâ-isi-wîhtamâsk	PV/kaa+PV/isi+wîhtamawêw+V+TA+Cnj+3Sg+2SgO
-   1 kâ-isi-wâpahtamahk	PV/kaa+isi-wâpahtam+V+TI+Cnj+12Pl
+   1 kâ-isi-wâpahtamahk	PV/kaa+isi-wâpahtam+V+TI+Cnj+21Pl
    1 kâ-isi-waskît	PV/kaa+PV/isi+waskîw+V+AI+Cnj+3Sg
    1 kâ-isi-wa-wâpamakik	PV/kaa+PV/isi+RdplW+wâpamêw+V+TA+Cnj+1Sg+3PlO
    1 kâ-isi-tâpisahamohk	kâ-isi-tâpisahamohk+?
@@ -28979,7 +28979,7 @@
    1 kâ-isi-otinât	PV/kaa+PV/isi+otinêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 kâ-isi-ohtiskawapiyit	PV/kaa+PV/isi+ohtiskawapiw+V+AI+Cnj+4Sg/Pl
    1 kâ-isi-nêhiyawîhkâtâwak	kâ-isi-nêhiyawîhkâtâwak+?
-   1 kâ-isi-nêhiyawêyahk	PV/kaa+PV/isi+nêhiyawêw+V+AI+Cnj+12Pl
+   1 kâ-isi-nêhiyawêyahk	PV/kaa+PV/isi+nêhiyawêw+V+AI+Cnj+21Pl
    1 kâ-isi-nitâmisot	PV/kaa+PV/isi+nitâmisow+V+AI+Cnj+3Sg
    1 kâ-isi-nitohtâtân	PV/kaa+PV/isi+nitohtawêw+V+TA+Cnj+1Sg+2SgO
    1 kâ-isi-nipâyân	PV/kaa+PV/isi+nipâw+V+AI+Cnj+1Sg
@@ -28996,11 +28996,11 @@
    1 kâ-isi-mawimoscikêcik	PV/kaa+PV/isi+mawimoscikêw+V+AI+Cnj+3Pl
    1 kâ-isi-maskawisiyân	PV/kaa+PV/isi+maskawisiw+V+AI+Cnj+1Sg
    1 kâ-isi-kâsitêskanêyit	PV/kaa+PV/isi+kâsitêskanêw+V+AI+Cnj+4Sg/Pl
-   1 kâ-isi-kiskêyihtamahk	PV/kaa+PV/isi+kiskêyihtam+V+TI+Cnj+12Pl
+   1 kâ-isi-kiskêyihtamahk	PV/kaa+PV/isi+kiskêyihtam+V+TI+Cnj+21Pl
    1 kâ-isi-kiskêyihtahkik	PV/kaa+PV/isi+kiskêyihtam+V+TI+Cnj+3Pl
    1 kâ-isi	kâ-isi+?
    1 kâ-ihtasiyêk	PV/kaa+ihtasiwak+V+AI+Cnj+2Pl
-   1 kâ-ihtasiyahk	PV/kaa+ihtasiwak+V+AI+Cnj+12Pl
+   1 kâ-ihtasiyahk	PV/kaa+ihtasiwak+V+AI+Cnj+21Pl
    1 kâ-ihtasit	kâ-ihtasit+?
    1 kâ-ihtasicik	PV/kaa+ihtasiwak+V+AI+Cnj+3Pl
    1 kâ-ihtakoniyik	PV/kaa+ihtakon+V+II+Cnj+4Sg
@@ -29031,7 +29031,7 @@
    1 kâ-ayôtôcikâtihcik	kâ-ayôtôcikâtihcik+?
    1 kâ-ayâyêk	PV/kaa+ayâw+V+AI+Cnj+2Pl
    1 kâ-ayâyan	PV/kaa+ayâw+V+AI+Cnj+2Sg
-   1 kâ-ayâyahk	PV/kaa+ayâw+V+AI+Cnj+12Pl
+   1 kâ-ayâyahk	PV/kaa+ayâw+V+AI+Cnj+21Pl
    1 kâ-ayâwâyâhk	PV/kaa+ayâwêw+V+TA+Cnj+1Pl+3SgO
    1 kâ-ayâki	PV/kaa+ayâw+V+II+Cnj+3Pl
    1 kâ-ayâk	PV/kaa+ayâw+V+II+Cnj+3Sg
@@ -29089,7 +29089,7 @@
    1 kâ-apiyâhk	PV/kaa+apiw+V+AI+Cnj+1Pl
    1 kâ-apihkâtêk[i	kâ-apihkâtêk[i+?
    1 kâ-anâskêwiht	kâ-anâskêwiht+?
-   1 kâ-anâskasoyahk	PV/kaa+anâskasow+V+AI+Cnj+12Pl
+   1 kâ-anâskasoyahk	PV/kaa+anâskasow+V+AI+Cnj+21Pl
    1 kâ-akâwâtâcik	PV/kaa+akâwâtêw+V+TA+Cnj+3Pl+4Sg/PlO
    1 kâ-akâwâtat	PV/kaa+akâwâtêw+V+TA+Cnj+2Sg+3SgO
    1 kâ-akwanahât	PV/kaa+akwanahêw+V+TA+Cnj+3Sg+4Sg/PlO
@@ -29196,7 +29196,7 @@
    1 kiyê-~	kiyê-~+?
    1 kiyê-tasi-kakwâtakihtâyan	PV/kiye+PV/tasi+kakwâtakihtâw+V+TI+Cnj+2Sg
    1 kiyê-otinaman	PV/kiye+otinam+V+TI+Cnj+2Sg
-   1 kiyê-ohcihikoyahk	PV/kiye+ohcihêw+V+TA+Cnj+3Sg+12PlO
+   1 kiyê-ohcihikoyahk	PV/kiye+ohcihêw+V+TA+Cnj+3Sg+21PlO
    1 kiyê-isiyîhkâsot	kiyê-isiyîhkâsot+?
    1 kiyât[a	kiyât[a+?
    1 kiyâskociwâw	kiyâskociwâw+?
@@ -29241,8 +29241,8 @@
    1 kiwîhôwiniwâwa	kiwîhôwiniwâwa+?
    1 kiwîhôwin	kiwîhôwin+?
    1 kiwîhtamâtinâwâw	wîhtamawêw+V+TA+Ind+1Sg+2PlO
-   1 kiwîhtamâkonawak	wîhtamawêw+V+TA+Ind+3Pl+12PlO
-   1 kiwîhtamâkawinânaw	wîhtamawêw+V+TA+Ind+X+12PlO
+   1 kiwîhtamâkonawak	wîhtamawêw+V+TA+Ind+3Pl+21PlO
+   1 kiwîhtamâkawinânaw	wîhtamawêw+V+TA+Ind+X+21PlO
    1 kiwîhtamâkawin	wîhtamawêw+V+TA+Ind+X+2SgO
    1 kiwîhtamâkaw	kiwîhtamâkaw+?
    1 kiwîhtamâk	wîhtamawêw+V+TA+Ind+3Sg+2SgO
@@ -29250,14 +29250,14 @@
    1 kiwîhkimâkosin	wîhkimâkosiw+V+AI+Ind+2Sg
    1 kiwîcêwâkaniwâwak	niwîcêwâkan+N+A+D+Px2Pl+Pl
    1 kiwîcêwâkaninawak	niwîcêwâkan+N+A+D+Px12Pl+Pl
-   1 kiwîcêkonaw	wîcêwêw+V+TA+Ind+3Sg+12PlO
+   1 kiwîcêkonaw	wîcêwêw+V+TA+Ind+3Sg+21PlO
    1 kiwî-âcimostâtinâwâw	PV/wî+âcimostawêw+V+TA+Ind+1Sg+2PlO
    1 kiwî-wîcêwâw	PV/wî+wîcêwêw+V+TA+Ind+2Sg+3SgO
    1 kiwî-wîcêwin	PV/wî+wîcêwêw+V+TA+Ind+2Sg+1SgO
    1 kiwî-wîcêwikowâw	kiwî-wîcêwikowâw+?
    1 kiwî-wîcêtinâwâw	PV/wî+wîcêwêw+V+TA+Ind+1Sg+2PlO
    1 kiwî-wîcêtin	PV/wî+wîcêwêw+V+TA+Ind+1Sg+2SgO
-   1 kiwî-wîcihikawinânaw	PV/wî+wîcihêw+V+TA+Ind+X+12PlO
+   1 kiwî-wîcihikawinânaw	PV/wî+wîcihêw+V+TA+Ind+X+21PlO
    1 kiwî-wîc-âyâmitinâwâw	PV/wî+wîc-âyâmêw+V+TA+Ind+1Sg+2PlO
    1 kiwî-wayêsiminâwâw	PV/wî+wayêsimêw+V+TA+Ind+2Pl+1SgO
    1 kiwî-wawêyîn	PV/wî+wawêyîw+V+AI+Ind+2Sg
@@ -29274,33 +29274,33 @@
    1 kiwî-papâ-mêtawân	PV/wî+PV/papa+mêtawêw+V+AI+Ind+2Sg
    1 kiwî-pakitinitin	PV/wî+pakitinêw+V+TA+Ind+1Sg+2SgO
    1 kiwî-pakamahotin	PV/wî+pakamahwêsiw+V+TA+Ind+1Sg+2SgO
-   1 kiwî-otihtikonaw	PV/wî+otihtêw+V+TA+Ind+3Sg+12PlO
+   1 kiwî-otihtikonaw	PV/wî+otihtêw+V+TA+Ind+3Sg+21PlO
    1 kiwî-okimâhkâniwin	PV/wî+okimâhkâniwiw+V+AI+Ind+2Sg
    1 kiwî-ohci-pakitinitin	PV/wî+PV/ohci+pakitinêw+V+TA+Ind+1Sg+2SgO
    1 kiwî-ohci-nakatitinâwâw	PV/wî+PV/ohci+nakatêw+V+TA+Ind+1Sg+2PlO
-   1 kiwî-nôhtêhkatânânaw	PV/wî+nôhtêhkatêw+V+AI+Ind+12Pl
-   1 kiwî-nâtênânaw	PV/wî+nâtam+V+TI+Ind+12Pl
+   1 kiwî-nôhtêhkatânânaw	PV/wî+nôhtêhkatêw+V+AI+Ind+21Pl
+   1 kiwî-nâtênânaw	PV/wî+nâtam+V+TI+Ind+21Pl
    1 kiwî-nitonâtin	PV/wî+nitonawêw+V+TA+Ind+1Sg+2SgO
    1 kiwî-nitawi-pakamahotin	PV/wî+PV/nitawi+pakamahwêsiw+V+TA+Ind+1Sg+2SgO
    1 kiwî-nitawi-nipahitin	PV/wî+PV/nitawi+nipahêw+V+TA+Ind+1Sg+2SgO
    1 kiwî-nipahitin	PV/wî+nipahêw+V+TA+Ind+1Sg+2SgO
    1 kiwî-nipahitih	kiwî-nipahitih+?
    1 kiwî-nipahinân	PV/wî+nipahêw+V+TA+Ind+2Pl+1PlO
-   1 kiwî-nipahikonaw	PV/wî+nipahêw+V+TA+Ind+3Sg+12PlO
+   1 kiwî-nipahikonaw	PV/wî+nipahêw+V+TA+Ind+3Sg+21PlO
    1 kiwî-nipahi-nôhtêsinin	PV/wî+PV/nipahi+nôhtêsin+V+AI+Ind+2Sg
    1 kiwî-nakatitn	kiwî-nakatitn+?
-   1 kiwî-nakatikonaw	PV/wî+nakatêw+V+TA+Ind+3Sg+12PlO
+   1 kiwî-nakatikonaw	PV/wî+nakatêw+V+TA+Ind+3Sg+21PlO
    1 kiwî-môwitin	kiwî-môwitin+?
    1 kiwî-môhcôwin	kiwî-môhcôwin+?
    1 kiwî-mîyitin	kiwî-mîyitin+?
    1 kiwî-mêtawân	PV/wî+mêtawêw+V+AI+Ind+2Sg
-   1 kiwî-miyopayinânaw	PV/wî+miyopayiw+V+AI+Ind+12Pl
+   1 kiwî-miyopayinânaw	PV/wî+miyopayiw+V+AI+Ind+21Pl
    1 kiwî-miyitinâwâw	kiwî-miyitinâwâw+?
    1 kiwî-miyikawinânaw	kiwî-miyikawinânaw+?
    1 kiwî-misi-miyo-tipahamawin	PV/wî+PV/misi+PV/miyo+tipahamawêw+V+TA+Ind+2Sg+1SgO
    1 kiwî-mawinêhotin	PV/wî+mawinêhwêw+V+TA+Ind+1Sg+2SgO
    1 kiwî-matotisihtânaw	kiwî-matotisihtânaw+?
-   1 kiwî-maskamikawinânaw	PV/wî+maskamêw+V+TA+Ind+X+12PlO
+   1 kiwî-maskamikawinânaw	PV/wî+maskamêw+V+TA+Ind+X+21PlO
    1 kiwî-kîsison	PV/wî+kîsiswêw+V+TA+Ind+2Sg+1SgO
    1 kiwî-kêhtê-ayiwin	PV/wî+kêhtê-ayiwiw+V+AI+Ind+2Sg
    1 kiwî-kitamotinâwâw	PV/wî+kitamwêw+V+TA+Ind+1Sg+2PlO
@@ -29323,15 +29323,15 @@
    1 kiwâpamâwâw	wâpamêw+V+TA+Ind+2Pl+3SgO
    1 kiwâpamâwak	wâpamêw+V+TA+Ind+2Sg+3PlO
    1 kiwâpamitin	wâpamêw+V+TA+Ind+1Sg+2SgO
-   1 kiwâpahtênânaw	wâpahtam+V+TI+Ind+12Pl
+   1 kiwâpahtênânaw	wâpahtam+V+TI+Ind+21Pl
    1 kiwâhkêyêyihtênânaw	kiwâhkêyêyihtênânaw+?
    1 kiwiyakihtamawin	wiyakihtamawêw+V+TA+Ind+2Sg+1SgO
    1 kiwayêsihin	wayêsihêw+V+TA+Ind+2Sg+1SgO
    1 kiwayawîtisahokawin	wayawîtisahwêw+V+TA+Ind+X+2SgO
    1 kiwanisinin	wanisin+V+AI+Ind+2Sg
    1 kiwanisimâwak	wanisimêw+V+TA+Ind+2Sg+3PlO
-   1 kiwanisimikonaw	wanisimêw+V+TA+Ind+3Sg+12PlO
-   1 kiwanihtânânaw	wanihtâw+V+TI+Ind+12Pl
+   1 kiwanisimikonaw	wanisimêw+V+TA+Ind+3Sg+21PlO
+   1 kiwanihtânânaw	wanihtâw+V+TI+Ind+21Pl
    1 kiwa-wanâmin	RdplW+wanâmêw+V+TA+Ind+2Sg+1SgO
    1 kitôtêmiwâwak	nitôtêm+N+A+D+Px2Pl+Pl
    1 kitôtêminaw	nitôtêm+N+A+D+Px12Pl+Sg
@@ -29353,13 +29353,13 @@
    1 kitâyêko	kitâw+V+TI+Fut+Cond+2Pl
    1 kitâyân	kitâyân+?
    1 kitâyisiyinîminawa	kitâyisiyinîminawa+?
-   1 kitâyahko	kitâw+V+TI+Fut+Cond+12Pl
+   1 kitâyahko	kitâw+V+TI+Fut+Cond+21Pl
    1 kitâwak	kitâw+V+TI+Ind+3Pl
    1 kitâsiyân	mitâsiyân+N+A+D+Px2Sg+Sg
    1 kitâpwêhtên	tâpwêhtam+V+TI+Ind+2Sg
    1 kitâpwêhtawin	tâpwêhtawêw+V+TA+Ind+2Sg+1SgO
    1 kitâpihci-wanwêhkawin	PV/apihci+wanwêhkawêw+V+TA+Ind+2Sg+1SgO
-   1 kitâpamâtân	kitâpamêw+V+TA+Imp+Imm+12Pl+3SgO
+   1 kitâpamâtân	kitâpamêw+V+TA+Imp+Imm+21Pl+3SgO
    1 kitâpamâci	kitâpamêw+V+TA+Fut+Cond+3Sg+4Sg/PlO
    1 kitâpahtamok	kitâpahtam+V+TI+Imp+Imm+2Pl
    1 kitâpahtahk	kitâpahtahk+?
@@ -29374,7 +29374,7 @@
    1 kitânawêw	kitânawêw+V+AI+Ind+3Sg
    1 kitâhkwatihtân	âhkwatihtâw+V+TI+Ind+2Sg
    1 kitâhkosin	âhkosiw+V+AI+Ind+2Sg
-   1 kitâcimostâtonânaw	âcimostâtowak+V+AI+Ind+12Pl
+   1 kitâcimostâtonânaw	âcimostâtowak+V+AI+Ind+21Pl
    1 kitâcimostâtin	âcimostawêw+V+TA+Ind+1Sg+2SgO
    1 kitâcimostawâw	âcimostawêw+V+TA+Ind+2Sg+3SgO
    1 kitâcimon	âcimow+V+AI+Ind+2Sg
@@ -29389,7 +29389,7 @@
    1 kititêyimitih	kititêyimitih+?
    1 kititêyimison	itêyimisow+V+AI+Ind+2Sg
    1 kititêyiminâwâw	itêyimêw+V+TA+Ind+2Pl+1SgO
-   1 kititêyihtênânaw	itêyihtam+V+TI+Ind+12Pl
+   1 kititêyihtênânaw	itêyihtam+V+TI+Ind+21Pl
    1 kititêyihtamôwin	kititêyihtamôwin+?
    1 kititâw	itêw+V+TA+Ind+2Sg+3SgO
    1 kititâhkômâw	itâhkômêw+V+TA+Ind+2Sg+3SgO
@@ -29398,11 +29398,11 @@
    1 kititikwak	itêw+V+TA+Ind+3Pl+2SgO
    1 kititikowâw	itêw+V+TA+Ind+3Sg+2PlO
    1 kititikawinâwâw	itêw+V+TA+Ind+X+2PlO
-   1 kititikawinânaw	itêw+V+TA+Ind+X+12PlO
+   1 kititikawinânaw	itêw+V+TA+Ind+X+21PlO
    1 kititikawin	itêw+V+TA+Ind+X+2SgO
    1 kitisîhtwâwininaw	isîhtwâwin+N+I+Px12Pl+Sg
    1 kitisîhcikân	isîhcikêw+V+AI+Ind+2Sg
-   1 kitispayihikonaw	ispayihêw+V+TA+Ind+3Sg+12PlO
+   1 kitispayihikonaw	ispayihêw+V+TA+Ind+3Sg+21PlO
    1 kitiskwêmiwâwak	nitiskwêm+N+A+D+Px2Pl+Pl
    1 kitiskwêmak	nitiskwêm+N+A+D+Px2Sg+Pl
    1 kitiskwâhtêmihk	iskwâhtêm+N+I+Px2Sg+Loc
@@ -29412,18 +29412,18 @@
    1 kitisiyîhkâtâwâw	kitisiyîhkâtâwâw+?
    1 kitisiyîhkâsonânaw	kitisiyîhkâsonânaw+?
    1 kitisimin	isimêw+V+TA+Ind+2Sg+1SgO
-   1 kitisi-pêhtênânaw	PV/isi+pêhtam+V+TI+Ind+12Pl
+   1 kitisi-pêhtênânaw	PV/isi+pêhtam+V+TI+Ind+21Pl
    1 kitisi-pakitinitinâwâw	PV/isi+pakitinêw+V+TA+Ind+1Sg+2PlO
    1 kitisi-nitawêyihtên	PV/isi+nitawêyihtam+V+TI+Ind+2Sg
    1 kitisi-minahôwin	kitisi-minahôwin+?
    1 kitisi-kitahamâtin	PV/isi+kitahamawêw+V+TA+Ind+1Sg+2SgO
    1 kitis-âyânânaw	kitis-âyânânaw+?
-   1 kitipêyihtênânaw	tipêyihtam+V+TI+Ind+12Pl
+   1 kitipêyihtênânaw	tipêyihtam+V+TI+Ind+21Pl
    1 kitinik	kitinêw+V+TA+Ind+4Sg/Pl+3SgO
    1 kitimâkêyimêwak	kitimâkêyimêw+V+TA+Ind+3Pl+4Sg/PlO
    1 kitimâkêyimâw	kitimâkêyimêw+V+TA+Ind+X+3SgO
-   1 kitimâkêyimâtân	kitimâkêyimêw+V+TA+Imp+Imm+12Pl+3SgO
-   1 kitimâkêyimikoyahko	kitimâkêyimêw+V+TA+Fut+Cond+3Sg+12PlO
+   1 kitimâkêyimâtân	kitimâkêyimêw+V+TA+Imp+Imm+21Pl+3SgO
+   1 kitimâkêyimikoyahko	kitimâkêyimêw+V+TA+Fut+Cond+3Sg+21PlO
    1 kitimâkêyimaci	kitimâkêyimêw+V+TA+Fut+Cond+2Sg+3SgO
    1 kitimâkêyi	kitimâkêyi+?
    1 kitimâkwâc	kitimâkwâc+?
@@ -29431,7 +29431,7 @@
    1 kitimâkisiwin	kitimâkisiwin+N+I+Sg
    1 kitimâkisitokênik	kitimâkisitokênik+?
    1 kitimâkisinâniwan	kitimâkisiw+V+AI+Ind+X
-   1 kitimâkinâkoyahko	kitimâkinawêw+V+TA+Fut+Cond+4Sg/Pl+12PlO
+   1 kitimâkinâkoyahko	kitimâkinawêw+V+TA+Fut+Cond+4Sg/Pl+21PlO
    1 kitimâkinawin	kitimâkinawêw+V+TA+Imp+Imm+2Sg+1SgO
    1 kitimâkikamikohk	kitimâkikamikohk+?
    1 kitimâkikamik	kitimâkikamik+?
@@ -29456,15 +29456,15 @@
    1 kitati-pônêyihtên	PV/ati+pônêyihtam+V+TI+Ind+2Sg
    1 kitati-nâwayôtisahikân	PV/ati+nâwayôtisahikêw+V+AI+Ind+2Sg
    1 kitatamiskâtin	atamiskawêw+V+TA+Ind+1Sg+2SgO
-   1 kitasênikonaw	asênêw+V+TA+Ind+3Sg+12PlO
+   1 kitasênikonaw	asênêw+V+TA+Ind+3Sg+21PlO
    1 kitasotamâkowin	asotamâkowin+N+I+Px2Sg+Sg
-   1 kitasotamâkonaw	asotamawêw+V+TA+Ind+3Sg+12PlO
+   1 kitasotamâkonaw	asotamawêw+V+TA+Ind+3Sg+21PlO
    1 kitasota	kitasota+?
    1 kitaskîwâhk	askiy+N+I+Px2Pl+Loc
    1 kitaskîhkân	askîhkân+N+I+Px2Sg+Sg
    1 kitaskîhk	askiy+N+I+Px2Sg+Loc
    1 kitascikêwikamikonaw	ascikêwikamik+N+I+Px12Pl+Sg
-   1 kitasawâpamikonaw	asawâpamêw+V+TA+Ind+3Sg+12PlO
+   1 kitasawâpamikonaw	asawâpamêw+V+TA+Ind+3Sg+21PlO
    1 kitasamâwâw	asamêw+V+TA+Ind+2Pl+3SgO
    1 kitasamitinâwâw	asamêw+V+TA+Ind+1Sg+2PlO
    1 kitapwêsin	apwêsiw+V+AI+Ind+2Sg
@@ -29486,7 +29486,7 @@
    1 kita-ôh-osîhtât	PV/kita+PV/oh+osîhtâw+V+TI+Cnj+3Sg
    1 kita-ôh-ohpikinâwasoyâhk	PV/kita+PV/oh+ohpikinâwasow+V+AI+Cnj+1Pl
    1 kita-ôh-nipahitân	PV/kita+PV/oh+nipahêw+V+TA+Cnj+1Sg+2SgO
-   1 kita-ôh-mîcisoyahk	PV/kita+PV/oh+mîcisow+V+AI+Cnj+12Pl
+   1 kita-ôh-mîcisoyahk	PV/kita+PV/oh+mîcisow+V+AI+Cnj+21Pl
    1 kita-ôh-minahoyan	PV/kita+PV/oh+minahow+V+AI+Cnj+2Sg
    1 kita-ôh-minahot	PV/kita+PV/oh+minahow+V+AI+Cnj+3Sg
    1 kita-ôh-kîsônak	PV/kita+PV/oh+kîsônêw+V+TA+Cnj+1Sg+3SgO
@@ -29508,7 +29508,7 @@
    1 kita-wî-nipahik	kita-wî-nipahik+?
    1 kita-wî-kisisin	kita-wî-kisisin+?
    1 kita-wâpamikot	PV/kita+wâpamêw+V+TA+Cnj+4Sg/Pl+3SgO
-   1 kita-wâpahtamahk	PV/kita+wâpahtam+V+TI+Cnj+12Pl
+   1 kita-wâpahtamahk	PV/kita+wâpahtam+V+TI+Cnj+21Pl
    1 kita-wiyahpitiht	PV/kita+wiyahpitêw+V+TA+Cnj+X+3SgO
    1 kita-wayawîn	kita-wayawîn+?
    1 kita-tôtawak	PV/kita+tôtawêw+V+TA+Cnj+1Sg+3SgO
@@ -29554,7 +29554,7 @@
    1 kita-owîstâwiyahk	kita-owîstâwiyahk+?
    1 kita-owîcêwâkaniyit	PV/kita+owîcêwâkaniw+V+AI+Cnj+4Sg/Pl
    1 kita-owîcêwâkanicik	PV/kita+owîcêwâkaniw+V+AI+Cnj+3Pl
-   1 kita-otêmiyahk	PV/kita+otêmiw+V+AI+Cnj+12Pl
+   1 kita-otêmiyahk	PV/kita+otêmiw+V+AI+Cnj+21Pl
    1 kita-otâsiyan	PV/kita+otâsiw+V+AI+Cnj+2Sg
    1 kita-otinêwak	kita-otinêwak+?
    1 kita-otinât	PV/kita+otinêw+V+TA+Cnj+3Sg+4Sg/PlO
@@ -29649,7 +29649,7 @@
    1 kita-isi-sipwêhtêwak	kita-isi-sipwêhtêwak+?
    1 kita-isi-pamihtât	PV/kita+PV/isi+pamihtâw+V+TI+Cnj+3Sg
    1 kita-isi-onâpêmiyêk	PV/kita+PV/isi+onâpêmiw+V+AI+Cnj+2Pl
-   1 kita-isi-nôhtêpayiyahk	PV/kita+PV/isi+nôhtêpayiw+V+AI+Cnj+12Pl
+   1 kita-isi-nôhtêpayiyahk	PV/kita+PV/isi+nôhtêpayiw+V+AI+Cnj+21Pl
    1 kita-isi-nîmât	PV/kita+PV/isi+nîmâw+V+AI+Cnj+3Sg
    1 kita-isi-nêpêwisiyân	PV/kita+PV/isi+nêpêwisiw+V+AI+Cnj+1Sg
    1 kita-isi-nitotamihk	PV/kita+PV/isi+nitotam+V+TI+Cnj+X+3Sg
@@ -29670,15 +29670,15 @@
    1 kita-ihtasihk	kita-ihtasihk+?
    1 kita-ihkipayiw	kita-ihkipayiw+?
    1 kita-ayâwêw	kita-ayâwêw+?
-   1 kita-ayâwâyahk	PV/kita+ayâwêw+V+TA+Cnj+12Pl+3SgO
+   1 kita-ayâwâyahk	PV/kita+ayâwêw+V+TA+Cnj+21Pl+3SgO
    1 kita-ayâwat	PV/kita+ayâwêw+V+TA+Cnj+2Sg+3SgO
    1 kita-ayâw	kita-ayâw+?
    1 kita-ayât	PV/kita+ayâw+V+AI+Cnj+3Sg
    1 kita-ayamihât	PV/kita+ayamihâw+V+AI+Cnj+3Sg
-   1 kita-ay-asawâpiyahk	PV/kita+RdplW+asawâpiw+V+AI+Cnj+12Pl
+   1 kita-ay-asawâpiyahk	PV/kita+RdplW+asawâpiw+V+AI+Cnj+21Pl
    1 kita-atoskêyin	kita-atoskêyin+?
    1 kita-atoskâtam	kita-atoskâtam+?
-   1 kita-atoskawâyahkok	PV/kita+atoskawêw+V+TA+Cnj+12Pl+3PlO
+   1 kita-atoskawâyahkok	PV/kita+atoskawêw+V+TA+Cnj+21Pl+3PlO
    1 kita-ati-nîpawiwak	kita-ati-nîpawiwak+?
    1 kita-ati-kwâhkotêw	kita-ati-kwâhkotêw+?
    1 kita-ati-akotâwak	kita-ati-akotâwak+?
@@ -29744,7 +29744,7 @@
    1 kisâkwêyimon	sâkwêyimow+V+AI+Ind+2Sg
    1 kisâkohitin	sâkohêw+V+TA+Ind+1Sg+2SgO
    1 kisâkihâw	sâkihêw+V+TA+Ind+2Sg+3SgO
-   1 kisâkihtamawânaw	sâkihtamawêw+V+TA+Ind+12Pl+3SgO
+   1 kisâkihtamawânaw	sâkihtamawêw+V+TA+Ind+21Pl+3SgO
    1 kisâkihikwak	sâkihêw+V+TA+Ind+3Pl+2SgO
    1 kisâkamitêyiw	kisâkamitêw+V+II+Ind+4Sg
    1 kisâkamitêwâpoy	kisâkamitêwâpoy+N+I+Sg
@@ -29813,12 +29813,12 @@
    1 kisikwahtên	sikwahtam+V+TI+Ind+2Sg
    1 kisikokahwâwak	sikokahwêw+V+TA+Ind+2Sg+3PlO
    1 kiscikânisa	kiscikânis+N+I+Pl
-   1 kisaskacihtâkonaw	saskacihtawêw+V+TA+Ind+3Sg+12PlO
+   1 kisaskacihtâkonaw	saskacihtawêw+V+TA+Ind+3Sg+21PlO
    1 kisa-~	kisa-~+?
    1 kis-~	kis-~+?
    1 kis	kis+?
    1 kipônihitin	pônihêw+V+TA+Ind+1Sg+2SgO
-   1 kipônihikonawak	pônihêw+V+TA+Ind+3Pl+12PlO
+   1 kipônihikonawak	pônihêw+V+TA+Ind+3Pl+21PlO
    1 kipômêhâwak	pômêhêw+V+TA+Ind+2Sg+3PlO
    1 kipîsâkanâpîma	kipîsâkanâpîma+?
    1 kipîkiskâtikwak	pîkiskâtêw+V+TA+Ind+3Pl+2SgO
@@ -29826,14 +29826,14 @@
    1 kipîkiskwêwininaw	pîkiskwêwin+N+I+Px12Pl+Sg
    1 kipîkiskwêwin	pîkiskwêwin+N+I+Px2Sg+Sg
    1 kipîkiskwâtâw	pîkiskwâtêw+V+TA+Ind+2Sg+3SgO
-   1 kipîkiskwâtânaw	pîkiskwâtêw+V+TA+Ind+12Pl+3SgO
+   1 kipîkiskwâtânaw	pîkiskwâtêw+V+TA+Ind+21Pl+3SgO
    1 kipîhtatwân	pîhtatwân+N+A+Px2Sg+Sg
    1 kipîht-~	kipîht-~+?
    1 kipîhconêsihk	pîhconês+N+I+Px2Sg+Loc
    1 kipêyakon	pêyakow+V+AI+Ind+2Sg
    1 kipêsiwâwâw	pêsiwêw+V+TA+Ind+2Pl+3SgO
    1 kipêsiskân	pêsiskâw+V+AI+Ind+2Sg
-   1 kipêhtênânaw	pêhtam+V+TI+Ind+12Pl
+   1 kipêhtênânaw	pêhtam+V+TI+Ind+21Pl
    1 kipêhtên	pêhtam+V+TI+Ind+2Sg
    1 kipêhtawâw	pêhtawêw+V+TA+Ind+2Sg+3SgO
    1 kipêhtamowininâhk	pêhtamowin+N+I+Px12Pl+Loc
@@ -29851,7 +29851,7 @@
    1 kipâskisikaninawa	pâskisikan+N+I+Px12Pl+Pl
    1 kipânisâwân	pânisâwêw+V+AI+Ind+2Sg
    1 kipânisâwâh	kipânisâwâh+?
-   1 kipâh-patinikânaw	RdplS+patinikêw+V+AI+Ind+12Pl
+   1 kipâh-patinikânaw	RdplS+patinikêw+V+AI+Ind+21Pl
    1 kipwatâmoskâk	kipwatâmoskawêw+V+TA+Ind+4Sg/Pl+3SgO
    1 kipiwêpinam	kipiwêpinam+V+TI+Ind+3Sg
    1 kipistanêhomâwa	kipistanêhomâwa+?
@@ -29877,7 +29877,7 @@
    1 kipamihtâh	kipamihtâh+?
    1 kipamihikowin	pamihikowin+N+I+Px2Sg+Sg
    1 kipakâhtân	pakâhtâw+V+TI+Ind+2Sg
-   1 kipakwâtikonaw	pakwâtêw+V+TA+Ind+3Sg+12PlO
+   1 kipakwâtikonaw	pakwâtêw+V+TA+Ind+3Sg+21PlO
    1 kipakwahtêhon	pakwahtêhon+N+I+Px2Sg+Sg
    1 kipahwêwak	kipahwêw+V+TA+Ind+3Pl+4Sg/PlO
    1 kipahwêw	kipahwêw+V+TA+Ind+3Sg+4Sg/PlO
@@ -29888,7 +29888,7 @@
    1 kipahasi	kipahasiw+V+TI+Imp+Imm+2Sg
    1 kipa-pakisâpamin	RdplW+pakisâpamêw+V+TA+Ind+2Sg+1SgO
    1 kinôhtêyâpâkwâhtânaw	kinôhtêyâpâkwâhtânaw+?
-   1 kinôhtêhkatânânaw	nôhtêhkatêw+V+AI+Ind+12Pl
+   1 kinôhtêhkatânânaw	nôhtêhkatêw+V+AI+Ind+21Pl
    1 kinôhtêhkatâhtâwâw	kinôhtêhkatâhtâwâw+?
    1 kinôhtêhkatâhtânaw	kinôhtêhkatâhtânaw+?
    1 kinôhtê-wîkimik	PV/nohte+wîkimêw+V+TA+Ind+3Sg+2SgO
@@ -29899,7 +29899,7 @@
    1 kinôhtê-mâmitonêyihtênâwâw	PV/nohte+mâmitonêyihtam+V+TI+Ind+2Pl
    1 kinôhtê-kiskêyihtênâwâw	PV/nohte+kiskêyihtam+V+TI+Ind+2Pl
    1 kinôhtê-itohtân	PV/nohte+itohtêw+V+AI+Ind+2Sg
-   1 kinîsoyîhkâsonânaw	nîsoyîhkâsow+V+AI+Ind+12Pl
+   1 kinîsoyîhkâsonânaw	nîsoyîhkâsow+V+AI+Ind+21Pl
    1 kinîpawin	nîpawiw+V+AI+Ind+2Sg
    1 kinîmâskwâkana	nîmâskwâkan+N+I+Px2Sg+Pl
    1 kinêsôwihitin	kinêsôwihitin+?
@@ -29928,7 +29928,7 @@
    1 kinitôt	kinitôt+?
    1 kinitâhtâmitin	nitâhtâmêw+V+TA+Ind+1Sg+2SgO
    1 kinitotamâtinâwâw	nitotamawêw+V+TA+Ind+1Sg+2PlO
-   1 kinitotamâkawinânaw	nitotamawêw+V+TA+Ind+X+12PlO
+   1 kinitotamâkawinânaw	nitotamawêw+V+TA+Ind+X+21PlO
    1 kinitopayin	nitopayiw+V+AI+Ind+2Sg
    1 kinitomikowâw	nitomêw+V+TA+Ind+3Sg+2PlO
    1 kinitomik	nitomêw+V+TA+Ind+3Sg+2SgO
@@ -29937,7 +29937,7 @@
    1 kinitawêyimikowâwak	nitawêyimêw+V+TA+Ind+3Pl+2PlO
    1 kinitawêyimik	nitawêyimêw+V+TA+Ind+3Sg+2SgO
    1 kinitawi-wîwih	kinitawi-wîwih+?
-   1 kinitawi-kiskêyihtênânaw	PV/nitawi+kiskêyihtam+V+TI+Ind+12Pl
+   1 kinitawi-kiskêyihtênânaw	PV/nitawi+kiskêyihtam+V+TI+Ind+21Pl
    1 kinisiwanâtahkamikisin	nisiwanâtahkamikisiw+V+AI+Ind+2Sg
    1 kinisitospitên	nisitospitam+V+TI+Ind+2Sg
    1 kinisitohtênâwâw	nisitohtam+V+TI+Ind+2Pl
@@ -29948,11 +29948,11 @@
    1 kinipin	nipiw+V+AI+Ind+2Sg
    1 kinipahâwak	nipahêw+V+TA+Ind+2Sg+3PlO
    1 kinipahâw	nipahêw+V+TA+Ind+2Sg+3SgO
-   1 kinipahânaw	nipahêw+V+TA+Ind+12Pl+3SgO
+   1 kinipahânaw	nipahêw+V+TA+Ind+21Pl+3SgO
    1 kinipahtân	nipahtâw+V+TI+Ind+2Sg
    1 kinipahin	nipahêw+V+TA+Ind+2Sg+1SgO
-   1 kinipahikonawak	nipahêw+V+TA+Ind+3Pl+12PlO
-   1 kinipahikonaw	nipahêw+V+TA+Ind+3Sg+12PlO
+   1 kinipahikonawak	nipahêw+V+TA+Ind+3Pl+21PlO
+   1 kinipahikonaw	nipahêw+V+TA+Ind+3Sg+21PlO
    1 kinipahikawinâwâw	nipahêw+V+TA+Ind+X+2PlO
    1 kinipahi-kitimâkinâtin	PV/nipahi+kitimâkinawêw+V+TA+Ind+1Sg+2SgO
    1 kinip-~	kinip-~+?
@@ -29969,21 +29969,21 @@
    1 kinakatamâkowâw	nakatamawêw+V+TA+Ind+3Sg+2PlO
    1 kinakacihtân	nakacihtâw+V+TI+Ind+2Sg
    1 kinahâhkisîmiwâw	ninahâhkisîm+N+A+D+Px2Pl+Sg
-   1 kimôsihânaw	môsihêw+V+TA+Ind+12Pl+3SgO
+   1 kimôsihânaw	môsihêw+V+TA+Ind+21Pl+3SgO
    1 kimôn-~	kimôn-~+?
    1 kimîstowâniwâwa	kimîstowâniwâwa+?
    1 kimîstow	kimîstow+?
    1 kimînisimihk	kimînisimihk+?
    1 kimîciwininawa	mîciwin+N+I+Px12Pl+Pl
-   1 kimîcisonânaw	mîcisow+V+AI+Ind+12Pl
+   1 kimîcisonânaw	mîcisow+V+AI+Ind+21Pl
    1 kimîcison	mîcisow+V+AI+Ind+2Sg
    1 kimêtawêwin	mêtawêwin+N+I+Px2Sg+Sg
-   1 kimêtawânânaw	mêtawêw+V+AI+Ind+12Pl
+   1 kimêtawânânaw	mêtawêw+V+AI+Ind+21Pl
    1 kimêtawâkânâwâw	mêtawâkêw+V+AI+Ind+2Pl
    1 kimêtawâhtânaw	kimêtawâhtânaw+?
    1 kimêstinên	mêstinam+V+TI+Ind+2Sg
    1 kimêskotâpinên	mêskotâpinam+V+TI+Ind+2Sg
-   1 kimêscihikonaw	mêscihêw+V+TA+Ind+3Sg+12PlO
+   1 kimêscihikonaw	mêscihêw+V+TA+Ind+3Sg+21PlO
    1 kimêkwâskamân	kimêkwâskamân+?
    1 kimâyinikêwiniwâ	kimâyinikêwiniwâ+?
    1 kimâyinikêwininaw[a	kimâyinikêwininaw[a+?
@@ -29995,12 +29995,12 @@
    1 kimotamawaki	kimotamawêw+V+TA+Fut+Cond+1Sg+3SgO
    1 kimosci-pâhpihikwak	mosci-pâhpihêw+V+TA+Ind+3Pl+2SgO
    1 kimiywêyimik	miywêyimêw+V+TA+Ind+3Sg+2SgO
-   1 kimiyopayinânaw	miyopayiw+V+AI+Ind+12Pl
+   1 kimiyopayinânaw	miyopayiw+V+AI+Ind+21Pl
    1 kimiyopayin	miyopayiw+V+AI+Ind+2Sg
    1 kimiyohtawin	miyohtawêw+V+TA+Ind+2Sg+1SgO
-   1 kimiyo-âpacihânaw	miyo-âpacihêw+V+TA+Ind+12Pl+3SgO
+   1 kimiyo-âpacihânaw	miyo-âpacihêw+V+TA+Ind+21Pl+3SgO
    1 kimiyo-âpacihtânâwâw	miyo-âpacihtâw+V+TI+Ind+2Pl
-   1 kimiyo-wîcêwânawak	miyo-wîcêwêw+V+TA+Ind+12Pl+3PlO
+   1 kimiyo-wîcêwânawak	miyo-wîcêwêw+V+TA+Ind+21Pl+3PlO
    1 kimiyo-tôtâtinâwâw	miyo-tôtawêw+V+TA+Ind+1Sg+2PlO
    1 kimiyo-tôtâkon	kimiyo-tôtâkon+?
    1 kimiyitinâwâw	kimiyitinâwâw+?
@@ -30012,7 +30012,7 @@
    1 kimistikomiwâwa	nimistikom+N+I+D+Px2Pl+Pl
    1 kimiskên	miskam+V+TI+Ind+2Sg
    1 kimiskâtin	miskawêw+V+TA+Ind+1Sg+2SgO
-   1 kimiskâkawinaw	miskawêw+V+TA+Ind+X+12PlO
+   1 kimiskâkawinaw	miskawêw+V+TA+Ind+X+21PlO
    1 kimiskawâwâwak	miskawêw+V+TA+Ind+2Pl+3PlO
    1 kimiskawâw	miskawêw+V+TA+Ind+2Sg+3SgO
    1 kimiskamâson	miskamâsow+V+AI+Ind+2Sg
@@ -30023,16 +30023,16 @@
    1 kimisak	nimis+N+A+D+Px2Sg+Pl
    1 kiminahon	minahow+V+AI+Ind+2Sg
    1 kiminahikawin	minahêw+V+TA+Ind+X+2SgO
-   1 kimihcêtinânaw	mihcêtiwak+V+AI+Ind+12Pl
+   1 kimihcêtinânaw	mihcêtiwak+V+AI+Ind+21Pl
    1 kimawinêhotin	mawinêhwêw+V+TA+Ind+1Sg+2SgO
    1 kimaskisina	maskisin+N+I+Px2Sg+Pl
-   1 kimaskamikawinânaw	maskamêw+V+TA+Ind+X+12PlO
+   1 kimaskamikawinânaw	maskamêw+V+TA+Ind+X+21PlO
    1 kimanâkitimahitin	kimanâkitimahitin+?
    1 kimanitôwin	manitôwiw+V+AI+Ind+2Sg
    1 kimanipitên	manipitam+V+TI+Ind+2Sg
    1 kimaci-nôcihtân	maci-nôcihtâw+V+TI+Ind+2Sg
    1 kikôwatêsin	kikôwatêsin+?
-   1 kikîwânânaw	kîwêw+V+AI+Ind+12Pl
+   1 kikîwânânaw	kîwêw+V+AI+Ind+21Pl
    1 kikîsîhtânaw	kikîsîhtânaw+?
    1 kikîskotâton	kikîskotâton+?
    1 kikîskahon	kîskahwêw+V+TA+Ind+2Sg+1SgO
@@ -30052,7 +30052,7 @@
    1 kikî-wâpin	PV/kî+wâpiw+V+AI+Ind+2Sg
    1 kikî-wâpamitin	PV/kî+wâpamêw+V+TA+Ind+1Sg+2SgO
    1 kikî-wâpamik	PV/kî+wâpamêw+V+TA+Ind+3Sg+2SgO
-   1 kikî-wawânaskêhtamâkonawak	PV/kî+wawânaskêhtamawêw+V+TA+Ind+3Pl+12PlO
+   1 kikî-wawânaskêhtamâkonawak	PV/kî+wawânaskêhtamawêw+V+TA+Ind+3Pl+21PlO
    1 kikî-tôtawin	PV/kî+tôtawêw+V+TA+Ind+2Sg+1SgO
    1 kikî-tipahamâkawin	PV/kî+tipahamawêw+V+TA+Ind+X+2SgO
    1 kikî-tasîhkawâwâwak	PV/kî+tasîhkawêw+V+TA+Ind+2Pl+3PlO
@@ -30072,7 +30072,7 @@
    1 kikî-onâpêmin	PV/kî+onâpêmiw+V+AI+Ind+2Sg
    1 kikî-ocihcihkwanapin	kikî-ocihcihkwanapin+?
    1 kikî-oc	kikî-oc+?
-   1 kikî-nipânânaw	PV/kî+nipâw+V+AI+Ind+12Pl
+   1 kikî-nipânânaw	PV/kî+nipâw+V+AI+Ind+21Pl
    1 kikî-nipahâw	PV/kî+nipahêw+V+TA+Ind+2Sg+3SgO
    1 kikî-nipahinâwâw	PV/kî+nipahinêw+V+TA+Ind+2Pl+3SgO
    1 kikî-nihtâwikihik	PV/kî+nihtâwikihêw+V+TA+Ind+3Sg+2SgO
@@ -30088,7 +30088,7 @@
    1 kikî-miyinâwâw	PV/kî+miyêw+V+TA+Ind+2Pl+1SgO
    1 kikî-miyikonaw	kikî-miyikonaw+?
    1 kikî-miskawâw	PV/kî+miskawêw+V+TA+Ind+2Sg+3SgO
-   1 kikî-misi-wanohtânaw	PV/kî+PV/misi+wanohtêw+V+AI+Ind+12Pl
+   1 kikî-misi-wanohtânaw	PV/kî+PV/misi+wanohtêw+V+AI+Ind+21Pl
    1 kikî-mihtâtik	PV/kî+mihtâtêw+V+TA+Ind+3Sg+2SgO
    1 kikî-mawîhkâtâw	PV/kî+mawîhkâtêw+V+TA+Ind+2Sg+3SgO
    1 kikî-manâhonâwâw	PV/kî+manâhow+V+AI+Ind+2Pl
@@ -30117,12 +30117,12 @@
    1 kikî-itikawih	kikî-itikawih+?
    1 kikî-itik	PV/kî+itêw+V+TA+Ind+3Sg+2SgO
    1 kikî-isi-pimâtisin	PV/kî+PV/isi+pimâtisiw+V+AI+Ind+2Sg
-   1 kikî-isi-pakitinikonaw	PV/kî+PV/isi+pakitinêw+V+TA+Ind+3Sg+12PlO
-   1 kikî-ayânaw	PV/kî+ayâw+V+AI+Ind+12Pl
+   1 kikî-isi-pakitinikonaw	PV/kî+PV/isi+pakitinêw+V+TA+Ind+3Sg+21PlO
+   1 kikî-ayânaw	PV/kî+ayâw+V+AI+Ind+21Pl
    1 kikî-ayamihân	PV/kî+ayamihâw+V+AI+Ind+2Sg
    1 kikî-ati-wa-wîkin	PV/kî+PV/ati+RdplW+wîkiw+V+AI+Ind+2Sg
    1 kikî-ati-mîcin	PV/kî+PV/ati+mîciw+V+TI+Ind+2Sg
-   1 kikî-asotamâkonaw	PV/kî+asotamawêw+V+TA+Ind+3Sg+12PlO
+   1 kikî-asotamâkonaw	PV/kî+asotamawêw+V+TA+Ind+3Sg+21PlO
    1 kikî	kikî+?
    1 kikêhtê-ayiminawak	nikêhtê-ayim+N+A+D+Px12Pl+Pl
    1 kikê-miyitin	kikê-miyitin+?
@@ -30133,7 +30133,7 @@
    1 kikâkîsimototâtin	kâkîsimototawêw+V+TA+Ind+1Sg+2SgO
    1 kikâhkêwakoma	nikâhkêwakom+N+I+D+Px2Sg+Pl
    1 kikâhcitinên	kâhcitinam+V+TI+Ind+2Sg
-   1 kikâh-pimâtisinânaw	PV/kah+pimâtisiw+V+AI+Ind+12Pl
+   1 kikâh-pimâtisinânaw	PV/kah+pimâtisiw+V+AI+Ind+21Pl
    1 kikâh-nôhtê-kakwêcimâwâw	PV/kah+PV/nohte+kakwêcimêw+V+TA+Ind+2Pl+3SgO
    1 kikâh-nanâskomitinâwâw	PV/kah+nanâskomêw+V+TA+Ind+1Sg+2PlO
    1 kikâh-miyw-âyâ	kikâh-miyw-âyâ+?
@@ -30141,7 +30141,7 @@
    1 kikâh-kî-wîcêwâw	PV/kah+PV/kî+wîcêwêw+V+TA+Ind+2Sg+3SgO
    1 kikâh-kî-pê-âcimôhitinâwâw	PV/kah+PV/kî+PV/pe+âcimôhêw+V+TA+Ind+1Sg+2PlO
    1 kikâh-kiskisin	RdplS+kiskisiw+V+AI+Ind+2Sg
-   1 kikâh-apinânaw	PV/kah+apiw+V+AI+Ind+12Pl
+   1 kikâh-apinânaw	PV/kah+apiw+V+AI+Ind+21Pl
    1 kikosâkak	kikosâkak+?
    1 kikostâwak	kostêw+V+TA+Ind+2Sg+3PlO
    1 kikostikowâwak	kostêw+V+TA+Ind+3Pl+2PlO
@@ -30157,12 +30157,12 @@
    1 kikitimâkêyimitin	kitimâkêyimêw+V+TA+Ind+1Sg+2SgO
    1 kikitimâkêyimin	kitimâkêyimêw+V+TA+Ind+2Sg+1SgO
    1 kikitimâkêyimik	kitimâkêyimêw+V+TA+Ind+3Sg+2SgO
-   1 kikitimahânaw	kitimahêw+V+TA+Ind+12Pl+3SgO
+   1 kikitimahânaw	kitimahêw+V+TA+Ind+21Pl+3SgO
    1 kikitamwâwak	kitamwêw+V+TA+Ind+2Sg+3PlO
    1 kikistêyimon	kistêyimow+V+AI+Ind+2Sg
    1 kikiskêyimâw	kiskêyimêw+V+TA+Ind+2Sg+3SgO
    1 kikiskêyimâh	kikiskêyimâh+?
-   1 kikiskêyihtênaw	kiskêyihtam+V+TI+Ind+12Pl
+   1 kikiskêyihtênaw	kiskêyihtam+V+TI+Ind+21Pl
    1 kikiskêyihtê-~	kikiskêyihtê-~+?
    1 kikiskêyihtê	kikiskêyihtê+?
    1 kikiskêyiht-~	kikiskêyiht-~+?
@@ -30173,7 +30173,7 @@
    1 kikiskamwak	kikiskam+V+TI+Ind+3Pl
    1 kikiskam	kikiskam+V+TI+Ind+3Sg
    1 kikisiwâhâwak	kisiwâhêw+V+TA+Ind+2Sg+3PlO
-   1 kikisiwâhânaw	kisiwâhêw+V+TA+Ind+12Pl+3SgO
+   1 kikisiwâhânaw	kisiwâhêw+V+TA+Ind+21Pl+3SgO
    1 kikisiwâhitin	kisiwâhêw+V+TA+Ind+1Sg+2SgO
    1 kikisiwâhinâwâw	kisiwâhêw+V+TA+Ind+2Pl+1SgO
    1 kikisiwi-nêpêwihin	PV/kisiwi+nêpêwihêw+V+TA+Ind+2Sg+1SgO
@@ -30189,8 +30189,8 @@
    1 kikaskêyihtamihtâson	kaskêyihtamihtâsow+V+AI+Ind+2Sg
    1 kikaskêyihtamihin	kaskêyihtamihêw+V+TA+Ind+2Sg+1SgO
    1 kikaskêyihtamaskatikawin	kaskêyihtamaskatêw+V+TA+Ind+X+2SgO
-   1 kikaskihtânânaw	kaskihtâw+V+TI+Ind+12Pl
-   1 kikaskihtânaw	kaskihtâw+V+TI+Ind+12Pl
+   1 kikaskihtânânaw	kaskihtâw+V+TI+Ind+21Pl
+   1 kikaskihtânaw	kaskihtâw+V+TI+Ind+21Pl
    1 kikaskihon	kaskihow+V+AI+Ind+2Sg
    1 kikanâcihon	kanâcihow+V+AI+Ind+2Sg
    1 kikanawêyimâwak	kanawêyimêw+V+TA+Ind+2Sg+3PlO
@@ -30206,7 +30206,7 @@
    1 kika-ôh-mîcisohtânaw	kika-ôh-mîcisohtânaw+?
    1 kika-êkotôwiwin	kika-êkotôwiwin+?
    1 kika-êkotôwinâwâw	kika-êkotôwinâwâw+?
-   1 kika-âstêtâmosininânaw	PV/ka+âstêtâmosin+V+AI+Ind+12Pl
+   1 kika-âstêtâmosininânaw	PV/ka+âstêtâmosin+V+AI+Ind+21Pl
    1 kika-âpacihâw	PV/ka+âpacihêw+V+TA+Ind+2Sg+3SgO
    1 kika-âmaciwân	PV/ka+âmaciwêw+V+AI+Ind+2Sg
    1 kika-âh-âywêpin	kika-âh-âywêpin+?
@@ -30231,7 +30231,7 @@
    1 kika-wayêsimin	PV/ka+wayêsimêw+V+TA+Ind+2Sg+1SgO
    1 kika-wayêsihitih	kika-wayêsihitih+?
    1 kika-wanihin	PV/ka+wanihêw+V+TA+Ind+2Sg+1SgO
-   1 kika-tôtênânaw	PV/ka+tôtam+V+TI+Ind+12Pl
+   1 kika-tôtênânaw	PV/ka+tôtam+V+TI+Ind+21Pl
    1 kika-têpiskên	PV/ka+têpiskam+V+TI+Ind+2Sg
    1 kika-tâsiskâk	kika-tâsiskâk+?
    1 kika-tâpwêhtaman	PV/kika+tâpwêhtam+V+TI+Cnj+2Sg
@@ -30240,10 +30240,10 @@
    1 kika-tihkicêskiwakisin	PV/ka+tihkicêskiwakisiw+V+AI+Ind+2Sg
    1 kika-tahkamitin	PV/ka+tahkamêw+V+TA+Ind+1Sg+2SgO
    1 kika-sâkôcihikowâw	PV/ka+sâkôcihêw+V+TA+Ind+3Sg+2PlO
-   1 kika-sâkôcihikonawak	PV/ka+sâkôcihêw+V+TA+Ind+3Pl+12PlO
+   1 kika-sâkôcihikonawak	PV/ka+sâkôcihêw+V+TA+Ind+3Pl+21PlO
    1 kika-sâkôcihik	PV/ka+sâkôcihêw+V+TA+Ind+3Sg+2SgO
    1 kika-sâkohtwân	PV/ka+sâkohtwâw+V+AI+Ind+2Sg
-   1 kika-sipwêhtânaw	PV/ka+sipwêhtêw+V+AI+Ind+12Pl
+   1 kika-sipwêhtânaw	PV/ka+sipwêhtêw+V+AI+Ind+21Pl
    1 kika-saniskamâson	kika-saniskamâson+?
    1 kika-pîhtokân	PV/ka+pîhtokêw+V+AI+Ind+2Sg
    1 kika-pêtân	PV/ka+pêtâw+V+TI+Ind+2Sg
@@ -30252,11 +30252,11 @@
    1 kika-pê-kîwân	PV/ka+pê-kîwêw+V+AI+Ind+2Sg
    1 kika-pê-itohtân	PV/ka+pê-itohtêw+V+AI+Ind+2Sg
    1 kika-pê-atimin	PV/ka+PV/pe+atimêw+V+TA+Ind+2Sg+1SgO
-   1 kika-pâsênânaw	PV/ka+pâsam+V+TI+Ind+12Pl
+   1 kika-pâsênânaw	PV/ka+pâsam+V+TI+Ind+21Pl
    1 kika-pânahênâwâw	PV/ka+pânaham+V+TI+Ind+2Pl
    1 kika-pâkahkôwin	kika-pâkahkôwin+?
    1 kika-postayôwinisân	kika-postayôwinisân+?
-   1 kika-pimâtisinaw	PV/ka+pimâtisiw+V+AI+Ind+12Pl
+   1 kika-pimâtisinaw	PV/ka+pimâtisiw+V+AI+Ind+21Pl
    1 kika-pimâcihik	PV/ka+pimâcihêw+V+TA+Ind+3Sg+2SgO
    1 kika-pimitisahwânaw	kika-pimitisahwânaw+?
    1 kika-pimakocin	kika-pimakocin+?
@@ -30278,12 +30278,12 @@
    1 kika-otamihinâwâw	PV/ka+otamihêw+V+TA+Ind+2Pl+1SgO
    1 kika-osîminânaw	kika-osîminânaw+?
    1 kika-osîmimitin	kika-osîmimitin+?
-   1 kika-osîhtâyahk	PV/kika+osîhtâw+V+TI+Cnj+12Pl
-   1 kika-osîhtânânaw	PV/ka+osîhtâw+V+TI+Ind+12Pl
+   1 kika-osîhtâyahk	PV/kika+osîhtâw+V+TI+Cnj+21Pl
+   1 kika-osîhtânânaw	PV/ka+osîhtâw+V+TI+Ind+21Pl
    1 kika-osîhtân	PV/ka+osîhtâw+V+TI+Ind+2Sg
    1 kika-ostêsimitin	kika-ostêsimitin+?
    1 kika-omîciwininâwâw	PV/ka+omîciwiniw+V+AI+Ind+2Pl
-   1 kika-omîciwininânaw	PV/ka+omîciwiniw+V+AI+Ind+12Pl
+   1 kika-omîciwininânaw	PV/ka+omîciwiniw+V+AI+Ind+21Pl
    1 kika-omaskisininâwâw	PV/ka+omaskisiniw+V+AI+Ind+2Pl
    1 kika-ohtâpanihon	kika-ohtâpanihon+?
    1 kika-ohtinên	PV/ka+ohtinam+V+TI+Ind+2Sg
@@ -30291,15 +30291,15 @@
    1 kika-ohpinên	PV/ka+ohpinam+V+TI+Ind+2Sg
    1 kika-ohcîhkamâtin	PV/ka+ohcîhkamawêw+V+TA+Ind+1Sg+2SgO
    1 kika-ocipitên	PV/ka+ocipitam+V+TI+Ind+2Sg
-   1 kika-nôtinitonânaw	PV/ka+nôtinitowak+V+AI+Ind+12Pl
+   1 kika-nôtinitonânaw	PV/ka+nôtinitowak+V+AI+Ind+21Pl
    1 kika-nôcîhkawâw	PV/ka+nôcîhkawêw+V+TA+Ind+2Sg+3SgO
-   1 kika-nêpêwisinânaw	PV/ka+nêpêwisiw+V+AI+Ind+12Pl
+   1 kika-nêpêwisinânaw	PV/ka+nêpêwisiw+V+AI+Ind+21Pl
    1 kika-nêpêwisin	PV/ka+nêpêwisiw+V+AI+Ind+2Sg
    1 kika-nâtênâwâw	PV/ka+nâtam+V+TI+Ind+2Pl
    1 kika-nâtên	PV/ka+nâtam+V+TI+Ind+2Sg
    1 kika-nitotamân	PV/kika+nitotam+V+TI+Cnj+1Sg
    1 kika-nitotamawâw	PV/ka+nitotamawêw+V+TA+Ind+2Sg+3SgO
-   1 kika-nitomânawak	PV/ka+nitomêw+V+TA+Ind+12Pl+3PlO
+   1 kika-nitomânawak	PV/ka+nitomêw+V+TA+Ind+21Pl+3PlO
    1 kika-nitohtawin	PV/ka+nitohtawêw+V+TA+Ind+2Sg+1SgO
    1 kika-nitawi-nôtinât	PV/kika+PV/nitawi+nôtinêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 kika-nitawi-mîcisohâwak	PV/ka+PV/nitawi+mîcisohêw+V+TA+Ind+2Sg+3PlO
@@ -30307,9 +30307,9 @@
    1 kika-nipin	PV/ka+nipiw+V+AI+Ind+2Sg
    1 kika-nipahâwak	PV/ka+nipahêw+V+TA+Ind+2Sg+3PlO
    1 kika-nipahâw	PV/ka+nipahêw+V+TA+Ind+2Sg+3SgO
-   1 kika-nipahânaw	PV/ka+nipahêw+V+TA+Ind+12Pl+3SgO
+   1 kika-nipahânaw	PV/ka+nipahêw+V+TA+Ind+21Pl+3SgO
    1 kika-nipahin	PV/ka+nipahêw+V+TA+Ind+2Sg+1SgO
-   1 kika-nipahikonawak	PV/ka+nipahêw+V+TA+Ind+3Pl+12PlO
+   1 kika-nipahikonawak	PV/ka+nipahêw+V+TA+Ind+3Pl+21PlO
    1 kika-nipahikon	kika-nipahikon+?
    1 kika-nipahikawin	PV/ka+nipahêw+V+TA+Ind+X+2SgO
    1 kika-nikamon	PV/ka+nikamow+V+AI+Ind+2Sg
@@ -30320,7 +30320,7 @@
    1 kika-mîcisonâwâw	PV/ka+mîcisow+V+AI+Ind+2Pl
    1 kika-mîcison	PV/ka+mîcisow+V+AI+Ind+2Sg
    1 kika-mîcin	PV/ka+mîciw+V+TI+Ind+2Sg
-   1 kika-mêtawânânaw	PV/ka+mêtawêw+V+AI+Ind+12Pl
+   1 kika-mêtawânânaw	PV/ka+mêtawêw+V+AI+Ind+21Pl
    1 kika-mêtawân	PV/ka+mêtawêw+V+AI+Ind+2Sg
    1 kika-mêscasahkân	kika-mêscasahkân+?
    1 kika-mâyinikêyân	PV/kika+mâyinikêw+V+AI+Cnj+1Sg
@@ -30343,7 +30343,7 @@
    1 kika-masinahikêhitin	PV/ka+masinahikêhêw+V+TA+Ind+1Sg+2SgO
    1 kika-ma-mêtawân	PV/ka+RdplW+mêtawêw+V+AI+Ind+2Sg
    1 kika-kîwêhtahâw	PV/ka+kîwêhtahêw+V+TA+Ind+2Sg+3SgO
-   1 kika-kîwânânaw	PV/ka+kîwêw+V+AI+Ind+12Pl
+   1 kika-kîwânânaw	PV/ka+kîwêw+V+AI+Ind+21Pl
    1 kika-kîwân	PV/ka+kîwêw+V+AI+Ind+2Sg
    1 kika-kîspon	PV/ka+kîspow+V+AI+Ind+2Sg
    1 kika-kîsowâtên	PV/ka+kîsowâtam+V+TI+Ind+2Sg
@@ -30358,19 +30358,19 @@
    1 kika-kitâpahkân	PV/ka+kitâpahkêw+V+AI+Ind+2Sg
    1 kika-kitosin	PV/ka+kitotêw+V+TA+Ind+2Sg+1SgO
    1 kika-kitimâkêyimâw	PV/ka+kitimâkêyimêw+V+TA+Ind+2Sg+3SgO
-   1 kika-kitimâkisinânaw	PV/ka+kitimâkisiw+V+AI+Ind+12Pl
+   1 kika-kitimâkisinânaw	PV/ka+kitimâkisiw+V+AI+Ind+21Pl
    1 kika-kispanatamâtin	kika-kispanatamâtin+?
    1 kika-kiskêyihtên	PV/ka+kiskêyihtam+V+TI+Ind+2Sg
    1 kika-kiskinohamâkon	kika-kiskinohamâkon+?
    1 kika-kawâhkatoson	PV/ka+kawâhkatosow+V+AI+Ind+2Sg
    1 kika-kaskikwâtison	PV/ka+kaskikwâtisow+V+AI+Ind+2Sg
-   1 kika-kanawêyimâwasonânaw	PV/ka+kanawêyimâwasow+V+AI+Ind+12Pl
+   1 kika-kanawêyimâwasonânaw	PV/ka+kanawêyimâwasow+V+AI+Ind+21Pl
    1 kika-kanawêyimitn	kika-kanawêyimitn+?
    1 kika-itôwiwinâwâw	kika-itôwiwinâwâw+?
    1 kika-itâwâw	PV/ka+itêw+V+TA+Ind+2Pl+3SgO
    1 kika-itâpin	PV/ka+itâpiw+V+AI+Ind+2Sg
    1 kika-itâpatisin	PV/ka+itâpatisiw+V+AI+Ind+2Sg
-   1 kika-itânaw	PV/ka+itêw+V+TA+Ind+12Pl+3SgO
+   1 kika-itânaw	PV/ka+itêw+V+TA+Ind+21Pl+3SgO
    1 kika-itohtahitin	PV/ka+itohtahêw+V+TA+Ind+1Sg+2SgO
    1 kika-ititinâwâw	PV/ka+itêw+V+TA+Ind+1Sg+2PlO
    1 kika-ititin	PV/ka+itêw+V+TA+Ind+1Sg+2SgO
@@ -30378,9 +30378,9 @@
    1 kika-itihtawinân	PV/ka+itihtawêw+V+TA+Ind+2Pl+1PlO
    1 kika-isîhtânâwâw	PV/ka+isîhtâw+V+TI+Ind+2Pl
    1 kika-ispisîn	kika-ispisîn+?
-   1 kika-ispicinânaw	PV/ka+ispiciw+V+AI+Ind+12Pl
+   1 kika-ispicinânaw	PV/ka+ispiciw+V+AI+Ind+21Pl
    1 kika-ispayihon	PV/ka+ispayihow+V+AI+Ind+2Sg
-   1 kika-iskwâhikonaw	PV/ka+iskwâhêw+V+TA+Ind+3Sg+12PlO
+   1 kika-iskwâhikonaw	PV/ka+iskwâhêw+V+TA+Ind+3Sg+21PlO
    1 kika-isiyîhkâtên	kika-isiyîhkâtên+?
    1 kika-isiyîhkâtik	kika-isiyîhkâtik+?
    1 kika-isiyîhkâsinâwâw	kika-isiyîhkâsinâwâw+?
@@ -30394,18 +30394,18 @@
    1 kika-isi-kîwêhtahik	PV/ka+PV/isi+kîwêhtahêw+V+TA+Ind+3Sg+2SgO
    1 kika-isi-kîwânâwâw	PV/ka+PV/isi+kîwêw+V+AI+Ind+2Pl
    1 kika-isi-itohtân	PV/ka+PV/isi+itohtêw+V+AI+Ind+2Sg
-   1 kika-ihtasinânaw	PV/ka+ihtasiwak+V+AI+Ind+12Pl
+   1 kika-ihtasinânaw	PV/ka+ihtasiwak+V+AI+Ind+21Pl
    1 kika-cîkahên	PV/ka+cîkaham+V+TI+Ind+2Sg
    1 kika-ayâwâw	PV/ka+ayâwêw+V+TA+Ind+2Sg+3SgO
-   1 kika-ayâwânaw	PV/ka+ayâwêw+V+TA+Ind+12Pl+3SgO
+   1 kika-ayâwânaw	PV/ka+ayâwêw+V+TA+Ind+21Pl+3SgO
    1 kika-ayâtin	PV/ka+ayâwêw+V+TA+Ind+1Sg+2SgO
    1 kika-ayâhk	PV/kika+ayâw+V+AI+Cnj+X
    1 kika-aya	kika-aya+?
-   1 kika-ay-âcimoyahk	PV/kika+RdplW+âcimow+V+AI+Cnj+12Pl
-   1 kika-atâwêyahk	PV/kika+atâwêw+V+AI+Cnj+12Pl
-   1 kika-atoskânânaw	PV/ka+atoskêw+V+AI+Ind+12Pl
+   1 kika-ay-âcimoyahk	PV/kika+RdplW+âcimow+V+AI+Cnj+21Pl
+   1 kika-atâwêyahk	PV/kika+atâwêw+V+AI+Cnj+21Pl
+   1 kika-atoskânânaw	PV/ka+atoskêw+V+AI+Ind+21Pl
    1 kika-atimikwak	PV/ka+atimêw+V+TA+Ind+3Pl+2SgO
-   1 kika-atimikonawak	PV/ka+atimêw+V+TA+Ind+3Pl+12PlO
+   1 kika-atimikonawak	PV/ka+atimêw+V+TA+Ind+3Pl+21PlO
    1 kika-atimik	PV/ka+atimêw+V+TA+Ind+3Sg+2SgO
    1 kika-ati-patakwâtimâtitin	kika-ati-patakwâtimâtitin+?
    1 kika-ati-otinên	PV/ka+PV/ati+otinam+V+TI+Ind+2Sg
@@ -30424,7 +30424,7 @@
    1 kika-askôtinân	PV/ka+askowêw+V+TA+Ind+1Pl+2Sg/PlO
    1 kika-askôtin	PV/ka+askowêw+V+TA+Ind+1Sg+2SgO
    1 kika-asamâwâw	PV/ka+asamêw+V+TA+Ind+2Pl+3SgO
-   1 kika-asahtonânaw	PV/ka+asahtowak+V+AI+Ind+12Pl
+   1 kika-asahtonânaw	PV/ka+asahtowak+V+AI+Ind+21Pl
    1 kika-apin	PV/ka+apiw+V+AI+Ind+2Sg
    1 kika-apahkwân	PV/ka+apahkwâw+V+AI+Ind+2Sg
    1 kika-akotân	PV/ka+akotâw+V+TI+Ind+2Sg
@@ -30628,7 +30628,7 @@
    1 kapêsiyêko	kapêsiw+V+AI+Fut+Cond+2Pl
    1 kapêsiyâni	kapêsiw+V+AI+Fut+Cond+1Sg
    1 kapêsiyini	kapêsiyini+?
-   1 kapêsitân	kapêsiw+V+AI+Imp+Imm+12Pl
+   1 kapêsitân	kapêsiw+V+AI+Imp+Imm+21Pl
    1 kapêsimostawâwak	kapêsimostawêw+V+TA+Ind+X+3PlO
    1 kapêsi	kapêsiw+V+AI+Imp+Imm+2Sg
    1 kapêkîsihkwa	kapêkîsihkwa+?
@@ -30640,7 +30640,7 @@
    1 kapânamwak	kapânam+V+TI+Ind+3Pl
    1 kapâ	kapâw+V+AI+Imp+Imm+2Sg
    1 kapinêt	kapinêt+?
-   1 kanôhkawâtân	kanôhkawêw+V+TA+Imp+Imm+12Pl+3SgO
+   1 kanôhkawâtân	kanôhkawêw+V+TA+Imp+Imm+21Pl+3SgO
    1 kanâtanohk	kanâtanohk+Ipc
    1 kanâci-oskinîkiskwêw	kanâci-oskinîkiskwêw+?
    1 kanâci-askîhk	kanâci-askîhk+?
@@ -30679,11 +30679,11 @@
    1 kakwêcim	kakwêcimêw+V+TA+Imp+Imm+2Sg+3SgO
    1 kakwêcihkêmôwak	kakwêcihkêmôwak+?
    1 kakwêcihkêmôw	kakwêcihkêmôw+?
-   1 kakwêci-âsiskamâtotân	PV/kakweci+âsiskamâtowak+V+AI+Imp+Imm+12Pl
+   1 kakwêci-âsiskamâtotân	PV/kakweci+âsiskamâtowak+V+AI+Imp+Imm+21Pl
    1 kakwê-âkayâsîmo	PV/kakwe+âkayâsîmow+V+AI+Imp+Imm+2Sg
    1 kakwê-âhkamêyimo	PV/kakwe+âhkamêyimow+V+AI+Imp+Imm+2Sg
    1 kakwê-wîhtamaw	PV/kakwe+wîhtamawêw+V+TA+Imp+Imm+2Sg+3SgO
-   1 kakwê-wâpamâtân	PV/kakwe+wâpamêw+V+TA+Imp+Imm+12Pl+3SgO
+   1 kakwê-wâpamâtân	PV/kakwe+wâpamêw+V+TA+Imp+Imm+21Pl+3SgO
    1 kakwê-wâpamacik	kakwê-wâpamacik+?
    1 kakwê-wâpahtamok	PV/kakwe+wâpahtam+V+TI+Imp+Imm+2Pl
    1 kakwê-wâpahtam	PV/kakwe+wâpahtam+V+TI+Ind+3Sg
@@ -30696,7 +30696,7 @@
    1 kakwê-takohtê	PV/kakwe+takohtêw+V+AI+Imp+Imm+2Sg
    1 kakwê-sôhki-tapasî	PV/kakwe+PV/sohki+tapasîw+V+AI+Imp+Imm+2Sg
    1 kakwê-sêkihtâ	PV/kakwe+sêkihtâw+V+TI+Imp+Imm+2Sg
-   1 kakwê-sâkohitotân	PV/kakwe+sâkohitowak+V+AI+Imp+Imm+12Pl
+   1 kakwê-sâkohitotân	PV/kakwe+sâkohitowak+V+AI+Imp+Imm+21Pl
    1 kakwê-sâkihihk	PV/kakwe+sâkihêw+V+TA+Imp+Imm+2Pl+3SgO
    1 kakwê-pônamâso	PV/kakwe+pônamâsow+V+AI+Imp+Imm+2Sg
    1 kakwê-pê-miyin	PV/kakwe+PV/pe+miyêw+V+TA+Imp+Imm+2Sg+1SgO
@@ -30717,7 +30717,7 @@
    1 kakwê-miskawâhkêk	PV/kakwe+miskawêw+V+TA+Imp+Del+2Pl+3SgO
    1 kakwê-miskaw	PV/kakwe+miskawêw+V+TA+Imp+Imm+2Sg+3SgO
    1 kakwê-minahôstamâso	PV/kakwe+minahôstamâsow+V+AI+Imp+Imm+2Sg
-   1 kakwê-maskamâtân	PV/kakwe+maskamêw+V+TA+Imp+Imm+12Pl+3SgO
+   1 kakwê-maskamâtân	PV/kakwe+maskamêw+V+TA+Imp+Imm+21Pl+3SgO
    1 kakwê-mamiyôk	kakwê-mamiyôk+?
    1 kakwê-kîsihtâ	PV/kakwe+kîsihtâw+V+TI+Imp+Imm+2Sg
    1 kakwê-kwâpatahwêw	PV/kakwe+kwâpatahwêw+V+TA+Ind+3Sg+4Sg/PlO
@@ -30728,7 +30728,7 @@
    1 kakwê-kanawêyiht[a	kakwê-kanawêyiht[a+?
    1 kakwê-iyinîsi	PV/kakwe+iyinîsiw+V+AI+Imp+Imm+2Sg
    1 kakwê-iyinîhkahiso	kakwê-iyinîhkahiso+?
-   1 kakwê-isi-nipahâtân	PV/kakwe+PV/isi+nipahêw+V+TA+Imp+Imm+12Pl+3SgO
+   1 kakwê-isi-nipahâtân	PV/kakwe+PV/isi+nipahêw+V+TA+Imp+Imm+21Pl+3SgO
    1 kakwê-cîsihaci	PV/kakwe+cîsihêw+V+TA+Fut+Cond+2Sg+3SgO
    1 kakwê-ayâk	PV/kakwe+ayâwêw+V+TA+Ind+4Sg/Pl+3SgO
    1 kakwê	kakwê+?
@@ -30767,11 +30767,11 @@
    1 ka-wîkihtonânaw	ka-wîkihtonânaw+?
    1 ka-wîkatêhtêyahk	ka-wîkatêhtêyahk+?
    1 ka-wîhtamôwacik	ka-wîhtamôwacik+?
-   1 ka-wîhtamâtoyahk	PV/ka+wîhtamâtowak+V+AI+Cnj+12Pl
+   1 ka-wîhtamâtoyahk	PV/ka+wîhtamâtowak+V+AI+Cnj+21Pl
    1 ka-wîhtamâtakok	PV/ka+wîhtamawêw+V+TA+Cnj+1Sg+2PlO
    1 ka-wîhtamâkoyâhkik	PV/ka+wîhtamawêw+V+TA+Cnj+3Pl+1PlO
    1 ka-wîhtamâkoyahkik	ka-wîhtamâkoyahkik+?
-   1 ka-wîhtamâkoyahk	PV/ka+wîhtamawêw+V+TA+Cnj+3Sg+12PlO
+   1 ka-wîhtamâkoyahk	PV/ka+wîhtamawêw+V+TA+Cnj+3Sg+21PlO
    1 ka-wîhtamâkonaw	ka-wîhtamâkonaw+?
    1 ka-wîhtamihk	PV/ka+wîhtam+V+TI+Cnj+X+3Sg
    1 ka-wîhtamawâyêkok	PV/ka+wîhtamawêw+V+TA+Cnj+2Pl+3PlO
@@ -30792,7 +30792,7 @@
    1 ka-wîcêtinân	ka-wîcêtinân+?
    1 ka-wîcêkoyâhkik	PV/ka+wîcêwêw+V+TA+Cnj+3Pl+1PlO
    1 ka-wîcihtâsocik	PV/ka+wîcihtâsow+V+AI+Cnj+3Pl
-   1 ka-wîcihikoyahk	PV/ka+wîcihêw+V+TA+Cnj+3Sg+12PlO
+   1 ka-wîcihikoyahk	PV/ka+wîcihêw+V+TA+Cnj+3Sg+21PlO
    1 ka-wîcihikot	PV/ka+wîcihêw+V+TA+Cnj+4Sg/Pl+3SgO
    1 ka-wîcihikocik	PV/ka+wîcihêw+V+TA+Cnj+4Sg/Pl+3PlO
    1 ka-wîcihak	PV/ka+wîcihêw+V+TA+Cnj+1Sg+3SgO
@@ -30841,7 +30841,7 @@
    1 ka-wayawîn	ka-wayawîn+?
    1 ka-wayawîhtatâyân	PV/ka+wayawîhtatâw+V+TI+Cnj+1Sg
    1 ka-wayawîcik	PV/ka+wayawîw+V+AI+Cnj+3Pl
-   1 ka-wayawî-wêpinamahk	PV/ka+wayawî-wêpinam+V+TI+Cnj+12Pl
+   1 ka-wayawî-wêpinamahk	PV/ka+wayawî-wêpinam+V+TI+Cnj+21Pl
    1 ka-wayawî-pakamahosk	PV/ka+PV/wayawi+pakamahwêsiw+V+TA+Cnj+3Sg+2SgO
    1 ka-wawîyêtotahkik	ka-wawîyêtotahkik+?
    1 ka-wawêsîhitin	ka-wawêsîhitin+?
@@ -30854,9 +30854,9 @@
    1 ka-wanisiniyân	PV/ka+wanisin+V+AI+Cnj+1Sg
    1 ka-wanisininâwâw	ka-wanisininâwâw+?
    1 ka-wanisimiht	PV/ka+wanisimêw+V+TA+Cnj+X+3SgO
-   1 ka-wanikiskisiyahk	PV/ka+wanikiskisiw+V+AI+Cnj+12Pl
+   1 ka-wanikiskisiyahk	PV/ka+wanikiskisiw+V+AI+Cnj+21Pl
    1 ka-wanikiskisiwak	PV/ka+wanikiskisiw+V+AI+Ind+3Pl
-   1 ka-wanihâyahk	PV/ka+wanihêw+V+TA+Cnj+12Pl+3SgO
+   1 ka-wanihâyahk	PV/ka+wanihêw+V+TA+Cnj+21Pl+3SgO
    1 ka-wanihtânaw	ka-wanihtânaw+?
    1 ka-wanihon	ka-wanihon+?
    1 ka-wanihin	ka-wanihin+?
@@ -30902,11 +30902,11 @@
    1 ka-tihtipipayiyik	PV/ka+tihtipipayiw+V+II+Cnj+4Sg
    1 ka-tawâw	PV/ka+tawâw+V+II+Ind+3Sg
    1 ka-tawinamwak	PV/ka+tawinam+V+TI+Ind+3Pl
-   1 ka-tapasîyahk	PV/ka+tapasîw+V+AI+Cnj+12Pl
+   1 ka-tapasîyahk	PV/ka+tapasîw+V+AI+Cnj+21Pl
    1 ka-tapasîwak	PV/ka+tapasîw+V+AI+Ind+3Pl
    1 ka-tapasîn	ka-tapasîn+?
    1 ka-takwastât	PV/ka+takwastâw+V+TI+Cnj+3Sg
-   1 ka-takosiniyahk	PV/ka+takosin+V+AI+Cnj+12Pl
+   1 ka-takosiniyahk	PV/ka+takosin+V+AI+Cnj+21Pl
    1 ka-takosin	PV/ka+takosin+V+AI+Ind+3Sg
    1 ka-takopayiki	PV/ka+takopayiw+V+II+Cnj+3Pl
    1 ka-takohtêyit	PV/ka+takohtêw+V+AI+Cnj+4Sg/Pl
@@ -30922,7 +30922,7 @@
    1 ka-sîkinamawâyâhk	PV/ka+sîkinamawêw+V+TA+Cnj+1Pl+3SgO
    1 ka-sîkinak	PV/ka+sîkinêw+V+TA+Cnj+1Sg+3SgO
    1 ka-sîkahotin	ka-sîkahotin+?
-   1 ka-sêsâwîhkasoyahk	PV/ka+sêsâwîhkasow+V+AI+Cnj+12Pl
+   1 ka-sêsâwîhkasoyahk	PV/ka+sêsâwîhkasow+V+AI+Cnj+21Pl
    1 ka-sêkimitin	ka-sêkimitin+?
    1 ka-sêkihikoyân	ka-sêkihikoyân+?
    1 ka-sâpopêyâhk	PV/ka+sâpopêw+V+AI+Cnj+1Pl
@@ -30963,7 +30963,7 @@
    1 ka-pîkiskwêt	PV/ka+pîkiskwêw+V+AI+Cnj+3Sg
    1 ka-pîkiskwêstamâsoyân	PV/ka+pîkiskwêstamâsow+V+AI+Cnj+1Sg
    1 ka-pîkiskwêstamâkoyahkik	ka-pîkiskwêstamâkoyahkik+?
-   1 ka-pîkiskwêstamâkoyahk	PV/ka+pîkiskwêstamawêw+V+TA+Cnj+3Sg+12PlO
+   1 ka-pîkiskwêstamâkoyahk	PV/ka+pîkiskwêstamawêw+V+TA+Cnj+3Sg+21PlO
    1 ka-pîkiskwâtâyahkik	ka-pîkiskwâtâyahkik+?
    1 ka-pîkiskwâtikocik	PV/ka+pîkiskwâtêw+V+TA+Cnj+4Sg/Pl+3PlO
    1 ka-pîkiskwâtihcik	PV/ka+pîkiskwâtêw+V+TA+Cnj+X+3PlO
@@ -31044,8 +31044,8 @@
    1 ka-pê-ayâyân	PV/ka+pê-ayâw+V+AI+Cnj+1Sg
    1 ka-pê	ka-pê+?
    1 ka-pâskiswâw	PV/ka+pâskiswêw+V+TA+Ind+X+3SgO
-   1 ka-pâhpiyahk	PV/ka+pâhpiw+V+AI+Cnj+12Pl
-   1 ka-pâhpihâyahk	PV/ka+pâhpihêw+V+TA+Cnj+12Pl+3SgO
+   1 ka-pâhpiyahk	PV/ka+pâhpiw+V+AI+Cnj+21Pl
+   1 ka-pâhpihâyahk	PV/ka+pâhpihêw+V+TA+Cnj+21Pl+3SgO
    1 ka-pâhpihâwâw	ka-pâhpihâwâw+?
    1 ka-pâhpihk	PV/ka+pâhpiw+V+AI+Cnj+X
    1 ka-pâhpihiht	PV/ka+pâhpihêw+V+TA+Cnj+X+3SgO
@@ -31063,7 +31063,7 @@
    1 ka-pisci-wîhâw	PV/ka+PV/pisci+wîhêw+V+TA+Ind+X+3SgO
    1 ka-pimâtisîtotahk	PV/ka+pimâtisîtotam+V+TI+Cnj+3Sg
    1 ka-pimâtisiyân	PV/ka+pimâtisiw+V+AI+Cnj+1Sg
-   1 ka-pimâtisiyahk	PV/ka+pimâtisiw+V+AI+Cnj+12Pl
+   1 ka-pimâtisiyahk	PV/ka+pimâtisiw+V+AI+Cnj+21Pl
    1 ka-pimâtisiw	PV/ka+pimâtisiw+V+AI+Ind+3Sg
    1 ka-pimâtisinâwâw	ka-pimâtisinâwâw+?
    1 ka-pimâtisihk	PV/ka+pimâtisiw+V+AI+Cnj+X
@@ -31117,8 +31117,8 @@
    1 ka-pamihisocik	PV/ka+pamihisow+V+AI+Cnj+3Pl
    1 ka-pamihikowâw	ka-pamihikowâw+?
    1 ka-pamihakik	PV/ka+pamihêw+V+TA+Cnj+1Sg+3PlO
-   1 ka-pakwâtâyahk	PV/ka+pakwâtêw+V+TA+Cnj+12Pl+3SgO
-   1 ka-pakwâtamahk	PV/ka+pakwâtam+V+TI+Cnj+12Pl
+   1 ka-pakwâtâyahk	PV/ka+pakwâtêw+V+TA+Cnj+21Pl+3SgO
+   1 ka-pakwâtamahk	PV/ka+pakwâtam+V+TI+Cnj+21Pl
    1 ka-pakwâtam	PV/ka+pakwâtam+V+TI+Ind+3Sg
    1 ka-pakwâtahkik	PV/ka+pakwâtam+V+TI+Cnj+3Pl
    1 ka-pakocêninâwâw	ka-pakocêninâwâw+?
@@ -31126,7 +31126,7 @@
    1 ka-pakitinamiyit	PV/ka+pakitinam+V+TI+Cnj+4Sg/Pl
    1 ka-pakitinamawin	ka-pakitinamawin+?
    1 ka-pakicîyan	PV/ka+pakicîw+V+AI+Cnj+2Sg
-   1 ka-pakicîyahk	PV/ka+pakicîw+V+AI+Cnj+12Pl
+   1 ka-pakicîyahk	PV/ka+pakicîw+V+AI+Cnj+21Pl
    1 ka-pakamahên	ka-pakamahên+?
    1 ka-pakamahwât	PV/ka+pakamahwêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ka-pakamahotin	ka-pakamahotin+?
@@ -31143,7 +31143,7 @@
    1 ka-otinâwâwak	ka-otinâwâwak+?
    1 ka-otiniht	PV/ka+otinêw+V+TA+Cnj+X+3SgO
    1 ka-otinamân	PV/ka+otinam+V+TI+Cnj+1Sg
-   1 ka-otinamahk	PV/ka+otinam+V+TI+Cnj+12Pl
+   1 ka-otinamahk	PV/ka+otinam+V+TI+Cnj+21Pl
    1 ka-otaskîn	ka-otaskîn+?
    1 ka-osôkanin	ka-osôkanin+?
    1 ka-osîhtâyân	PV/ka+osîhtâw+V+TI+Cnj+1Sg
@@ -31155,10 +31155,10 @@
    1 ka-nôtinâyêk	PV/ka+nôtinêw+V+TA+Cnj+2Pl+3SgO
    1 ka-nôtinâyahkik	ka-nôtinâyahkik+?
    1 ka-nôtinitowiht	ka-nôtinitowiht+?
-   1 ka-nôtinamahk	PV/ka+nôtinam+V+TI+Cnj+12Pl
+   1 ka-nôtinamahk	PV/ka+nôtinam+V+TI+Cnj+21Pl
    1 ka-nôhtêpayicik	PV/ka+nôhtêpayiw+V+AI+Cnj+3Pl
    1 ka-nôhtêhkatêyit	PV/ka+nôhtêhkatêw+V+AI+Cnj+4Sg/Pl
-   1 ka-nôhtêhkatêyahk	PV/ka+nôhtêhkatêw+V+AI+Cnj+12Pl
+   1 ka-nôhtêhkatêyahk	PV/ka+nôhtêhkatêw+V+AI+Cnj+21Pl
    1 ka-nôcîhkawin	ka-nôcîhkawin+?
    1 ka-nôcikinosêwêcik	PV/ka+nôcikinosêwêw+V+AI+Cnj+3Pl
    1 ka-nîso-mîcisonânaw	ka-nîso-mîcisonânaw+?
@@ -31176,7 +31176,7 @@
    1 ka-nêhiyawiyîhkâtihcik	PV/ka+nêhiyawiyîhkâtêw+V+TA+Cnj+X+3PlO
    1 ka-nêhiyawimototawacik	PV/ka+nêhiyawimototawêw+V+TA+Cnj+2Sg+3PlO
    1 ka-nâtên	ka-nâtên+?
-   1 ka-nâtâmototamahk	PV/ka+nâtâmototam+V+TI+Cnj+12Pl
+   1 ka-nâtâmototamahk	PV/ka+nâtâmototam+V+TI+Cnj+21Pl
    1 ka-nâtâmostahkik	PV/ka+nâtâmostam+V+TI+Cnj+3Pl
    1 ka-nâtamâkot	PV/ka+nâtamawêw+V+TA+Cnj+4Sg/Pl+3SgO
    1 ka-nâtamâkonaw	ka-nâtamâkonaw+?
@@ -31191,7 +31191,7 @@
    1 ka-nâh-nipâhk	PV/ka+RdplS+nipâw+V+AI+Cnj+X
    1 ka-nâh-nayahtoyit	PV/ka+RdplS+nayahtowak+V+AI+Cnj+4Sg/Pl
    1 ka-nâh-naskwêwasimitin	ka-nâh-naskwêwasimitin+?
-   1 ka-nâcipahiwêyahk	PV/ka+nâcipahiwêw+V+AI+Cnj+12Pl
+   1 ka-nâcipahiwêyahk	PV/ka+nâcipahiwêw+V+AI+Cnj+21Pl
    1 ka-nâcinêhikêt	PV/ka+nâcinêhikêw+V+AI+Cnj+3Sg
    1 ka-nitâ-~	ka-nitâ-~+?
    1 ka-nitotamawâcik	PV/ka+nitotamawêw+V+TA+Cnj+3Pl+4Sg/PlO
@@ -31200,9 +31200,9 @@
    1 ka-nitohtâkwak	PV/ka+nitohtawêw+V+TA+Ind+4Sg/Pl+3PlO
    1 ka-nitohtâkowisinânaw	ka-nitohtâkowisinânaw+?
    1 ka-nitohtâkot	PV/ka+nitohtawêw+V+TA+Cnj+4Sg/Pl+3SgO
-   1 ka-nitohtamahk	PV/ka+nitohtam+V+TI+Cnj+12Pl
+   1 ka-nitohtamahk	PV/ka+nitohtam+V+TI+Cnj+21Pl
    1 ka-nitohtahk	PV/ka+nitohtam+V+TI+Cnj+3Sg
-   1 ka-nitawêyihtamahk	PV/ka+nitawêyihtam+V+TI+Cnj+12Pl
+   1 ka-nitawêyihtamahk	PV/ka+nitawêyihtam+V+TI+Cnj+21Pl
    1 ka-nitawâpênikânaw	ka-nitawâpênikânaw+?
    1 ka-nitawâpamâwak	PV/ka+nitawâpamêw+V+TA+Ind+X+3PlO
    1 ka-nitawâpamânaw	ka-nitawâpamânaw+?
@@ -31216,19 +31216,19 @@
    1 ka-nitawi-pêhtamâhk	PV/ka+PV/nitawi+pêhtam+V+TI+Cnj+1Pl
    1 ka-nitawi-pâhpinaw	ka-nitawi-pâhpinaw+?
    1 ka-nitawi-pakitinâw	PV/ka+PV/nitawi+pakitinêw+V+TA+Ind+X+3SgO
-   1 ka-nitawi-ocihkwanapiyahk	PV/ka+PV/nitawi+ocihkwanapiw+V+AI+Cnj+12Pl
+   1 ka-nitawi-ocihkwanapiyahk	PV/ka+PV/nitawi+ocihkwanapiw+V+AI+Cnj+21Pl
    1 ka-nitawi-nêpêwisîstahk	PV/ka+PV/nitawi+nêpêwisîstam+V+TI+Cnj+3Sg
    1 ka-nitawi-nitohtawak	PV/ka+PV/nitawi+nitohtawêw+V+TA+Cnj+1Sg+3SgO
    1 ka-nitawi-nanâtawihat	PV/ka+PV/nitawi+nanâtawihêw+V+TA+Cnj+2Sg+3SgO
    1 ka-nitawi-mîcisonaw	ka-nitawi-mîcisonaw+?
-   1 ka-nitawi-mawimostawâyahk	PV/ka+PV/nitawi+mawimostawêw+V+TA+Cnj+12Pl+3SgO
+   1 ka-nitawi-mawimostawâyahk	PV/ka+PV/nitawi+mawimostawêw+V+TA+Cnj+21Pl+3SgO
    1 ka-nitawi-kâsîyâkanêyân	PV/ka+PV/nitawi+kâsîyâkanêw+V+AI+Cnj+1Sg
    1 ka-nitawi-kisêpêkinikêyâhk	ka-nitawi-kisêpêkinikêyâhk+?
    1 ka-nisitohtên	ka-nisitohtên+?
    1 ka-nisitohtâkawiyân	PV/ka+nisitohtawêw+V+TA+Cnj+X+1SgO
    1 ka-nisitohtamôhiht	PV/ka+nisitohtamôhêw+V+TA+Cnj+X+3SgO
    1 ka-nisitohtahk	PV/ka+nisitohtam+V+TI+Cnj+3Sg
-   1 ka-nisitawêyimâyahk	PV/ka+nisitawêyimêw+V+TA+Cnj+12Pl+3SgO
+   1 ka-nisitawêyimâyahk	PV/ka+nisitawêyimêw+V+TA+Cnj+21Pl+3SgO
    1 ka-nisitawêyimicik	PV/ka+nisitawêyimêw+V+TA+Cnj+3Pl+1SgO
    1 ka-nisitawinênânaw	ka-nisitawinênânaw+?
    1 ka-nisitawinamân	PV/ka+nisitawinam+V+TI+Cnj+1Sg
@@ -31250,13 +31250,13 @@
    1 ka-nimahotin	ka-nimahotin+?
    1 ka-nikamonânaw	ka-nikamonânaw+?
    1 ka-nikamohitinân	ka-nikamohitinân+?
-   1 ka-nihtâwikîstamahk	PV/ka+nihtâwikîstam+V+TI+Cnj+12Pl
+   1 ka-nihtâwikîstamahk	PV/ka+nihtâwikîstam+V+TI+Cnj+21Pl
    1 ka-nihtâwikiyit	PV/ka+nihtâwikiw+V+AI+Cnj+4Sg/Pl
    1 ka-nihtâ-nêhiyawêhk	PV/ka+PV/nihta+nêhiyawêw+V+AI+Cnj+X
    1 ka-nihtâ-nipahtân	ka-nihtâ-nipahtân+?
    1 ka-nayômitin	ka-nayômitin+?
    1 ka-nawasônahk	PV/ka+nawasônam+V+TI+Cnj+3Sg
-   1 ka-nawaswâtamahk	PV/ka+nawaswâtam+V+TI+Cnj+12Pl
+   1 ka-nawaswâtamahk	PV/ka+nawaswâtam+V+TI+Cnj+21Pl
    1 ka-naspitawâw	PV/ka+naspitawêw+V+TA+Ind+X+3SgO
    1 ka-naskwêwasimak	PV/ka+naskwêwasimêw+V+TA+Cnj+1Sg+3SgO
    1 ka-naskomoyân	PV/ka+naskomow+V+AI+Cnj+1Sg
@@ -31267,8 +31267,8 @@
    1 ka-nanâskotamêk	PV/ka+nanâskotam+V+TI+Cnj+2Pl
    1 ka-nanâskotamwâyahk	ka-nanâskotamwâyahk+?
    1 ka-nanâskomâyêk	PV/ka+nanâskomêw+V+TA+Cnj+2Pl+3SgO
-   1 ka-nanâskomâyahk	PV/ka+nanâskomêw+V+TA+Cnj+12Pl+3SgO
-   1 ka-nanâskomoyahk	PV/ka+nanâskomow+V+AI+Cnj+12Pl
+   1 ka-nanâskomâyahk	PV/ka+nanâskomêw+V+TA+Cnj+21Pl+3SgO
+   1 ka-nanâskomoyahk	PV/ka+nanâskomow+V+AI+Cnj+21Pl
    1 ka-nanâskomot	PV/ka+nanâskomow+V+AI+Cnj+3Sg
    1 ka-nanahihtâkot	PV/ka+nanahihtawêw+V+TA+Cnj+4Sg/Pl+3SgO
    1 ka-nakayâskawacik	PV/ka+nakayâskawêw+V+TA+Cnj+2Sg+3PlO
@@ -31299,7 +31299,7 @@
    1 ka-mîcisohk	PV/ka+mîcisow+V+AI+Cnj+X
    1 ka-mîcinâwâw	ka-mîcinâwâw+?
    1 ka-mîcimîhkahcikêsit	ka-mîcimîhkahcikêsit+?
-   1 ka-mêtawêyahk	PV/ka+mêtawêw+V+AI+Cnj+12Pl
+   1 ka-mêtawêyahk	PV/ka+mêtawêw+V+AI+Cnj+21Pl
    1 ka-mêstinikêcik	PV/ka+mêstinikêw+V+AI+Cnj+3Pl
    1 ka-mêskotinaman	PV/ka+mêskotinam+V+TI+Cnj+2Sg
    1 ka-mêscihitinâwâw	ka-mêscihitinâwâw+?
@@ -31307,13 +31307,13 @@
    1 ka-mâyitôtawâyâhk	ka-mâyitôtawâyâhk+?
    1 ka-mâyi-wîcêwakik	PV/ka+mâyi-wîcêwêw+V+TA+Cnj+1Sg+3PlO
    1 ka-mâyi-tôtâmiht	PV/ka+mâyi-tôtawêw+V+TA+Cnj+X+4Sg/PlO
-   1 ka-mâyi-tôtawâyahk	PV/ka+mâyi-tôtawêw+V+TA+Cnj+12Pl+3SgO
+   1 ka-mâyi-tôtawâyahk	PV/ka+mâyi-tôtawêw+V+TA+Cnj+21Pl+3SgO
    1 ka-mâwacihânaw	ka-mâwacihânaw+?
    1 ka-mâtow	PV/ka+mâtow+V+AI+Ind+3Sg
-   1 ka-mâmitonêyimâyahkok	PV/ka+mâmitonêyimêw+V+TA+Cnj+12Pl+3PlO
+   1 ka-mâmitonêyimâyahkok	PV/ka+mâmitonêyimêw+V+TA+Cnj+21Pl+3PlO
    1 ka-mâmitonêyimâcik	PV/ka+mâmitonêyimêw+V+TA+Cnj+3Pl+4Sg/PlO
    1 ka-mâmitonêyihtamwak	PV/ka+mâmitonêyihtam+V+TI+Ind+3Pl
-   1 ka-mâmiskôtamahk	PV/ka+mâmiskôtam+V+TI+Cnj+12Pl
+   1 ka-mâmiskôtamahk	PV/ka+mâmiskôtam+V+TI+Cnj+21Pl
    1 ka-mâmawôhkâkwak	ka-mâmawôhkâkwak+?
    1 ka-mâkohit	PV/ka+mâkohêw+V+TA+Cnj+3Sg+1SgO
    1 ka-mâhiskênânaw	ka-mâhiskênânaw+?
@@ -31322,20 +31322,20 @@
    1 ka-mâcînâwâw	ka-mâcînâwâw+?
    1 ka-mâcînânaw	ka-mâcînânaw+?
    1 ka-mâcîn	ka-mâcîn+?
-   1 ka-mâcihtâyahk	PV/ka+mâcihtâniwan+V+TI+Cnj+12Pl
+   1 ka-mâcihtâyahk	PV/ka+mâcihtâniwan+V+TI+Cnj+21Pl
    1 ka-mâcihtât	PV/ka+mâcihtâniwan+V+TI+Cnj+3Sg
    1 ka-mâci-kiskinohamâhcik	ka-mâci-kiskinohamâhcik+?
    1 ka-mâ-mitonêyimin	ka-mâ-mitonêyimin+?
    1 ka-mâ-miskên	ka-mâ-miskên+?
    1 ka-mwêsiskamâhtânaw	ka-mwêsiskamâhtânaw+?
-   1 ka-mowâyahk	PV/ka+mowêw+V+TA+Cnj+12Pl+3SgO
+   1 ka-mowâyahk	PV/ka+mowêw+V+TA+Cnj+21Pl+3SgO
    1 ka-mowânaw	ka-mowânaw+?
    1 ka-mowihcik	PV/ka+mowêw+V+TA+Cnj+X+3PlO
    1 ka-mosc-âsamik	ka-mosc-âsamik+?
    1 ka-mohyâpitasêkot	PV/ka+mohyâpitasêkow+V+AI+Cnj+3Sg
    1 ka-miyâyêkok	PV/ka+miyêw+V+TA+Cnj+2Pl+3PlO
    1 ka-miyâyêk	PV/ka+miyêw+V+TA+Cnj+2Pl+3SgO
-   1 ka-miyâyahk	PV/ka+miyêw+V+TA+Cnj+12Pl+3SgO
+   1 ka-miyâyahk	PV/ka+miyêw+V+TA+Cnj+21Pl+3SgO
    1 ka-miyâwâwak	ka-miyâwâwak+?
    1 ka-miyât	PV/ka+miyêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ka-miyânaw	ka-miyânaw+?
@@ -31374,7 +31374,7 @@
    1 ka-misi-wanâcihâw	ka-misi-wanâcihâw+?
    1 ka-misi-wanâcihât	ka-misi-wanâcihât+?
    1 ka-misi-wanâcihisk	ka-misi-wanâcihisk+?
-   1 ka-minihkwêyahk	PV/ka+minihkwêw+V+AI+Cnj+12Pl
+   1 ka-minihkwêyahk	PV/ka+minihkwêw+V+AI+Cnj+21Pl
    1 ka-minihkwânâwâw	ka-minihkwânâwâw+?
    1 ka-minahôstamâkot	PV/ka+minahôstamawêw+V+TA+Cnj+4Sg/Pl+3SgO
    1 ka-minahêw	PV/ka+minahêw+V+TA+Ind+3Sg+4Sg/PlO
@@ -31382,15 +31382,15 @@
    1 ka-minahoh	ka-minahoh+?
    1 ka-minahitinâwâw	ka-minahitinâwâw+?
    1 ka-mihtâtâw	PV/ka+mihtâtêw+V+TA+Ind+X+3SgO
-   1 ka-mihcêtiyahk	PV/ka+mihcêtiwak+V+AI+Cnj+12Pl
+   1 ka-mihcêtiyahk	PV/ka+mihcêtiwak+V+AI+Cnj+21Pl
    1 ka-mihcêtiwak	PV/ka+mihcêtiwak+V+AI+Ind+3Pl
-   1 ka-mawimoyahk	PV/ka+mawimow+V+AI+Cnj+12Pl
+   1 ka-mawimoyahk	PV/ka+mawimow+V+AI+Cnj+21Pl
    1 ka-mawimot	PV/ka+mawimow+V+AI+Cnj+3Sg
-   1 ka-mawimostamahk	PV/ka+mawimostam+V+TI+Cnj+12Pl
+   1 ka-mawimostamahk	PV/ka+mawimostam+V+TI+Cnj+21Pl
    1 ka-mawimoscikêyan	PV/ka+mawimoscikêw+V+AI+Cnj+2Sg
-   1 ka-mawimoscikêyahk	PV/ka+mawimoscikêw+V+AI+Cnj+12Pl
+   1 ka-mawimoscikêyahk	PV/ka+mawimoscikêw+V+AI+Cnj+21Pl
    1 ka-matwê-kaskêyihtahkik	PV/ka+PV/matwe+kaskêyihtam+V+TI+Cnj+3Pl
-   1 ka-matotisiyahk	PV/ka+matotisiw+V+AI+Cnj+12Pl
+   1 ka-matotisiyahk	PV/ka+matotisiw+V+AI+Cnj+21Pl
    1 ka-matotisihk	PV/ka+matotisiw+V+AI+Cnj+X
    1 ka-maskawisît	PV/ka+maskawisîw+V+AI+Cnj+3Sg
    1 ka-maskamiht	PV/ka+maskamêw+V+TA+Cnj+X+3SgO
@@ -31405,10 +31405,10 @@
    1 ka-man	ka-man+?
    1 ka-mamisîtotamân	PV/ka+mamisîtotam+V+TI+Cnj+1Sg
    1 ka-macipayik	PV/ka+macipayin+V+II+Cnj+3Sg
-   1 ka-kîwêtotawâyahk	PV/ka+kîwêtotawêw+V+TA+Cnj+12Pl+3SgO
+   1 ka-kîwêtotawâyahk	PV/ka+kîwêtotawêw+V+TA+Cnj+21Pl+3SgO
    1 ka-kîwêtotawâw	PV/ka+kîwêtotawêw+V+TA+Ind+X+3SgO
    1 ka-kîwêtotawât	PV/ka+kîwêtotawêw+V+TA+Cnj+3Sg+4Sg/PlO
-   1 ka-kîwêtotamahk	PV/ka+kîwêtotam+V+TI+Cnj+12Pl
+   1 ka-kîwêtotamahk	PV/ka+kîwêtotam+V+TI+Cnj+21Pl
    1 ka-kîwêtotahkik	PV/ka+kîwêtotam+V+TI+Cnj+3Pl
    1 ka-kîwêtahitinâwâw	ka-kîwêtahitinâwâw+?
    1 ka-kîwêhtatâyân	PV/ka+kîwêhtatâw+V+TI+Cnj+1Sg
@@ -31419,7 +31419,7 @@
    1 ka-kîsîhtânânaw	ka-kîsîhtânânaw+?
    1 ka-kîsponânaw	ka-kîsponânaw+?
    1 ka-kîspinatamân	PV/ka+kîspinatam+V+TI+Cnj+1Sg
-   1 ka-kîspinatamahk	PV/ka+kîspinatam+V+TI+Cnj+12Pl
+   1 ka-kîspinatamahk	PV/ka+kîspinatam+V+TI+Cnj+21Pl
    1 ka-kîsowâspisowak	PV/ka+kîsowâspisow+V+AI+Ind+3Pl
    1 ka-kîsowihkasoyâhk	PV/ka+kîsowihkaswêw+V+TA+Cnj+2Pl+1PlO
    1 ka-kîsowihkasocik	PV/ka+kîsowihkaswêw+V+TA+Cnj+3Pl+1SgO
@@ -31435,7 +31435,7 @@
    1 ka-kî-âhkwatimâwak	PV/ka-ki+âhkwatimêw+V+TA+Ind+X+3PlO
    1 ka-kî-âhkwatihtâcik	PV/ka-ki+âhkwatihtâw+V+TI+Cnj+3Pl
    1 ka-kî-âhkamêyimocik	PV/ka-ki+âhkamêyimow+V+AI+Cnj+3Pl
-   1 ka-kî-âcimoyahk	PV/ka-ki+âcimow+V+AI+Cnj+12Pl
+   1 ka-kî-âcimoyahk	PV/ka-ki+âcimow+V+AI+Cnj+21Pl
    1 ka-kî-âcimostawinân	ka-kî-âcimostawinân+?
    1 ka-kî-âcimonânaw	ka-kî-âcimonânaw+?
    1 ka-kî-âcimak	PV/ka-ki+âcimêw+V+TA+Cnj+1Sg+3SgO
@@ -31459,7 +31459,7 @@
    1 ka-kî-wanihitin	ka-kî-wanihitin+?
    1 ka-kî-tôtâtin	ka-kî-tôtâtin+?
    1 ka-kî-tôtamâhk	PV/ka-ki+tôtam+V+TI+Cnj+1Pl
-   1 ka-kî-tôtamahk	PV/ka-ki+tôtam+V+TI+Cnj+12Pl
+   1 ka-kî-tôtamahk	PV/ka-ki+tôtam+V+TI+Cnj+21Pl
    1 ka-kî-tâpwêwakêyihtamihk	PV/ka-ki+tâpwêwakêyihtam+V+TI+Cnj+X+3Sg
    1 ka-kî-tâhkôtamân	PV/ka-ki+tâhkôtam+V+TI+Cnj+1Sg
    1 ka-kî-tipahikâkân	ka-kî-tipahikâkân+?
@@ -31476,7 +31476,7 @@
    1 ka-kî-pîkiskwâtitinâwâw	ka-kî-pîkiskwâtitinâwâw+?
    1 ka-kî-pîhtwâhâyêk	PV/ka-ki+pîhtwâhêw+V+TA+Cnj+2Pl+3SgO
    1 ka-kî-pê-âpacihtâhk	PV/ka-ki+PV/pe+âpacihtâw+V+TI+Cnj+X
-   1 ka-kî-pê-pimitisahamahk	PV/ka-ki+PV/pe+pimitisaham+V+TI+Cnj+12Pl
+   1 ka-kî-pê-pimitisahamahk	PV/ka-ki+PV/pe+pimitisaham+V+TI+Cnj+21Pl
    1 ka-kî-pê-nâtên	ka-kî-pê-nâtên+?
    1 ka-kî-pê-naskwêwasimak	PV/ka-ki+PV/pe+naskwêwasimêw+V+TA+Cnj+1Sg+3SgO
    1 ka-kî-pê-kîwânaw	ka-kî-pê-kîwânaw+?
@@ -31502,7 +31502,7 @@
    1 ka-kî-nâtamâkon	ka-kî-nâtamâkon+?
    1 ka-kî-nâtamâk	PV/ka-ki+nâtamawêw+V+TA+Ind+4Sg/Pl+3SgO
    1 ka-kî-nitawêyihcikâtêk	PV/ka-ki+nitawêyihcikâtêw+V+II+Cnj+3Sg
-   1 ka-kî-nipahtamâsoyahk	PV/ka-ki+nipahtamâsow+V+AI+Cnj+12Pl
+   1 ka-kî-nipahtamâsoyahk	PV/ka-ki+nipahtamâsow+V+AI+Cnj+21Pl
    1 ka-kî-nipahitinân	ka-kî-nipahitinân+?
    1 ka-kî-nipahin	ka-kî-nipahin+?
    1 ka-kî-nipahikoh	ka-kî-nipahikoh+?
@@ -31563,7 +31563,7 @@
    1 ka-kî-atâwâkêt	PV/ka-ki+atâwâkêw+V+AI+Cnj+3Sg
    1 ka-kî-atimikawinânaw	ka-kî-atimikawinânaw+?
    1 ka-kî-astêk	PV/ka-ki+astêw+V+II+Cnj+3Sg
-   1 ka-kî-aspitonâmoyahk	PV/ka-ki+aspitonâmow+V+AI+Cnj+12Pl
+   1 ka-kî-aspitonâmoyahk	PV/ka-ki+aspitonâmow+V+AI+Cnj+21Pl
    1 ka-kî-asamitin	ka-kî-asamitin+?
    1 ka-kî-asaminân	ka-kî-asaminân+?
    1 ka-kî-anima-wîcêhtamahk	ka-kî-anima-wîcêhtamahk+?
@@ -31574,18 +31574,18 @@
    1 ka-kâtamâtoyahk	ka-kâtamâtoyahk+?
    1 ka-kâsôhtâkwak	ka-kâsôhtâkwak+?
    1 ka-kâsîyâkanêyân	PV/ka+kâsîyâkanêw+V+AI+Cnj+1Sg
-   1 ka-kâsînamâtoyahk	PV/ka+kâsînamâtowak+V+AI+Cnj+12Pl
+   1 ka-kâsînamâtoyahk	PV/ka+kâsînamâtowak+V+AI+Cnj+21Pl
    1 ka-kâsînamawât	PV/ka+kâsînamawêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ka-kâsîhên	ka-kâsîhên+?
    1 ka-kâsispôt	PV/ka+kâsispôw+V+AI+Cnj+3Sg
    1 ka-kâsispohtêmakahk	ka-kâsispohtêmakahk+?
    1 ka-kâmwâtapiyiwa	PV/ka+kâmwâtapiw+V+AI+Ind+4Sg/Pl
    1 ka-kâkîsimwâkêt	PV/ka+kâkîsimwâkêw+V+AI+Cnj+3Sg
-   1 ka-kâkîsimoyahk	PV/ka+kâkîsimow+V+AI+Cnj+12Pl
+   1 ka-kâkîsimoyahk	PV/ka+kâkîsimow+V+AI+Cnj+21Pl
    1 ka-kâkîsimototâht	PV/ka+kâkîsimototawêw+V+TA+Cnj+X+3SgO
    1 ka-kâkîsimototamihk	PV/ka+kâkîsimototam+V+TI+Cnj+X+3Sg
    1 ka-kâhtitinahk	ka-kâhtitinahk+?
-   1 ka-kâhkwêyihtoyahk	PV/ka+kâhkwêyihtowak+V+AI+Cnj+12Pl
+   1 ka-kâhkwêyihtoyahk	PV/ka+kâhkwêyihtowak+V+AI+Cnj+21Pl
    1 ka-kâhcitinâw	PV/ka+kâhcitinêw+V+TA+Ind+X+3SgO
    1 ka-kâhcitinamihk	PV/ka+kâhcitinam+V+TI+Cnj+X+3Sg
    1 ka-kâhcitinahkik	PV/ka+kâhcitinam+V+TI+Cnj+3Pl
@@ -31626,17 +31626,17 @@
    1 ka-kitimâkêyimikot	PV/ka+kitimâkêyimêw+V+TA+Cnj+4Sg/Pl+3SgO
    1 ka-kitimâkêyimiht	PV/ka+kitimâkêyimêw+V+TA+Cnj+X+3SgO
    1 ka-kitimâkêyimacik	PV/ka+kitimâkêyimêw+V+TA+Cnj+2Sg+3PlO
-   1 ka-kitimâkêyihtoyahk	PV/ka+kitimâkêyihtowak+V+AI+Cnj+12Pl
+   1 ka-kitimâkêyihtoyahk	PV/ka+kitimâkêyihtowak+V+AI+Cnj+21Pl
    1 ka-kitimâkisiyân	PV/ka+kitimâkisiw+V+AI+Cnj+1Sg
    1 ka-kitimâkisit	PV/ka+kitimâkisiw+V+AI+Cnj+3Sg
-   1 ka-kitimâkinâkoyahk	PV/ka+kitimâkinawêw+V+TA+Cnj+3Sg+12PlO
+   1 ka-kitimâkinâkoyahk	PV/ka+kitimâkinawêw+V+TA+Cnj+3Sg+21PlO
    1 ka-kitimâkinâkonaw	ka-kitimâkinâkonaw+?
    1 ka-kitimâkinawâyahkik	ka-kitimâkinawâyahkik+?
-   1 ka-kitimâkihtâkoyahk	PV/ka+kitimâkihtawêw+V+TA+Cnj+3Sg+12PlO
+   1 ka-kitimâkihtâkoyahk	PV/ka+kitimâkihtawêw+V+TA+Cnj+3Sg+21PlO
    1 ka-kitimâkihtâkonaw	ka-kitimâkihtâkonaw+?
    1 ka-kitimahât	PV/ka+kitimahêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ka-kisîwêyan	PV/ka+kisîwêw+V+AI+Cnj+2Sg
-   1 ka-kisîwêhkahtawâyahk	PV/ka+kisîwêhkahtawêw+V+TA+Cnj+12Pl+3SgO
+   1 ka-kisîwêhkahtawâyahk	PV/ka+kisîwêhkahtawêw+V+TA+Cnj+21Pl+3SgO
    1 ka-kisîwêhkahtawat	PV/ka+kisîwêhkahtawêw+V+TA+Cnj+2Sg+3SgO
    1 ka-kisîstawâyahkik	ka-kisîstawâyahkik+?
    1 ka-kisîstawât	PV/ka+kisîstawêw+V+TA+Cnj+3Sg+4Sg/PlO
@@ -31671,7 +31671,7 @@
    1 ka-kipwaskinêyik	PV/ka+kipwaskinêw+V+II+Cnj+4Sg
    1 ka-kipahon	RdplW+kipahwêw+V+TA+Imp+Imm+2Sg+1SgO
    1 ka-kimotamâkawinâwâw	ka-kimotamâkawinâwâw+?
-   1 ka-kimotamawâyahk	PV/ka+kimotamawêw+V+TA+Cnj+12Pl+3SgO
+   1 ka-kimotamawâyahk	PV/ka+kimotamawêw+V+TA+Cnj+21Pl+3SgO
    1 ka-kimotamawât	PV/ka+kimotamawêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ka-kikiskamôhâwâw	ka-kikiskamôhâwâw+?
    1 ka-kikiskamân	PV/ka+kikiskam+V+TI+Cnj+1Sg
@@ -31697,10 +31697,10 @@
    1 ka-kaskikwâtisoyâhk	PV/ka+kaskikwâtisow+V+AI+Cnj+1Pl
    1 ka-kaskikwâtisow	PV/ka+kaskikwâtisow+V+AI+Ind+3Sg
    1 ka-kaskikwâsôw	ka-kaskikwâsôw+?
-   1 ka-kaskikwâsoyahk	PV/ka+kaskikwâsow+V+AI+Cnj+12Pl
+   1 ka-kaskikwâsoyahk	PV/ka+kaskikwâsow+V+AI+Cnj+21Pl
    1 ka-kaskikwâsow	PV/ka+kaskikwâsow+V+AI+Ind+3Sg
    1 ka-kaskihât	PV/ka+kaskihêw+V+TA+Cnj+3Sg+4Sg/PlO
-   1 ka-kaskihtâyahk	PV/ka+kaskihtâw+V+TI+Cnj+12Pl
+   1 ka-kaskihtâyahk	PV/ka+kaskihtâw+V+TI+Cnj+21Pl
    1 ka-kaskihtâw	PV/ka+kaskihtâw+V+TI+Ind+3Sg
    1 ka-kaskihtânâwâw	ka-kaskihtânâwâw+?
    1 ka-kaskihtânânaw	ka-kaskihtânânaw+?
@@ -31711,7 +31711,7 @@
    1 ka-kanâtahki	PV/ka+kanâtan+V+II+Cnj+3Pl
    1 ka-kanâtahk	PV/ka+kanâtan+V+II+Cnj+3Sg
    1 ka-kanâcihtâyân	PV/ka+kanâcihtâw+V+TI+Cnj+1Sg
-   1 ka-kanawêyimâwasoyahk	PV/ka+kanawêyimâwasow+V+AI+Cnj+12Pl
+   1 ka-kanawêyimâwasoyahk	PV/ka+kanawêyimâwasow+V+AI+Cnj+21Pl
    1 ka-kanawêyihtamâsk	PV/ka+kanawêyihtamawêw+V+TA+Cnj+3Sg+2SgO
    1 ka-kanawêyihtaman	PV/ka+kanawêyihtam+V+TI+Cnj+2Sg
    1 ka-kanawâpamêw	PV/ka+kanawâpamêw+V+TA+Ind+3Sg+4Sg/PlO
@@ -31723,7 +31723,7 @@
    1 ka-kakwêcimit	PV/ka+kakwêcimêw+V+TA+Cnj+3Sg+1SgO
    1 ka-kakwêcimik	PV/ka+kakwêcimêw+V+TA+Ind+4Sg/Pl+3SgO
    1 ka-kakwêcimihcik	PV/ka+kakwêcimêw+V+TA+Cnj+X+3PlO
-   1 ka-kakwêcihkêmoyahk	PV/ka+kakwêcihkêmow+V+AI+Cnj+12Pl
+   1 ka-kakwêcihkêmoyahk	PV/ka+kakwêcihkêmow+V+AI+Cnj+21Pl
    1 ka-kakwê-êkotê-itohtahâyahk	ka-kakwê-êkotê-itohtahâyahk+?
    1 ka-kakwê-âsô-kiskinawâpiwak	ka-kakwê-âsô-kiskinawâpiwak+?
    1 ka-kakwê-âstê-kîsikâk	PV/ka+PV/kakwe+âstê-kîsikâw+V+II+Cnj+3Sg
@@ -31732,7 +31732,7 @@
    1 ka-kakwê-wâpahtamân	PV/ka+PV/kakwe+wâpahtam+V+TI+Cnj+1Sg
    1 ka-kakwê-pêhtâkawiyâhk	PV/ka+PV/kakwe+pêhtawêw+V+TA+Cnj+X+1PlO
    1 ka-kakwê-pimâtisicik	PV/ka+PV/kakwe+pimâtisiw+V+AI+Cnj+3Pl
-   1 ka-kakwê-pimâcihoyahk	PV/ka+PV/kakwe+pimâcihow+V+AI+Cnj+12Pl
+   1 ka-kakwê-pimâcihoyahk	PV/ka+PV/kakwe+pimâcihow+V+AI+Cnj+21Pl
    1 ka-kakwê-pimâcihat	PV/ka+PV/kakwe+pimâcihêw+V+TA+Cnj+2Sg+3SgO
    1 ka-kakwê-pimohtêmakahk	PV/ka+PV/kakwe+pimohtêmakan+V+II+Cnj+3Sg
    1 ka-kakwê-pimipayik	PV/ka+PV/kakwe+pimipayiw+V+II+Cnj+3Sg
@@ -31753,7 +31753,7 @@
    1 ka-kakwê-kiskinohamawâyêk	ka-kakwê-kiskinohamawâyêk+?
    1 ka-kakwê-kanâcihoyân	PV/ka+PV/kakwe+kanâcihow+V+AI+Cnj+1Sg
    1 ka-kakwê-kanawêyihtamêk	PV/ka+PV/kakwe+kanawêyihtam+V+TI+Cnj+2Pl
-   1 ka-kakwê-ayâyahk	PV/ka+PV/kakwe+ayâw+V+AI+Cnj+12Pl
+   1 ka-kakwê-ayâyahk	PV/ka+PV/kakwe+ayâw+V+AI+Cnj+21Pl
    1 ka-kakwê-atamihakik	PV/ka+PV/kakwe+atamihêw+V+TA+Cnj+1Sg+3PlO
    1 ka-kakwâtakihât	PV/ka+kakwâtakihêw+V+TA+Cnj+3Sg+4Sg/PlO
    1 ka-kakwâtakihtâyit	PV/ka+kakwâtakihtâw+V+TI+Cnj+4Sg/Pl
@@ -32407,8 +32407,8 @@
    1 itêyimâw	itêyimêw+V+TA+Ind+X+3SgO
    1 itêyimin	itêyimêw+V+TA+Imp+Imm+2Sg+1SgO
    1 itêyimikwak	itêyimêw+V+TA+Ind+4Sg/Pl+3PlO
-   1 itêyimikoyahko	itêyimêw+V+TA+Fut+Cond+3Sg+12PlO
-   1 itêyimikowisiyahki	itêyimikowisiw+V+AI+Fut+Cond+12Pl
+   1 itêyimikoyahko	itêyimêw+V+TA+Fut+Cond+3Sg+21PlO
+   1 itêyimikowisiyahki	itêyimikowisiw+V+AI+Fut+Cond+21Pl
    1 itêyihtâkwahk	itêyihtâkwahk+?
    1 itêyihtâkosiw	itêyihtâkosiw+V+AI+Ind+3Sg
    1 itêyihtamiyiwa	itêyihtam+V+TI+Ind+4Sg/Pl
@@ -32421,7 +32421,7 @@
    1 itâpiyiwa	itâpiw+V+AI+Ind+4Sg/Pl
    1 itâpisin	itâpisin+V+AI+Ind+3Sg
    1 itâmâskîhk	itâmâskîhk+?
-   1 itâmoyahko	itâmow+V+AI+Fut+Cond+12Pl
+   1 itâmoyahko	itâmow+V+AI+Fut+Cond+21Pl
    1 itâmowak	itâmow+V+AI+Ind+3Pl
    1 itâmow	itâmow+V+AI+Ind+3Sg
    1 itâmo	itâmow+V+AI+Imp+Imm+2Sg
@@ -32445,7 +32445,7 @@
    1 itw	itw+?
    1 itow[a	itow[a+?
    1 itohtêyâhk	itohtêyâhk+?
-   1 itohtêyahko	itohtêw+V+AI+Fut+Cond+12Pl
+   1 itohtêyahko	itohtêw+V+AI+Fut+Cond+21Pl
    1 itohtêyahk	itohtêyahk+?
    1 itohtâtân	itohtâtân+?
    1 itohtatâw	itohtatâw+V+TI+Ind+3Sg
@@ -33000,7 +33000,7 @@
    1 ay-âtotahki	RdplW+âtotam+V+TI+Fut+Cond+3Sg
    1 ay-âtawêyimêw	RdplW+âtawêyimêw+V+TA+Ind+3Sg+4Sg/PlO
    1 ay-âskaw[i	ay-âskaw[i+?
-   1 ay-âsawi-kakêskimâyahkwâwi	RdplW+PV/asawi+kakêskimêw+V+TA+Fut+Cond+12Pl+3PlO
+   1 ay-âsawi-kakêskimâyahkwâwi	RdplW+PV/asawi+kakêskimêw+V+TA+Fut+Cond+21Pl+3PlO
    1 ay-âpasâpiw	RdplW+âpasâpiw+V+AI+Ind+3Sg
    1 ay-âkwaskiskâk	RdplW+âkwaskiskawêw+V+TA+Ind+4Sg/Pl+3SgO
    1 ay-âcimôwak	ay-âcimôwak+?

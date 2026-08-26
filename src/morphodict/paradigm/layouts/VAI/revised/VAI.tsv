@@ -15,7 +15,7 @@ _ 1Sg	${lemma}+V+AI+Ind+1Sg	PV/ê+${lemma}+V+AI+Cnj+1Sg	PV/kî+${lemma}+V+AI+Ind
 _ 2Sg	${lemma}+V+AI+Ind+2Sg	PV/ê+${lemma}+V+AI+Cnj+2Sg	PV/kî+${lemma}+V+AI+Ind+2Sg	PV/ê+PV/kî+${lemma}+V+AI+Cnj+2Sg	PV/wî+${lemma}+V+AI+Ind+2Sg	PV/ê+PV/wî+${lemma}+V+AI+Cnj+2Sg	PV/ka+${lemma}+V+AI+Ind+2Sg	PV/ka+${lemma}+V+AI+Cnj+2Sg	PV/ta+${lemma}+V+AI+Cnj+2Sg	${lemma}+V+AI+Fut+Cond+2Sg
 _ 3Sg	${lemma}+V+AI+Ind+3Sg	PV/ê+${lemma}+V+AI+Cnj+3Sg	PV/kî+${lemma}+V+AI+Ind+3Sg	PV/ê+PV/kî+${lemma}+V+AI+Cnj+3Sg	PV/wî+${lemma}+V+AI+Ind+3Sg	PV/ê+PV/wî+${lemma}+V+AI+Cnj+3Sg	PV/ka+${lemma}+V+AI+Ind+3Sg	PV/ka+${lemma}+V+AI+Cnj+3Sg	PV/ta+${lemma}+V+AI+Cnj+3Sg	${lemma}+V+AI+Fut+Cond+3Sg
 _ 1Pl	${lemma}+V+AI+Ind+1Pl	PV/ê+${lemma}+V+AI+Cnj+1Pl	PV/kî+${lemma}+V+AI+Ind+1Pl	PV/ê+PV/kî+${lemma}+V+AI+Cnj+1Pl	PV/wî+${lemma}+V+AI+Ind+1Pl	PV/ê+PV/wî+${lemma}+V+AI+Cnj+1Pl	PV/ka+${lemma}+V+AI+Ind+1Pl	PV/ka+${lemma}+V+AI+Cnj+1Pl	PV/ta+${lemma}+V+AI+Cnj+1Pl	${lemma}+V+AI+Fut+Cond+1Pl
-_ 12Pl	${lemma}+V+AI+Ind+12Pl	PV/ê+${lemma}+V+AI+Cnj+12Pl	PV/kî+${lemma}+V+AI+Ind+12Pl	PV/ê+PV/kî+${lemma}+V+AI+Cnj+12Pl	PV/wî+${lemma}+V+AI+Ind+12Pl	PV/ê+PV/wî+${lemma}+V+AI+Cnj+12Pl	PV/ka+${lemma}+V+AI+Ind+12Pl	PV/ka+${lemma}+V+AI+Cnj+12Pl	PV/ta+${lemma}+V+AI+Cnj+12Pl	${lemma}+V+AI+Fut+Cond+12Pl
+_ 21Pl	${lemma}+V+AI+Ind+21Pl	PV/ê+${lemma}+V+AI+Cnj+21Pl	PV/kî+${lemma}+V+AI+Ind+21Pl	PV/ê+PV/kî+${lemma}+V+AI+Cnj+21Pl	PV/wî+${lemma}+V+AI+Ind+21Pl	PV/ê+PV/wî+${lemma}+V+AI+Cnj+21Pl	PV/ka+${lemma}+V+AI+Ind+21Pl	PV/ka+${lemma}+V+AI+Cnj+21Pl	PV/ta+${lemma}+V+AI+Cnj+21Pl	${lemma}+V+AI+Fut+Cond+21Pl
 _ 2Pl	${lemma}+V+AI+Ind+2Pl	PV/ê+${lemma}+V+AI+Cnj+2Pl	PV/kî+${lemma}+V+AI+Ind+2Pl	PV/ê+PV/kî+${lemma}+V+AI+Cnj+2Pl	PV/wî+${lemma}+V+AI+Ind+2Pl	PV/ê+PV/wî+${lemma}+V+AI+Cnj+2Pl	PV/ka+${lemma}+V+AI+Ind+2Pl	PV/ka+${lemma}+V+AI+Cnj+2Pl	PV/ta+${lemma}+V+AI+Cnj+2Pl	${lemma}+V+AI+Fut+Cond+2Pl
 _ 3Pl	${lemma}+V+AI+Ind+3Pl	PV/ê+${lemma}+V+AI+Cnj+3Pl	PV/kî+${lemma}+V+AI+Ind+3Pl	PV/ê+PV/kî+${lemma}+V+AI+Cnj+3Pl	PV/wî+${lemma}+V+AI+Ind+3Pl	PV/ê+PV/wî+${lemma}+V+AI+Cnj+3Pl	PV/ka+${lemma}+V+AI+Ind+3Pl	PV/ka+${lemma}+V+AI+Cnj+3Pl	PV/ta+${lemma}+V+AI+Cnj+3Pl	${lemma}+V+AI+Fut+Cond+3Pl
 _ 4Sg/Pl	${lemma}+V+AI+Ind+4Sg/Pl	PV/ê+${lemma}+V+AI+Cnj+4Sg/Pl	PV/kî+${lemma}+V+AI+Ind+4Sg/Pl	PV/ê+PV/kî+${lemma}+V+AI+Cnj+4Sg/Pl	PV/wî+${lemma}+V+AI+Ind+4Sg/Pl	PV/ê+PV/wî+${lemma}+V+AI+Cnj+4Sg/Pl	PV/ka+${lemma}+V+AI+Ind+4Sg/Pl	PV/ka+${lemma}+V+AI+Cnj+4Sg/Pl	PV/ta+${lemma}+V+AI+Cnj+4Sg/Pl	${lemma}+V+AI+Fut+Cond+4Sg/Pl
@@ -23,5 +23,5 @@ _ X	${lemma}+V+AI+Ind+X	PV/ê+${lemma}+V+AI+Cnj+X	PV/kî+${lemma}+V+AI+Ind+X	PV/
 										
 	* Imp * Imm	* Imp * Del								
 _ 2Sg	${lemma}+V+AI+Imp+Imm+2Sg	${lemma}+V+AI+Imp+Del+2Sg								
-_ 12Pl	${lemma}+V+AI+Imp+Imm+12Pl	${lemma}+V+AI+Imp+Del+12Pl								
+_ 21Pl	${lemma}+V+AI+Imp+Imm+21Pl	${lemma}+V+AI+Imp+Del+21Pl								
 _ 2Pl	${lemma}+V+AI+Imp+Imm+2Pl	${lemma}+V+AI+Imp+Del+2Pl								

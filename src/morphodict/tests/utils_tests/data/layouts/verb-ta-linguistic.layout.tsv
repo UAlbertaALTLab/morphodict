@@ -14,37 +14,37 @@
 "1s → 3s"	${lemma}+V+TA+Ind+1Sg+3SgO	PV/ê+${lemma}+V+TA+Cnj+1Sg+3SgO
 "2s → 3s"	${lemma}+V+TA+Ind+2Sg+3SgO	PV/ê+${lemma}+V+TA+Cnj+2Sg+3SgO
 "1p → 3s"	${lemma}+V+TA+Ind+1Pl+3SgO	PV/ê+${lemma}+V+TA+Cnj+1Pl+3SgO
-"21 → 3s"	${lemma}+V+TA+Ind+12Pl+3SgO	PV/ê+${lemma}+V+TA+Cnj+12Pl+3SgO
+"21 → 3s"	${lemma}+V+TA+Ind+21Pl+3SgO	PV/ê+${lemma}+V+TA+Cnj+21Pl+3SgO
 "2p → 3s"	${lemma}+V+TA+Ind+2Pl+3SgO	PV/ê+${lemma}+V+TA+Cnj+2Pl+3SgO
 		
 "1s → 3p"	${lemma}+V+TA+Ind+1Sg+3PlO	PV/ê+${lemma}+V+TA+Cnj+1Sg+3PlO
 "2s → 3p"	${lemma}+V+TA+Ind+2Sg+3PlO	PV/ê+${lemma}+V+TA+Cnj+2Sg+3PlO
 "1p → 3p"	${lemma}+V+TA+Ind+1Pl+3PlO	PV/ê+${lemma}+V+TA+Cnj+1Pl+3PlO
-"21 → 3p"	${lemma}+V+TA+Ind+12Pl+3PlO	PV/ê+${lemma}+V+TA+Cnj+12Pl+3PlO
+"21 → 3p"	${lemma}+V+TA+Ind+21Pl+3PlO	PV/ê+${lemma}+V+TA+Cnj+21Pl+3PlO
 "2p → 3p"	${lemma}+V+TA+Ind+2Pl+3PlO	PV/ê+${lemma}+V+TA+Cnj+2Pl+3PlO
 		
 "1s → 4"	${lemma}+V+TA+Ind+1Sg+4Sg/PlO	PV/ê+${lemma}+V+TA+Cnj+1Sg+4Sg/PlO
 "2s → 4"	${lemma}+V+TA+Ind+2Sg+4Sg/PlO	PV/ê+${lemma}+V+TA+Cnj+2Sg+4Sg/PlO
 "1p → 4"	${lemma}+V+TA+Ind+1Pl+4Sg/PlO	PV/ê+${lemma}+V+TA+Cnj+1Pl+4Sg/PlO
-"21 → 4"	${lemma}+V+TA+Ind+12Pl+4Sg/PlO	PV/ê+${lemma}+V+TA+Cnj+12Pl+4Sg/PlO
+"21 → 4"	${lemma}+V+TA+Ind+21Pl+4Sg/PlO	PV/ê+${lemma}+V+TA+Cnj+21Pl+4Sg/PlO
 "2p → 4"	${lemma}+V+TA+Ind+2Pl+4Sg/PlO	PV/ê+${lemma}+V+TA+Cnj+2Pl+4Sg/PlO
 		
 "3s → 1s"	${lemma}+V+TA+Ind+3Sg+1SgO	PV/ê+${lemma}+V+TA+Cnj+3Sg+1SgO
 "3s → 2s"	${lemma}+V+TA+Ind+3Sg+2SgO	PV/ê+${lemma}+V+TA+Cnj+3Sg+2SgO
 "3s → 1p"	${lemma}+V+TA+Ind+3Sg+1PlO	PV/ê+${lemma}+V+TA+Cnj+3Sg+1PlO
-"3s → 21"	${lemma}+V+TA+Ind+3Sg+12PlO	PV/ê+${lemma}+V+TA+Cnj+3Sg+12PlO
+"3s → 21"	${lemma}+V+TA+Ind+3Sg+21PlO	PV/ê+${lemma}+V+TA+Cnj+3Sg+21PlO
 "3s → 2p"	${lemma}+V+TA+Ind+3Sg+2PlO	PV/ê+${lemma}+V+TA+Cnj+3Sg+2PlO
 		
 "3p → 1s"	${lemma}+V+TA+Ind+3Pl+1SgO	PV/ê+${lemma}+V+TA+Cnj+3Pl+1SgO
 "3p → 2s"	${lemma}+V+TA+Ind+3Pl+2SgO	PV/ê+${lemma}+V+TA+Cnj+3Pl+2SgO
 "3p → 1p"	${lemma}+V+TA+Ind+3Pl+1PlO	PV/ê+${lemma}+V+TA+Cnj+3Pl+1PlO
-"3p → 21"	${lemma}+V+TA+Ind+3Pl+12PlO	PV/ê+${lemma}+V+TA+Cnj+3Pl+12PlO
+"3p → 21"	${lemma}+V+TA+Ind+3Pl+21PlO	PV/ê+${lemma}+V+TA+Cnj+3Pl+21PlO
 "3s → 2p"	${lemma}+V+TA+Ind+3Pl+2PlO	PV/ê+${lemma}+V+TA+Cnj+3Pl+2PlO
 		
 "4 → 1s"	${lemma}+V+TA+Ind+4Sg/Pl+1SgO	PV/ê+${lemma}+V+TA+Cnj+4Sg/Pl+1SgO
 "4 → 2s"	${lemma}+V+TA+Ind+4Sg/Pl+2SgO	PV/ê+${lemma}+V+TA+Cnj+4Sg/Pl+2SgO
 "4 → 1p"	${lemma}+V+TA+Ind+4Sg/Pl+1PlO	PV/ê+${lemma}+V+TA+Cnj+4Sg/Pl+1PlO
-"4 → 21"	${lemma}+V+TA+Ind+4Sg/Pl+12PlO	PV/ê+${lemma}+V+TA+Cnj+4Sg/Pl+12PlO
+"4 → 21"	${lemma}+V+TA+Ind+4Sg/Pl+21PlO	PV/ê+${lemma}+V+TA+Cnj+4Sg/Pl+21PlO
 "4 → 2p"	${lemma}+V+TA+Ind+4Sg/Pl+2PlO	PV/ê+${lemma}+V+TA+Cnj+4Sg/Pl+2PlO
 		
 "Third person participants"	: "Independent"	: "Conjunct"
@@ -62,7 +62,7 @@
 "X → 3s"	${lemma}+V+TA+Ind+X+3SgO	PV/ê+${lemma}+V+TA+Cnj+X+3SgO
 "X → 4"	${lemma}+V+TA+Ind+X+4Sg/PlO	PV/ê+${lemma}+V+TA+Cnj+X+4Sg/PlO
 "X → 1p"	${lemma}+V+TA+Ind+X+1PlO	PV/ê+${lemma}+V+TA+Cnj+X+1PlO
-"X → 21"	${lemma}+V+TA+Ind+X+12PlO	PV/ê+${lemma}+V+TA+Cnj+X+12PlO
+"X → 21"	${lemma}+V+TA+Ind+X+21PlO	PV/ê+${lemma}+V+TA+Cnj+X+21PlO
 "X → 2p"	${lemma}+V+TA+Ind+X+2PlO	PV/ê+${lemma}+V+TA+Cnj+X+2PlO
 "X → 3p"	${lemma}+V+TA+Ind+X+3PlO	PV/ê+${lemma}+V+TA+Cnj+X+3PlO
 		
@@ -83,37 +83,37 @@
 "1s → 3s"	PV/kî+${lemma}+V+TA+Ind+1Sg+3SgO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+1Sg+3SgO
 "2s → 3s"	PV/kî+${lemma}+V+TA+Ind+2Sg+3SgO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+2Sg+3SgO
 "1p → 3s"	PV/kî+${lemma}+V+TA+Ind+1Pl+3SgO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+1Pl+3SgO
-"21 → 3s"	PV/kî+${lemma}+V+TA+Ind+12Pl+3SgO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+12Pl+3SgO
+"21 → 3s"	PV/kî+${lemma}+V+TA+Ind+21Pl+3SgO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+21Pl+3SgO
 "2p → 3s"	PV/kî+${lemma}+V+TA+Ind+2Pl+3SgO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+2Pl+3SgO
 		
 "1s → 3p"	PV/kî+${lemma}+V+TA+Ind+1Sg+3PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+1Sg+3PlO
 "2s → 3p"	PV/kî+${lemma}+V+TA+Ind+2Sg+3PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+2Sg+3PlO
 "1p → 3p"	PV/kî+${lemma}+V+TA+Ind+1Pl+3PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+1Pl+3PlO
-"21 → 3p"	PV/kî+${lemma}+V+TA+Ind+12Pl+3PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+12Pl+3PlO
+"21 → 3p"	PV/kî+${lemma}+V+TA+Ind+21Pl+3PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+21Pl+3PlO
 "2p → 3p"	PV/kî+${lemma}+V+TA+Ind+2Pl+3PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+2Pl+3PlO
 		
 "1s → 4"	PV/kî+${lemma}+V+TA+Ind+1Sg+4Sg/PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+1Sg+4Sg/PlO
 "2s → 4"	PV/kî+${lemma}+V+TA+Ind+2Sg+4Sg/PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+2Sg+4Sg/PlO
 "1p → 4"	PV/kî+${lemma}+V+TA+Ind+1Pl+4Sg/PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+1Pl+4Sg/PlO
-"21 → 4"	PV/kî+${lemma}+V+TA+Ind+12Pl+4Sg/PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+12Pl+4Sg/PlO
+"21 → 4"	PV/kî+${lemma}+V+TA+Ind+21Pl+4Sg/PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+21Pl+4Sg/PlO
 "2p → 4"	PV/kî+${lemma}+V+TA+Ind+2Pl+4Sg/PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+2Pl+4Sg/PlO
 		
 "3s → 1s"	PV/kî+${lemma}+V+TA+Ind+3Sg+1SgO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+3Sg+1SgO
 "3s → 2s"	PV/kî+${lemma}+V+TA+Ind+3Sg+2SgO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+3Sg+2SgO
 "3s → 1p"	PV/kî+${lemma}+V+TA+Ind+3Sg+1PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+3Sg+1PlO
-"3s → 21"	PV/kî+${lemma}+V+TA+Ind+3Sg+12PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+3Sg+12PlO
+"3s → 21"	PV/kî+${lemma}+V+TA+Ind+3Sg+21PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+3Sg+21PlO
 "3s → 2p"	PV/kî+${lemma}+V+TA+Ind+3Sg+2PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+3Sg+2PlO
 		
 "3p → 1s"	PV/kî+${lemma}+V+TA+Ind+3Pl+1SgO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+3Pl+1SgO
 "3p → 2s"	PV/kî+${lemma}+V+TA+Ind+3Pl+2SgO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+3Pl+2SgO
 "3p → 1p"	PV/kî+${lemma}+V+TA+Ind+3Pl+1PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+3Pl+1PlO
-"3p → 21"	PV/kî+${lemma}+V+TA+Ind+3Pl+12PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+3Pl+12PlO
+"3p → 21"	PV/kî+${lemma}+V+TA+Ind+3Pl+21PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+3Pl+21PlO
 "3s → 2p"	PV/kî+${lemma}+V+TA+Ind+3Pl+2PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+3Pl+2PlO
 		
 "4 → 1s"	PV/kî+${lemma}+V+TA+Ind+4Sg/Pl+1SgO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+4Sg/Pl+1SgO
 "4 → 2s"	PV/kî+${lemma}+V+TA+Ind+4Sg/Pl+2SgO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+4Sg/Pl+2SgO
 "4 → 1p"	PV/kî+${lemma}+V+TA+Ind+4Sg/Pl+1PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+4Sg/Pl+1PlO
-"4 → 21"	PV/kî+${lemma}+V+TA+Ind+4Sg/Pl+12PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+4Sg/Pl+12PlO
+"4 → 21"	PV/kî+${lemma}+V+TA+Ind+4Sg/Pl+21PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+4Sg/Pl+21PlO
 "4 → 2p"	PV/kî+${lemma}+V+TA+Ind+4Sg/Pl+2PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+4Sg/Pl+2PlO
 		
 "Third person participants"	: "Independent"	: "Conjunct"
@@ -142,37 +142,37 @@
 "1s → 3s"	PV/wî+${lemma}+V+TA+Ind+1Sg+3SgO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+1Sg+3SgO
 "2s → 3s"	PV/wî+${lemma}+V+TA+Ind+2Sg+3SgO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+2Sg+3SgO
 "1p → 3s"	PV/wî+${lemma}+V+TA+Ind+1Pl+3SgO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+1Pl+3SgO
-"21 → 3s"	PV/wî+${lemma}+V+TA+Ind+12Pl+3SgO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+12Pl+3SgO
+"21 → 3s"	PV/wî+${lemma}+V+TA+Ind+21Pl+3SgO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+21Pl+3SgO
 "2p → 3s"	PV/wî+${lemma}+V+TA+Ind+2Pl+3SgO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+2Pl+3SgO
 		
 "1s → 3p"	PV/wî+${lemma}+V+TA+Ind+1Sg+3PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+1Sg+3PlO
 "2s → 3p"	PV/wî+${lemma}+V+TA+Ind+2Sg+3PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+2Sg+3PlO
 "1p → 3p"	PV/wî+${lemma}+V+TA+Ind+1Pl+3PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+1Pl+3PlO
-"21 → 3p"	PV/wî+${lemma}+V+TA+Ind+12Pl+3PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+12Pl+3PlO
+"21 → 3p"	PV/wî+${lemma}+V+TA+Ind+21Pl+3PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+21Pl+3PlO
 "2p → 3p"	PV/wî+${lemma}+V+TA+Ind+2Pl+3PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+2Pl+3PlO
 		
 "1s → 4"	PV/wî+${lemma}+V+TA+Ind+1Sg+4Sg/PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+1Sg+4Sg/PlO
 "2s → 4"	PV/wî+${lemma}+V+TA+Ind+2Sg+4Sg/PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+2Sg+4Sg/PlO
 "1p → 4"	PV/wî+${lemma}+V+TA+Ind+1Pl+4Sg/PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+1Pl+4Sg/PlO
-"21 → 4"	PV/wî+${lemma}+V+TA+Ind+12Pl+4Sg/PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+12Pl+4Sg/PlO
+"21 → 4"	PV/wî+${lemma}+V+TA+Ind+21Pl+4Sg/PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+21Pl+4Sg/PlO
 "2p → 4"	PV/wî+${lemma}+V+TA+Ind+2Pl+4Sg/PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+2Pl+4Sg/PlO
 		
 "3s → 1s"	PV/wî+${lemma}+V+TA+Ind+3Sg+1SgO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+3Sg+1SgO
 "3s → 2s"	PV/wî+${lemma}+V+TA+Ind+3Sg+2SgO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+3Sg+2SgO
 "3s → 1p"	PV/wî+${lemma}+V+TA+Ind+3Sg+1PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+3Sg+1PlO
-"3s → 21"	PV/wî+${lemma}+V+TA+Ind+3Sg+12PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+3Sg+12PlO
+"3s → 21"	PV/wî+${lemma}+V+TA+Ind+3Sg+21PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+3Sg+21PlO
 "3s → 2p"	PV/wî+${lemma}+V+TA+Ind+3Sg+2PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+3Sg+2PlO
 		
 "3p → 1s"	PV/wî+${lemma}+V+TA+Ind+3Pl+1SgO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+3Pl+1SgO
 "3p → 2s"	PV/wî+${lemma}+V+TA+Ind+3Pl+2SgO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+3Pl+2SgO
 "3p → 1p"	PV/wî+${lemma}+V+TA+Ind+3Pl+1PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+3Pl+1PlO
-"3p → 21"	PV/wî+${lemma}+V+TA+Ind+3Pl+12PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+3Pl+12PlO
+"3p → 21"	PV/wî+${lemma}+V+TA+Ind+3Pl+21PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+3Pl+21PlO
 "3s → 2p"	PV/wî+${lemma}+V+TA+Ind+3Pl+2PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+3Pl+2PlO
 		
 "4 → 1s"	PV/wî+${lemma}+V+TA+Ind+4Sg/Pl+1SgO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+4Sg/Pl+1SgO
 "4 → 2s"	PV/wî+${lemma}+V+TA+Ind+4Sg/Pl+2SgO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+4Sg/Pl+2SgO
 "4 → 1p"	PV/wî+${lemma}+V+TA+Ind+4Sg/Pl+1PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+4Sg/Pl+1PlO
-"4 → 21"	PV/wî+${lemma}+V+TA+Ind+4Sg/Pl+12PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+4Sg/Pl+12PlO
+"4 → 21"	PV/wî+${lemma}+V+TA+Ind+4Sg/Pl+21PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+4Sg/Pl+21PlO
 "4 → 2p"	PV/wî+${lemma}+V+TA+Ind+4Sg/Pl+2PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+4Sg/Pl+2PlO
 		
 "Third person participants"	: "Independent"	: "Conjunct"
@@ -201,37 +201,37 @@
 "1s → 3s"	PV/ka+${lemma}+V+TA+Ind+1Sg+3SgO	
 "2s → 3s"	PV/ka+${lemma}+V+TA+Ind+2Sg+3SgO	
 "1p → 3s"	PV/ka+${lemma}+V+TA+Ind+1Pl+3SgO	
-"21 → 3s"	PV/ka+${lemma}+V+TA+Ind+12Pl+3SgO	
+"21 → 3s"	PV/ka+${lemma}+V+TA+Ind+21Pl+3SgO	
 "2p → 3s"	PV/ka+${lemma}+V+TA+Ind+2Pl+3SgO	
 		
 "1s → 3p"	PV/ka+${lemma}+V+TA+Ind+1Sg+3PlO	
 "2s → 3p"	PV/ka+${lemma}+V+TA+Ind+2Sg+3PlO	
 "1p → 3p"	PV/ka+${lemma}+V+TA+Ind+1Pl+3PlO	
-"21 → 3p"	PV/ka+${lemma}+V+TA+Ind+12Pl+3PlO	
+"21 → 3p"	PV/ka+${lemma}+V+TA+Ind+21Pl+3PlO	
 "2p → 3p"	PV/ka+${lemma}+V+TA+Ind+2Pl+3PlO	
 		
 "1s → 4"	PV/ka+${lemma}+V+TA+Ind+1Sg+4Sg/PlO	
 "2s → 4"	PV/ka+${lemma}+V+TA+Ind+2Sg+4Sg/PlO	
 "1p → 4"	PV/ka+${lemma}+V+TA+Ind+1Pl+4Sg/PlO	
-"21 → 4"	PV/ka+${lemma}+V+TA+Ind+12Pl+4Sg/PlO	
+"21 → 4"	PV/ka+${lemma}+V+TA+Ind+21Pl+4Sg/PlO	
 "2p → 4"	PV/ka+${lemma}+V+TA+Ind+2Pl+4Sg/PlO	
 		
 "3s → 1s"	PV/ka+${lemma}+V+TA+Ind+3Sg+1SgO	
 "3s → 2s"	PV/ka+${lemma}+V+TA+Ind+3Sg+2SgO	
 "3s → 1p"	PV/ka+${lemma}+V+TA+Ind+3Sg+1PlO	
-"3s → 21"	PV/ka+${lemma}+V+TA+Ind+3Sg+12PlO	
+"3s → 21"	PV/ka+${lemma}+V+TA+Ind+3Sg+21PlO	
 "3s → 2p"	PV/ka+${lemma}+V+TA+Ind+3Sg+2PlO	
 		
 "3p → 1s"	PV/ka+${lemma}+V+TA+Ind+3Pl+1SgO	
 "3p → 2s"	PV/ka+${lemma}+V+TA+Ind+3Pl+2SgO	
 "3p → 1p"	PV/ka+${lemma}+V+TA+Ind+3Pl+1PlO	
-"3p → 21"	PV/ka+${lemma}+V+TA+Ind+3Pl+12PlO	
+"3p → 21"	PV/ka+${lemma}+V+TA+Ind+3Pl+21PlO	
 "3s → 2p"	PV/ka+${lemma}+V+TA+Ind+3Pl+2PlO	
 		
 "4 → 1s"	PV/ka+${lemma}+V+TA+Ind+4Sg/Pl+1SgO	
 "4 → 2s"	PV/ka+${lemma}+V+TA+Ind+4Sg/Pl+2SgO	
 "4 → 1p"	PV/ka+${lemma}+V+TA+Ind+4Sg/Pl+1PlO	
-"4 → 21"	PV/ka+${lemma}+V+TA+Ind+4Sg/Pl+12PlO	
+"4 → 21"	PV/ka+${lemma}+V+TA+Ind+4Sg/Pl+21PlO	
 "4 → 2p"	PV/ka+${lemma}+V+TA+Ind+4Sg/Pl+2PlO	
 		
 "Third person participants"	: "Independent"	
@@ -260,37 +260,37 @@
 "1s → 3s"	PV/ka+${lemma}+V+TA+Cnj+1Sg+3SgO	PV/ta+${lemma}+V+TA+Cnj+1Sg+3SgO
 "2s → 3s"	PV/ka+${lemma}+V+TA+Cnj+2Sg+3SgO	PV/ta+${lemma}+V+TA+Cnj+2Sg+3SgO
 "1p → 3s"	PV/ka+${lemma}+V+TA+Cnj+1Pl+3SgO	PV/ta+${lemma}+V+TA+Cnj+1Pl+3SgO
-"21 → 3s"	PV/ka+${lemma}+V+TA+Cnj+12Pl+3SgO	PV/ta+${lemma}+V+TA+Cnj+12Pl+3SgO
+"21 → 3s"	PV/ka+${lemma}+V+TA+Cnj+21Pl+3SgO	PV/ta+${lemma}+V+TA+Cnj+21Pl+3SgO
 "2p → 3s"	PV/ka+${lemma}+V+TA+Cnj+2Pl+3SgO	PV/ta+${lemma}+V+TA+Cnj+2Pl+3SgO
 		
 "1s → 3p"	PV/ka+${lemma}+V+TA+Cnj+1Sg+3PlO	PV/ta+${lemma}+V+TA+Cnj+1Sg+3PlO
 "2s → 3p"	PV/ka+${lemma}+V+TA+Cnj+2Sg+3PlO	PV/ta+${lemma}+V+TA+Cnj+2Sg+3PlO
 "1p → 3p"	PV/ka+${lemma}+V+TA+Cnj+1Pl+3PlO	PV/ta+${lemma}+V+TA+Cnj+1Pl+3PlO
-"21 → 3p"	PV/ka+${lemma}+V+TA+Cnj+12Pl+3PlO	PV/ta+${lemma}+V+TA+Cnj+12Pl+3PlO
+"21 → 3p"	PV/ka+${lemma}+V+TA+Cnj+21Pl+3PlO	PV/ta+${lemma}+V+TA+Cnj+21Pl+3PlO
 "2p → 3p"	PV/ka+${lemma}+V+TA+Cnj+2Pl+3PlO	PV/ta+${lemma}+V+TA+Cnj+2Pl+3PlO
 		
 "1s → 4"	PV/ka+${lemma}+V+TA+Cnj+1Sg+4Sg/PlO	PV/ta+${lemma}+V+TA+Cnj+1Sg+4Sg/PlO
 "2s → 4"	PV/ka+${lemma}+V+TA+Cnj+2Sg+4Sg/PlO	PV/ta+${lemma}+V+TA+Cnj+2Sg+4Sg/PlO
 "1p → 4"	PV/ka+${lemma}+V+TA+Cnj+1Pl+4Sg/PlO	PV/ta+${lemma}+V+TA+Cnj+1Pl+4Sg/PlO
-"21 → 4"	PV/ka+${lemma}+V+TA+Cnj+12Pl+4Sg/PlO	PV/ta+${lemma}+V+TA+Cnj+12Pl+4Sg/PlO
+"21 → 4"	PV/ka+${lemma}+V+TA+Cnj+21Pl+4Sg/PlO	PV/ta+${lemma}+V+TA+Cnj+21Pl+4Sg/PlO
 "2p → 4"	PV/ka+${lemma}+V+TA+Cnj+2Pl+4Sg/PlO	PV/ta+${lemma}+V+TA+Cnj+2Pl+4Sg/PlO
 		
 "3s → 1s"	PV/ka+${lemma}+V+TA+Cnj+3Sg+1SgO	PV/ta+${lemma}+V+TA+Cnj+3Sg+1SgO
 "3s → 2s"	PV/ka+${lemma}+V+TA+Cnj+3Sg+2SgO	PV/ta+${lemma}+V+TA+Cnj+3Sg+2SgO
 "3s → 1p"	PV/ka+${lemma}+V+TA+Cnj+3Sg+1PlO	PV/ta+${lemma}+V+TA+Cnj+3Sg+1PlO
-"3s → 21"	PV/ka+${lemma}+V+TA+Cnj+3Sg+12PlO	PV/ta+${lemma}+V+TA+Cnj+3Sg+12PlO
+"3s → 21"	PV/ka+${lemma}+V+TA+Cnj+3Sg+21PlO	PV/ta+${lemma}+V+TA+Cnj+3Sg+21PlO
 "3s → 2p"	PV/ka+${lemma}+V+TA+Cnj+3Sg+2PlO	PV/ta+${lemma}+V+TA+Cnj+3Sg+2PlO
 		
 "3p → 1s"	PV/ka+${lemma}+V+TA+Cnj+3Pl+1SgO	PV/ta+${lemma}+V+TA+Cnj+3Pl+1SgO
 "3p → 2s"	PV/ka+${lemma}+V+TA+Cnj+3Pl+2SgO	PV/ta+${lemma}+V+TA+Cnj+3Pl+2SgO
 "3p → 1p"	PV/ka+${lemma}+V+TA+Cnj+3Pl+1PlO	PV/ta+${lemma}+V+TA+Cnj+3Pl+1PlO
-"3p → 21"	PV/ka+${lemma}+V+TA+Cnj+3Pl+12PlO	PV/ta+${lemma}+V+TA+Cnj+3Pl+12PlO
+"3p → 21"	PV/ka+${lemma}+V+TA+Cnj+3Pl+21PlO	PV/ta+${lemma}+V+TA+Cnj+3Pl+21PlO
 "3s → 2p"	PV/ka+${lemma}+V+TA+Cnj+3Pl+2PlO	PV/ta+${lemma}+V+TA+Cnj+3Pl+2PlO
 		
 "4 → 1s"	PV/ka+${lemma}+V+TA+Cnj+4Sg/Pl+1SgO	PV/ta+${lemma}+V+TA+Cnj+4Sg/Pl+1SgO
 "4 → 2s"	PV/ka+${lemma}+V+TA+Cnj+4Sg/Pl+2SgO	PV/ta+${lemma}+V+TA+Cnj+4Sg/Pl+2SgO
 "4 → 1p"	PV/ka+${lemma}+V+TA+Cnj+4Sg/Pl+1PlO	PV/ta+${lemma}+V+TA+Cnj+4Sg/Pl+1PlO
-"4 → 21"	PV/ka+${lemma}+V+TA+Cnj+4Sg/Pl+12PlO	PV/ta+${lemma}+V+TA+Cnj+4Sg/Pl+12PlO
+"4 → 21"	PV/ka+${lemma}+V+TA+Cnj+4Sg/Pl+21PlO	PV/ta+${lemma}+V+TA+Cnj+4Sg/Pl+21PlO
 "4 → 2p"	PV/ka+${lemma}+V+TA+Cnj+4Sg/Pl+2PlO	PV/ta+${lemma}+V+TA+Cnj+4Sg/Pl+2PlO
 		
 "Third person participants"	: "Conjunct: ka-"	: "Conjunct: ta-"
@@ -319,37 +319,37 @@
 "1s → 3s"	${lemma}+V+TA+Fut+Cond+1Sg+3SgO	
 "2s → 3s"	${lemma}+V+TA+Fut+Cond+2Sg+3SgO	
 "1p → 3s"	${lemma}+V+TA+Fut+Cond+1Pl+3SgO	
-"21 → 3s"	${lemma}+V+TA+Fut+Cond+12Pl+3SgO	
+"21 → 3s"	${lemma}+V+TA+Fut+Cond+21Pl+3SgO	
 "2p → 3s"	${lemma}+V+TA+Fut+Cond+2Pl+3SgO	
 		
 "1s → 3p"	${lemma}+V+TA+Fut+Cond+1Sg+3PlO	
 "2s → 3p"	${lemma}+V+TA+Fut+Cond+2Sg+3PlO	
 "1p → 3p"	${lemma}+V+TA+Fut+Cond+1Pl+3PlO	
-"21 → 3p"	${lemma}+V+TA+Fut+Cond+12Pl+3PlO	
+"21 → 3p"	${lemma}+V+TA+Fut+Cond+21Pl+3PlO	
 "2p → 3p"	${lemma}+V+TA+Fut+Cond+2Pl+3PlO	
 		
 "1s → 4"	${lemma}+V+TA+Fut+Cond+1Sg+4Sg/PlO	
 "2s → 4"	${lemma}+V+TA+Fut+Cond+2Sg+4Sg/PlO	
 "1p → 4"	${lemma}+V+TA+Fut+Cond+1Pl+4Sg/PlO	
-"21 → 4"	${lemma}+V+TA+Fut+Cond+12Pl+4Sg/PlO	
+"21 → 4"	${lemma}+V+TA+Fut+Cond+21Pl+4Sg/PlO	
 "2p → 4"	${lemma}+V+TA+Fut+Cond+2Pl+4Sg/PlO	
 		
 "3s → 1s"	${lemma}+V+TA+Fut+Cond+3Sg+1SgO	
 "3s → 2s"	${lemma}+V+TA+Fut+Cond+3Sg+2SgO	
 "3s → 1p"	${lemma}+V+TA+Fut+Cond+3Sg+1PlO	
-"3s → 21"	${lemma}+V+TA+Fut+Cond+3Sg+12PlO	
+"3s → 21"	${lemma}+V+TA+Fut+Cond+3Sg+21PlO	
 "3s → 2p"	${lemma}+V+TA+Fut+Cond+3Sg+2PlO	
 		
 "3p → 1s"	${lemma}+V+TA+Fut+Cond+3Pl+1SgO	
 "3p → 2s"	${lemma}+V+TA+Fut+Cond+3Pl+2SgO	
 "3p → 1p"	${lemma}+V+TA+Fut+Cond+3Pl+1PlO	
-"3p → 21"	${lemma}+V+TA+Fut+Cond+3Pl+12PlO	
+"3p → 21"	${lemma}+V+TA+Fut+Cond+3Pl+21PlO	
 "3p → 2p"	${lemma}+V+TA+Fut+Cond+3Pl+2PlO	
 		
 "4 → 1s"	${lemma}+V+TA+Fut+Cond+4Sg/Pl+1SgO	
 "4 → 2s"	${lemma}+V+TA+Fut+Cond+4Sg/Pl+2SgO	
 "4 → 1p"	${lemma}+V+TA+Fut+Cond+4Sg/Pl+1PlO	
-"4 → 21"	${lemma}+V+TA+Fut+Cond+4Sg/Pl+12PlO	
+"4 → 21"	${lemma}+V+TA+Fut+Cond+4Sg/Pl+21PlO	
 "4 → 2p"	${lemma}+V+TA+Fut+Cond+4Sg/Pl+2PlO	
 		
 "Third person participants"		
@@ -374,7 +374,7 @@
 "Mixed"	: "Immediate"	: "Delayed"
 "2s → 3s"	${lemma}+V+TA+Imp+Imm+2Sg+3SgO	${lemma}+V+TA+Imp+Del+2Sg+3SgO
 "2s → 3p"	${lemma}+V+TA+Imp+Imm+2Sg+3PlO	${lemma}+V+TA+Imp+Del+2Sg+3PlO
-"21 → 3s"	${lemma}+V+TA+Imp+Imm+12Pl+3SgO	${lemma}+V+TA+Imp+Del+12Pl+3SgO
-"21 → 3p"	${lemma}+V+TA+Imp+Imm+12Pl+3PlO	${lemma}+V+TA+Imp+Del+12Pl+3PlO
+"21 → 3s"	${lemma}+V+TA+Imp+Imm+21Pl+3SgO	${lemma}+V+TA+Imp+Del+21Pl+3SgO
+"21 → 3p"	${lemma}+V+TA+Imp+Imm+21Pl+3PlO	${lemma}+V+TA+Imp+Del+21Pl+3PlO
 "2p → 3s"	${lemma}+V+TA+Imp+Imm+2Pl+3SgO	${lemma}+V+TA+Imp+Del+2Pl+3SgO
 "2p → 3p"	${lemma}+V+TA+Imp+Imm+2Pl+3PlO	${lemma}+V+TA+Imp+Del+2Pl+3PlO

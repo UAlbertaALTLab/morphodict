@@ -13,7 +13,7 @@
         "+2Sg",
         "+3Sg",
         "+1Pl",
-        # "+12Pl", # Needs to be recoded: 21 -> 12
+        "+21Pl", # Needs to be recoded: 21 -> 12
         "+2Pl",
         "+3Pl",
         "+4Sg/Pl",

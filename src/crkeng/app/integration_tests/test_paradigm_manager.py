@@ -47,7 +47,7 @@ def test_generates_personal_pronoun_paradigm(paradigm_manager) -> None:
         ("VTA", "wâpamêw", ["wâpamêw", "niwâpamâw", "kiwâpamitin", "ê-wâpamât"]),
         ("VAI", "nipâw", ["nipâw", "ninipân", "kinipân", "ninipânân"]),
         ("VTI", "mîciw", ["mîciw", "nimîcin", "kimîcin", "kimîcinânaw", "ê-mîcit"]),
-        ("VAI", "mîcisow", ["mîcisow", "nimîcison", "kimîcison", "ê-mîcisoyit"]),
+        ("VAI", "mîcisow", ["mîcisow", "nimîcison", "kimîcison", "ê-mîcisoýit"]),
         ("VII", "nîpin", ["nîpin", "nîpin", "ê-nîpihk"]),
         ("NDA", "nôhkom", ["nôhkom", "kôhkom", "ohkoma"]),
         ("NDI", "mîpit", ["mîpit", "nîpit", "kîpit", "wîpit"]),

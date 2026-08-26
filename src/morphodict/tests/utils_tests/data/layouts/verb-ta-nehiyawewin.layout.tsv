@@ -17,7 +17,7 @@
 "wiya → niya"	${lemma}+V+TA+Ind+3Sg+1SgO	PV/ê+${lemma}+V+TA+Cnj+3Sg+1SgO
 "wiya → kiya"	${lemma}+V+TA+Ind+3Sg+2SgO	PV/ê+${lemma}+V+TA+Cnj+3Sg+2SgO
 "wiya → niyanân"	${lemma}+V+TA+Ind+3Sg+1PlO	PV/ê+${lemma}+V+TA+Cnj+3Sg+1PlO
-"wiya → kiyânaw"	${lemma}+V+TA+Ind+3Sg+12PlO	PV/ê+${lemma}+V+TA+Cnj+3Sg+12PlO
+"wiya → kiyânaw"	${lemma}+V+TA+Ind+3Sg+21PlO	PV/ê+${lemma}+V+TA+Cnj+3Sg+21PlO
 "wiya → kiyawâw"	${lemma}+V+TA+Ind+3Sg+2PlO	PV/ê+${lemma}+V+TA+Cnj+3Sg+2PlO
 "wiya → wiya/wiyawâw (anima/anihi)"	${lemma}+V+TA+Ind+3Sg+4Sg/PlO	PV/ê+${lemma}+V+TA+Cnj+3Sg+4Sg/PlO
 		
@@ -29,9 +29,9 @@
 "niyanân → wiya/wiyawâw (anima/anihi)"	${lemma}+V+TA+Ind+1Pl+4Sg/PlO	PV/ê+${lemma}+V+TA+Cnj+1Pl+4Sg/PlO
 		
 	: "ni-/ki- itwêwin"	: "ê-/kâ- itwêwin"
-"kiyânaw → wiya"	${lemma}+V+TA+Ind+12Pl+3SgO	PV/ê+${lemma}+V+TA+Cnj+12Pl+3SgO
-"kiyânaw → wiyawâw"	${lemma}+V+TA+Ind+12Pl+3PlO	PV/ê+${lemma}+V+TA+Cnj+12Pl+3PlO
-"kiyânaw → wiya/wiyawâw (anima/anihi)"	${lemma}+V+TA+Ind+12Pl+4Sg/PlO	PV/ê+${lemma}+V+TA+Cnj+12Pl+4Sg/PlO
+"kiyânaw → wiya"	${lemma}+V+TA+Ind+21Pl+3SgO	PV/ê+${lemma}+V+TA+Cnj+21Pl+3SgO
+"kiyânaw → wiyawâw"	${lemma}+V+TA+Ind+21Pl+3PlO	PV/ê+${lemma}+V+TA+Cnj+21Pl+3PlO
+"kiyânaw → wiya/wiyawâw (anima/anihi)"	${lemma}+V+TA+Ind+21Pl+4Sg/PlO	PV/ê+${lemma}+V+TA+Cnj+21Pl+4Sg/PlO
 		
 	: "ni-/ki- itwêwin"	: "ê-/kâ- itwêwin"
 "kiyawâw → niya"	${lemma}+V+TA+Ind+2Pl+1SgO	PV/ê+${lemma}+V+TA+Cnj+2Pl+1SgO
@@ -44,14 +44,14 @@
 "wiyawâw → niya"	${lemma}+V+TA+Ind+3Pl+1SgO	PV/ê+${lemma}+V+TA+Cnj+3Pl+1SgO
 "wiyawâw → kiya"	${lemma}+V+TA+Ind+3Pl+2SgO	PV/ê+${lemma}+V+TA+Cnj+3Pl+2SgO
 "wiyawâw → niyanân"	${lemma}+V+TA+Ind+3Pl+1PlO	PV/ê+${lemma}+V+TA+Cnj+3Pl+1PlO
-"wiyawâw → kiyânaw"	${lemma}+V+TA+Ind+3Pl+12PlO	PV/ê+${lemma}+V+TA+Cnj+3Pl+12PlO
+"wiyawâw → kiyânaw"	${lemma}+V+TA+Ind+3Pl+21PlO	PV/ê+${lemma}+V+TA+Cnj+3Pl+21PlO
 "wiyawâw → wiya/wiyawâw (anima/anihi)"	${lemma}+V+TA+Ind+3Pl+4Sg/PlO	PV/ê+${lemma}+V+TA+Cnj+3Pl+4Sg/PlO
 		
 	: "ni-/ki- itwêwin"	: "ê-/kâ- itwêwin"
 "wiya/wiyawâw (anima/anihi) → niya"	${lemma}+V+TA+Ind+4Sg/Pl+1SgO	PV/ê+${lemma}+V+TA+Cnj+4Sg/Pl+1SgO
 "wiya/wiyawâw (anima/anihi) → kiya"	${lemma}+V+TA+Ind+4Sg/Pl+2SgO	PV/ê+${lemma}+V+TA+Cnj+4Sg/Pl+2SgO
 "wiya/wiyawâw (anima/anihi) → niyanân"	${lemma}+V+TA+Ind+4Sg/Pl+1PlO	PV/ê+${lemma}+V+TA+Cnj+4Sg/Pl+1PlO
-"wiya/wiyawâw (anima/anihi) → kiyânaw"	${lemma}+V+TA+Ind+4Sg/Pl+12PlO	PV/ê+${lemma}+V+TA+Cnj+4Sg/Pl+12PlO
+"wiya/wiyawâw (anima/anihi) → kiyânaw"	${lemma}+V+TA+Ind+4Sg/Pl+21PlO	PV/ê+${lemma}+V+TA+Cnj+4Sg/Pl+21PlO
 "wiya/wiyawâw (anima/anihi) → kiyawâw"	${lemma}+V+TA+Ind+4Sg/Pl+2PlO	PV/ê+${lemma}+V+TA+Cnj+4Sg/Pl+2PlO
 "wiya/wiyawâw (anima/anihi) → wiya"	${lemma}+V+TA+Ind+4Sg/Pl+3SgO	PV/ê+${lemma}+V+TA+Cnj+4Sg/Pl+3SgO
 "wiya/wiyawâw (anima/anihi) → wiyawâw"	${lemma}+V+TA+Ind+4Sg/Pl+3PlO	PV/ê+${lemma}+V+TA+Cnj+4Sg/Pl+3PlO
@@ -66,7 +66,7 @@
 "awiyak → wiya"	${lemma}+V+TA+Ind+X+3SgO	PV/ê+${lemma}+V+TA+Cnj+X+3SgO
 "awiyak → wiya/wiyawâw (anima/anihi)"	${lemma}+V+TA+Ind+X+4Sg/PlO	PV/ê+${lemma}+V+TA+Cnj+X+4Sg/PlO
 "awiyak → niyanân"	${lemma}+V+TA+Ind+X+1PlO	PV/ê+${lemma}+V+TA+Cnj+X+1PlO
-"awiyak → kiyanâw"	${lemma}+V+TA+Ind+X+12PlO	PV/ê+${lemma}+V+TA+Cnj+X+12PlO
+"awiyak → kiyanâw"	${lemma}+V+TA+Ind+X+21PlO	PV/ê+${lemma}+V+TA+Cnj+X+21PlO
 "awiyak → kiyawâw"	${lemma}+V+TA+Ind+X+2PlO	PV/ê+${lemma}+V+TA+Cnj+X+2PlO
 "awiyak → wiyawâw"	${lemma}+V+TA+Ind+X+3PlO	PV/ê+${lemma}+V+TA+Cnj+X+3PlO
 		
@@ -90,7 +90,7 @@
 "wiya → niya"	PV/kî+${lemma}+V+TA+Ind+3Sg+1SgO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+3Sg+1SgO
 "wiya → kiya"	PV/kî+${lemma}+V+TA+Ind+3Sg+2SgO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+3Sg+2SgO
 "wiya → niyanân"	PV/kî+${lemma}+V+TA+Ind+3Sg+1PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+3Sg+1PlO
-"wiya → kiyânaw"	PV/kî+${lemma}+V+TA+Ind+3Sg+12PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+3Sg+12PlO
+"wiya → kiyânaw"	PV/kî+${lemma}+V+TA+Ind+3Sg+21PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+3Sg+21PlO
 "wiya → kiyawâw"	PV/kî+${lemma}+V+TA+Ind+3Pl+2PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+3Pl+2PlO
 "wiya → wiya/wiyawâw (anima/anihi)"	PV/kî+${lemma}+V+TA+Ind+3Sg+4Sg/PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+3Sg+4Sg/PlO
 		
@@ -102,9 +102,9 @@
 "niyanân → wiya/wiyawâw (anima/anihi)"	PV/kî+${lemma}+V+TA+Ind+1Pl+4Sg/PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+1Pl+4Sg/PlO
 		
 	: "ni-/ki- itwêwin"	: "ê-/kâ- itwêwin"
-"kiyânaw → wiya"	PV/kî+${lemma}+V+TA+Ind+12Pl+3SgO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+12Pl+3SgO
-"kiyânaw → wiyawâw"	PV/kî+${lemma}+V+TA+Ind+12Pl+3PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+12Pl+3PlO
-"kiyânaw → wiya/wiyawâw (anima/anihi)"	PV/kî+${lemma}+V+TA+Ind+12Pl+4Sg/PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+12Pl+4Sg/PlO
+"kiyânaw → wiya"	PV/kî+${lemma}+V+TA+Ind+21Pl+3SgO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+21Pl+3SgO
+"kiyânaw → wiyawâw"	PV/kî+${lemma}+V+TA+Ind+21Pl+3PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+21Pl+3PlO
+"kiyânaw → wiya/wiyawâw (anima/anihi)"	PV/kî+${lemma}+V+TA+Ind+21Pl+4Sg/PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+21Pl+4Sg/PlO
 		
 	: "ni-/ki- itwêwin"	: "ê-/kâ- itwêwin"
 "kiyawâw → niya"	PV/kî+${lemma}+V+TA+Ind+2Pl+1SgO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+2Pl+1SgO
@@ -117,7 +117,7 @@
 "wiyawâw → niya"	PV/kî+${lemma}+V+TA+Ind+3Pl+1SgO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+3Pl+1SgO
 "wiyawâw → kiya"	PV/kî+${lemma}+V+TA+Ind+3Pl+2SgO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+3Pl+2SgO
 "wiyawâw → niyanân"	PV/kî+${lemma}+V+TA+Ind+3Pl+1PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+3Pl+1PlO
-"wiyawâw → kiyânaw"	PV/kî+${lemma}+V+TA+Ind+3Pl+12PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+3Pl+12PlO
+"wiyawâw → kiyânaw"	PV/kî+${lemma}+V+TA+Ind+3Pl+21PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+3Pl+21PlO
 "wiyawâw → wiya/wiyawâw (anima/anihi)"	PV/kî+${lemma}+V+TA+Ind+3Pl+4Sg/PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+3Pl+4Sg/PlO
 		
 	: "ni-/ki- itwêwin"	: "ê-/kâ- itwêwin"
@@ -125,7 +125,7 @@
 "wiya/wiyawâw (anima/anihi) → kiya"	PV/kî+${lemma}+V+TA+Ind+4Sg/Pl+2SgO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+4Sg/Pl+2SgO
 "wiya/wiyawâw (anima/anihi) → wiya"	PV/kî+${lemma}+V+TA+Ind+4Sg/Pl+3SgO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+4Sg/Pl+3SgO
 "wiya/wiyawâw (anima/anihi) → niyanân"	PV/kî+${lemma}+V+TA+Ind+4Sg/Pl+1PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+4Sg/Pl+1PlO
-"wiya/wiyawâw (anima/anihi) → kiyânaw"	PV/kî+${lemma}+V+TA+Ind+4Sg/Pl+12PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+4Sg/Pl+12PlO
+"wiya/wiyawâw (anima/anihi) → kiyânaw"	PV/kî+${lemma}+V+TA+Ind+4Sg/Pl+21PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+4Sg/Pl+21PlO
 "wiya/wiyawâw (anima/anihi) → kiyawâw"	PV/kî+${lemma}+V+TA+Ind+4Sg/Pl+2PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+4Sg/Pl+2PlO
 "wiya/wiyawâw (anima/anihi) → wiyawâw"	PV/kî+${lemma}+V+TA+Ind+4Sg/Pl+3PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+4Sg/Pl+3PlO
 "wiya/wiyawâw (anima/anihi) → wiya/wiyawâw (nêma/nêhi)"	PV/kî+${lemma}+V+TA+Ind+4Sg/Pl+5Sg/PlO	PV/ê+PV/kî+${lemma}+V+TA+Cnj+4Sg/Pl+5Sg/PlO
@@ -153,7 +153,7 @@
 "wiya → niya"	PV/wî+${lemma}+V+TA+Ind+3Sg+1SgO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+3Sg+1SgO
 "wiya → kiya"	PV/wî+${lemma}+V+TA+Ind+3Sg+2SgO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+3Sg+2SgO
 "wiya → niyanân"	PV/wî+${lemma}+V+TA+Ind+3Sg+1PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+3Sg+1PlO
-"wiya → kiyânaw"	PV/wî+${lemma}+V+TA+Ind+3Sg+12PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+3Sg+12PlO
+"wiya → kiyânaw"	PV/wî+${lemma}+V+TA+Ind+3Sg+21PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+3Sg+21PlO
 "wiya → kiyawâw"	PV/wî+${lemma}+V+TA+Ind+3Sg+2PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+3Sg+2PlO
 "wiya → kiyawâw"	PV/wî+${lemma}+V+TA+Ind+3Pl+2PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+3Pl+2PlO
 "wiya → wiya/wiyawâw (anima/anihi)"	PV/wî+${lemma}+V+TA+Ind+3Sg+4Sg/PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+3Sg+4Sg/PlO
@@ -166,9 +166,9 @@
 "niyanân → wiya/wiyawâw (anima/anihi)"	PV/wî+${lemma}+V+TA+Ind+1Pl+4Sg/PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+1Pl+4Sg/PlO
 		
 	: "ni-/ki- itwêwin"	: "ê-/kâ- itwêwin"
-"kiyânaw → wiya"	PV/wî+${lemma}+V+TA+Ind+12Pl+3SgO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+12Pl+3SgO
-"kiyânaw → wiyawâw"	PV/wî+${lemma}+V+TA+Ind+12Pl+3PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+12Pl+3PlO
-"kiyânaw → wiya/wiyawâw (anima/anihi)"	PV/wî+${lemma}+V+TA+Ind+12Pl+4Sg/PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+12Pl+4Sg/PlO
+"kiyânaw → wiya"	PV/wî+${lemma}+V+TA+Ind+21Pl+3SgO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+21Pl+3SgO
+"kiyânaw → wiyawâw"	PV/wî+${lemma}+V+TA+Ind+21Pl+3PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+21Pl+3PlO
+"kiyânaw → wiya/wiyawâw (anima/anihi)"	PV/wî+${lemma}+V+TA+Ind+21Pl+4Sg/PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+21Pl+4Sg/PlO
 		
 	: "ni-/ki- itwêwin"	: "ê-/kâ- itwêwin"
 "kiyawâw → niya"	PV/wî+${lemma}+V+TA+Ind+2Pl+1SgO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+2Pl+1SgO
@@ -181,14 +181,14 @@
 "wiyawâw → niya"	PV/wî+${lemma}+V+TA+Ind+3Pl+1SgO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+3Pl+1SgO
 "wiyawâw → kiya"	PV/wî+${lemma}+V+TA+Ind+3Pl+2SgO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+3Pl+2SgO
 "wiyawâw → niyanân"	PV/wî+${lemma}+V+TA+Ind+3Pl+1PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+3Pl+1PlO
-"wiyawâw → kiyânaw"	PV/wî+${lemma}+V+TA+Ind+3Pl+12PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+3Pl+12PlO
+"wiyawâw → kiyânaw"	PV/wî+${lemma}+V+TA+Ind+3Pl+21PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+3Pl+21PlO
 "wiyawâw → wiya/wiyawâw (anima/anihi)"	PV/wî+${lemma}+V+TA+Ind+3Pl+4Sg/PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+3Pl+4Sg/PlO
 		
 	: "ni-/ki- itwêwin"	: "ê-/kâ- itwêwin"
 "wiya/wiyawâw (anima/anihi) → niya"	PV/wî+${lemma}+V+TA+Ind+4Sg/Pl+1SgO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+4Sg/Pl+1SgO
 "wiya/wiyawâw (anima/anihi) → kiya"	PV/wî+${lemma}+V+TA+Ind+4Sg/Pl+2SgO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+4Sg/Pl+2SgO
 "wiya/wiyawâw (anima/anihi) → niyanân"	PV/wî+${lemma}+V+TA+Ind+4Sg/Pl+1PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+4Sg/Pl+1PlO
-"wiya/wiyawâw (anima/anihi) → kiyânaw"	PV/wî+${lemma}+V+TA+Ind+4Sg/Pl+12PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+4Sg/Pl+12PlO
+"wiya/wiyawâw (anima/anihi) → kiyânaw"	PV/wî+${lemma}+V+TA+Ind+4Sg/Pl+21PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+4Sg/Pl+21PlO
 "wiya/wiyawâw (anima/anihi) → kiyawâw"	PV/wî+${lemma}+V+TA+Ind+4Sg/Pl+2PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+4Sg/Pl+2PlO
 "wiya/wiyawâw (anima/anihi) → wiya"	PV/wî+${lemma}+V+TA+Ind+4Sg/Pl+3SgO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+4Sg/Pl+3SgO
 "wiya/wiyawâw (anima/anihi) → wiyawâw"	PV/wî+${lemma}+V+TA+Ind+4Sg/Pl+3PlO	PV/ê+PV/wî+${lemma}+V+TA+Cnj+4Sg/Pl+3PlO
@@ -217,7 +217,7 @@
 "wiya → niya"	PV/ka+${lemma}+V+TA+Ind+3Sg+1SgO	
 "wiya → kiya"	PV/ka+${lemma}+V+TA+Ind+3Sg+2SgO	
 "wiya → niyanân"	PV/ka+${lemma}+V+TA+Ind+3Sg+1PlO	
-"wiya → kiyânaw"	PV/ka+${lemma}+V+TA+Ind+3Sg+12PlO	
+"wiya → kiyânaw"	PV/ka+${lemma}+V+TA+Ind+3Sg+21PlO	
 "wiya → kiyawâw"	PV/ka+${lemma}+V+TA+Ind+3Sg+2PlO	
 "wiya → wiya/wiyawâw (anima/anihi)"	PV/ka+${lemma}+V+TA+Ind+3Sg+4Sg/PlO	
 		
@@ -229,9 +229,9 @@
 "niyanân → wiya/wiyawâw (anima/anihi)"	PV/ka+${lemma}+V+TA+Ind+1Pl+4Sg/PlO	
 		
 	: "ni-/ki- itwêwin"	
-"kiyânaw → wiya"	PV/ka+${lemma}+V+TA+Ind+12Pl+3SgO	
-"kiyânaw → wiyawâw"	PV/ka+${lemma}+V+TA+Ind+12Pl+3PlO	
-"kiyânaw → wiya/wiyawâw (anima/anihi)"	PV/ka+${lemma}+V+TA+Ind+12Pl+4Sg/PlO	
+"kiyânaw → wiya"	PV/ka+${lemma}+V+TA+Ind+21Pl+3SgO	
+"kiyânaw → wiyawâw"	PV/ka+${lemma}+V+TA+Ind+21Pl+3PlO	
+"kiyânaw → wiya/wiyawâw (anima/anihi)"	PV/ka+${lemma}+V+TA+Ind+21Pl+4Sg/PlO	
 		
 	: "ni-/ki- itwêwin"	
 "kiyawâw → niya"	PV/ka+${lemma}+V+TA+Ind+2Pl+1SgO	
@@ -244,14 +244,14 @@
 "wiyawâw → niya"	PV/ka+${lemma}+V+TA+Ind+3Pl+1SgO	
 "wiyawâw → kiya"	PV/ka+${lemma}+V+TA+Ind+3Pl+2SgO	
 "wiyawâw → niyanân"	PV/ka+${lemma}+V+TA+Ind+3Pl+1PlO	
-"wiyawâw → kiyânaw"	PV/ka+${lemma}+V+TA+Ind+3Pl+12PlO	
+"wiyawâw → kiyânaw"	PV/ka+${lemma}+V+TA+Ind+3Pl+21PlO	
 "wiyawâw → wiya/wiyawâw (anima/anihi)"	PV/ka+${lemma}+V+TA+Ind+3Pl+4Sg/PlO	
 		
 	: "ni-/ki- itwêwin"	
 "wiya/wiyawâw (anima/anihi) → niya"	PV/ka+${lemma}+V+TA+Ind+4Sg/Pl+1SgO	
 "wiya/wiyawâw (anima/anihi) → kiya"	PV/ka+${lemma}+V+TA+Ind+4Sg/Pl+2SgO	
 "wiya/wiyawâw (anima/anihi) → niyanân"	PV/ka+${lemma}+V+TA+Ind+4Sg/Pl+1PlO	
-"wiya/wiyawâw (anima/anihi) → kiyânaw"	PV/ka+${lemma}+V+TA+Ind+4Sg/Pl+12PlO	
+"wiya/wiyawâw (anima/anihi) → kiyânaw"	PV/ka+${lemma}+V+TA+Ind+4Sg/Pl+21PlO	
 "wiya/wiyawâw (anima/anihi) → kiyawâw"	PV/ka+${lemma}+V+TA+Ind+4Sg/Pl+2PlO	
 "wiya/wiyawâw (anima/anihi) → wiya/wiyawâw (nêma/nêhi)"	PV/ka+${lemma}+V+TA+Ind+4Sg/Pl+5Sg/PlO	
 "wiya/wiyawâw (anima/anihi) → wiya"	PV/ka+${lemma}+V+TA+Ind+4Sg/Pl+3SgO	
@@ -280,7 +280,7 @@
 "wiya → niya"	PV/ka+${lemma}+V+TA+Cnj+3Sg+1SgO	PV/ta+${lemma}+V+TA+Cnj+3Sg+1SgO
 "wiya → kiya"	PV/ka+${lemma}+V+TA+Cnj+3Sg+2SgO	PV/ta+${lemma}+V+TA+Cnj+3Sg+2SgO
 "wiya → niyanân"	PV/ka+${lemma}+V+TA+Cnj+3Sg+1PlO	PV/ta+${lemma}+V+TA+Cnj+3Sg+1PlO
-"wiya → kiyânaw"	PV/ka+${lemma}+V+TA+Cnj+3Sg+12PlO	PV/ta+${lemma}+V+TA+Cnj+3Sg+12PlO
+"wiya → kiyânaw"	PV/ka+${lemma}+V+TA+Cnj+3Sg+21PlO	PV/ta+${lemma}+V+TA+Cnj+3Sg+21PlO
 "wiya → kiyawâw"	PV/ka+${lemma}+V+TA+Cnj+3Sg+2PlO	PV/ta+${lemma}+V+TA+Cnj+3Sg+2PlO
 "wiya → wiya/wiyawâw (anima/anihi)"	PV/ka+${lemma}+V+TA+Cnj+3Sg+4Sg/PlO	PV/ta+${lemma}+V+TA+Cnj+3Sg+4Sg/PlO
 		
@@ -292,9 +292,9 @@
 "niyanân → wiya/wiyawâw (anima/anihi)"	PV/ka+${lemma}+V+TA+Cnj+1Pl+4Sg/PlO	PV/ta+${lemma}+V+TA+Cnj+1Pl+4Sg/PlO
 		
 	: "ka- itwêwin"	: "ta- itwêwin"
-"kiyânaw → wiya"	PV/ka+${lemma}+V+TA+Cnj+12Pl+3SgO	PV/ta+${lemma}+V+TA+Cnj+12Pl+3SgO
-"kiyânaw → wiyawâw"	PV/ka+${lemma}+V+TA+Cnj+12Pl+3PlO	PV/ta+${lemma}+V+TA+Cnj+12Pl+3PlO
-"kiyânaw → wiya/wiyawâw (anima/anihi)"	PV/ka+${lemma}+V+TA+Cnj+12Pl+4Sg/PlO	PV/ta+${lemma}+V+TA+Cnj+12Pl+4Sg/Pl
+"kiyânaw → wiya"	PV/ka+${lemma}+V+TA+Cnj+21Pl+3SgO	PV/ta+${lemma}+V+TA+Cnj+21Pl+3SgO
+"kiyânaw → wiyawâw"	PV/ka+${lemma}+V+TA+Cnj+21Pl+3PlO	PV/ta+${lemma}+V+TA+Cnj+21Pl+3PlO
+"kiyânaw → wiya/wiyawâw (anima/anihi)"	PV/ka+${lemma}+V+TA+Cnj+21Pl+4Sg/PlO	PV/ta+${lemma}+V+TA+Cnj+21Pl+4Sg/Pl
 		
 	: "ka- itwêwin"	: "ta- itwêwin"
 "kiyawâw → niya"	PV/ka+${lemma}+V+TA+Cnj+2Pl+1SgO	PV/ta+${lemma}+V+TA+Cnj+2Pl+1SgO
@@ -306,14 +306,14 @@
 "wiyawâw → niya"	PV/ka+${lemma}+V+TA+Cnj+3Pl+1SgO	PV/ta+${lemma}+V+TA+Cnj+3Pl+1SgO
 "wiyawâw → kiya"	PV/ka+${lemma}+V+TA+Cnj+3Pl+2SgO	PV/ta+${lemma}+V+TA+Cnj+3Pl+2SgO
 "wiyawâw → niyanân"	PV/ka+${lemma}+V+TA+Cnj+3Pl+1PlO	PV/ta+${lemma}+V+TA+Cnj+3Pl+1PlO
-"wiyawâw → kiyânaw"	PV/ka+${lemma}+V+TA+Cnj+3Pl+12PlO	PV/ta+${lemma}+V+TA+Cnj+3Pl+12PlO
+"wiyawâw → kiyânaw"	PV/ka+${lemma}+V+TA+Cnj+3Pl+21PlO	PV/ta+${lemma}+V+TA+Cnj+3Pl+21PlO
 "wiyawâw → wiya/wiyawâw (anima/anihi)"	PV/ka+${lemma}+V+TA+Cnj+3Pl+4Sg/PlO	PV/ta+${lemma}+V+TA+Cnj+3Pl+4Sg/PlO
 		
 "wiya/wiyawâw (anima/anihi) → niya"	PV/ka+${lemma}+V+TA+Cnj+4Sg/Pl+1SgO	PV/ta+${lemma}+V+TA+Cnj+4Sg/Pl+1SgO
 "wiya/wiyawâw (anima/anihi) → kiya"	PV/ka+${lemma}+V+TA+Cnj+4Sg/Pl+2SgO	PV/ta+${lemma}+V+TA+Cnj+4Sg/Pl+2SgO
 "wiya/wiyawâw (anima/anihi) → wiya"	PV/ka+${lemma}+V+TA+Cnj+4Sg/Pl+3SgO	PV/ta+${lemma}+V+TA+Cnj+4Sg/Pl+3SgO
 "wiya/wiyawâw (anima/anihi) → niyanân"	PV/ka+${lemma}+V+TA+Cnj+4Sg/Pl+1PlO	PV/ta+${lemma}+V+TA+Cnj+4Sg/Pl+1PlO
-"wiya/wiyawâw (anima/anihi) → kiyânaw"	PV/ka+${lemma}+V+TA+Cnj+4Sg/Pl+12PlO	PV/ta+${lemma}+V+TA+Cnj+4Sg/Pl+12Pl
+"wiya/wiyawâw (anima/anihi) → kiyânaw"	PV/ka+${lemma}+V+TA+Cnj+4Sg/Pl+21PlO	PV/ta+${lemma}+V+TA+Cnj+4Sg/Pl+21Pl
 "wiya/wiyawâw (anima/anihi) → kiyawâw"	PV/ka+${lemma}+V+TA+Cnj+4Sg/Pl+2PlO	PV/ta+${lemma}+V+TA+Cnj+4Sg/Pl+2PlO
 "wiya/wiyawâw (anima/anihi) → wiyawâw"	PV/ka+${lemma}+V+TA+Cnj+4Sg/Pl+3PlO	PV/ta+${lemma}+V+TA+Cnj+4Sg/Pl+3PlO
 "wiya/wiyawâw (anima/anihi) → wiya/wiyawâw (nêma/nêhi)"	PV/ka+${lemma}+V+TA+Cnj+4Sg/Pl+5Sg/PlO	PV/ta+${lemma}+V+TA+Cnj+4Sg/Pl+5Sg/lO
@@ -341,9 +341,9 @@
 "niyanân → wiyawâw"	${lemma}+V+TA+Fut+Cond+1Pl+3PlO	
 "niyanân → wiya/wiyawâw (anima/anihi)"	${lemma}+V+TA+Fut+Cond+1Pl+4Sg/PlO	
 		
-"kiyânaw → wiya"	${lemma}+V+TA+Fut+Cond+12Pl+3SgO	
-"kiyânaw → wiyawâw"	${lemma}+V+TA+Fut+Cond+12Pl+3PlO	
-"kiyânaw → wiya/wiyawâw (anima/anihi)"	${lemma}+V+TA+Fut+Cond+12Pl+4Sg/PlO	
+"kiyânaw → wiya"	${lemma}+V+TA+Fut+Cond+21Pl+3SgO	
+"kiyânaw → wiyawâw"	${lemma}+V+TA+Fut+Cond+21Pl+3PlO	
+"kiyânaw → wiya/wiyawâw (anima/anihi)"	${lemma}+V+TA+Fut+Cond+21Pl+4Sg/PlO	
 		
 "kiyawâw → niya"	${lemma}+V+TA+Fut+Cond+2Pl+1SgO	
 "kiyawâw → wiya"	${lemma}+V+TA+Fut+Cond+2Pl+3SgO	
@@ -354,7 +354,7 @@
 "wiya → niya"	${lemma}+V+TA+Fut+Cond+3Sg+1SgO	
 "wiya → kiya"	${lemma}+V+TA+Fut+Cond+3Sg+2SgO	
 "wiya → niyanân"	${lemma}+V+TA+Fut+Cond+3Sg+1PlO	
-"wiya → kiyânaw"	${lemma}+V+TA+Fut+Cond+3Sg+12PlO	
+"wiya → kiyânaw"	${lemma}+V+TA+Fut+Cond+3Sg+21PlO	
 "wiya → kiyawâw"	${lemma}+V+TA+Fut+Cond+3Sg+2PlO	
 "wiya → wiya/wiyawâw (anima/anihi)"	${lemma}+V+TA+Fut+Cond+3Sg+4Sg/PlO	
 "wiya → wiya/wiyawâw (nêma/nêhi)"	${lemma}+V+TA+Fut+Cond+3Sg+5Sg/PlO	
@@ -362,7 +362,7 @@
 "wiyawâw → niya"	${lemma}+V+TA+Fut+Cond+3Pl+1SgO	
 "wiyawâw → kiya"	${lemma}+V+TA+Fut+Cond+3Pl+2SgO	
 "wiyawâw → niyanân"	${lemma}+V+TA+Fut+Cond+3Pl+1PlO	
-"wiyawâw → kiyânaw"	${lemma}+V+TA+Fut+Cond+3Pl+12PlO	
+"wiyawâw → kiyânaw"	${lemma}+V+TA+Fut+Cond+3Pl+21PlO	
 "wiyawâw → kiyawâw"	${lemma}+V+TA+Fut+Cond+3Pl+2PlO	
 "wiyawâw → wiya/wiyawâw (anima/anihi)"	${lemma}+V+TA+Fut+Cond+3Pl+4Sg/PlO	
 "wiyawâw → wiya/wiyawâw (nêma/nêhi)"	${lemma}+V+TA+Fut+Cond+3Pl+5Sg/PlO	
@@ -370,7 +370,7 @@
 "wiya/wiyawâw (anima/anihi) → niya"	${lemma}+V+TA+Fut+Cond+4Sg/Pl+1SgO	
 "wiya/wiyawâw (anima/anihi) → kiya"	${lemma}+V+TA+Fut+Cond+4Sg/Pl+2SgO	
 "wiya/wiyawâw (anima/anihi) → niyanân"	${lemma}+V+TA+Fut+Cond+4Sg/Pl+1PlO	
-"wiya/wiyawâw (anima/anihi) → kiyânaw"	${lemma}+V+TA+Fut+Cond+4Sg/Pl+12PlO	
+"wiya/wiyawâw (anima/anihi) → kiyânaw"	${lemma}+V+TA+Fut+Cond+4Sg/Pl+21PlO	
 "wiya/wiyawâw (anima/anihi) → kiyawâw"	${lemma}+V+TA+Fut+Cond+4Sg/Pl+2PlO	
 "wiya/wiyawâw (anima/anihi) → wiya"	${lemma}+V+TA+Fut+Cond+4Sg/Pl+3SgO	
 "wiya/wiyawâw (anima/anihi) → wiyawâw"	${lemma}+V+TA+Fut+Cond+4Sg/Pl+3PlO	
@@ -387,8 +387,8 @@
 "kiya → wiyawâw"	${lemma}+V+TA+Imp+Imm+2Sg+3PlO	${lemma}+V+TA+Imp+Del+2Sg+3PlO
 		
 	: "mêkwâc/kîsâc"	: "mwêstas"
-"kiyânaw → wiya"	${lemma}+V+TA+Imp+Imm+12Pl+3SgO	${lemma}+V+TA+Imp+Del+12Pl+3SgO
-"kiyânaw → wiyawâw"	${lemma}+V+TA+Imp+Imm+12Pl+3PlO	${lemma}+V+TA+Imp+Del+12Pl+3PlO
+"kiyânaw → wiya"	${lemma}+V+TA+Imp+Imm+21Pl+3SgO	${lemma}+V+TA+Imp+Del+21Pl+3SgO
+"kiyânaw → wiyawâw"	${lemma}+V+TA+Imp+Imm+21Pl+3PlO	${lemma}+V+TA+Imp+Del+21Pl+3PlO
 		
 	: "mêkwâc/kîsâc"	: "mwêstas"
 "kiyawâw → niya"	${lemma}+V+TA+Imp+Imm+2Pl+1SgO	${lemma}+V+TA+Imp+Del+2Pl+1SgO

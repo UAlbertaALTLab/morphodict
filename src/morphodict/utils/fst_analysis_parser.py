@@ -35,11 +35,11 @@ def partition_analysis(analysis: str) -> Tuple[List[FSTTag], FSTLemma, List[FSTT
     :raise ValueError: when the analysis is not parsable.
 
     >>> partition_analysis('PV/ê+fakeword+N+I')
-    (['PV/e'], 'fakeword', ['N', 'I'])
+    (['PV/ê'], 'fakeword', ['N', 'I'])
     >>> partition_analysis('fakeword+N+I')
     ([], 'fakeword', ['N', 'I'])
     >>> partition_analysis('PV/ê+PV/kî+atamihêw+V+TA+Cnj+1Pl+2SgO')
-    (['PV/e', 'PV/ki'], 'atamihêw', ['V', 'TA', 'Cnj', '1Pl', '2SgO'])
+    (['PV/ê', 'PV/kî'], 'atamihêw', ['V', 'TA', 'Cnj', '1Pl', '2SgO'])
     """
 
     match = partition_pattern.match(analysis)

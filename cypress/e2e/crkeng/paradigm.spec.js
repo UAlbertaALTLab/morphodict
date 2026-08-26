@@ -19,7 +19,7 @@ describe("I want to search for a Cree word and see its inflectional paradigm", (
     {
       pos: "VTI",
       lemma: "mîciw",
-      inflections: ["nimîcin", "mîciwak", "ê-mîciniwahk"],
+      inflections: ["nimîcin", "mîciwak", "ê-mîcinâniwahk"],
     },
     { pos: "VII", lemma: "nîpin", inflections: ["nîpin", "ê-nîpihk"] },
     { pos: "NDA", lemma: "nôhkom", inflections: ["kôhkom", "ohkoma"] },
@@ -196,7 +196,7 @@ describe("Paradigm labels", () => {
 
 describe("I want to see multiple variants of the same inflection on multiple rows", () => {
   // See: https://github.com/UAlbertaALTLab/morphodict/issues/507
-  it("should display two rows for nipâw+V+AI+Ind+12Pl", () => {
+  it("should display two rows for nipâw+V+AI+Ind+21Pl", () => {
     const forms = ["kinipânaw", "kinipânânaw"];
     let rowA = null;
     let rowB = null;

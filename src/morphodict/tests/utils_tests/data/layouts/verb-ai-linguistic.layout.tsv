@@ -4,7 +4,7 @@
 "2s"	${lemma}+V+AI+Ind+2Sg	PV/ê+${lemma}+V+AI+Cnj+2Sg
 "3s"	${lemma}+V+AI+Ind+3Sg	PV/ê+${lemma}+V+AI+Cnj+3Sg
 "1p"	${lemma}+V+AI+Ind+1Pl	PV/ê+${lemma}+V+AI+Cnj+1Pl
-"21"	${lemma}+V+AI+Ind+12Pl	PV/ê+${lemma}+V+AI+Cnj+12Pl
+"21"	${lemma}+V+AI+Ind+21Pl	PV/ê+${lemma}+V+AI+Cnj+21Pl
 "2p"	${lemma}+V+AI+Ind+2Pl	PV/ê+${lemma}+V+AI+Cnj+2Pl
 "3p"	${lemma}+V+AI+Ind+3Pl	PV/ê+${lemma}+V+AI+Cnj+3Pl
 "4"	${lemma}+V+AI+Ind+4Sg/Pl	PV/ê+${lemma}+V+AI+Cnj+4Sg/Pl
@@ -16,7 +16,7 @@
 "2s"	PV/kî+${lemma}+V+AI+Ind+2Sg	PV/ê+PV/kî+${lemma}+V+AI+Cnj+2Sg
 "3s"	PV/kî+${lemma}+V+AI+Ind+3Sg	PV/ê+PV/kî+${lemma}+V+AI+Cnj+3Sg
 "1p"	PV/kî+${lemma}+V+AI+Ind+1Pl	PV/ê+PV/kî+${lemma}+V+AI+Cnj+1Pl
-"21"	PV/kî+${lemma}+V+AI+Ind+12Pl	PV/ê+PV/kî+${lemma}+V+AI+Cnj+12Pl
+"21"	PV/kî+${lemma}+V+AI+Ind+21Pl	PV/ê+PV/kî+${lemma}+V+AI+Cnj+21Pl
 "2p"	PV/kî+${lemma}+V+AI+Ind+2Pl	PV/ê+PV/kî+${lemma}+V+AI+Cnj+2Pl
 "3p"	PV/kî+${lemma}+V+AI+Ind+3Pl	PV/ê+PV/kî+${lemma}+V+AI+Cnj+3Pl
 "4"	PV/kî+${lemma}+V+AI+Ind+4Sg/Pl	PV/ê+PV/kî+${lemma}+V+AI+Cnj+4Sg/Pl
@@ -27,7 +27,7 @@
 "2s"	PV/wî+${lemma}+V+AI+Ind+2Sg	PV/ê+PV/wî+${lemma}+V+AI+Cnj+2Sg
 "3s"	PV/wî+${lemma}+V+AI+Ind+3Sg	PV/ê+PV/wî+${lemma}+V+AI+Cnj+3Sg
 "1p"	PV/wî+${lemma}+V+AI+Ind+1Pl	PV/ê+PV/wî+${lemma}+V+AI+Cnj+1Pl
-"21"	PV/wî+${lemma}+V+AI+Ind+12Pl	PV/ê+PV/wî+${lemma}+V+AI+Cnj+12Pl
+"21"	PV/wî+${lemma}+V+AI+Ind+21Pl	PV/ê+PV/wî+${lemma}+V+AI+Cnj+21Pl
 "2p"	PV/wî+${lemma}+V+AI+Ind+2Pl	PV/ê+PV/wî+${lemma}+V+AI+Cnj+2Pl
 "3p"	PV/wî+${lemma}+V+AI+Ind+3Pl	PV/ê+PV/wî+${lemma}+V+AI+Cnj+3Pl
 "4"	PV/wî+${lemma}+V+AI+Ind+4Sg/Pl	PV/ê+PV/wî+${lemma}+V+AI+Cnj+4Sg/Pl
@@ -49,7 +49,7 @@
 "2s"	PV/ka+${lemma}+V+AI+Cnj+2Sg	PV/ta+${lemma}+V+AI+Cnj+2Sg
 "3s"	PV/ka+${lemma}+V+AI+Cnj+3Sg	PV/ta+${lemma}+V+AI+Cnj+3Sg
 "1p"	PV/ka+${lemma}+V+AI+Cnj+1Pl	PV/ta+${lemma}+V+AI+Cnj+1Pl
-"21"	PV/ka+${lemma}+V+AI+Cnj+12Pl	PV/ta+${lemma}+V+AI+Cnj+12Pl
+"21"	PV/ka+${lemma}+V+AI+Cnj+21Pl	PV/ta+${lemma}+V+AI+Cnj+21Pl
 "2p"	PV/ka+${lemma}+V+AI+Cnj+2Pl	PV/ta+${lemma}+V+AI+Cnj+2Pl
 "3p"	PV/ka+${lemma}+V+AI+Cnj+3Pl	PV/ta+${lemma}+V+AI+Cnj+3Pl
 "4"	PV/ka+${lemma}+V+AI+Cnj+4Sg/Pl	PV/ta+${lemma}+V+AI+Cnj+4Sg/Pl
@@ -59,7 +59,7 @@
 "2s"	${lemma}+V+AI+Fut+Cond+2Sg	
 "3s"	${lemma}+V+AI+Fut+Cond+3Sg	
 "1p"	${lemma}+V+AI+Fut+Cond+1Pl	
-"21"	${lemma}+V+AI+Fut+Cond+12Pl	
+"21"	${lemma}+V+AI+Fut+Cond+21Pl	
 "2p"	${lemma}+V+AI+Fut+Cond+2Pl	
 "3p"	${lemma}+V+AI+Fut+Cond+3Pl	
 "4"	${lemma}+V+AI+Fut+Cond+4Sg/Pl	
@@ -67,5 +67,5 @@
 	"IMPERATIVE"	
 	: "Immediate"	: "Delayed"
 "2s"	${lemma}+V+AI+Imp+Imm+2Sg	${lemma}+V+AI+Imp+Del+2Sg
-"21"	${lemma}+V+AI+Imp+Imm+12Pl	${lemma}+V+AI+Imp+Del+12Pl
+"21"	${lemma}+V+AI+Imp+Imm+21Pl	${lemma}+V+AI+Imp+Del+21Pl
 "2p"	${lemma}+V+AI+Imp+Imm+2Pl	${lemma}+V+AI+Imp+Del+2Pl

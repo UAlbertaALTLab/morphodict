@@ -28,7 +28,7 @@ def test_analyze_wordform(wordform, lemma, suffix):
     "wordform,lemma,prefix",
     [
         ("ê-kî-kotiskâwêyâhk", "kotiskâwêw", "PV/ê+"),
-        ("ê-kî-kîmôci-kotiskâwêyâhk", "kotiskâwêw", "PV/kimoci+"),
+        ("ê-kî-kîmôci-kotiskâwêyâhk", "kotiskâwêw", "PV/kîmôci+"),
         ("ê-kî-kâh-kîmôci-kotiskâwêyâhk", "kotiskâwêw", "RdplS+"),
         ("ê-kî-nitawi-kâh-kîmôci-kotiskâwêyâhk", "kotiskâwêw", "PV/nitawi+"),
         ("nêpat", "nipâw", "IC+"),

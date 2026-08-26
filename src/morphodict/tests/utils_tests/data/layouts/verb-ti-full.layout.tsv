@@ -4,7 +4,7 @@
 "you (one)"	${lemma}+V+TI+Ind+2Sg	PV/ê+${lemma}+V+TI+Cnj+2Sg
 "s/he"	${lemma}+V+TI+Ind+3Sg	PV/ê+${lemma}+V+TI+Cnj+3Sg
 "we (but not you)"	${lemma}+V+TI+Ind+1Pl	PV/ê+${lemma}+V+TI+Cnj+1Pl
-"you and we"	${lemma}+V+TI+Ind+12Pl	PV/ê+${lemma}+V+TI+Cnj+12Pl
+"you and we"	${lemma}+V+TI+Ind+21Pl	PV/ê+${lemma}+V+TI+Cnj+21Pl
 "you (all)"	${lemma}+V+TI+Ind+2Pl	PV/ê+${lemma}+V+TI+Cnj+2Pl
 "they"	${lemma}+V+TI+Ind+3Pl	PV/ê+${lemma}+V+TI+Cnj+3Pl
 "s/he/they (further)"	${lemma}+V+TI+Ind+4Sg/Pl	PV/ê+${lemma}+V+TI+Cnj+4Sg/Pl
@@ -16,7 +16,7 @@
 "you (one)"	PV/kî+${lemma}+V+TI+Ind+2Sg	PV/ê+PV/kî+${lemma}+V+TI+Cnj+2Sg
 "s/he"	PV/kî+${lemma}+V+TI+Ind+3Sg	PV/ê+PV/kî+${lemma}+V+TI+Cnj+3Sg
 "we (but not you)"	PV/kî+${lemma}+V+TI+Ind+1Pl	PV/ê+PV/kî+${lemma}+V+TI+Cnj+1Pl
-"you and we"	PV/kî+${lemma}+V+TI+Ind+12Pl	PV/ê+PV/kî+${lemma}+V+TI+Cnj+12Pl
+"you and we"	PV/kî+${lemma}+V+TI+Ind+21Pl	PV/ê+PV/kî+${lemma}+V+TI+Cnj+21Pl
 "you (all)"	PV/kî+${lemma}+V+TI+Ind+2Pl	PV/ê+PV/kî+${lemma}+V+TI+Cnj+2Pl
 "they"	PV/kî+${lemma}+V+TI+Ind+3Pl	PV/ê+PV/kî+${lemma}+V+TI+Cnj+3Pl
 "s/he/they (further)"	PV/kî+${lemma}+V+TI+Ind+4Sg/Pl	PV/ê+PV/kî+${lemma}+V+TI+Cnj+4Sg/Pl
@@ -27,7 +27,7 @@
 "you (one)"	PV/wî+${lemma}+V+TI+Ind+2Sg	PV/ê+PV/wî+${lemma}+V+TI+Cnj+2Sg
 "s/he"	PV/wî+${lemma}+V+TI+Ind+3Sg	PV/ê+PV/wî+${lemma}+V+TI+Cnj+3Sg
 "we (but not you)"	PV/wî+${lemma}+V+TI+Ind+1Pl	PV/ê+PV/wî+${lemma}+V+TI+Cnj+1Pl
-"you and we"	PV/wî+${lemma}+V+TI+Ind+12Pl	PV/ê+PV/wî+${lemma}+V+TI+Cnj+12Pl
+"you and we"	PV/wî+${lemma}+V+TI+Ind+21Pl	PV/ê+PV/wî+${lemma}+V+TI+Cnj+21Pl
 "you (all)"	PV/wî+${lemma}+V+TI+Ind+2Pl	PV/ê+PV/wî+${lemma}+V+TI+Cnj+2Pl
 "they"	PV/wî+${lemma}+V+TI+Ind+3Pl	PV/ê+PV/wî+${lemma}+V+TI+Cnj+3Pl
 "s/he/they (further)"	PV/wî+${lemma}+V+TI+Ind+4Sg/Pl	PV/ê+PV/wî+${lemma}+V+TI+Cnj+4Sg/Pl
@@ -38,7 +38,7 @@
 "you (one)"	PV/ka+${lemma}+V+TI+Ind+2Sg	
 "s/he"	PV/ka+${lemma}+V+TI+Ind+3Sg	
 "we (but not you)"	PV/ka+${lemma}+V+TI+Ind+1Pl	
-"you and we"	PV/ka+${lemma}+V+TI+Ind+12Pl	
+"you and we"	PV/ka+${lemma}+V+TI+Ind+21Pl	
 "you (all)"	PV/ka+${lemma}+V+TI+Ind+2Pl	
 "they"	PV/ka+${lemma}+V+TI+Ind+3Pl	
 "s/he/they (further)"	PV/ka+${lemma}+V+TI+Ind+4Sg/Pl	
@@ -49,7 +49,7 @@
 "you (one)"	PV/ka+${lemma}+V+TI+Cnj+2Sg	PV/ta+${lemma}+V+TI+Cnj+2Sg
 "s/he"	PV/ka+${lemma}+V+TI+Cnj+3Sg	PV/ta+${lemma}+V+TI+Cnj+3Sg
 "we (but not you)"	PV/ka+${lemma}+V+TI+Cnj+1Pl	PV/ta+${lemma}+V+TI+Cnj+1Pl
-"you and we"	PV/ka+${lemma}+V+TI+Cnj+12Pl	PV/ta+${lemma}+V+TI+Cnj+12Pl
+"you and we"	PV/ka+${lemma}+V+TI+Cnj+21Pl	PV/ta+${lemma}+V+TI+Cnj+21Pl
 "you (all)"	PV/ka+${lemma}+V+TI+Cnj+2Pl	PV/ta+${lemma}+V+TI+Cnj+2Pl
 "they"	PV/ka+${lemma}+V+TI+Cnj+3Pl	PV/ta+${lemma}+V+TI+Cnj+3Pl
 "s/he/they (further)"	PV/ka+${lemma}+V+TI+Cnj+4Sg/Pl	PV/ta+${lemma}+V+TI+Cnj+4Sg/Pl
@@ -59,7 +59,7 @@
 "you (one)"	${lemma}+V+TI+Fut+Cond+2Sg	
 "s/he"	${lemma}+V+TI+Fut+Cond+3Sg	
 "we (but not you)"	${lemma}+V+TI+Fut+Cond+1Pl	
-"you and we"	${lemma}+V+TI+Fut+Cond+12Pl	
+"you and we"	${lemma}+V+TI+Fut+Cond+21Pl	
 "you (all)"	${lemma}+V+TI+Fut+Cond+2Pl	
 "they"	${lemma}+V+TI+Fut+Cond+3Pl	
 "s/he/they (further)"	${lemma}+V+TI+Fut+Cond+4Sg/Pl	
@@ -67,5 +67,5 @@
 	"Command/Request"	
 	: "Right now"	: "Later on"
 "you (one)"	${lemma}+V+TI+Imp+Imm+2Sg	${lemma}+V+TI+Imp+Del+2Sg
-"you and we"	${lemma}+V+TI+Imp+Imm+12Pl	${lemma}+V+TI+Imp+Del+12Pl
+"you and we"	${lemma}+V+TI+Imp+Imm+21Pl	${lemma}+V+TI+Imp+Del+21Pl
 "you (all)"	${lemma}+V+TI+Imp+Imm+2Pl	${lemma}+V+TI+Imp+Del+2Pl

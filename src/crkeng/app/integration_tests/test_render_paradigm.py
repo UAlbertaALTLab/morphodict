@@ -11,7 +11,7 @@ from morphodict.paradigm.panes import CompoundRow, RowLabel
 
 VAI_LEMMA = "mîcisow"
 
-MULTIPLE_12PL_FORMS = [
+MULTIPLE_21PL_FORMS = [
     "kimîcisonaw",  # dialectal
     "kimîcisonânaw",  # more common
 ]
@@ -27,20 +27,20 @@ EXPECTED_BASIC_VAI_FORMS = [
     # We (excl.) eat
     "nimîcisonân",
     # We (incl.) eat
-    *MULTIPLE_12PL_FORMS,
+    *MULTIPLE_21PL_FORMS,
     # You (pl) eat
     "kimîcisonâwâw",
     # They (pl) eat:
     "mîcisowak",
     # They (obviative) eat
-    "mîcisoyiwa",
+    "mîcisoýiwa",
 ]
 
 
 def test_vai_paradigm() -> None:
     """
     Tests the generation of a VAI paradigm. This tests that elementary verb forms
-    exist in the paradigm and that multiple forms are produced for the +12Pl
+    exist in the paradigm and that multiple forms are produced for the +21Pl
     independent form.
     """
     manager = default_paradigm_manager()
@@ -55,13 +55,13 @@ def test_vai_paradigm() -> None:
     for form in EXPECTED_BASIC_VAI_FORMS:
         assert first_pane.contains_wordform(form)
 
-    # The +12PL form should contain **at least** two wordforms.
+    # The +21PL form should contain **at least** two wordforms.
     compound_row = first(row for row in first_pane.rows if isinstance(row, CompoundRow))
     n_rows = compound_row.num_subrows
-    for form in MULTIPLE_12PL_FORMS:
+    for form in MULTIPLE_21PL_FORMS:
         assert compound_row.contains_wordform(form)
     assert n_rows >= 2
     label = first(first(compound_row.subrows).cells)
     assert isinstance(label, RowLabel)
-    assert "12Pl" in label.fst_tags
+    assert "21Pl" in label.fst_tags
     assert label.row_span == n_rows

@@ -577,15 +577,15 @@ def extract_first_letters(analysis: RichAnalysis) -> List[str]:
 
     For example, "ê-kâh-kîmôci-kotiskâwêyahk", you have the following analysis:
 
-    >>> a = RichAnalysis((("PV/ê+", "RdplS+", "PV/nitawi+"), "kotiskâwêw", ("+V", "+AI", "+Cnj", "+12Pl")))
+    >>> a = RichAnalysis((("PV/ê+", "RdplS+", "PV/nitawi+"), "kotiskâwêw", ("+V", "+AI", "+Cnj", "+21Pl")))
 
     Then extracting the first letters of the preverbs and lemma:
 
     >>> extract_first_letters(a)
-    ['e', 'R', 'n', 'k']
+    ['ê', 'R', 'n', 'k']
 
-    Note: the Plains Cree FST preverb tags (PV/*) do not contain long vowel diacrictics;
-    that is "ê-" is represented as "PV/e". Luckily, this doesn't matter, since the
+    Note: the Plains Cree FST preverb tags (PV/*) now contain long vowel diacrictics;
+    that is "ê-" is represented as "PV/ê". Luckily, this doesn't matter, since the
     reduplication for any vowel is always either "ay-" or "âh-"!
 
     """

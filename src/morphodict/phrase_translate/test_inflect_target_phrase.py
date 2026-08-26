@@ -66,7 +66,7 @@ ARBITRARY_DEFINITION = "s/he sees s.o."
             (
                 (),
                 "target_arbitrary_lemma_(irrelevant_for_test)",
-                ("+V", "+TA", "+Imp", "+Imm", "+12Pl", "+3SgO"),
+                ("+V", "+TA", "+Imp", "+Imm", "+21Pl", "+3SgO"),
             ),
             ARBITRARY_DEFINITION,
             "let you and us see him/her now",

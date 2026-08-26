@@ -28,8 +28,8 @@ context("Admin interface", () => {
   specify("the FST tool should work", function () {
     cy.login();
     for (const [query, result] of [
-      ["kikaniminaw", "PV/ka+nîmiw+V+AI+Ind+12Pl"],
-      ["PV/ka+nîmiw+V+AI+Ind+12Pl", "kika-nîminaw"],
+      ["kikaniminaw", "PV/ka+nîmiw+V+AI+Ind+21Pl"],
+      ["PV/ka+nîmiw+V+AI+Ind+21Pl", "kika-nîminaw"],
       ["Obv+Dim+ star", "an/other little star(s)"],
       ["Prt+3Pl+ it sings", "they sang"],
       ["they sing", "sing +V+AI+3Pl"],
