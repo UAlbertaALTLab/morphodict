@@ -2,7 +2,7 @@ import re
 from functools import cache
 
 from django.conf import settings
-from hfst import is_diacritic
+from hfst import is_diacritic # type: ignore
 from hfst_altlab import TransducerFile
 from hfst_altlab.types import Analysis, FullAnalysis, Wordform
 

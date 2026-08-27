@@ -51,13 +51,13 @@ class AnalyzedQuery:
         self.filtered_query = None
         self.tags = None
         self.analysis = []
-        phrase_analyses = rich_analyze_relaxed(query)
+        word_analyses = rich_analyze_relaxed(query)
 
-        if len(phrase_analyses) == 1:
-            phrase_analysis = phrase_analyses[0]
+        if len(word_analyses) == 1:
+            word_analysis = word_analyses[0]
 
-            self.analysis = phrase_analysis.suffix_tags
-            if phrase_analysis:
+            self.analysis = word_analysis.suffix_tags
+            if word_analysis:
                 self.has_tags = True
 
         else:
