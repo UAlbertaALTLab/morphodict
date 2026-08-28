@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           submodules: 'true'
       - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
@@ -52,7 +52,7 @@ jobs:
 
       # This started out life as a copy-paste from
       # https://github.com/actions/cache/blob/main/examples.md#python---pipenv
-      - uses: actions/cache@v4
+      - uses: actions/cache@v6
         with:
           path: ~/.local/share/virtualenvs
           key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-pipenv-${{ hashFiles('Pipfile.lock') }}
@@ -89,7 +89,7 @@ jobs:
             exit 1 ;
         fi"
       - name: 📤 Upload Codecov coverage report
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v7
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
 
@@ -98,7 +98,7 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           submodules: 'true'
       - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
@@ -120,7 +120,7 @@ jobs:
 
       # This started out life as a copy-paste from
       # https://github.com/actions/cache/blob/main/examples.md#python---pipenv
-      - uses: actions/cache@v4
+      - uses: actions/cache@v6
         with:
           path: ~/.local/share/virtualenvs
           key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-pipenv-${{ hashFiles('Pipfile.lock') }}
@@ -150,7 +150,7 @@ jobs:
           if [ -n "$CYPRESS_RECORD_KEY" ] ; then export CYPRESS_OPTS="--key $CYPRESS_RECORD_KEY" ; fi
           pipenv run ./scripts/run-cypress --no-interactive
       - name: Archive cypress videos
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: cypress-videos
           path: |
@@ -166,12 +166,12 @@ jobs:
 
     steps:
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           submodules: 'true'
       - name: Rename docker-compose for dev
@@ -181,7 +181,7 @@ jobs:
       - name: Ensure banner appears on dev
         run: sed -i 's/MORPHODICT_PREVIEW_WARNING = False/# MORPHODICT_PREVIEW_WARNING = False/' src/crkeng/site/settings.py  
       - name: Build and push Docker images
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           # build-push-action with the default ‘git context’ ignores the
           # .dockerignore file
@@ -209,12 +209,12 @@ jobs:
 
     steps:
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           submodules: 'true'      
       - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
@@ -238,16 +238,16 @@ jobs:
 
     steps:
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           submodules: 'true'
       - name: Build and push Docker images
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           # build-push-action with the default ‘git context’ ignores the
           # .dockerignore file
@@ -275,12 +275,12 @@ jobs:
 
     steps:
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           submodules: 'true'
       - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
