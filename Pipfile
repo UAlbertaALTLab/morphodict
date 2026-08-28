@@ -37,6 +37,7 @@ Django = "~=5.2"
 typing-extensions = "*"
 attrs = "*"
 django-js-reverse = "*"
+packaging = "*" # Dependency of django-js-reverse but undeclared it seems
 secure = "*"
 snowballstemmer = "*"
 dawg2 = "*"
