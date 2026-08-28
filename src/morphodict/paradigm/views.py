@@ -241,7 +241,21 @@ def paradigm_context_for_lemma(lemma: Wordform, request) -> dict[str, Any]:
     paradigm = lemma.paradigm
     if paradigm is not None:
         paradigm_manager = default_paradigm_manager()
-        sizes = list(paradigm_manager.sizes_of(paradigm))
+
+        try:
+            sizes = list(paradigm_manager.sizes_of(paradigm))
+        except ParadigmDoesNotExistError:
+            """
+            Resolution for bug in experimental morphodict instances whose lemmas
+            have paradigm IDs which do not occur directly in the instance.
+            Resolve without a 500 error.
+            """
+            logger = logging.getLogger(__name__)
+            logger.warning(
+                f"Paradigm {paradigm} does not exist but was requested for {lemma}"
+            )
+            return {}
+
         if "basic" in sizes:
             default_size = "basic"
         else:
