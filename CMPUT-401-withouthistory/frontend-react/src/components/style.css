@@ -1,0 +1,1485 @@
+@import "./variables.css";
+
+/* Document
+   ========================================================================== */
+
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+/* Sections
+   ========================================================================== */
+
+/**
+ * Remove the margin in all browsers.
+ */
+
+body {
+  margin: 0;
+}
+
+/**
+ * Render the `main` element consistently in IE.
+ */
+
+main {
+  display: block;
+}
+
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/* Grouping content
+   ========================================================================== */
+
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+
+hr {
+  box-sizing: content-box; /* 1 */
+  height: 0; /* 1 */
+  overflow: visible; /* 2 */
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+pre {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/* Text-level semantics
+   ========================================================================== */
+
+/**
+ * Remove the gray background on active links in IE 10.
+ */
+
+a {
+  background-color: transparent;
+}
+
+/**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+
+abbr[title] {
+  border-bottom: none; /* 1 */
+  text-decoration: underline; /* 2 */
+  text-decoration: underline dotted; /* 2 */
+}
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+code,
+kbd,
+samp {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/**
+ * Add the correct font size in all browsers.
+ */
+
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* Embedded content
+   ========================================================================== */
+
+/**
+ * Remove the border on images inside links in IE 10.
+ */
+
+img {
+  border-style: none;
+}
+
+/*********************************** APP ***********************************/
+
+/**
+ * Set up the root font for the entire page.
+ */
+:root {
+  font-style: normal;
+  font-weight: var(--body-font-weight);
+  font-size: var(--root-font-size);
+  line-height: normal;
+  font-family: var(--body-font-family);
+}
+
+/**
+ * BLOCK app
+ *
+ * A block containing the ENTIRE application.
+ */
+.App {
+  /* Display & Box Model */
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+
+  /* Color */
+  color: var(--app-body-color);
+  background: var(--app-bg-color);
+}
+
+/**
+ * Link styles for the application.
+ */
+.App a {
+  font-weight: var(--link-font-weight);
+}
+.App a:link {
+  color: var(--link-color);
+}
+.App a:visited {
+  color: var(--link-visited-color);
+}
+.App a:hover {
+  color: var(--link-hover-color);
+}
+.App a:active {
+  color: var(--link-active-color);
+}
+
+/**
+ * ELEMENT app__header
+ *
+ * The header for the entire application.
+ */
+.app__header {
+  /* Display & Box Model */
+  width: 100vw;
+  margin: 0 0 0.75rem;
+}
+
+/**
+ * ELEMENT app__content
+ *
+ * The element containing the main content on display in the application.
+ * The contents of this element are expected to change as the user interacts
+ * with the application.
+ */
+.app__content {
+  flex: 1;
+  margin-top: var(--medium-gap);
+}
+
+/**
+ * ELEMENT app__footer
+ *
+ * The footer for the entire application.
+ */
+.app__footer {
+  width: 100vw;
+  margin: 1rem 0 0;
+}
+
+/**
+ * ELEMENT app__pane
+ *
+ * Any division of the application that creates a "pane".
+ *
+ * The header and footer are exceptions to this.
+ */
+.app__pane {
+  padding: 0 var(--page-gutter);
+}
+
+/* On larger screens, change to a margin: auto (to horizontally
+ * center)/max-width scheme. */
+@media (min-width: 768px) {
+  .app__pane {
+    padding: 0 0;
+    margin: auto;
+    width: var(--tablet-search-bar-width);
+  }
+}
+
+@media (min-width: 960px) {
+  .app__pane {
+    width: var(--desktop-search-bar-width);
+  }
+}
+
+/********************************* TOP BAR *********************************/
+
+/**
+ * BLOCK top-bar
+ *
+ * A bar that runs across the top of the application.
+ */
+
+.top-bar {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "logo nav"
+    "search search";
+
+  padding: 1rem var(--page-gutter) 0;
+}
+
+/**
+ * ELEMENT top-bar__logo
+ *
+ * Where the title (itwêwina -- Plains Cree Dictionary) goes.
+ */
+
+.top-bar__logo {
+  grid-area: logo;
+}
+
+/**
+ * ELEMENT top-bar__search
+ *
+ * Where the search bar.
+ */
+
+.top-bar__search {
+  grid-area: search;
+  margin-left: 20%;
+  max-width: 60%;
+}
+
+/**
+ * ELEMENT top-bar__nav
+ *
+ * Where the navigation (e.g., language selector) goes.
+ */
+
+.top-bar__nav {
+  grid-area: nav;
+
+  text-align: right; /* So that it's flush with the right side of the page. */
+
+  padding-right: var(--small-pad);
+}
+
+/**
+ * The top-bar collapses both the logo, the language picker, AND the search
+ * bar all into one long line.
+ */
+
+@media (min-width: 960px) {
+  .top-bar {
+    grid-template-columns: 200px auto 200px;
+    grid-template-areas: "logo search nav";
+  }
+}
+/********************************** PROSE **********************************/
+
+/**
+ * BLOCK prose
+ *
+ * A big hunk of readable text.
+ */
+.prose__heading,
+.prose__section-title {
+  font-weight: var(--strong-font-weight);
+  font-family: var(--body-font-family);
+}
+
+.prose__heading {
+  margin: var(--gap) 0 0;
+
+  font-size: var(--prose-heading-font-size);
+
+  color: var(--prose-heading-color);
+}
+
+.prose__section-title {
+  /* Reset margin. */
+  margin: 0;
+
+  font-size: var(--prose-section-title-font-size);
+
+  color: var(--prose-title-color);
+}
+
+/* this is anti-BEM, but like, it's body text ¯\_(ツ)_/¯ */
+.prose p {
+  margin-top: var(--small-pad);
+  margin-bottom: 0;
+}
+
+/* also anti-BEM ¯\_(ツ)_/¯ */
+.prose p [lang],
+.prose__heading:not(.no-italics) [lang] {
+  font-style: italic;
+}
+
+/****************************** UTILITY CLASSES *****************************/
+
+.toggle-box__toggle {
+  /* Display & Box Model */
+  display: block;
+
+  /* Text */
+  font-weight: var(--strong-font-weight);
+  text-decoration: underline;
+
+  /* Color */
+  color: #000;
+
+  /* Other */
+  cursor: pointer;
+  overflow: hidden; /* Don't affect the layout if the toggle icon overflows its box. */
+}
+
+.toggle-box__toggle::-webkit-details-marker {
+  display: none;
+}
+
+.toggle-box__toggle::after {
+  /* The little toggle arrow */
+  content: url("../static/chevron-circle-down.svg");
+
+  display: inline-block;
+  width: 0.75rem;
+  margin-left: var(--small-pad);
+
+  vertical-align: middle;
+
+  transition: transform 0.25s;
+  /* make the little arrow appear to the point right */
+  transform: rotate(-90deg);
+}
+
+.toggle-box[open] > .toggle-box__toggle::after {
+  /* make the little arrow appear to point down */
+  transform: rotate(0);
+}
+
+/**
+ * Makes the toggle look like a link.
+ */
+.toggle-box--link-like > .toggle-box__toggle {
+  color: var(--link-action-color);
+}
+
+/**
+ * MODIFIER large
+ *
+ * A slightly larger toggle-box.
+ */
+.toggle-box--large > .toggle-box__toggle {
+  font-size: var(--toggle-box-large-font-size);
+}
+
+/**
+ * MODIFIER with-menu
+ *
+ * Makes it so that the menu can be absolutely positioned.
+ */
+.toggle-box--with-menu {
+  position: relative;
+}
+
+.toggle-box__menu {
+  position: absolute;
+  right: 0;
+  z-index: 100;
+}
+
+/*********************************** MENU ***********************************/
+
+/* TODO: Steal from GitHub's settings page for making an accessible menu! */
+/* e.g., https://github.com/eddieantonio/proto-itwewina/settings */
+/* See also: https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-links.html */
+
+.menu {
+  min-width: 24ch;
+  border: solid 1px rgba(209, 209, 209, 0.33);
+
+  font-size: 1.2em;
+  text-align: left;
+
+  background-color: var(--box-bg-color);
+  box-shadow: 4px 4px 8px 0 rgba(74, 74, 74, 0.24);
+
+  border-radius: var(--border-radius);
+}
+
+.menu__header {
+  padding: 0.5rem;
+  margin: 0.5rem 0 0;
+
+  font-size: 100%;
+  font-weight: var(--strong-font-weight);
+}
+
+.menu__choices {
+  list-style: none;
+}
+
+.menu__category,
+.menu__choices {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.menu-choice__label {
+  display: block;
+  padding: 1rem;
+}
+
+.menu-choice:hover {
+  color: var(--menu-hover-color);
+  background-color: var(--menu-hover-bg-color);
+}
+
+a.menu-choice__label:link,
+a.menu-choice__label:visited,
+a.menu-choice__label:hover,
+a.menu-choice__label:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+.menu-choice--selected {
+  font-weight: var(--strong-font-weight);
+
+  color: var(--menu-selected-color);
+  background-color: var(--menu-selected-bg-color);
+}
+
+.menu__separator {
+  height: 1px;
+  margin: 0.5rem 0.5em;
+  border: 0;
+
+  /* A horizontal gradient that is darkest in the middle: */
+  background-image: linear-gradient(
+    to right,
+    rgb(0 0 0 / 0),
+    var(--soft-hr-color),
+    rgb(0 0 0 /0)
+  );
+}
+
+/********************************* MENU BAR *********************************/
+
+/**
+ * BLOCK: menu-bar
+ *
+ * Display a whole bunch of options in a horizontal menu bar.
+ */
+.menu-bar {
+  display: flex;
+  flex-direction: row;
+}
+
+/**
+ * ELEMENT
+ *
+ * One option in the menu bar.
+ */
+.menu-bar__item {
+  width: max-content;
+  flex: 0 auto;
+}
+
+/**
+ * MODIFIER align-end
+ *
+ * Have all the elements on the end of block.
+ * For left-to-right scripts (e.g., English, Cree), this means the elements
+ * will be right aligned.
+ */
+.menu-bar--align-end {
+  justify-content: flex-end;
+}
+
+/******************************** DROP DOWN *********************************/
+.dropdown {
+  position: relative;
+}
+
+.dropdown--align-end:dir(ltr) .dropdown__menu {
+  right: 0;
+}
+
+.dropdown--align-end:dir(rtl) .dropdown__menu {
+  left: 0;
+}
+
+.dropdown__label {
+  cursor: pointer;
+}
+
+.dropdown__menu {
+  position: absolute;
+}
+
+/*********************************** BOX ************************************/
+
+/**
+ * BLOCK box
+ *
+ * A panel that stands out from its background, as if it's in a box!
+ */
+.box {
+  padding: var(--medium-gap) var(--page-gutter);
+  padding-bottom: 1rem;
+
+  background-color: var(--box-bg-color);
+
+  box-shadow: 0 1px 1px 0 rgba(129, 127, 127, 0.5);
+}
+
+.box--rounded {
+  border-radius: var(--border-radius);
+}
+
+/**
+ * MODIFIER spaced
+ *
+ * Add a little margin AFTER the box.
+ */
+.box--spaced {
+  margin-bottom: 16px;
+}
+
+/**
+ * MODIFIER bad-outcome
+ *
+ * When displaying that something went wrong.
+ */
+.box--bad-outcome {
+  color: var(--bad-outcome-color);
+  background-color: var(--bad-outcome-bg-color);
+  text-shadow: 1px 1px 0 var(--embossed-highlight),
+    2px 2px 2px var(--bad-outcome-shadow);
+}
+
+/********************************* BRANDING *********************************/
+
+/**
+ * BLOCK branding
+ *
+ * Displays the title and subtitle/tagline of the application.
+ */
+
+/**
+ * ELEMENT
+ *
+ * A heading that makes up the branding.
+ */
+.branding__heading {
+  margin: 0 auto;
+}
+
+/* Make the links in the heading look consistent, regardless of its state: */
+.branding a:link,
+.branding a:hover,
+.branding a:hover,
+.branding a:visited,
+.branding a:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+.branding__logo {
+  display: flex;
+  flex-direction: row;
+}
+
+/**
+ * ELEMENT branding__image
+ *
+ * The teepee SVG image.
+ */
+.branding__image {
+  max-height: 3rem;
+  margin-right: 1rem;
+}
+
+/**
+ * ELEMENT branding__title
+ *
+ * Contains the primary title of the application.
+ * e.g., "itwêwina"
+ */
+.branding__title {
+  /* Color */
+  color: var(--app-title-color);
+
+  /* Text */
+  font-weight: 700;
+  font-size: var(--branding-font-size);
+  line-height: normal;
+  font-family: var(--heading-font-family);
+}
+
+/**
+ * ELEMENT branding__subtitle
+ *
+ * Contains the subtitle or tagline of the application.
+ */
+.branding__subtitle {
+  width: max-content;
+
+  /* Text */
+  font-weight: var(--body-font-weight);
+  font-size: var(--branding-subtitle-font-size);
+}
+/**************************** APP FOOTER ****************************/
+
+/**
+ * BLOCK footer
+ *
+ * The footer at the bottom of the app.
+ */
+.footer {
+  /* Display & Box Model */
+  display: grid;
+  padding: 1rem var(--page-gutter) var(--page-gutter);
+
+  /* Font */
+  font-size: var(--footer-font-size);
+
+  /* Color */
+  color: var(--footer-text-color);
+  background-image: url(../static/footer-1366w.jpg);
+  background-position: top center;
+  background-color: var(--footer-bg-color);
+  box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.1);
+
+  /* Grid */
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "basic"
+    "advanced"
+    "copyright";
+
+  /* Positioning */
+  /* position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;*/
+}
+
+.footer a:link,
+.footer a:visited,
+.footer .link:link,
+.footer .link:visited {
+  color: var(--footer-text-color);
+}
+
+.footer a:hover,
+.footer .link:hover {
+  color: var(--footer-link-hover-color);
+}
+
+.footer__copyright {
+  margin-top: 1rem;
+
+  grid-area: copyright;
+}
+
+.footer__basic-links {
+  grid-area: basic;
+}
+
+.footer__advanced-links {
+  grid-area: advanced;
+}
+
+.footer__links {
+  margin: 0;
+  padding: 0;
+
+  /* Put a lot of spacing in between links on mobile, to make them easier to
+   * press. */
+  line-height: 2;
+
+  list-style: none;
+}
+
+.footer__link:first-of-type {
+  margin-left: 0;
+}
+
+.footer__link {
+  font-weight: var(--strong-font-weight);
+}
+
+.footer__option-header {
+  font-size: inherit;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/**
+ * When the screen gets wide enough, we can display the three footer sections
+ * horizontally.
+ */
+@media (min-width: 768px) {
+  .footer {
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-areas: "basic copyright advanced";
+  }
+
+  .footer__basic-links {
+    /* align against the viewport border */
+    text-align: start;
+  }
+
+  .footer__links {
+    /* Assume that on wider displays, users do not have to touch the button
+     * (can use a mouse or keyboard). */
+    line-height: normal;
+  }
+
+  .footer__copyright {
+    margin: 0;
+
+    text-align: center;
+
+    /* Place at BOTTOM of the bar */
+    align-self: flex-end;
+  }
+
+  .footer__advanced-links {
+    /* align against the viewport border */
+    text-align: end;
+  }
+}
+
+/**
+ * BLOCK copyright
+ *
+ * One line of copyright text.
+ */
+.copyright__line {
+  margin: 0;
+  margin-bottom: var(--gap);
+}
+
+.copyright__line:last-of-type {
+  /* Remove superfluous margin for the last line of copyright. */
+  margin-bottom: 0;
+}
+
+/**
+ * BLOCK partner-logos
+ *
+ * Contains logos, primarily in the footer.
+ */
+
+.partner-logos {
+  /* Display & Box Model */
+  color: var(--prose-title-color);
+  display: grid;
+  width: 100%;
+  margin-top: var(--small-pad);
+
+  /* Grid */
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: repeat(3, 1fr);
+  justify-items: stretch;
+  align-items: center;
+}
+
+/**
+ * ELEMENT partner-logos__logo
+ *
+ * One particular logo.
+ */
+
+.partner-logos__logo {
+  /* Display & Box Model */
+  margin: var(--small-pad) 0.5rem;
+
+  /* Text */
+  text-align: center;
+}
+
+/**
+ * Modifier for wide logos (e.g., NRC/SSHRC)
+ */
+
+.partner-logos__logo--full-width {
+  grid-column: 1 / span 3;
+}
+
+.partner-logos__logo:hover {
+  background-color: rgba(50% 50% 50% / 50%);
+}
+
+.partner-logos__logo > img {
+  max-width: 100%;
+  max-height: 8rem;
+  vertical-align: middle;
+}
+/**************************** Some util elements ****************************/
+/**
+ * ELEMENT sr-only
+ *
+ * Let something be part of the accessiblity tree without showing it to
+ * screens and print.
+ */
+
+.sr-only {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(1px 1px 1px 1px);
+  clip-path: inset(1px 1px 1px 1px);
+  pointer-events: none;
+}
+
+/**
+ * Makes a <button> look like a link.
+ */
+
+.unbutton {
+  border: 0;
+  padding: 0;
+
+  text-align: inherit;
+
+  color: inherit;
+  background: transparent;
+
+  cursor: pointer;
+}
+
+.link {
+  text-decoration: underline;
+}
+
+/**
+ * Place this on a <ul> or <ol> to get rid of the bullets and weird
+ * indentation.
+ */
+
+.unbullet {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+/**
+ * Fill the width of the container.
+ */
+
+.fill-width {
+  width: 100%;
+}
+
+/**
+ * .close-on-click-away
+ *
+ * Creates an area behind <details> pop-up that, when clicked/touched, will
+ * inadvertently toggle the menu away.
+ */
+
+.close-on-click-away[open] > summary::before {
+  content: " ";
+
+  /* Position: fills FULL AREA of the screen */
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  /* Display & Box model */
+  display: block;
+
+  /* Color */
+  background: transparent;
+
+  /* Other */
+  cursor: default;
+}
+
+/******************************** DEFINITION ********************************/
+
+.definition-title {
+  font-size: var(--definition-title-size);
+  margin: 0;
+}
+
+.definition-title__title {
+  display: inline;
+  font-size: inherit;
+}
+
+.definition-title__inflectional-class {
+  font-style: italic;
+  font-size: 0.66em;
+}
+
+.definition__matched-head {
+  /* Text */
+  font-style: normal;
+  font-weight: var(--strong-font-weight);
+}
+
+.definition__icons {
+  display: inline;
+}
+
+.definition-title__tooltip-text {
+  font-size: 0.5em;
+  font-weight: normal;
+}
+
+.definition-title__tooltip-icon {
+  display: inline-block;
+}
+
+.definition-title__tooltip-icon > img {
+  width: var(--tooltip-icon-size);
+  filter: var(--blue-filter); /* blue color */
+
+  vertical-align: middle;
+}
+
+.definition-title__tooltip-icon:focus,
+.definition-title__tooltip-icon:focus-within {
+  outline: 3px solid var(--search-focus-color);
+}
+
+.definition__elaboration {
+  margin: var(--small-gap) 0 0;
+
+  font-size: var(--elaboration-size);
+}
+
+.definition__reference-to-lemma {
+  font-style: italic;
+}
+
+/**
+ * The actual SVG for the 🔊 icon and the speaker playback/external link buttons
+ */
+
+.definition-title__play-icon,
+.speaker-playback-action-button {
+  width: 100%;
+  height: var(--tooltip-icon-size);
+
+  overflow: hidden;
+}
+
+.elaboration__row {
+  /* There's normally TOO MUCH MARGIN for these, so get rid of it: */
+  margin-block: 0;
+}
+
+.elaboration__ic-row {
+  /* make the font a lil' lighter */
+  color: var(--deemphasized-text-color);
+}
+
+/**
+ * ELEMENT play-button
+ *
+ * Should be a button that looks like a link.
+ */
+
+.definition-title__play-button {
+  /* Reset the button appearance: */
+  width: 1em;
+  padding: 0;
+  border: 0;
+  margin: 0;
+
+  /* Inline properties: */
+  vertical-align: middle;
+
+  /* Color: */
+  color: var(--play-button-color);
+  background: transparent;
+
+  /* Make it look like a link. */
+  cursor: pointer;
+
+  /* Subtle transition when hovering. */
+  transition: 0.1s filter;
+  filter: brightness(100%);
+}
+.multiple-recordings__action-button {
+  /* Reset the button appearance: */
+  width: 1em;
+  padding: 0;
+  border: 0;
+  margin: 0;
+
+  /* Inline properties: */
+  vertical-align: middle;
+
+  /* Color: */
+  color: var(--play-button-color);
+  background: transparent;
+
+  /* Make it look like a link. */
+  cursor: pointer;
+
+  /* Subtle transition when hovering. */
+  transition: 0.1s filter;
+  filter: brightness(100%);
+}
+
+.definition-title__play-button:hover {
+  /* Make the button lighter when hovered. */
+  filter: brightness(150%);
+}
+
+.definition__recordings {
+  font-style: italic;
+}
+
+.definition__recordings--not-loaded {
+  display: none;
+}
+
+.recordings-list__item {
+  list-style: upper-roman;
+  margin-bottom: var(--small-pad);
+}
+
+.recordings-list__item:hover {
+  cursor: pointer;
+}
+
+/**
+ * ELEMENT speaker-play-button
+ *
+ * Makes the SVG of the speaker-playback look like a button.
+ */
+
+.multiple-recordings__action-button {
+  margin-left: 0.5em;
+}
+
+a.multiple-recordings__action-button {
+  font-weight: var(--body-font-weight);
+  font-style: italic;
+}
+
+/**
+ * BLOCK wordclass
+ */
+
+.wordclass {
+  /* Text */
+  font-style: normal;
+  font-weight: var(--body-font-weight);
+}
+
+/**
+ * MODIFIER described
+ *
+ * This wordclass is described by a tooltip
+ */
+
+.wordclass--described {
+  text-decoration: underline dotted;
+
+  cursor: help;
+}
+
+/**
+ * ELEMENT inflectional-class
+ *
+ * The fully-written inflectional class.
+ */
+
+.wordclass__inflectional-class {
+  font-size: smaller;
+}
+
+/* Embedded content
+   ========================================================================== */
+
+/**
+ * Remove the border on images inside links in IE 10.
+ */
+
+img {
+  border-style: none;
+}
+
+/* Forms
+   ========================================================================== */
+
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+
+button,
+input {
+  /* 1 */
+  overflow: visible;
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+
+button,
+select {
+  /* 1 */
+  text-transform: none;
+}
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+ * Correct the padding in Firefox.
+ */
+
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+
+legend {
+  box-sizing: border-box; /* 1 */
+  color: inherit; /* 2 */
+  display: table; /* 1 */
+  max-width: 100%; /* 1 */
+  padding: 0; /* 3 */
+  white-space: normal; /* 1 */
+}
+
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+
+progress {
+  vertical-align: baseline;
+}
+
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+
+textarea {
+  overflow: auto;
+}
+
+/**
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
+
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+
+[type="search"] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+/* Partner logos
+   ========================================================================== */
+.sshrc-crsh-logo {
+  content: url("../static/sshrc-crsh-logo.svg");
+}
+.mesc-logo {
+  content: url("../static/mesc-logo.svg");
+}
+.fnu-logo {
+  content: url("../static/fnu-logo.png");
+}
+.uofa-logo {
+  content: url("../static/uofa-logo.svg");
+}
+.nrc-cnrc-logo {
+  content: url("../static/nrc-cnrc-logo.svg");
+}
+
+/********************************* PARADIGM *********************************/
+
+.paradigm {
+  /* Display & Box model */
+  border: solid 1px var(--paradigm-border-color);
+
+  /* Color */
+  background: var(--box-bg-color);
+
+  /* Other */
+  border-radius: var(--border-radius);
+}
+
+.paradigm__table {
+  /* Display & Box model */
+  margin: 0 auto 15px;
+  max-width: calc(100% - 2 * 22px); /* Have an 'inner margin' of 22px; */
+
+  /* Text */
+  line-height: 1.5;
+
+  /* Other */
+  border-spacing: 2em 0.5rem;
+}
+
+.paradigm__size-toggle-button {
+  /* Display & Box model */
+  display: block;
+  width: 100%;
+  border: 0;
+  padding-top: var(--small-pad);
+  padding-bottom: var(--border-radius);
+
+  /* Color */
+  color: #fff;
+  background-color: var(--paradigm-button-color);
+
+  /* Text */
+  text-align: center;
+  font-weight: inherit;
+  line-height: 1.5;
+
+  /* Hack to make the rounded border look like it belongs to the parent. If we
+   * don't make the radius a bit tighter, this border protrudes in a weird
+   * way. */
+  --tighter-br: calc(var(--border-radius) - 2px);
+  border-radius: 0 0 var(--tighter-br) var(--tighter-br);
+
+  cursor: pointer;
+}
+
+.paradigm__size-toggle-button:hover,
+.paradigm__size-toggle-button:focus {
+  background-color: var(--paradigm-button-color-alt);
+}
+
+.paradigm__size-toggle-button--loading {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--paradigm-button-color),
+    var(--paradigm-button-color) var(--stripe-effect-quarter-sqrt),
+    var(--paradigm-button-color-alt) var(--stripe-effect-quarter-sqrt),
+    var(--paradigm-button-color-alt) calc(2 * var(--stripe-effect-quarter-sqrt))
+  );
+  background-size: var(--stripe-effect-width) var(--stripe-effect-width);
+
+  animation: paradigm-button-slider 0.5s linear infinite;
+}
+
+@keyframes paradigm-button-slider {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: var(--stripe-effect-width);
+  }
+}
+
+.paradigm__size-toggle-plus-minus {
+  font-weight: var(--strong-font-weight);
+}
+
+.paradigm__panel-description {
+  text-align: left;
+}
+
+/* TODO: remove name "paradigm-title" when only pane-based layouts are used */
+.paradigm-title,
+.paradigm-header {
+  text-align: center;
+  font-style: italic;
+  font-weight: var(--body-font-weight);
+}
+
+.paradigm-label {
+  text-align: left;
+  font-weight: var(--body-font-weight);
+}
+
+.paradigm-label--row {
+  font-style: italic;
+}
+
+.paradigm-label--col {
+  font-weight: bold;
+
+  /* Sometimes the label is too dang wide, so just hide it. */
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
+.paradigm-cell {
+  font-weight: var(--body-font-weight);
+}
+
+.paradigm-cell--observed {
+  font-weight: var(--strong-font-weight);
+}
+
+.paradigm-cell--no-analysis {
+  background-color: lightgray;
+}
+
+.paradigm-label--row,
+.paradigm-cell {
+  vertical-align: top; /* When a label applies to multiple wordforms */
+}
