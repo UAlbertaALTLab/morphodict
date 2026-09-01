@@ -14,3 +14,4 @@ morphodict_prod_data_dirs:
   - "/data_local/application-data/hdneng"
   - "/data_local/application-data/crkLacombeeng"
   - "/data_local/application-data/blaeng"
+  - "/data_local/application-data/csweng"

@@ -166,3 +166,26 @@ services:
       - "/data_local/application-data/blaeng/vector_models:/app/src/blaeng/resources/vector_models/"
       - "/data_local/application-data/blaeng/db:/app/src/blaeng/db/"
       - "/data_local/application-data/blaeng/search_quality:/app/src/blaeng/morphodict/search_quality/"
+  csweng:
+    restart: always
+    # Specify hostname to make it clearer which container is active when
+    # using docker to get a shell in the container.
+    hostname: csweng-container
+    image: ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
+    command: /app/app.sh csweng
+    ports:
+      - "8020:8000" # http
+      - "9020:9191" # uWSGI stats
+    volumes:
+      - "./.env:/app/.env"
+
+      # LFS mounts
+      - "../src/morphodict/lexicon/resources/vector_models/:/app/src/morphodict/lexicon/resources/vector_models/:ro"
+      - "../src/csweng/resources/fst:/app/src/csweng/resources/fst:ro"
+      - "../src/morphodict/resources/fst/:/app/src/morphodict/resources/fst/:ro"
+      - "../src/morphodict/resources/:/app/src/morphodict/resources/:ro"
+      - "../src/csweng/resources/dictionary/:/app/src/csweng/resources/dictionary/:ro"
+
+      - "/data_local/application-data/csweng/vector_models:/app/src/csweng/resources/vector_models/"
+      - "/data_local/application-data/csweng/db:/app/src/csweng/db/"
+      - "/data_local/application-data/csweng/search_quality:/app/src/csweng/morphodict/search_quality/"
