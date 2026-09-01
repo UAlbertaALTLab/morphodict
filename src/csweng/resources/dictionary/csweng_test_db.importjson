@@ -1,646 +1,398 @@
 [
-    {
-        "analysis": [
-            [],
-            "kîsikâw",
-            [
-                "+V",
-                "+II",
-                "+Ind",
-                "+3Sg"
-            ]
-        ],
-        "head": "kîsikâw",
-        "linguistInfo": {
-            "inflectional_category": "VII-v-SG",
-            "pos": "VII-v-SG",
-            "wordclass": "VII-v-SG"
-        },
-        "paradigm": "VII-v-SG",
-        "senses": [
-            {
-                "definition": "be day",
-                "semanticDefinition": "be day",
-                "sources": [
-                    "NHCC"
-                ]
-            }
-        ],
-        "slug": "kîsikâw"
+  {
+    "analysis": [[], "atoskêw", ["+V", "+AI", "+Ind", "+3Sg"]],
+    "head": "atoskêw",
+    "linguistInfo": {
+      "inflectional_category": "VAI-ae",
+      "pos": "VAI-ae",
+      "wordclass": "VAI-ae"
     },
-    {
-        "analysis": [
-            [],
-            "kimiwan",
-            [
-                "+V",
-                "+II",
-                "+Ind",
-                "+3Sg"
-            ]
-        ],
-        "head": "kimiwan",
-        "linguistInfo": {
-            "inflectional_category": "VII-n-SG",
-            "pos": "VII-n-SG",
-            "wordclass": "VII-n-SG"
-        },
-        "paradigm": "VII-n-SG",
-        "senses": [
-            {
-                "definition": "rain",
-                "semanticDefinition": "rain",
-                "sources": [
-                    "NHCC"
-                ]
-            }
-        ],
-        "slug": "kimiwan"
+    "paradigm": "VAI-ae",
+    "senses": [
+      {
+        "definition": "work",
+        "semanticDefinition": "work",
+        "sources": ["NHCC"]
+      }
+    ],
+    "slug": "atoskêw"
+  },
+  {
+    "analysis": [[], "itêw", ["+V", "+TA", "+Ind", "+3Sg", "+4Sg/PlO"]],
+    "head": "itêw",
+    "linguistInfo": {
+      "inflectional_category": "VTA-i",
+      "pos": "VTA-i",
+      "wordclass": "VTA-i"
     },
-    {
-        "analysis": [
-            [],
-            "mihkwâw",
-            [
-                "+V",
-                "+II",
-                "+Ind",
-                "+3Sg"
-            ]
-        ],
-        "head": "mihkwâw",
-        "linguistInfo": {
-            "inflectional_category": "VII-v",
-            "pos": "VII-v",
-            "wordclass": "VII-v"
-        },
-        "paradigm": "VII-v",
-        "senses": [
-            {
-                "definition": "be red",
-                "semanticDefinition": "be red",
-                "sources": [
-                    "NHCC"
-                ]
-            }
-        ],
-        "slug": "mihkwâw"
+    "paradigm": "VTA-i",
+    "senses": [
+      {
+        "definition": "speak or say to s.o.",
+        "semanticDefinition": "speak or say to s.o.",
+        "sources": ["NHCC"]
+      }
+    ],
+    "slug": "itêw"
+  },
+  {
+    "analysis": [[], "kimiwan", ["+V", "+II", "+Ind", "+3Sg"]],
+    "head": "kimiwan",
+    "linguistInfo": {
+      "inflectional_category": "VII-n-SG",
+      "pos": "VII-n-SG",
+      "wordclass": "VII-n-SG"
     },
-    {
-        "analysis": [
-            [],
-            "minwâsin",
-            [
-                "+V",
-                "+II",
-                "+Ind",
-                "+3Sg"
-            ]
-        ],
-        "head": "minwâsin",
-        "linguistInfo": {
-            "inflectional_category": "VII-n",
-            "pos": "VII-n",
-            "wordclass": "VII-n"
-        },
-        "paradigm": "VII-n",
-        "senses": [
-            {
-                "definition": "be nice",
-                "semanticDefinition": "be nice",
-                "sources": [
-                    "NHCC"
-                ]
-            }
-        ],
-        "slug": "minwâsin"
+    "paradigm": "VII-n-SG",
+    "senses": [
+      {
+        "definition": "rain",
+        "semanticDefinition": "rain",
+        "sources": ["NHCC"]
+      }
+    ],
+    "slug": "kimiwan"
+  },
+  {
+    "analysis": [[], "kîsihtâw", ["+V", "+TI", "+Ind", "+3Sg"]],
+    "head": "kîsihtâw",
+    "linguistInfo": {
+      "inflectional_category": "VTI-ae",
+      "pos": "VTI-ae",
+      "wordclass": "VTI-ae"
     },
-    {
-        "analysis": [
-            [],
-            "pimamon",
-            [
-                "+V",
-                "+II",
-                "+Ind",
-                "+3Sg"
-            ]
-        ],
-        "head": "pimamon",
-        "linguistInfo": {
-            "inflectional_category": "VII-n",
-            "pos": "VII-n",
-            "wordclass": "VII-n"
-        },
-        "paradigm": "VII-n",
-        "senses": [
-            {
-                "definition": "lead (path)",
-                "semanticDefinition": "lead (path)",
-                "sources": [
-                    "NHCC"
-                ]
-            }
-        ],
-        "slug": "pimamon"
+    "paradigm": "VTI-ae",
+    "senses": [
+      {
+        "definition": "finish s.t.",
+        "semanticDefinition": "finish s.t.",
+        "sources": ["NHCC"]
+      }
+    ],
+    "slug": "kîsihtâw"
+  },
+  {
+    "analysis": [[], "kîsikâw", ["+V", "+II", "+Ind", "+3Sg"]],
+    "head": "kîsikâw",
+    "linguistInfo": {
+      "inflectional_category": "VII-v-SG",
+      "pos": "VII-v-SG",
+      "wordclass": "VII-v-SG"
     },
-    {
-        "analysis": [
-            [],
-            "atoskêw",
-            [
-                "+V",
-                "+AI",
-                "+Ind",
-                "+3Sg"
-            ]
-        ],
-        "head": "atoskêw",
-        "linguistInfo": {
-            "inflectional_category": "VAI-ae",
-            "pos": "VAI-ae",
-            "wordclass": "VAI-ae"
-        },
-        "paradigm": "VAI-ae",
-        "senses": [
-            {
-                "definition": "work",
-                "semanticDefinition": "work",
-                "sources": [
-                    "NHCC"
-                ]
-            }
-        ],
-        "slug": "atoskêw"
+    "paradigm": "VII-v-SG",
+    "senses": [
+      {
+        "definition": "be day",
+        "semanticDefinition": "be day",
+        "sources": ["NHCC"]
+      }
+    ],
+    "slug": "kîsikâw"
+  },
+  {
+    "analysis": [[], "kîskiswêw", ["+V", "+TA", "+Ind", "+3Sg", "+4Sg/PlO"]],
+    "head": "kîskiswêw",
+    "linguistInfo": {
+      "inflectional_category": "VTA",
+      "pos": "VTA",
+      "wordclass": "VTA"
     },
-    {
-        "analysis": [
-            [],
-            "nipâw",
-            [
-                "+V",
-                "+AI",
-                "+Ind",
-                "+3Sg"
-            ]
-        ],
-        "head": "nipâw",
-        "linguistInfo": {
-            "inflectional_category": "VAI-ae",
-            "pos": "VAI-ae",
-            "wordclass": "VAI-ae"
-        },
-        "paradigm": "VAI-ae",
-        "senses": [
-            {
-                "definition": "sleep",
-                "semanticDefinition": "sleep",
-                "sources": [
-                    "NHCC"
-                ]
-            }
-        ],
-        "slug": "nipâw"
+    "paradigm": "VTA",
+    "senses": [
+      {
+        "definition": "cut s.o. off",
+        "semanticDefinition": "cut s.o. off",
+        "sources": ["NHCC"]
+      }
+    ],
+    "slug": "kîskiswêw"
+  },
+  {
+    "analysis": [[], "mâtow", ["+V", "+AI", "+Ind", "+3Sg"]],
+    "head": "mâtow",
+    "linguistInfo": {
+      "inflectional_category": "VAI-io",
+      "pos": "VAI-io",
+      "wordclass": "VAI-io"
     },
-    {
-        "analysis": [
-            [],
-            "mâtow",
-            [
-                "+V",
-                "+AI",
-                "+Ind",
-                "+3Sg"
-            ]
-        ],
-        "head": "mâtow",
-        "linguistInfo": {
-            "inflectional_category": "VAI-io",
-            "pos": "VAI-io",
-            "wordclass": "VAI-io"
-        },
-        "paradigm": "VAI-io",
-        "senses": [
-            {
-                "definition": "cry",
-                "semanticDefinition": "cry",
-                "sources": [
-                    "NHCC"
-                ]
-            }
-        ],
-        "slug": "mâtow"
+    "paradigm": "VAI-io",
+    "senses": [
+      {
+        "definition": "cry",
+        "semanticDefinition": "cry",
+        "sources": ["NHCC"]
+      }
+    ],
+    "slug": "mâtow"
+  },
+  {
+    "analysis": [[], "mihkwâw", ["+V", "+II", "+Ind", "+3Sg"]],
+    "head": "mihkwâw",
+    "linguistInfo": {
+      "inflectional_category": "VII-v",
+      "pos": "VII-v",
+      "wordclass": "VII-v"
     },
-    {
-        "analysis": [
-            [],
-            "mîcisow",
-            [
-                "+V",
-                "+AI",
-                "+Ind",
-                "+3Sg"
-            ]
-        ],
-        "head": "mîcisow",
-        "linguistInfo": {
-            "inflectional_category": "VAI-io",
-            "pos": "VAI-io",
-            "wordclass": "VAI-io"
-        },
-        "paradigm": "VAI-io",
-        "senses": [
-            {
-                "definition": "eat",
-                "semanticDefinition": "eat",
-                "sources": [
-                    "NHCC"
-                ]
-            }
-        ],
-        "slug": "mîcisow"
+    "paradigm": "VII-v",
+    "senses": [
+      {
+        "definition": "be red",
+        "semanticDefinition": "be red",
+        "sources": ["NHCC"]
+      }
+    ],
+    "slug": "mihkwâw"
+  },
+  {
+    "analysis": [[], "minwâsin", ["+V", "+II", "+Ind", "+3Sg"]],
+    "head": "minwâsin",
+    "linguistInfo": {
+      "inflectional_category": "VII-n",
+      "pos": "VII-n",
+      "wordclass": "VII-n"
     },
-    {
-        "analysis": [
-            [],
-            "pimisin",
-            [
-                "+V",
-                "+AI",
-                "+Ind",
-                "+3Sg"
-            ]
-        ],
-        "head": "pimisin",
-        "linguistInfo": {
-            "inflectional_category": "VAI-n",
-            "pos": "VAI-n",
-            "wordclass": "VAI-n"
-        },
-        "paradigm": "VAI-n",
-        "senses": [
-            {
-                "definition": "lie",
-                "semanticDefinition": "lie",
-                "sources": [
-                    "NHCC"
-                ]
-            }
-        ],
-        "slug": "pimisin"
+    "paradigm": "VII-n",
+    "senses": [
+      {
+        "definition": "be nice",
+        "semanticDefinition": "be nice",
+        "sources": ["NHCC"]
+      }
+    ],
+    "slug": "minwâsin"
+  },
+  {
+    "analysis": [[], "mîcisow", ["+V", "+AI", "+Ind", "+3Sg"]],
+    "head": "mîcisow",
+    "linguistInfo": {
+      "inflectional_category": "VAI-io",
+      "pos": "VAI-io",
+      "wordclass": "VAI-io"
     },
-    {
-        "analysis": [
-            [],
-            "tipiskam",
-            [
-                "+V",
-                "+AI",
-                "+Ind",
-                "+3Sg"
-            ]
-        ],
-        "head": "tipiskam",
-        "linguistInfo": {
-            "inflectional_category": "VAI-m",
-            "pos": "VAI-m",
-            "wordclass": "VAI-m"
-        },
-        "paradigm": "VAI-m",
-        "senses": [
-            {
-                "definition": "have birthday",
-                "semanticDefinition": "have birthday",
-                "sources": [
-                    "NHCC"
-                ]
-            }
-        ],
-        "slug": "tipiskam"
+    "paradigm": "VAI-io",
+    "senses": [
+      {
+        "definition": "eat",
+        "semanticDefinition": "eat",
+        "sources": ["NHCC"]
+      }
+    ],
+    "slug": "mîcisow"
+  },
+  {
+    "analysis": [[], "mîciw", ["+V", "+TI", "+Ind", "+3Sg"]],
+    "head": "mîciw",
+    "linguistInfo": {
+      "inflectional_category": "VTI-io",
+      "pos": "VTI-io",
+      "wordclass": "VTI-io"
     },
-    {
-        "analysis": [
-            [],
-            "nêhinawêw",
-            [
-                "+V",
-                "+AI",
-                "+Ind",
-                "+3Sg"
-            ]
-        ],
-        "head": "nêhinawêw",
-        "linguistInfo": {
-            "inflectional_category": "VAI-ae",
-            "pos": "VAI-ae",
-            "wordclass": "VAI-ae"
-        },
-        "paradigm": "VAI-ae",
-        "senses": [
-            {
-                "definition": "speak Cree",
-                "semanticDefinition": "speak Cree",
-                "sources": [
-                    "NHCC"
-                ]
-            }
-        ],
-        "slug": "nêhinawêw"
+    "paradigm": "VTI-io",
+    "senses": [
+      {
+        "definition": "eat s.t",
+        "semanticDefinition": "eat s.t",
+        "sources": ["NHCC"]
+      }
+    ],
+    "slug": "mîciw"
+  },
+  {
+    "analysis": [[], "mowêw", ["+V", "+TA", "+Ind", "+3Sg", "+4Sg/PlO"]],
+    "head": "mowêw",
+    "linguistInfo": {
+      "inflectional_category": "VTA",
+      "pos": "VTA",
+      "wordclass": "VTA"
     },
-    {
-        "analysis": [
-            [],
-            "kîsihtâw",
-            [
-                "+V",
-                "+TI",
-                "+Ind",
-                "+3Sg"
-            ]
-        ],
-        "head": "kîsihtâw",
-        "linguistInfo": {
-            "inflectional_category": "VTI-ae",
-            "pos": "VTI-ae",
-            "wordclass": "VTI-ae"
-        },
-        "paradigm": "VTI-ae",
-        "senses": [
-            {
-                "definition": "finish s.t.",
-                "semanticDefinition": "finish s.t.",
-                "sources": [
-                    "NHCC"
-                ]
-            }
-        ],
-        "slug": "kîsihtâw"
+    "paradigm": "VTA",
+    "senses": [
+      {
+        "definition": "eat s.o.",
+        "semanticDefinition": "eat s.o.",
+        "sources": ["NHCC"]
+      }
+    ],
+    "slug": "mowêw"
+  },
+  {
+    "analysis": [[], "nakatêw", ["+V", "+TA", "+Ind", "+3Sg", "+4Sg/PlO"]],
+    "head": "nakatêw",
+    "linguistInfo": {
+      "inflectional_category": "VTA-t",
+      "pos": "VTA-t",
+      "wordclass": "VTA-t"
     },
-    {
-        "analysis": [
-            [],
-            "mîciw",
-            [
-                "+V",
-                "+TI",
-                "+Ind",
-                "+3Sg"
-            ]
-        ],
-        "head": "mîciw",
-        "linguistInfo": {
-            "inflectional_category": "VTI-io",
-            "pos": "VTI-io",
-            "wordclass": "VTI-io"
-        },
-        "paradigm": "VTI-io",
-        "senses": [
-            {
-                "definition": "eat s.t",
-                "semanticDefinition": "eat s.t",
-                "sources": [
-                    "NHCC"
-                ]
-            }
-        ],
-        "slug": "mîciw"
+    "paradigm": "VTA-t",
+    "senses": [
+      {
+        "definition": "leave s.o. behind",
+        "semanticDefinition": "leave s.o. behind",
+        "sources": ["NHCC"]
+      }
+    ],
+    "slug": "nakatêw"
+  },
+  {
+    "analysis": [[], "nâtam", ["+V", "+TI", "+Ind", "+3Sg"]],
+    "head": "nâtam",
+    "linguistInfo": {
+      "inflectional_category": "VTI-m",
+      "pos": "VTI-m",
+      "wordclass": "VTI-m"
     },
-    {
-        "analysis": [
-            [],
-            "nâtam",
-            [
-                "+V",
-                "+TI",
-                "+Ind",
-                "+3Sg"
-            ]
-        ],
-        "head": "nâtam",
-        "linguistInfo": {
-            "inflectional_category": "VTI-m",
-            "pos": "VTI-m",
-            "wordclass": "VTI-m"
-        },
-        "paradigm": "VTI-m",
-        "senses": [
-            {
-                "definition": "fetch s.t.",
-                "semanticDefinition": "fetch s.t.",
-                "sources": [
-                    "NHCC"
-                ]
-            }
-        ],
-        "slug": "nâtam"
+    "paradigm": "VTI-m",
+    "senses": [
+      {
+        "definition": "fetch s.t.",
+        "semanticDefinition": "fetch s.t.",
+        "sources": ["NHCC"]
+      }
+    ],
+    "slug": "nâtam"
+  },
+  {
+    "analysis": [[], "nêhinawêw", ["+V", "+AI", "+Ind", "+3Sg"]],
+    "head": "nêhinawêw",
+    "linguistInfo": {
+      "inflectional_category": "VAI-ae",
+      "pos": "VAI-ae",
+      "wordclass": "VAI-ae"
     },
-    {
-        "analysis": [
-            [],
-            "wâpahtam",
-            [
-                "+V",
-                "+TI",
-                "+Ind",
-                "+3Sg"
-            ]
-        ],
-        "head": "wâpahtam",
-        "linguistInfo": {
-            "inflectional_category": "VTI-m",
-            "pos": "VTI-m",
-            "wordclass": "VTI-m"
-        },
-        "paradigm": "VTI-m",
-        "senses": [
-            {
-                "definition": "see s.t.",
-                "semanticDefinition": "see s.t.",
-                "sources": [
-                    "NHCC"
-                ]
-            }
-        ],
-        "slug": "wâpahtam"
+    "paradigm": "VAI-ae",
+    "senses": [
+      {
+        "definition": "speak Cree",
+        "semanticDefinition": "speak Cree",
+        "sources": ["NHCC"]
+      }
+    ],
+    "slug": "nêhinawêw"
+  },
+  {
+    "analysis": [[], "nipâw", ["+V", "+AI", "+Ind", "+3Sg"]],
+    "head": "nipâw",
+    "linguistInfo": {
+      "inflectional_category": "VAI-ae",
+      "pos": "VAI-ae",
+      "wordclass": "VAI-ae"
     },
-    {
-        "analysis": [
-            [],
-            "itêw",
-            [
-                "+V",
-                "+TA",
-                "+Ind",
-                "+3Sg",
-                "+4Sg/PlO"
-            ]
-        ],
-        "head": "itêw",
-        "linguistInfo": {
-            "inflectional_category": "VTA-i",
-            "pos": "VTA-i",
-            "wordclass": "VTA-i"
-        },
-        "paradigm": "VTA-i",
-        "senses": [
-            {
-                "definition": "speak or say to s.o.",
-                "semanticDefinition": "speak or say to s.o.",
-                "sources": [
-                    "NHCC"
-                ]
-            }
-        ],
-        "slug": "itêw"
+    "paradigm": "VAI-ae",
+    "senses": [
+      {
+        "definition": "sleep",
+        "semanticDefinition": "sleep",
+        "sources": ["NHCC"]
+      }
+    ],
+    "slug": "nipâw"
+  },
+  {
+    "analysis": [[], "nitonawêw", ["+V", "+TA", "+Ind", "+3Sg", "+4Sg/PlO"]],
+    "head": "nitonawêw",
+    "linguistInfo": {
+      "inflectional_category": "VTA",
+      "pos": "VTA",
+      "wordclass": "VTA"
     },
-    {
-        "analysis": [
-            [],
-            "kîskiswêw",
-            [
-                "+V",
-                "+TA",
-                "+Ind",
-                "+3Sg",
-                "+4Sg/PlO"
-            ]
-        ],
-        "head": "kîskiswêw",
-        "linguistInfo": {
-            "inflectional_category": "VTA",
-            "pos": "VTA",
-            "wordclass": "VTA"
-        },
-        "paradigm": "VTA",
-        "senses": [
-            {
-                "definition": "cut s.o. off",
-                "semanticDefinition": "cut s.o. off",
-                "sources": [
-                    "NHCC"
-                ]
-            }
-        ],
-        "slug": "kîskiswêw"
+    "paradigm": "VTA",
+    "senses": [
+      {
+        "definition": "look for s.o.",
+        "semanticDefinition": "look for s.o.",
+        "sources": ["NHCC"]
+      }
+    ],
+    "slug": "nitonawêw"
+  },
+  {
+    "analysis": [[], "pimamon", ["+V", "+II", "+Ind", "+3Sg"]],
+    "head": "pimamon",
+    "linguistInfo": {
+      "inflectional_category": "VII-n",
+      "pos": "VII-n",
+      "wordclass": "VII-n"
     },
-    {
-        "analysis": [
-            [],
-            "mowêw",
-            [
-                "+V",
-                "+TA",
-                "+Ind",
-                "+3Sg",
-                "+4Sg/PlO"
-            ]
-        ],
-        "head": "mowêw",
-        "linguistInfo": {
-            "inflectional_category": "VTA",
-            "pos": "VTA",
-            "wordclass": "VTA"
-        },
-        "paradigm": "VTA",
-        "senses": [
-            {
-                "definition": "eat s.o.",
-                "semanticDefinition": "eat s.o.",
-                "sources": [
-                    "NHCC"
-                ]
-            }
-        ],
-        "slug": "mowêw"
+    "paradigm": "VII-n",
+    "senses": [
+      {
+        "definition": "lead (path)",
+        "semanticDefinition": "lead (path)",
+        "sources": ["NHCC"]
+      }
+    ],
+    "slug": "pimamon"
+  },
+  {
+    "analysis": [[], "pimisin", ["+V", "+AI", "+Ind", "+3Sg"]],
+    "head": "pimisin",
+    "linguistInfo": {
+      "inflectional_category": "VAI-n",
+      "pos": "VAI-n",
+      "wordclass": "VAI-n"
     },
-    {
-        "analysis": [
-            [],
-            "nakatêw",
-            [
-                "+V",
-                "+TA",
-                "+Ind",
-                "+3Sg",
-                "+4Sg/PlO"
-            ]
-        ],
-        "head": "nakatêw",
-        "linguistInfo": {
-            "inflectional_category": "VTA-t",
-            "pos": "VTA-t",
-            "wordclass": "VTA-t"
-        },
-        "paradigm": "VTA-t",
-        "senses": [
-            {
-                "definition": "leave s.o. behind",
-                "semanticDefinition": "leave s.o. behind",
-                "sources": [
-                    "NHCC"
-                ]
-            }
-        ],
-        "slug": "nakatêw"
+    "paradigm": "VAI-n",
+    "senses": [
+      {
+        "definition": "lie",
+        "semanticDefinition": "lie",
+        "sources": ["NHCC"]
+      }
+    ],
+    "slug": "pimisin"
+  },
+  {
+    "analysis": [[], "tipiskam", ["+V", "+AI", "+Ind", "+3Sg"]],
+    "head": "tipiskam",
+    "linguistInfo": {
+      "inflectional_category": "VAI-m",
+      "pos": "VAI-m",
+      "wordclass": "VAI-m"
     },
-    {
-        "analysis": [
-            [],
-            "nitonawêw",
-            [
-                "+V",
-                "+TA",
-                "+Ind",
-                "+3Sg",
-                "+4Sg/PlO"
-            ]
-        ],
-        "head": "nitonawêw",
-        "linguistInfo": {
-            "inflectional_category": "VTA",
-            "pos": "VTA",
-            "wordclass": "VTA"
-        },
-        "paradigm": "VTA",
-        "senses": [
-            {
-                "definition": "look for s.o.",
-                "semanticDefinition": "look for s.o.",
-                "sources": [
-                    "NHCC"
-                ]
-            }
-        ],
-        "slug": "nitonawêw"
+    "paradigm": "VAI-m",
+    "senses": [
+      {
+        "definition": "have birthday",
+        "semanticDefinition": "have birthday",
+        "sources": ["NHCC"]
+      }
+    ],
+    "slug": "tipiskam"
+  },
+  {
+    "analysis": [[], "wâpahtam", ["+V", "+TI", "+Ind", "+3Sg"]],
+    "head": "wâpahtam",
+    "linguistInfo": {
+      "inflectional_category": "VTI-m",
+      "pos": "VTI-m",
+      "wordclass": "VTI-m"
     },
-    {
-        "analysis": [
-            [],
-            "wîcihêw",
-            [
-                "+V",
-                "+TA",
-                "+Ind",
-                "+3Sg",
-                "+4Sg/PlO"
-            ]
-        ],
-        "head": "wîcihêw",
-        "linguistInfo": {
-            "inflectional_category": "VTA",
-            "pos": "VTA",
-            "wordclass": "VTA"
-        },
-        "paradigm": "VTA",
-        "senses": [
-            {
-                "definition": "help s.o.",
-                "semanticDefinition": "help s.o.",
-                "sources": [
-                    "NHCC"
-                ]
-            }
-        ],
-        "slug": "wîcihêw"
-    }
+    "paradigm": "VTI-m",
+    "senses": [
+      {
+        "definition": "see s.t.",
+        "semanticDefinition": "see s.t.",
+        "sources": ["NHCC"]
+      }
+    ],
+    "slug": "wâpahtam"
+  },
+  {
+    "analysis": [[], "wîcihêw", ["+V", "+TA", "+Ind", "+3Sg", "+4Sg/PlO"]],
+    "head": "wîcihêw",
+    "linguistInfo": {
+      "inflectional_category": "VTA",
+      "pos": "VTA",
+      "wordclass": "VTA"
+    },
+    "paradigm": "VTA",
+    "senses": [
+      {
+        "definition": "help s.o.",
+        "semanticDefinition": "help s.o.",
+        "sources": ["NHCC"]
+      }
+    ],
+    "slug": "wîcihêw"
+  }
 ]
