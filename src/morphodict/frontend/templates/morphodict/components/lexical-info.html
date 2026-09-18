@@ -20,6 +20,7 @@
   {% load morphodict_extras %}
   {% load morphodict_orth %}
   {% load static %}
+  {% load relabelling %}
 
   {# show preverb and reduplication breakdown #}
   <ol class="preverb-breakdown">
@@ -52,5 +53,20 @@
           </div>
       </li>
     {% endfor %}
+    {% if result.lemma_wordform.morpheme_list %}
+    <li> 
+      {% relabel_one 'Morphemes'%}: 
+          {% for item in result.lemma_wordform.morphemes %}
+          <a href="{% url_for_query item.morpheme %}">{{item.morpheme}}</a>
+          {% if item.submorphemes %}
+          (
+            {% for submorpheme in item.submorphemes %}
+            <a href="{% url_for_query submorpheme %}">{{submorpheme}}</a>{% if not forloop.last %},{% endif %} 
+            {% endfor %}
+          )
+          {% endif %}{% if not forloop.last %},{% endif %}
+          {% endfor %}
+    </li>
+    {% endif %}
   </ol>
 {% endspaceless %}

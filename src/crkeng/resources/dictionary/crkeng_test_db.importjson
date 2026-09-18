@@ -4,6 +4,16 @@
     "head": "acâhkos",
     "linguistInfo": {
       "inflectional_category": "NA-1",
+      "morphemes": [
+      {
+        "morpheme": "atâhkw-",
+        "submorphemes": []
+      },
+      {
+        "morpheme": "/-is/",
+        "submorphemes": []
+      }
+    ],
       "pos": "N",
       "rw_domains": ["Star", "sky", "star", "sun"],
       "rw_indices": {
@@ -33,6 +43,32 @@
     "head": "acâhkos kâ-osôsit",
     "linguistInfo": {
       "inflectional_category": "INM",
+      "morphemes": [
+      {
+        "morpheme": "atâhkw-",
+        "submorphemes": []
+      },
+      {
+        "morpheme": "/-is/",
+        "submorphemes": []
+      },
+      {
+        "morpheme": "/o-/-1",
+        "submorphemes": []
+      },
+      {
+        "morpheme": "-soy-",
+        "submorphemes": []
+      },
+      {
+        "morpheme": "/-is/",
+        "submorphemes": []
+      },
+      {
+        "morpheme": "/-i/-2",
+        "submorphemes": []
+      }
+    ],
       "pos": "Ipc",
       "rw_domains": ["Planet"],
       "rw_indices": {
@@ -82,6 +118,12 @@
     "linguistInfo": {
       "analysis": "<p><table colspan=2><tr><td></td><td>Stem</td></tr><tr><td>Nonposs</td><td><strong>amiskw-</strong></td></tr><tr><td>Poss</td><td><strong>-amiskom-</strong></td></tr></table></p>",
       "inflectional_category": "NA-3",
+      "morphemes": [
+      {
+        "morpheme": "amiskw-",
+        "submorphemes": []
+      }
+      ],
       "pos": "N",
       "rw_domains": [
         "Rodent",
@@ -113,6 +155,7 @@
     "linguistInfo": {
       "inflectional_category": "NI-1",
       "pos": "N",
+      "morphemes": [],
       "rw_domains": ["Names of cities"],
       "rw_indices": {
         "CW": ["9.7.2.3.1"],
@@ -149,6 +192,12 @@
     "head": "anohc",
     "linguistInfo": {
       "inflectional_category": "IPC",
+      "morphemes": [
+      {
+        "morpheme": "anohc",
+        "submorphemes": []
+      }
+      ],
       "pos": "Ipc",
       "rw_domains": [],
       "rw_indices": {
@@ -177,6 +226,7 @@
     "head": "anohc",
     "linguistInfo": {
       "inflectional_category": "N",
+      "morphemes": [],
       "pos": "N",
       "rw_domains": ["aspectual_time", "present", "time"],
       "rw_indices": {
@@ -210,6 +260,19 @@
     "head": "asawâpamêw",
     "linguistInfo": {
       "inflectional_category": "VTA-1",
+      "morphemes": [
+        {
+          "morpheme": "/asaw-/",
+          "submorphemes": []
+        },
+        {
+          "morpheme": "/-âpam/",
+          "submorphemes": [
+            "/-âp-/",
+            "/-am/-1"
+          ]
+        }
+      ],
       "pos": "V",
       "rw_domains": ["Watch", "alert", "mental_state", "soul_spirit"],
       "rw_indices": {
@@ -268,6 +331,15 @@
     "head": "asikan",
     "linguistInfo": {
       "inflectional_category": "NA-1",
+      "morphemes": [
+        {
+          "morpheme": "asikan-",
+          "submorphemes": [
+            "/asik-/",
+            "/-an/"
+          ]
+        }
+      ],
       "pos": "N",
       "rw_domains": ["Clothing", "clothing"],
       "rw_indices": {
@@ -3795,5 +3867,286 @@
       }
     ],
     "slug": "wiýa@3"
-  }
+  },
+  {
+  "head": "atâhkw-",
+  "linguistInfo": {
+    "inflectional_category": "Morph-NA-3",
+    "morphemes": [],
+    "pos": "Ipc",
+    "rw_domains": [],
+    "rw_indices": {
+      "CW": [],
+      "MD": []
+    },
+    "wn_domains": [],
+    "wordclass": "Morph"
+  },
+  "paradigm": null,
+  "senses": [
+    {
+      "definition": "star",
+      "semanticDefinition": "star",
+      "sources": [
+        "WMDD"
+      ]
+    }
+  ],
+  "slug": "atâhkw-"
+},
+{
+  "head": "o-",
+  "linguistInfo": {
+    "inflectional_category": "Morph-pro",
+    "morphemes": [],
+    "pos": "Ipc",
+    "rw_domains": [],
+    "rw_indices": {
+      "CW": [],
+      "MD": []
+    },
+    "wn_domains": [],
+    "wordclass": "Morph"
+  },
+  "paradigm": null,
+  "senses": [
+    {
+      "definition": "3rd person; nominals",
+      "semanticDefinition": "3rd person; nominals",
+      "sources": [
+        "MC"
+      ]
+    },
+    {
+      "definition": "3rd person; h- and ht- preterite verbs",
+      "semanticDefinition": "3rd person; h- ht- preterite verbs",
+      "sources": [
+        "MC"
+      ]
+    },
+    {
+      "definition": "3rd person; AI,TI agentive nominalizations, with -w",
+      "semanticDefinition": "3rd person; AITI agentive nominalizations -w",
+      "sources": [
+        "MC"
+      ]
+    }
+  ],
+  "slug": "o-"
+},
+{
+  "head": "/o- -i/",
+  "linguistInfo": {
+    "inflectional_category": "Morph-R",
+    "morphemes": [],
+    "pos": "Ipc",
+    "rw_domains": [],
+    "rw_indices": {
+      "CW": [],
+      "MD": []
+    },
+    "wn_domains": [],
+    "wordclass": "Morph"
+  },
+  "paradigm": null,
+  "senses": [
+    {
+      "definition": "have",
+      "semanticDefinition": "have",
+      "sources": [
+        "WMDD"
+      ]
+    }
+  ],
+  "slug": "o-_-i"
+},
+{
+  "head": "-soy-",
+  "linguistInfo": {
+    "inflectional_category": "Morph-NDI-2",
+    "morphemes": [],
+    "pos": "Ipc",
+    "rw_domains": [],
+    "rw_indices": {
+      "CW": [],
+      "MD": []
+    },
+    "wn_domains": [],
+    "wordclass": "Morph"
+  },
+  "paradigm": null,
+  "senses": [
+    {
+      "definition": "tail [also: -sôs- < -soy- + /-is/]",
+      "semanticDefinition": "tail [also: -sôs- < -soy- + -]",
+      "sources": [
+        "WMDD"
+      ]
+    }
+  ],
+  "slug": "-soy-"
+},
+{
+  "head": "amiskw-",
+  "linguistInfo": {
+    "inflectional_category": "Morph-NA-3",
+    "morphemes": [],
+    "pos": "Ipc",
+    "rw_domains": [],
+    "rw_indices": {
+      "CW": [],
+      "MD": []
+    },
+    "wn_domains": [],
+    "wordclass": "Morph"
+  },
+  "paradigm": null,
+  "senses": [
+    {
+      "definition": "beaver",
+      "semanticDefinition": "beaver",
+      "sources": [
+        "WMDD"
+      ]
+    }
+  ],
+  "slug": "amiskw-"
+},
+{
+  "head": "/asaw-/",
+  "linguistInfo": {
+    "inflectional_category": "Morph-R",
+    "morphemes": [],
+    "pos": "Ipc",
+    "rw_domains": [],
+    "rw_indices": {
+      "CW": [],
+      "MD": []
+    },
+    "wn_domains": [],
+    "wordclass": "Morph"
+  },
+  "paradigm": null,
+  "senses": [
+    {
+      "definition": "wait, lie in wait, waylay, guard against [also: /asw-/]",
+      "semanticDefinition": "wait lie in wait waylay guard against [also: asw-]",
+      "sources": [
+        "WMDD"
+      ]
+    }
+  ],
+  "slug": "asaw-"
+},
+{
+  "head": "/-âp-/",
+  "linguistInfo": {
+    "inflectional_category": "Morph-medial",
+    "morphemes": [],
+    "pos": "Ipc",
+    "rw_domains": [],
+    "rw_indices": {
+      "CW": [],
+      "MD": []
+    },
+    "wn_domains": [],
+    "wordclass": "Morph"
+  },
+  "paradigm": null,
+  "senses": [
+    {
+      "definition": "eye(s), sight [cf. VAI-1 /-acâpi/; cf. /-acâp-/]",
+      "semanticDefinition": "eye(s) sight [cf VAI-1 -acâpi; cf -acâp-]",
+      "sources": [
+        "WMDD"
+      ]
+    },
+    {
+      "definition": "eye, vision",
+      "semanticDefinition": "eye vision",
+      "sources": [
+        "MC"
+      ]
+    }
+  ],
+  "slug": "-âp-"
+},
+{
+  "head": "-am-",
+  "linguistInfo": {
+    "inflectional_category": "Morph-verb final",
+    "morphemes": [],
+    "pos": "Ipc",
+    "rw_domains": [],
+    "rw_indices": {
+      "CW": [],
+      "MD": []
+    },
+    "wn_domains": [],
+    "wordclass": "Morph"
+  },
+  "paradigm": null,
+  "senses": [
+    {
+      "definition": "by eye; by vision",
+      "semanticDefinition": "eye; vision",
+      "sources": [
+        "MC"
+      ]
+    }
+  ],
+  "slug": "-am-"
+},
+{
+  "head": "asikan-",
+  "linguistInfo": {
+    "inflectional_category": "Morph-NA-1",
+    "morphemes": [],
+    "pos": "Ipc",
+    "rw_domains": [],
+    "rw_indices": {
+      "CW": [],
+      "MD": []
+    },
+    "wn_domains": [],
+    "wordclass": "Morph"
+  },
+  "paradigm": null,
+  "senses": [
+    {
+      "definition": "sock [< /as-/ + /-(i)kan/]",
+      "semanticDefinition": "sock [< - + - kan]",
+      "sources": [
+        "WMDD"
+      ]
+    }
+  ],
+  "slug": "asikan-"
+},
+{
+  "head": "-an",
+  "linguistInfo": {
+    "inflectional_category": "Morph-final",
+    "morphemes": [],
+    "pos": "Ipc",
+    "rw_domains": [],
+    "rw_indices": {
+      "CW": [],
+      "MD": []
+    },
+    "wn_domains": [],
+    "wordclass": "Morph"
+  },
+  "paradigm": null,
+  "senses": [
+    {
+      "definition": "Abstract final; II verbs",
+      "semanticDefinition": "Abstract final; II verbs",
+      "sources": [
+        "MC"
+      ]
+    }
+  ],
+  "slug": "-an"
+}
 ]

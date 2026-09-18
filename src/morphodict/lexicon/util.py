@@ -17,5 +17,5 @@ def to_source_language_keyword(s: str) -> str:
     return (
         "".join(c for c in normalize("NFD", s) if unicodedata.combining(c) == 0)
         .translate(EXTRA_REPLACEMENTS)
-        .strip("-")
+        .strip("-/0123456789")
     )
