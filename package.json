@@ -50,6 +50,6 @@
   "allowScripts": {
     "fsevents@2.3.3": true,
     "core-js-pure@3.50.0": true,
-    "cypress@15.21.0": true
+    "cypress@15.21.1": true
   }
 }
