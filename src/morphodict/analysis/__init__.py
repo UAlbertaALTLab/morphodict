@@ -2,7 +2,7 @@ import re
 from functools import cache
 
 from django.conf import settings
-from hfst import is_diacritic # type: ignore
+from hfst import is_diacritic  # type: ignore
 from hfst_altlab import TransducerFile
 from hfst_altlab.types import Analysis, FullAnalysis, Wordform
 
@@ -35,6 +35,7 @@ def relaxed_analyzer():
 def strict_analyzer():
     return TransducerFile(FST_DIR / settings.STRICT_ANALYZER_FST_FILENAME)
 
+
 def filter_derivational_analyses(analyses: list[FullAnalysis]):
     """
     This method currently hard-codes the strategy discussed with Antti of
@@ -45,19 +46,46 @@ def filter_derivational_analyses(analyses: list[FullAnalysis]):
       "+Der/N" and "+Der/V" analyses)
     """
     annotated_analyses: list[tuple[list[str], FullAnalysis]] = [
-        ([ t[4:] for t in analysis.tokens if t.startswith("+Der/") or (t.startswith("PV/") and t not in ["PV/ê+", "PV/kâ+", "PV/kî+", "PV/wî+", "PV/ka+"])], analysis) 
-        for analysis in analyses ]
-    current_level = [ analysis for (derivational_tokens, analysis) in annotated_analyses if not derivational_tokens]
+        (
+            [
+                t[4:]
+                for t in analysis.tokens
+                if t.startswith("+Der/")
+                or (
+                    t.startswith("PV/")
+                    and t not in ["PV/ê+", "PV/kâ+", "PV/kî+", "PV/wî+", "PV/ka+"]
+                )
+            ],
+            analysis,
+        )
+        for analysis in analyses
+    ]
+    current_level = [
+        analysis
+        for (derivational_tokens, analysis) in annotated_analyses
+        if not derivational_tokens
+    ]
     if current_level:
         return current_level
-    current_level = [ analysis for (derivational_tokens, analysis) in annotated_analyses if derivational_tokens and not any(token in ["N", "V"] for token in derivational_tokens)]
+    current_level = [
+        analysis
+        for (derivational_tokens, analysis) in annotated_analyses
+        if derivational_tokens
+        and not any(token in ["N", "V"] for token in derivational_tokens)
+    ]
     if current_level:
         return current_level
-    return [ analysis for (derivational_tokens, analysis) in annotated_analyses if derivational_tokens and any(token in ["N", "V"] for token in derivational_tokens)]
+    return [
+        analysis
+        for (derivational_tokens, analysis) in annotated_analyses
+        if derivational_tokens
+        and any(token in ["N", "V"] for token in derivational_tokens)
+    ]
+
 
 def reify_preverb_tags_in_fullanalysis(analysis: FullAnalysis) -> Analysis:
     """
-    TODO: This method is required for new derivational FSTs that DO NOT follow 
+    TODO: This method is required for new derivational FSTs that DO NOT follow
     the previous "multichar-prefixes singlechar-lemma multichar-suffixes"
     convention for the output stream of non-flag diacritic tokens coming from
     the FST.  We need to likely encode this as a pass on the FSTs to restore the
@@ -83,7 +111,7 @@ def reify_preverb_tags_in_fullanalysis(analysis: FullAnalysis) -> Analysis:
                 tag_destination = suffix_tags
             elif is_a_preverb:
                 if symbol == preverb_tag_end:
-                    tag_destination.append(current_preverb+preverb_tag_end)
+                    tag_destination.append(current_preverb + preverb_tag_end)
                     current_preverb = preverb_tag_start
                     is_a_preverb = False
                 else:
@@ -197,12 +225,14 @@ class RichAnalysis:
     def __repr__(self):
         return f"RichAnalysis({[self.prefix_tags, self.lemma, self.suffix_tags]!r})"
 
+
 def rich_analyze_relaxed(text: str) -> list[RichAnalysis]:
     return list(
-        RichAnalysis(r) for r in filter_derivational_analyses(relaxed_analyzer().weighted_lookup_full_analysis(text))
+        RichAnalysis(r) for r in relaxed_analyzer().weighted_lookup_full_analysis(text)
     )
+
 
 def rich_analyze_strict(text: str) -> list[RichAnalysis]:
     return list(
-        RichAnalysis(r) for r in filter_derivational_analyses(strict_analyzer().weighted_lookup_full_analysis(text))
+        RichAnalysis(r) for r in strict_analyzer().weighted_lookup_full_analysis(text)
     )
