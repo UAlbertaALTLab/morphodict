@@ -20,6 +20,11 @@ class SerializedRapidWord(TypedDict):
     domain: str
 
 
+class SerializedMorpheme(TypedDict):
+    morpheme: str
+    submorphemes: list[str]
+
+
 class SerializedWordform(TypedDict):
     id: int
     text: str
@@ -38,6 +43,7 @@ class SerializedWordform(TypedDict):
     inflectional_category_linguistic: str
     wordclass_emoji: str
     wordclass: str
+    morphemes: List[SerializedMorpheme]
 
     # ---- foreign keys ----
     definitions: List[SerializedDefinition]
