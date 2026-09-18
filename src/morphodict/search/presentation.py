@@ -363,11 +363,10 @@ def serialize_wordform(
                     ),
                 }
             )
-        if wordclass := wordform.linguist_info.get("wordclass", None):
+        if wordclass := wordform.linguist_info.get("wordclass"):
             result["wordclass_emoji"] = get_emoji_for_cree_wordclass(
                 wordclass, animate_emoji
             )
-        result["morpheme_list"] = wordform.linguist_info.get("morphemes", [])
     result["show_emoji"] = True if show_emoji == "yes" else False
 
     for key in wordform.linguist_info or []:
