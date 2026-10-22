@@ -57,12 +57,16 @@ def fetch_results(
                     wf.text, query.query_string
                 ),
                 analysis_index=1
-                + ambiguous_tuples.index(
-                    (
-                        tuple(wf.raw_analysis[0]),
-                        wf.raw_analysis[1],
-                        tuple(wf.raw_analysis[2]),
+                + (
+                    ambiguous_tuples.index(
+                        (
+                            tuple(wf.raw_analysis[0]),
+                            wf.raw_analysis[1],
+                            tuple(wf.raw_analysis[2]),
+                        )
                     )
+                    if wf.raw_analysis
+                    else 0
                 ),
                 analysis_total=len(ambiguous_analyses),
             )

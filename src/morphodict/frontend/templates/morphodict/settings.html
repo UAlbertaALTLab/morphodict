@@ -393,5 +393,31 @@
                 </div>
             </form>
         </section>
+            <section>
+            <h3 id="max_ambiguous_analyses" class="setting__title">Maximum amount of ambiguous analyses to include for a Cree search</h3>
+
+            <form method="POST" action="{% url "preference:change" "max_ambiguous_analyses" %}"
+                  data-save-preference="max_ambiguous_analyses">
+                <ul class="unbullet">
+                    {% for value, label in preferences.max_ambiguous_analyses.choices_with_labels %}
+                        <li class="option">
+                            <label class="option__label">
+                                <input type="radio" name="max_derivational_analyses" value="{{ value }}" class="option__control"
+                                       {% if preferences.max_ambiguous_analyses.current_choice == value %}checked{% endif %}>
+                                <span class="option__label-text">{{ value|capfirst }}</span>
+                            </label>
+                            <p class="option__description">
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="action-bar">
+                    {% csrf_token %}
+                    <button type="submit"> Save settings</button>
+                </div>
+            </form>
+        </section>
+
     </section>
 {% endblock %}
