@@ -20,7 +20,11 @@ from .types import Result
 logger = logging.getLogger(__name__)
 
 
-def fetch_results(query: core.Query, search_results: core.SearchResults):
+def fetch_results(
+    query: core.Query,
+    search_results: core.SearchResults,
+    max_analyses: int | None = None,
+):
     # First collect some candidate results via keywords.
     # We split the query string into keywords, and collect all the entries that
     # match exactly as keywords in the database, both source and target.
@@ -35,7 +39,9 @@ def fetch_results(query: core.Query, search_results: core.SearchResults):
     # Use the spelling relaxation to try to decipher the query
     #   e.g., "atchakosuk" becomes "acâhkos+N+A+Pl" --
     #         thus, we can match "acâhkos" in the dictionary!
-    fst_analyses = set(rich_analyze_relaxed(query.query_string))
+    ambiguous_analyses = rich_analyze_relaxed(query.query_string)
+    fst_analyses = set(ambiguous_analyses[:max_analyses])
+    ambiguous_tuples = [a.tuple for a in ambiguous_analyses]
     # print([a.tuple for a in fst_analyses])
 
     db_matches = list(
@@ -50,6 +56,15 @@ def fetch_results(query: core.Query, search_results: core.SearchResults):
                 query_wordform_edit_distance=get_modified_distance(
                     wf.text, query.query_string
                 ),
+                analysis_index=1
+                + ambiguous_tuples.index(
+                    (
+                        tuple(wf.raw_analysis[0]),
+                        wf.raw_analysis[1],
+                        tuple(wf.raw_analysis[2]),
+                    )
+                ),
+                analysis_total=len(ambiguous_analyses),
             )
         )
 
@@ -100,6 +115,8 @@ def fetch_results(query: core.Query, search_results: core.SearchResults):
                         query.query_string,
                         normatized_user_query,
                     ),
+                    analysis_index=1 + ambiguous_tuples.index(analysis.tuple),
+                    analysis_total=len(ambiguous_analyses),
                 )
             )
 

@@ -25,6 +25,7 @@ def search(
     include_affixes=True,
     include_auto_definitions=False,
     inflect_english_phrases=False,
+    max_analyses: int | None = None,
 ) -> SearchResults:
     """
     Perform an actual search, using the provided options.
@@ -73,7 +74,7 @@ def search(
 
     # First, fetch keyword-based and FST-based orthography-relaxed results
     if not search_query.nofetch:
-        fetch_results(search_query, search_results)
+        fetch_results(search_query, search_results, max_analyses)
 
     # If allowed, add affix search candidates
     if (

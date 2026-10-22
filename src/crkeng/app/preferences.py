@@ -201,3 +201,27 @@ class AutoTranslateDefs(Preference):
         "no": "Only show dictionary definitions as they are",
     }
     default = "yes"
+
+
+@register_preference
+class MaxAmbiguousAnalyses(Preference):
+    """
+    How many analyses should we present?
+    auto: 5
+    """
+
+    cookie_name = "max_derivational_analyses"
+    choices = {
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "5",
+        "6": "6",
+        "7": "7",
+        "8": "8",
+        "9": "9",
+        "10": "10",
+        "all": "All",
+    }
+    default = "5"

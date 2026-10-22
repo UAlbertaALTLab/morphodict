@@ -38,6 +38,9 @@
                             <data value="{{ chunk.tags }}"> {{ chunk.label }}</data>
                         </li>
                     {% endfor %}
+                    {% if result.analysis_indexing %}
+                    <li>Analysis for this search: {{result.analysis_indexing.0}}/{{result.analysis_indexing.1}}</li>
+                    {% endif %}
                 </ol>
             </div>
 

@@ -40,6 +40,7 @@ def treat_query(query_string):
 
 class Query:
     BOOL_KEYS = ["verbose", "auto", "espt", "nofetch", "wn"]
+    INT_KEYS = ["max_analyses"]
 
     def __init__(self, query_string):
         self.raw_query_string = query_string
@@ -58,6 +59,9 @@ class Query:
                 if user_key in Query.BOOL_KEYS:
                     consumed = True
                     setattr(self, user_key, value in marshmallow.fields.Boolean.truthy)
+                elif user_key in Query.INT_KEYS:
+                    consumed = True
+                    setattr(self, user_key, int(value) if value.isdigit() else None)
                 elif user_key == "cvd":
                     consumed = True
 
@@ -96,3 +100,4 @@ class Query:
     espt: Optional[bool] = None
     nofetch: Optional[bool] = None
     wn: Optional[bool] = None
+    max_analyses: Optional[int] = None

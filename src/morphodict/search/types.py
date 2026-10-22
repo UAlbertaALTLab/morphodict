@@ -238,6 +238,9 @@ class Result:
 
     wordnet_match: Optional[bool] = None
 
+    analysis_index: Optional[int] = None
+    analysis_total: Optional[int] = None
+
     def features(self):
         ret = {}
         for field in dataclasses.fields(Result):

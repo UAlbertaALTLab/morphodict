@@ -126,6 +126,7 @@ def index(request):  # pragma: no cover
             user_query,
             include_auto_definitions=include_auto_definitions,
             inflect_english_phrases=inflect_english_phrases,
+            max_analyses=how_many_analyses_to_use(request, user_query),
         )
         search_results_presentation = search_results.serialized_presentation_results(
             display_mode=DisplayMode.current_value_from_request(request),
@@ -385,6 +386,22 @@ def should_attempt_semantic_search(request, query):
             return true(tokens[-1])
 
     return True if request.COOKIES.get("attempt_semantic_search") == "yes" else False
+
+
+def how_many_analyses_to_use(request, query):
+    candidates = []
+    if request.COOKIES.get("max_derivational_analyses", "").isdigit():
+        candidates.append(int(request.COOKIES.get("max_derivational_analyses")))
+    if query:
+        results = [
+            x.strip()[13:]
+            for x in query.split()
+            if x.strip().startswith("max_analyses:")
+        ]
+        results = [int(x) for x in results if x.isdigit()]
+        if results:
+            candidates = results
+    return max(candidates) if candidates else None
 
 
 def get_dict_source(request):

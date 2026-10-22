@@ -7,7 +7,10 @@ from morphodict.lexicon.models import RapidWords, WordNetSynset
 
 
 def search_with_affixes(
-    query: str, include_auto_definitions=False, inflect_english_phrases=False
+    query: str,
+    include_auto_definitions=False,
+    inflect_english_phrases=False,
+    max_analyses=int | None,
 ) -> SearchResults:
     """
     Search for wordforms matching:
@@ -21,6 +24,7 @@ def search_with_affixes(
         query=query,
         include_auto_definitions=include_auto_definitions,
         inflect_english_phrases=inflect_english_phrases,
+        max_analyses=max_analyses,
     )
 
 

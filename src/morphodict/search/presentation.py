@@ -82,6 +82,7 @@ class SerializedPresentationResult(TypedDict):
     relabelled_fst_analysis: list[SerializedRelabelling]
     relabelled_linguist_analysis: str
     show_form_of: bool
+    analysis_indexing: list[int]
 
 
 class SerializedRelabelling(TypedDict):
@@ -134,6 +135,8 @@ class PresentationResult:
         self.lemma_wordform = result.lemma_wordform
         self.is_lemma = result.is_lemma
         self.source_language_match = result.source_language_match
+        self.analysis_index = result.analysis_index
+        self.analysis_total = result.analysis_total
         self.dict_source = dict_source
 
         if settings.MORPHODICT_TAG_STYLE == "Plus":
@@ -236,6 +239,13 @@ class PresentationResult:
             "relevant_tags": tuple(t.serialize() for t in self.relevant_tags),
             "morphemes": self.morphemes,
             "lemma_morphemes": self.lemma_morphemes,
+            "analysis_indexing": (
+                [self.analysis_index, self.analysis_total]
+                if self.analysis_index
+                and self.analysis_total
+                and self.analysis_total > 1
+                else []
+            ),
         }
         if self._search_results.verbose:
             cast(Any, ret)["verbose_info"] = self._result
