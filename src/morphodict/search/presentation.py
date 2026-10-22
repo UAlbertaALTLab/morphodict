@@ -367,7 +367,12 @@ def serialize_wordform(
             result["wordclass_emoji"] = get_emoji_for_cree_wordclass(
                 wordclass, animate_emoji
             )
-        result["morpheme_list"] = wordform.linguist_info.get("morphemes", [])
+        result["morpheme_list"] = serialize_morphemes(
+            wordform.linguist_info.get("morphemes", []),
+            animate_emoji,
+            show_emoji,
+            dict_source,
+        )
     result["show_emoji"] = True if show_emoji == "yes" else False
 
     for key in wordform.linguist_info or []:
@@ -375,6 +380,39 @@ def serialize_wordform(
             result[key] = wordform.linguist_info[key]
 
     return cast(SerializedWordform, result)
+
+
+def collect_morpheme_wordforms(
+    morpheme: str, animate_emoji: str, show_emoji: str, dict_source: list
+):
+    entries = Wordform.objects.filter(text=morpheme, is_lemma=True)
+    return (
+        morpheme,
+        [
+            serialize_wordform(entry, animate_emoji, show_emoji, dict_source)
+            for entry in entries
+            if entry.linguist_info.get("inflectional_category", "").startswith("Morph")
+        ],
+    )
+
+
+def serialize_morphemes(
+    morphemes, animate_emoji: str, show_emoji: str, dict_source: list
+):
+    return [
+        {
+            "morpheme": collect_morpheme_wordforms(
+                entry["morpheme"], animate_emoji, show_emoji, dict_source
+            ),
+            "submorphemes": [
+                collect_morpheme_wordforms(
+                    submorpheme, animate_emoji, show_emoji, dict_source
+                )
+                for submorpheme in entry["submorphemes"]
+            ],
+        }
+        for entry in morphemes
+    ]
 
 
 def serialize_definitions(

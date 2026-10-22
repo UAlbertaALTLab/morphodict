@@ -497,6 +497,13 @@ html {
   font-size: var(--elaboration-size);
 }
 
+.definition__morphemes {
+  margin: var(--small-gap) 0 0;
+
+  font-size: var(--elaboration-size);
+}
+
+
 .definition__reference-to-lemma {
   font-style: italic;
 }
@@ -738,6 +745,43 @@ a.multiple-recordings__action-button {
 }
 
 .preverb-breakdown__preverb-definition-text {
+  white-space: pre-line;
+}
+
+.morpheme-breakdown {
+  padding: 0;
+  list-style: none;
+  font-size: var(--preverb-breakdown-size);
+}
+
+.morpheme-breakdown__tooltip-icon {
+  display: inline;
+  position: relative;
+}
+
+.morpheme-breakdown__tooltip-icon > img {
+  width: var(--morpheme-icon-size);
+
+  /* vertically center the question mark*/
+  position: relative;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  /* end vertical centering */
+
+  left: 0.2em;  /* space out the question mark */
+  filter: var(--blue-filter); /* blue color */
+  vertical-align: middle;
+}
+
+/**
+ * Occurs inside a tooltip. Get rid of its extra margin!
+ */
+.morpheme-breakdown__morpheme-definition {
+  margin: 0;
+}
+
+.morpheme-breakdown__morpheme-definition-text {
   white-space: pre-line;
 }
 

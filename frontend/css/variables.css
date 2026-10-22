@@ -79,6 +79,7 @@
   --search-result-font-size:        1.33em;
   --toggle-box-large-font-size:     1.14em;
   --tooltip-icon-size:              1.75rem; /* size of the ℹ️  button or 🔊 button */
+  --morpheme-icon-size:             1.00em;
   /* Font families */
   --syllabics-fonts:
     Gadugi,                             /* Windows 10 */

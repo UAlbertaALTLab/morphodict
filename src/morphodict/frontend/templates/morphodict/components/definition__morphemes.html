@@ -3,12 +3,13 @@
   <div class="definition__morphemes" data-cy="morpheme-list">
     {% if lemma.morpheme_list %}
       {% relabel_one 'Morphemes'%}: 
-          {% for item in lemma.morphemes %}
-          <a href="{% url_for_query item.morpheme %}">{{item.morpheme}}</a>
+          {% for item in lemma.morpheme_list %}
+          {% include 'morphodict/components/definition__morpheme.html' with morpheme=item.morpheme.0 wordforms=item.morpheme.1%}
+
           {% if item.submorphemes %}
           (
-            {% for submorpheme in item.submorphemes %}
-            <a href="{% url_for_query submorpheme %}">{{submorpheme}}</a>{% if not forloop.last %},{% endif %} 
+            {% for submorpheme, wordforms in item.submorphemes %}
+              {% include 'morphodict/components/definition__morpheme.html' with morpheme=submorpheme wordforms=wordforms%}{% if not forloop.last %},{% endif %} 
             {% endfor %}
           )
           {% endif %}{% if not forloop.last %},{% endif %}
