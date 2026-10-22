@@ -32,6 +32,8 @@
             </h1>
         
             {% include "morphodict/components/definition__elaboration.html" with lemma=wordform verbose=True %}
+
+            {% include 'morphodict/components/definition__morphemes.html' with lemma=wordform %}
         </header>
 
         <section class="multiple-recordings definition__recordings--not-loaded" id="recordings-dropdown"

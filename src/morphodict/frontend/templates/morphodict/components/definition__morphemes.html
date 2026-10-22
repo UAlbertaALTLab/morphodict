@@ -1,0 +1,17 @@
+  {% load relabelling %}
+  {% load morphodict_extras %}
+  <div class="definition__morphemes" data-cy="morpheme-list">
+    {% if lemma.morpheme_list %}
+      {% relabel_one 'Morphemes'%}: 
+          {% for item in lemma.morphemes %}
+          <a href="{% url_for_query item.morpheme %}">{{item.morpheme}}</a>
+          {% if item.submorphemes %}
+          (
+            {% for submorpheme in item.submorphemes %}
+            <a href="{% url_for_query submorpheme %}">{{submorpheme}}</a>{% if not forloop.last %},{% endif %} 
+            {% endfor %}
+          )
+          {% endif %}{% if not forloop.last %},{% endif %}
+          {% endfor %}
+    {% endif %}
+</div>
