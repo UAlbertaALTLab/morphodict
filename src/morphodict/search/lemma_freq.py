@@ -2,7 +2,7 @@ from pathlib import Path
 
 from morphodict.utils import shared_res_dir
 
-LEMMA_FREQUENCY = {}
+LEMMA_FREQUENCY: dict[str, int] = {}
 
 
 def load_lemma_data():

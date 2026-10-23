@@ -2,7 +2,7 @@ from pathlib import Path
 
 from morphodict.utils import shared_res_dir
 
-DOCUMENT_FREQUENCY = {}
+DOCUMENT_FREQUENCY: dict[str, float] = {}
 
 
 def get_glossary_count(search_results):
