@@ -37,6 +37,7 @@ Django = ">=5.2,<6"
 typing-extensions = "*"
 attrs = "*"
 django-js-reverse = "*"
+packaging = "*" # Dependency of django-js-reverse but undeclared it seems
 secure = "*"
 snowballstemmer = "*"
 dawg2 = "*"
@@ -50,7 +51,7 @@ scipy = "*"
 more-itertools = "*"
 types-requests = "*"
 requests = "*"
-nltk = ">=3.10.0"
+nltk = ">=3.10.3"
 urllib3 = ">=2.7.0" # Dependency, dependabot
 filelock = ">=3.20.3" # Dependency, dependabot
 idna = ">=3.15" # Dependency, dependabot

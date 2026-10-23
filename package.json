@@ -36,7 +36,7 @@
     "@rollup/plugin-terser": "^1.0.0",
     "acorn": "^7.4.1",
     "bootstrap": "^5.3.3",
-    "cssnano": "^5.1.15",
+    "cssnano": "^7.1.9",
     "dotenv": "^8.2.0",
     "postcss-cli": "^11.0.0",
     "postcss-import": "^16.1.0",
@@ -49,7 +49,7 @@
   },
   "allowScripts": {
     "fsevents@2.3.3": true,
-    "cypress@15.20.1": true,
-    "core-js-pure@3.50.0": true
+    "core-js-pure@3.50.0": true,
+    "cypress@15.21.1": true
   }
 }

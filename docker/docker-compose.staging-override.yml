@@ -126,3 +126,19 @@ services:
       - "../src/blaeng/db/:/app/src/blaeng/db/"
       - "../src/blaeng/morphodict/search_quality/:/app/src/blaeng/morphodict/search_quality/"
 
+  csweng:
+    # In prod, we *always* want the apps running, including on boot; that’s
+    # not necessarily the case on our dev machines.
+    restart: "no"
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    # The tag that will automatically be applied on build:
+    image: morphodict:dev
+
+    volumes:
+      - "./.env:/app/.env"
+      - "../src/csweng/resources/vector_models/:/app/src/csweng/resources/vector_models/"
+      - "../src/csweng/db/:/app/src/csweng/db/"
+      - "../src/csweng/morphodict/search_quality/:/app/src/csweng/morphodict/search_quality/"
+
