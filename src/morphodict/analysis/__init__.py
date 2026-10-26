@@ -103,21 +103,24 @@ def reify_preverb_tags_in_fullanalysis(analysis: FullAnalysis) -> Analysis:
     preverb_tag_start = "PV/"
     current_preverb = preverb_tag_start
     preverb_tag_end = "+"
+    suffix_tag_start = "+"
 
     for symbol in analysis.tokens:
         if not is_diacritic(symbol):
-            if len(symbol) == 1 and not is_a_preverb:
+            if symbol == preverb_tag_start:
+                is_a_preverb = True
+            elif (
+                len(symbol) == 1 or not ("+" in [symbol[0], symbol[-1]])
+            ) and not is_a_preverb:
                 lemma_chars.append(symbol)
                 tag_destination = suffix_tags
             elif is_a_preverb:
-                if symbol == preverb_tag_end:
+                if symbol.endswith(preverb_tag_end):
                     tag_destination.append(current_preverb + preverb_tag_end)
                     current_preverb = preverb_tag_start
                     is_a_preverb = False
                 else:
                     current_preverb += symbol
-            elif symbol == preverb_tag_start:
-                is_a_preverb = True
             else:
                 tag_destination.append(symbol)
 

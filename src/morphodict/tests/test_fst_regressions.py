@@ -26,6 +26,11 @@ from morphodict.analysis import RichAnalysis, rich_analyze_relaxed, strict_gener
             "paskwâw-mostos",
             RichAnalysis(((), "paskwâwi-mostos", ("+N", "+A", "+Sg"))),
         ),
+        (
+            # Parsing of morpheme sequences with multi-character symbols, see comment in #1291
+            "wîcihtam",
+            RichAnalysis(((), "wît-/-ht2", ("+Der/V", "+V", "+TI", "+Ind", "+3Sg"))),
+        ),
     ],
 )
 def test_fst_analysis(query: str, expected: RichAnalysis):
