@@ -15,12 +15,3 @@ NamedTupleFieldName = NewType("NamedTupleFieldName", str)
 
 class HashableNamedTupleFieldValue(Protocol):
     def __hash__(self): ...
-
-
-T = TypeVar("T")
-
-
-# From https://github.com/python/typing/issues/645#issuecomment-501057220
-def cast_away_optional(arg: Optional[T]) -> T:
-    assert arg is not None
-    return arg

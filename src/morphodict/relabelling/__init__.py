@@ -8,7 +8,7 @@ from typing import Iterable, Optional, TextIO, Tuple, TypedDict
 from django.conf import settings
 
 from morphodict.utils import shared_res_dir
-from morphodict.utils.types import FSTTag, Label, cast_away_optional
+from morphodict.utils.types import FSTTag, Label
 from morphodict.site.util import cache_unless
 
 
@@ -209,11 +209,11 @@ def _label_from_column_or_none(column_no: _LabelFriendliness, row) -> Optional[L
 
 
 class LabelCache(TypedDict):
-    mtime: Optional[float]
-    labels: Optional[Relabelling]
+    mtime: float
+    labels: Relabelling
 
 
-_label_cache: LabelCache = {"mtime": None, "labels": None}
+_label_cache: Optional[LabelCache] = None
 # In case this code is run from a multi-threaded context, e.g., a production web
 # server; normal @cache does internally do a bit of locking.
 _label_cache_mutex = Lock()
@@ -227,18 +227,19 @@ def read_labels() -> Relabelling:
     In production, this is read once on startup and never re-read. if debugging
     with DEBUG_PARADIGM_TABLES, it is cached based on file modification time.
     """
+    global _label_cache, _label_cache_mutex
 
     with _label_cache_mutex:
         mtime = ALTERNATE_LABELS_FILE.stat().st_mtime
-        previous_mtime = _label_cache["mtime"]
 
-        if previous_mtime is not None and mtime == previous_mtime:
-            return cast_away_optional(_label_cache["labels"])
+        if _label_cache is not None:
+            previous_mtime = _label_cache["mtime"]
+            if mtime == previous_mtime:
+                return _label_cache["labels"]
 
         with ALTERNATE_LABELS_FILE.open(encoding="UTF-8") as tsv_file:
-            _label_cache["mtime"] = mtime
-            _label_cache["labels"] = Relabelling.from_tsv(tsv_file)
-            return cast_away_optional(_label_cache["labels"])
+            _label_cache = {"mtime": mtime, "labels": Relabelling.from_tsv(tsv_file)}
+            return _label_cache["labels"]
 
 
 LABELS: Relabelling = read_labels()
