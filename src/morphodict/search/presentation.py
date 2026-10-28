@@ -27,6 +27,7 @@ from morphodict.utils.serializer import (
     SerializedLinguisticTag,
 )
 from morphodict.search.types import Preverb
+from morphodict.lexicon.util import to_source_language_keyword
 
 
 class AbstractResult:
@@ -548,7 +549,9 @@ def get_lexical_info(
             preverb_text = tag.replace("PV/", "").replace("+", "")
             # Our FST analyzer doesn't return preverbs with diacritics
             # but we store variations of words in this table
-            preverb_results = SourceLanguageKeyword.objects.filter(text=preverb_text)
+            preverb_results = SourceLanguageKeyword.objects.filter(
+                text=to_source_language_keyword(preverb_text)
+            )
             # get the actual wordform object and
             # make sure the result we return is an IPV
             if preverb_results:
