@@ -1,6 +1,4 @@
-from typing import NewType, TypeVar, Optional
-
-from typing_extensions import Protocol
+from typing import NewType
 
 # analysis but concatenated
 Label = NewType("Label", str)
