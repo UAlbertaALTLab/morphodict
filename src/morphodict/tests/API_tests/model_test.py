@@ -214,6 +214,14 @@ def test_search_words_with_preverbs():
     assert search_result.preverbs[0]["text"] == "nitawi-"
     assert search_result.lexical_info[0]["type"] == "Preverb"
 
+    # Added test for preverbs with diacritic markings
+    results = search(query="ê-nipâyân").presentation_results()
+    assert len(results) >= 1
+    search_result = results.pop()
+    assert len(search_result.preverbs) == 1
+    assert search_result.preverbs[0]["text"] == "ê-"
+    assert search_result.lexical_info[0]["type"] == "Preverb"
+
 
 @pytest.mark.django_db
 def test_search_words_with_reduplication():

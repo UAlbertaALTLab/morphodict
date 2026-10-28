@@ -4200,5 +4200,80 @@
     }
   ],
   "slug": "-ht2"
+},
+{
+  "head": "ê-",
+  "linguistInfo": {
+    "analysis": "<p><table colspan=1><tr><td>Alt</td></tr>\n<tr><td><strong>npC: î-</strong></td></tr>\n<tr><td><strong>wC: î-</strong></td></tr></table></p>",
+    "inflectional_category": "IPV",
+    "morphemes": [
+      {
+        "morpheme": "{ê-}",
+        "submorphemes": []
+      },
+      {
+        "morpheme": "{IC}",
+        "submorphemes": []
+      }
+    ],
+    "pos": "Ipc",
+    "rw_domains": [
+      "NA"
+    ],
+    "rw_indices": {
+      "CW": [
+        "NA"
+      ],
+      "MD": []
+    },
+    "wn_domains": [
+      "N/A (Functional)"
+    ],
+    "wordclass": "IPV"
+  },
+  "paradigm": null,
+  "senses": [
+    {
+      "coreDefinition": "as, that",
+      "definition": "as, that [grammatical preverb: complementizer; defines a changed Conj clause]",
+      "semanticDefinition": "grammatical preverb: complementizer defines changed Conj clause",
+      "sources": [
+        "CW"
+      ]
+    }
+  ],
+  "slug": "ê-@ipv"
+},
+{
+  "head": "e",
+  "linguistInfo": {
+    "inflectional_category": "IPC",
+    "morphemes": [],
+    "pos": "Ipc",
+    "rw_domains": [
+      "semantic_constituents_related_to_verbs",
+      "tense",
+      "tense_and_aspect"
+    ],
+    "rw_indices": {
+      "CW": [],
+      "MD": [
+        "9.4.1.1"
+      ]
+    },
+    "wn_domains": [],
+    "wordclass": "IPC"
+  },
+  "paradigm": null,
+  "senses": [
+    {
+      "definition": "Can be used for all vowels to mean the present tense",
+      "semanticDefinition": "Can be used all vowels mean present tense",
+      "sources": [
+        "MD"
+      ]
+    }
+  ],
+  "slug": "e"
 }
 ]
