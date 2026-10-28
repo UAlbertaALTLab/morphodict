@@ -188,9 +188,9 @@ class EsptSearch:
 
             analysis = RichAnalysis(
                 (
-                    tags_ending_with_plus,
+                    tuple(tags_ending_with_plus),
                     word.wordform.text,
-                    noun_tags + tags_starting_with_plus,
+                    tuple(noun_tags + tags_starting_with_plus),
                 )
             )
 

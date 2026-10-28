@@ -1,15 +1,15 @@
 import re
 from functools import cache
 from typing import Self
-
+from builtins import tuple as tuple_type  # Alias to use inside RichAnalysis
 from django.conf import settings
 from hfst import is_diacritic  # type: ignore
 from hfst_altlab import TransducerFile
 from hfst_altlab.types import Analysis, FullAnalysis, Wordform
 
-FST_DIR = settings.BASE_DIR / "resources" / "fst"
+from morphodict.utils.types import FSTTag
 
-tuple_type = tuple  # Alias to use inside RichAnalysis
+FST_DIR = settings.BASE_DIR / "resources" / "fst"
 
 
 @cache
@@ -148,8 +148,8 @@ class RichAnalysis:
         self,
         analysis: (
             FullAnalysis
-            | tuple[tuple[str], str, tuple[str]]
-            | tuple[tuple[str], str, tuple[str], float]
+            | tuple[tuple[str, ...], str, tuple[str, ...]]
+            | tuple[tuple[str, ...], str, tuple[str, ...], float]
         ),
     ):
         if isinstance(analysis, FullAnalysis):
@@ -179,12 +179,12 @@ class RichAnalysis:
         return self._tuple.lemma
 
     @property
-    def prefix_tags(self) -> tuple_type[str]:
-        return self._tuple.prefixes
+    def prefix_tags(self) -> tuple_type[FSTTag, ...]:
+        return tuple(FSTTag(t) for t in self._tuple.prefixes)
 
     @property
-    def suffix_tags(self) -> tuple_type[str]:
-        return self._tuple.suffixes
+    def suffix_tags(self) -> tuple_type[FSTTag, ...]:
+        return tuple(FSTTag(t) for t in self._tuple.suffixes)
 
     def generate(self) -> list[str]:
         # TODO: Split in generation by precategorized tokens

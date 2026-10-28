@@ -2,6 +2,7 @@ from morphodict.search.core import SearchResults
 from morphodict.phrase_translate.fst import source_phrase_analyses
 from morphodict.search.espt import EsptSearch
 from morphodict.analysis import rich_analyze_relaxed
+from morphodict.utils.types import FSTTag
 
 
 def find_pos_matches(
@@ -50,13 +51,13 @@ class AnalyzedQuery:
         self.has_tags = False
         self.filtered_query = None
         self.tags = None
-        self.analysis = []
+        self.analysis: tuple[FSTTag, ...] = ()
         word_analyses = rich_analyze_relaxed(query)
 
         if len(word_analyses) == 1:
             word_analysis = word_analyses[0]
 
-            self.analysis = word_analysis.suffix_tags
+            self.analysis = tuple(FSTTag(t) for t in word_analysis.suffix_tags)
             if word_analysis:
                 self.has_tags = True
 
@@ -75,8 +76,8 @@ class AnalyzedQuery:
                     if not tag:
                         continue
                     tag = "+" + tag
-                    analysis.append(tag)
-                self.analysis = analysis
+                    analysis.append(FSTTag(tag))
+                self.analysis = tuple(analysis)
 
     def __repr__(self):
         return f"<AnalyzedQuery {self.__dict__!r}>"

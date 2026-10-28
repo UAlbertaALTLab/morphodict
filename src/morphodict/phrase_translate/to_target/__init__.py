@@ -13,6 +13,7 @@ from morphodict.phrase_translate.fst import (
     inflect_target_verb_phrase,
 )
 from morphodict.phrase_translate.tpt import tsuutina_inflect_target_phrase
+from morphodict.utils.types import FSTTag
 
 logger = logging.getLogger(__name__)
 
@@ -28,7 +29,7 @@ def inflect_target_language_phrase(
     wordform_tag_list = (
         analysis.prefix_tags
         + analysis.suffix_tags
-        + settings.DEFAULT_TARGET_LANGUAGE_PHRASE_TAGS
+        + tuple(FSTTag(t) for t in settings.DEFAULT_TARGET_LANGUAGE_PHRASE_TAGS)
     )
     if use_fst is None:
         use_fst = settings.USE_FST_PHRASE_TRANSLATE

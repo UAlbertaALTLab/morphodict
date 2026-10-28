@@ -1,3 +1,6 @@
+from morphodict.utils.types import FSTTag
+
+
 class InvalidTagMapError(Exception):
     """
     Raised during TagMap.__init__ if the provided tag definitions are invalid.
@@ -117,22 +120,24 @@ class TagMap:
                 else:
                     self._precedences[output_tag_spec] = prec
 
-    def map_tags(self, input_tags: list[str]) -> list[str]:
+    def map_tags(self, input_tags: tuple[FSTTag, ...]) -> list[str]:
         output_tags = []
 
         # copy input, because we may mutate it
-        input_tags = input_tags[:]
+        input_tags_copy: list[str] = [x for x in input_tags]
 
         # first handle multi-mappings, which consume their matching input
         # tags so that they are not re-considered in the next steps
         for input_tag_spec, output_tag_spec, prec in self._multi_mappings:
-            if is_subsequence(input_tags, input_tag_spec):
+            if is_subsequence(input_tags_copy, input_tag_spec):
                 if output_tag_spec is not None:
                     output_tags.append(output_tag_spec)
-                input_tags = [x for x in input_tags if x not in input_tag_spec]
+                input_tags_copy = [
+                    x for x in input_tags_copy if x not in input_tag_spec
+                ]
 
         # normal mapping
-        for input_tag in input_tags:
+        for input_tag in input_tags_copy:
             try:
                 output_tag = self._tag_mapping[input_tag]
             except KeyError:

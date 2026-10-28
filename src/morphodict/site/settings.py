@@ -415,7 +415,7 @@ MORPHODICT_DICTIONARY_NAME: RequiredString = _MORPHODICT_REQUIRED_SETTING_SENTIN
 
 # An optional list of tags used for the phrase translation stage, useful for prototyping in new languages
 
-DEFAULT_TARGET_LANGUAGE_PHRASE_TAGS: Optional[tuple[str, ...]] = tuple()
+DEFAULT_TARGET_LANGUAGE_PHRASE_TAGS: tuple[str, ...] = tuple()
 
 # phrase_translation default check (workaround for alternative FST tag systems)
 DEFAULT_PHRASE_TRANSLATE_CHECK: Callable[[Any], bool] = lambda x: False
