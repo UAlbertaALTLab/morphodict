@@ -8,16 +8,98 @@ from morphodict.utils import (
     get_modified_distance,
 )
 from morphodict.utils.english_keyword_extraction import stem_keywords
-from morphodict.analysis import (
-    strict_generator,
-    rich_analyze_relaxed,
+from morphodict.analysis import strict_generator, rich_analyze_relaxed, RichAnalysis
+from morphodict.lexicon.models import (
+    Wordform,
+    SourceLanguageKeyword,
+    Definition,
+    DictionarySource,
 )
-from morphodict.lexicon.models import Wordform, SourceLanguageKeyword
 from morphodict.lexicon.util import to_source_language_keyword
 from . import core
 from .types import Result
 
 logger = logging.getLogger(__name__)
+
+
+def build_morphemic_wordform(
+    baseform_text: str, analysis: RichAnalysis, normatized_user_query: str
+) -> Wordform | None:
+    # Make temporary baseform
+    baseform_analysis = analysis.baseform_analysis()
+    if not baseform_analysis:
+        return None
+
+    morphemes = baseform_analysis.lemma.split("/")
+
+    if len(morphemes) <= 1:
+        # There are no morphemes in the analysis, there should be an entry for this
+        return None
+
+    morpheme_wordforms = [
+        [
+            wf
+            for wf in Wordform.objects.filter(text=morpheme, is_lemma=True)
+            if wf.linguist_info.get("inflectional_category", "").startswith("Morph")
+        ]
+        for morpheme in morphemes
+    ]
+
+    # TODO At least get ONE definition for now, get all definitions later
+    usable_wordforms = [wf_list[0] for wf_list in morpheme_wordforms if wf_list]
+
+    if not usable_wordforms:
+        return None
+
+    # Now that we know there are morphemes...
+
+    # Build a baseform first
+
+    baseform = Wordform(
+        text=baseform_text,
+        is_lemma=True,
+        raw_analysis=baseform_analysis.tuple if baseform_analysis else None,
+        is_morphemic_synthesis=True,
+        linguist_info={
+            "inflectional_category": usable_wordforms[-1].linguist_info.get(
+                "inflectional_category", "Morph-"
+            )[6:],
+            "pos": usable_wordforms[-1].linguist_info.get(
+                "inflectional_category", "Morph-"
+            )[7],
+            "wordclass": usable_wordforms[-1]
+            .linguist_info.get("inflectional_category", "Morph-")[6:]
+            .split("-")[0],
+        },
+    )
+
+    baseform.save()
+    baseform.lemma = baseform
+    baseform.save()
+
+    # Now build grouped definitions for the baseform
+
+    source, _ = DictionarySource.objects.get_or_create(abbrv="🤖")  # Altlab-Morphemes?
+
+    text = "This word comes from " + (
+        ", and ".join(
+            f'"{w.text}", meaning "{w.definitions.first()}"' for w in usable_wordforms
+        )
+    )
+    definition = Definition(text=text, wordform=baseform)
+    definition.save()
+    definition.citations.add(source)
+
+    # Now produce the wordform
+    if baseform_text == normatized_user_query:
+        return baseform
+    else:
+        return Wordform.objects.create(
+            text=normatized_user_query,
+            raw_analysis=analysis.tuple,
+            lemma=baseform,
+            is_morphemic_synthesis=True,
+        )
 
 
 def fetch_results(
@@ -123,6 +205,61 @@ def fetch_results(
                     analysis_total=len(ambiguous_analyses),
                 )
             )
+    if not search_results.unsorted_results():
+        # If no result, try to collect some morpheme-based guesses
+        for analysis in fst_analyses:
+            morpheme_sequence = analysis.lemma.split("/")
+            if len(morpheme_sequence) <= 1:
+                # The analysis has no morpheme sequence
+                continue
+
+            normatized_form_for_analysis = strict_generator().lookup(analysis.smushed())
+            if len(normatized_form_for_analysis) == 0:
+                logger.error(
+                    "Cannot generate normative form for analysis: %s (query: %s)",
+                    analysis,
+                    query.query_string,
+                )
+                continue
+
+            # If there are multiple forms for this analysis, use the one that is
+            # closest to what the user typed.
+            normatized_user_query = min(
+                normatized_form_for_analysis,
+                key=lambda f: get_modified_distance(f, query.query_string),
+            )
+
+            baseform_analysis = analysis.baseform_analysis()
+            if baseform_analysis:
+                generated_baseform_texts = strict_generator().lookup(
+                    baseform_analysis.smushed()
+                )
+            else:
+                generated_baseform_texts = []
+
+            generated_wordforms = set(
+                build_morphemic_wordform(
+                    baseform_text=text,
+                    analysis=analysis,
+                    normatized_user_query=normatized_user_query,
+                )
+                for text in generated_baseform_texts
+            )
+
+            for wordform in generated_wordforms:
+                if wordform:
+                    search_results.add_result(
+                        Result(
+                            wordform,
+                            analyzable_inflection_match=True,
+                            query_wordform_edit_distance=get_modified_distance(
+                                query.query_string,
+                                normatized_user_query,
+                            ),
+                            analysis_index=1 + ambiguous_tuples.index(analysis.tuple),
+                            analysis_total=len(ambiguous_analyses),
+                        )
+                    )
 
 
 def best_lemma_matches(analysis, possible_lemmas) -> list[Wordform]:

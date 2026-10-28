@@ -4148,5 +4148,57 @@
     }
   ],
   "slug": "-an"
+},
+{
+  "head": "wît-",
+  "linguistInfo": {
+    "inflectional_category": "Morph-R",
+    "morphemes": [],
+    "pos": "Ipc",
+    "rw_domains": [],
+    "rw_indices": {
+      "CW": [],
+      "MD": []
+    },
+    "wn_domains": [],
+    "wordclass": "Morph"
+  },
+  "paradigm": null,
+  "senses": [
+    {
+      "definition": "with, accompany; help [cf. /wîc-/]",
+      "semanticDefinition": "accompany; help [cf wîc-]",
+      "sources": [
+        "WMDD"
+      ]
+    }
+  ],
+  "slug": "wît-"
+},
+{
+  "head": "-ht2",
+  "linguistInfo": {
+    "inflectional_category": "Morph-VTI-1",
+    "morphemes": [],
+    "pos": "Ipc",
+    "rw_domains": [],
+    "rw_indices": {
+      "CW": [],
+      "MD": []
+    },
+    "wn_domains": [],
+    "wordclass": "Morph"
+  },
+  "paradigm": null,
+  "senses": [
+    {
+      "definition": "something",
+      "semanticDefinition": "something",
+      "sources": [
+        "ARPPE"
+      ]
+    }
+  ],
+  "slug": "-ht2"
 }
 ]

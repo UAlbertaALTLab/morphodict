@@ -1,5 +1,6 @@
 import re
 from functools import cache
+from typing import Self
 
 from django.conf import settings
 from hfst import is_diacritic  # type: ignore
@@ -7,6 +8,8 @@ from hfst_altlab import TransducerFile
 from hfst_altlab.types import Analysis, FullAnalysis, Wordform
 
 FST_DIR = settings.BASE_DIR / "resources" / "fst"
+
+tuple_type = tuple  # Alias to use inside RichAnalysis
 
 
 @cache
@@ -141,7 +144,14 @@ class RichAnalysis:
     _tuple: Analysis
     weight: float
 
-    def __init__(self, analysis: FullAnalysis | tuple):
+    def __init__(
+        self,
+        analysis: (
+            FullAnalysis
+            | tuple[tuple[str], str, tuple[str]]
+            | tuple[tuple[str], str, tuple[str], float]
+        ),
+    ):
         if isinstance(analysis, FullAnalysis):
             self._tuple = reify_preverb_tags_in_fullanalysis(analysis)
             self.weight = analysis.weight
@@ -165,15 +175,15 @@ class RichAnalysis:
         return self._tuple
 
     @property
-    def lemma(self):
+    def lemma(self) -> str:
         return self._tuple.lemma
 
     @property
-    def prefix_tags(self):
+    def prefix_tags(self) -> tuple_type[str]:
         return self._tuple.prefixes
 
     @property
-    def suffix_tags(self):
+    def suffix_tags(self) -> tuple_type[str]:
         return self._tuple.suffixes
 
     def generate(self) -> list[str]:
@@ -200,6 +210,19 @@ class RichAnalysis:
         except RuntimeError as e:
             print("Could not generate morphemes:", e)
             return []
+
+    def baseform_analysis(self) -> Self | None:
+        if "+V" in self.suffix_tags:
+            verb_index = self.suffix_tags.index("+V")
+            return self.__class__(
+                (
+                    (),
+                    self.lemma,
+                    self.suffix_tags[:verb_index]
+                    + ("+V", self.suffix_tags[verb_index + 1], "+Ind", "+3Sg"),
+                )
+            )
+        return None
 
     def smushed(self):
         return "".join(self.prefix_tags) + self.lemma + "".join(self.suffix_tags)

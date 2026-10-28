@@ -95,6 +95,11 @@ class Wordform(models.Model):
         default=False, help_text="Whether this wordform is a lemma"
     )
 
+    is_morphemic_synthesis = models.BooleanField(
+        default=False,
+        help_text="Whether this wordform is a synthesized combination of morpheme definitions.  These objects are unlikely to remain in the database but require to be temporarily stored to build definitions",
+    )
+
     lemma = models.ForeignKey(
         "self",
         on_delete=models.CASCADE,

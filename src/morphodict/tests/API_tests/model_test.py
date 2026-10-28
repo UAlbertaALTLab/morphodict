@@ -359,6 +359,33 @@ def test_avoids_cvd_search_if_query_looks_like_cree(query: str) -> None:
     assert search(query=query).verbose_messages[0]["message"].startswith("Skipping CVD")
 
 
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "query,max_analyses,results_min,results_max,results_include",
+    [
+        ("wîcihtam", 1, 0, 0, []),
+        ("wîcihtam", 5, 1, 10, ["help", "something"]),
+    ],
+)
+def test_search_using_morphemes(
+    query: str,
+    max_analyses: int,
+    results_min: int,
+    results_max: int,
+    results_include: list[str],
+):
+    Wordform.objects.filter(is_morphemic_synthesis=True).delete()
+    results = search(query=query, max_analyses=max_analyses).presentation_results()
+    assert len(results) >= results_min
+    assert len(results) <= results_max
+    if results_include:
+        assert any(
+            all(expected in d["text"] for expected in results_include)
+            for r in results
+            for d in r.serialize()["definitions"]
+        )
+
+
 ####################################### Helpers ########################################
 
 
