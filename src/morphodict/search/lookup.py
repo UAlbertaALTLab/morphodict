@@ -3,6 +3,7 @@ from __future__ import annotations
 import logging
 
 from django.db.models import Q
+from django.db import transaction
 
 from morphodict.utils import (
     get_modified_distance,
@@ -22,6 +23,7 @@ from .types import Result
 logger = logging.getLogger(__name__)
 
 
+@transaction.atomic
 def build_morphemic_wordform(
     baseform_text: str, analysis: RichAnalysis, normatized_user_query: str
 ) -> Wordform | None:
@@ -57,6 +59,7 @@ def build_morphemic_wordform(
 
     baseform = Wordform(
         text=baseform_text,
+        slug=baseform_text,
         is_lemma=True,
         raw_analysis=baseform_analysis.tuple if baseform_analysis else None,
         is_morphemic_synthesis=True,
@@ -71,6 +74,7 @@ def build_morphemic_wordform(
             .linguist_info.get("inflectional_category", "Morph-")[6:]
             .split("-")[0],
         },
+        # NOTE: Paradigms are unavailable yet because one needs to add the Der/V tag to inflect them
     )
 
     baseform.save()
