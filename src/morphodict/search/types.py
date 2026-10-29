@@ -240,6 +240,7 @@ class Result:
 
     analysis_index: Optional[int] = None
     analysis_total: Optional[int] = None
+    analysis_weight: Optional[float] = None
 
     def features(self):
         ret = {}
@@ -269,9 +270,10 @@ class Result:
     def did_match_source_language(self) -> bool:
         return bool(
             self.source_language_match
-            or self.source_language_affix_match is not None
+            or (self.source_language_affix_match is not None)
             or self.analyzable_inflection_match
             or self.source_language_keyword_match
+            or self.analysis_weight
         )
 
     # This is a separate method instead of a magic cached property because:

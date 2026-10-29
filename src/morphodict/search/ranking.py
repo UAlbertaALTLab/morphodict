@@ -34,12 +34,17 @@ def assign_relevance_score(result: types.Result):
     # can be replaced with computed values when we have some training data for
     # Cree-language queries.
     if result.did_match_source_language:
-        result.relevance_score = (
-            1000
-            - 20 * _default_if_none(result.query_wordform_edit_distance, default=0)
-            - _default_if_none(result.morpheme_ranking, default=20)
-            + (1 if result.is_lemma else 0)
-        )
+        if result.analysis_weight:
+            result.relevance_score = (
+                1000 - 20 * result.analysis_weight + (1 if result.is_lemma else 0)
+            )
+        else:
+            result.relevance_score = (
+                1000
+                - 20 * _default_if_none(result.query_wordform_edit_distance, default=0)
+                - _default_if_none(result.morpheme_ranking, default=20)
+                + (1 if result.is_lemma else 0)
+            )
     else:
         result.relevance_score = (
             # See weighting.ipynb for the model that produced these coefficients.

@@ -128,6 +128,7 @@ def fetch_results(
     ambiguous_analyses = rich_analyze_relaxed(query.query_string)
     fst_analyses = set(ambiguous_analyses[:max_analyses])
     ambiguous_tuples = [a.tuple for a in ambiguous_analyses]
+    ambiguous_weights = [a.weight for a in ambiguous_analyses]
     # print([a.tuple for a in fst_analyses])
 
     db_matches = list(
@@ -152,9 +153,22 @@ def fetch_results(
                         )
                     )
                     if wf.raw_analysis
-                    else 0
+                    else -2  # I don't think this should happen, but at least it will show up as -1
                 ),
                 analysis_total=len(ambiguous_analyses),
+                analysis_weight=(
+                    ambiguous_weights[
+                        ambiguous_tuples.index(
+                            (
+                                tuple(wf.raw_analysis[0]),
+                                wf.raw_analysis[1],
+                                tuple(wf.raw_analysis[2]),
+                            )
+                        )
+                    ]
+                    if wf.raw_analysis
+                    else 0.0
+                ),
             )
         )
 
@@ -207,6 +221,7 @@ def fetch_results(
                     ),
                     analysis_index=1 + ambiguous_tuples.index(analysis.tuple),
                     analysis_total=len(ambiguous_analyses),
+                    analysis_weight=analysis.weight,
                 )
             )
     if not search_results.unsorted_results():
@@ -262,6 +277,7 @@ def fetch_results(
                             ),
                             analysis_index=1 + ambiguous_tuples.index(analysis.tuple),
                             analysis_total=len(ambiguous_analyses),
+                            analysis_weight=analysis.weight,
                         )
                     )
 
