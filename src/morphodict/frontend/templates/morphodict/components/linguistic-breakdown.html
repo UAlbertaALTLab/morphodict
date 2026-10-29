@@ -39,6 +39,7 @@
                         </li>
                     {% endfor %}
                     {% if result.analysis_indexing %}
+                    <hr />
                     <li>Analysis for this search: {{result.analysis_indexing.0}}/{{result.analysis_indexing.1}}</li>
                     {% endif %}
                 </ol>
