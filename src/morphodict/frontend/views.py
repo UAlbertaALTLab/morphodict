@@ -398,10 +398,14 @@ def how_many_analyses_to_use(request, query):
             for x in query.split()
             if x.strip().startswith("max_analyses:")
         ]
-        results = [int(x) for x in results if x.isdigit()]
+        results = [int(x) if x.isdigit() else None for x in results]
         if results:
             candidates = results
-    return max(candidates) if candidates else None
+    if candidates:
+        if None in candidates:
+            return None
+        return max(candidates)
+    return None
 
 
 def get_dict_source(request):
