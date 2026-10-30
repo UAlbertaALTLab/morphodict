@@ -372,7 +372,7 @@ def test_avoids_cvd_search_if_query_looks_like_cree(query: str) -> None:
     "query,max_analyses,results_min,results_max,results_include",
     [
         ("wîcihtam", 1, 0, 0, []),
-        ("wîcihtam", 5, 1, 10, ["help", "something"]),
+        ("wîcihtam", 5, 1, 10, ["wît-", "-ht2"]),
     ],
 )
 def test_search_using_morphemes(
@@ -388,9 +388,20 @@ def test_search_using_morphemes(
     assert len(results) <= results_max
     if results_include:
         assert any(
-            all(expected in d["text"] for expected in results_include)
+            all(
+                expected
+                in {
+                    m["morpheme"]
+                    for m in r.lemma_wordform.linguist_info.get("morphemes", [])
+                }
+                | {
+                    sm
+                    for m in r.lemma_wordform.linguist_info.get("morphemes", [])
+                    for sm in m["submorphemes"]
+                }
+                for expected in results_include
+            )
             for r in results
-            for d in r.serialize()["definitions"]
         )
 
 

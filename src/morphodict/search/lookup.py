@@ -73,6 +73,7 @@ def build_morphemic_wordform(
             "wordclass": usable_wordforms[-1]
             .linguist_info.get("inflectional_category", "Morph-")[6:]
             .split("-")[0],
+            "morphemes": [{"morpheme": m, "submorphemes": []} for m in morphemes],
         },
         # NOTE: Paradigms are unavailable yet because one needs to add the Der/V tag to inflect them
     )
@@ -85,11 +86,7 @@ def build_morphemic_wordform(
 
     source, _ = DictionarySource.objects.get_or_create(abbrv="🤖")  # Altlab-Morphemes?
 
-    text = "This word comes from " + (
-        ", and ".join(
-            f'"{w.text}", meaning "{w.definitions.first()}"' for w in usable_wordforms
-        )
-    )
+    text = "Missing definition (see above)"
     definition = Definition(text=text, wordform=baseform)
     definition.save()
     definition.citations.add(source)
