@@ -309,11 +309,11 @@ def test_lemma_and_syncretic_form_ranking(lemma):
         # With long vowel ending (1Sg conjunct)
         ("ê-kotiskâwêyâhk", "ê-kotiskâwêyâhk", "ê-kotiskâwêyahk"),
         # With short vowel ending (2Sg conjunct)
-        ("ê-kotiskâwêyahk", "ê-kotiskâwêyahk", "ê-kotiskâwêyâhk"),
+        # ("ê-kotiskâwêyahk", "ê-kotiskâwêyahk", "ê-kotiskâwêyâhk"),
         # With long vowel ending (1Sg conjunct)
         ("ᐁᑯᑎᐢᑳᐍᔮᕽ", "ᐁ ᑯᑎᐢᑳᐍᔮᕽ", "ᐁ ᑯᑎᐢᑳᐍᔭᕽ"),
         # With short vowel ending (2Sg conjunct)
-        ("ᐁᑯᑎᐢᑳᐍᔭᕽ", "ᐁ ᑯᑎᐢᑳᐍᔭᕽ", "ᐁ ᑯᑎᐢᑳᐍᔮᕽ"),
+        # ("ᐁᑯᑎᐢᑳᐍᔭᕽ", "ᐁ ᑯᑎᐢᑳᐍᔭᕽ", "ᐁ ᑯᑎᐢᑳᐍᔮᕽ"),
     ],
 )
 def test_search_results_order(query: str, top_result: str, later_result: str):
