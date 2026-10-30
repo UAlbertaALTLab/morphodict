@@ -25,7 +25,10 @@ logger = logging.getLogger(__name__)
 
 @transaction.atomic
 def build_morphemic_wordform(
-    baseform_text: str, analysis: RichAnalysis, normatized_user_query: str
+    baseform_text: str,
+    analysis: RichAnalysis,
+    normatized_user_query: str,
+    slug_index: int,
 ) -> Wordform | None:
     # Make temporary baseform
     baseform_analysis = analysis.baseform_analysis()
@@ -59,7 +62,7 @@ def build_morphemic_wordform(
 
     baseform = Wordform(
         text=baseform_text,
-        slug=baseform_text,
+        slug=baseform_text + "GEN@" + str(slug_index),
         is_lemma=True,
         raw_analysis=baseform_analysis.tuple if baseform_analysis else None,
         is_morphemic_synthesis=True,
@@ -258,8 +261,9 @@ def fetch_results(
                     baseform_text=text,
                     analysis=analysis,
                     normatized_user_query=normatized_user_query,
+                    slug_index=i,
                 )
-                for text in generated_baseform_texts
+                for (i, text) in enumerate(generated_baseform_texts)
             )
 
             for wordform in generated_wordforms:
