@@ -138,6 +138,7 @@ class PresentationResult:
         self.source_language_match = result.source_language_match
         self.analysis_index = result.analysis_index
         self.analysis_total = result.analysis_total
+        self.analysis_weight = result.analysis_weight
         self.dict_source = dict_source
 
         if settings.MORPHODICT_TAG_STYLE == "Plus":

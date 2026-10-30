@@ -38,6 +38,7 @@ class SearchResults:
     _results: dict[WordformKey, types.Result]
     _verbose_messages: list[VerboseMessage]
     verbose: bool
+    max_result_weight: Optional[float] = None
     # Set this to use a custom sort function
     sort_function: Optional[Callable[[Result], Any]] = None
 
@@ -62,7 +63,7 @@ class SearchResults:
     def sorted_results(self) -> list[types.Result]:
         results = list(self._results.values())
         for r in results:
-            r.assign_default_relevance_score()
+            r.assign_default_relevance_score(max_result_weight=self.max_result_weight)
 
         # sort based on cvd
         if self.sort_function is not None:
@@ -78,6 +79,10 @@ class SearchResults:
         show_emoji=ShowEmoji.default,
         dict_source=None,
     ) -> list[presentation.PresentationResult]:
+        self.max_result_weight = max(
+            (x.analysis_weight for x in self._results.values() if x.analysis_weight),
+            default=0.0,
+        )
         results = self.sorted_results()
         prefetch_related_objects(
             [r.wordform for r in results if not r.wordform._state.adding],

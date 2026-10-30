@@ -1,4 +1,5 @@
 from __future__ import annotations
+from typing import Optional
 
 from math import log
 
@@ -24,7 +25,9 @@ def none_or_true_to_zero_or_one(item):
         return 1
 
 
-def assign_relevance_score(result: types.Result):
+def assign_relevance_score(
+    result: types.Result, max_result_weight: Optional[float] = None
+):
     # Until we have some training data for Cree queries, we keep the intent of
     # the old sort order:
     #   - Cree wordforms in the query take precedence over any English hits
@@ -41,7 +44,11 @@ def assign_relevance_score(result: types.Result):
         else:
             result.relevance_score = (
                 1000
-                - 20 * _default_if_none(result.query_wordform_edit_distance, default=0)
+                - 20
+                * (
+                    _default_if_none(max_result_weight, default=0.0)
+                    + _default_if_none(result.query_wordform_edit_distance, default=0)
+                )
                 - _default_if_none(result.morpheme_ranking, default=20)
                 + (1 if result.is_lemma else 0)
             )

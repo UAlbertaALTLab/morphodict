@@ -284,8 +284,8 @@ class Result:
     #     that uses Result lists is responsible for calling this method
     #     explicitly when done adding results.
     #  3. Dataclasses make doing custom caching a little trickier
-    def assign_default_relevance_score(self):
-        ranking.assign_relevance_score(self)
+    def assign_default_relevance_score(self, max_result_weight: Optional[float] = None):
+        ranking.assign_relevance_score(self, max_result_weight)
 
     def __lt__(self, other: Result):
         assert self.relevance_score is not None

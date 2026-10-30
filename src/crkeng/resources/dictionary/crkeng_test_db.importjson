@@ -2325,6 +2325,7 @@
     "slug": "nipiy@4"
   },
   {
+    "analysis": [[], "niska", ["+N", "+A", "+Sg"]],
     "head": "niska",
     "linguistInfo": {
       "analysis": "<p><table colspan=2><tr><td></td><td>Stem</td></tr><tr><td>Nonposs</td><td><strong>nisk-</strong></td></tr><tr><td>Poss</td><td><strong>-niskim-</strong></td></tr></table></p>",
