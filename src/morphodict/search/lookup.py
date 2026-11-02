@@ -93,8 +93,7 @@ def build_morphemic_wordform(
     source, _ = DictionarySource.objects.get_or_create(abbrv="🤖")  # Altlab-Morphemes?
 
     text = "[[Derived stem made up of one or more morphemes]]"
-    definition = Definition(text=text, wordform=baseform)
-    definition.save()
+    definition, _ = Definition.objects.get_or_create(text=text, wordform=baseform)
     definition.citations.add(source)
 
     # Now produce the wordform
