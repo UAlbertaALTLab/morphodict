@@ -3889,7 +3889,7 @@
       "definition": "star",
       "semanticDefinition": "star",
       "sources": [
-        "WMDD"
+        "CM"
       ]
     }
   ],
@@ -3915,21 +3915,21 @@
       "definition": "3rd person; nominals",
       "semanticDefinition": "3rd person; nominals",
       "sources": [
-        "MC"
+        "MIPC"
       ]
     },
     {
       "definition": "3rd person; h- and ht- preterite verbs",
       "semanticDefinition": "3rd person; h- ht- preterite verbs",
       "sources": [
-        "MC"
+        "MIPC"
       ]
     },
     {
       "definition": "3rd person; AI,TI agentive nominalizations, with -w",
       "semanticDefinition": "3rd person; AITI agentive nominalizations -w",
       "sources": [
-        "MC"
+        "MIPC"
       ]
     }
   ],
@@ -3955,7 +3955,7 @@
       "definition": "have",
       "semanticDefinition": "have",
       "sources": [
-        "WMDD"
+        "CM"
       ]
     }
   ],
@@ -3981,7 +3981,7 @@
       "definition": "tail [also: -sôs- < -soy- + /-is/]",
       "semanticDefinition": "tail [also: -sôs- < -soy- + -]",
       "sources": [
-        "WMDD"
+        "CM"
       ]
     }
   ],
@@ -4007,7 +4007,7 @@
       "definition": "beaver",
       "semanticDefinition": "beaver",
       "sources": [
-        "WMDD"
+        "CM"
       ]
     }
   ],
@@ -4033,7 +4033,7 @@
       "definition": "wait, lie in wait, waylay, guard against [also: /asw-/]",
       "semanticDefinition": "wait lie in wait waylay guard against [also: asw-]",
       "sources": [
-        "WMDD"
+        "CM"
       ]
     }
   ],
@@ -4059,14 +4059,14 @@
       "definition": "eye(s), sight [cf. VAI-1 /-acâpi/; cf. /-acâp-/]",
       "semanticDefinition": "eye(s) sight [cf VAI-1 -acâpi; cf -acâp-]",
       "sources": [
-        "WMDD"
+        "CM"
       ]
     },
     {
       "definition": "eye, vision",
       "semanticDefinition": "eye vision",
       "sources": [
-        "MC"
+        "MIPC"
       ]
     }
   ],
@@ -4092,7 +4092,7 @@
       "definition": "by eye; by vision",
       "semanticDefinition": "eye; vision",
       "sources": [
-        "MC"
+        "MIPC"
       ]
     }
   ],
@@ -4118,7 +4118,7 @@
       "definition": "sock [< /as-/ + /-(i)kan/]",
       "semanticDefinition": "sock [< - + - kan]",
       "sources": [
-        "WMDD"
+        "CM"
       ]
     }
   ],
@@ -4144,7 +4144,7 @@
       "definition": "Abstract final; II verbs",
       "semanticDefinition": "Abstract final; II verbs",
       "sources": [
-        "MC"
+        "MIPC"
       ]
     }
   ],
@@ -4170,7 +4170,7 @@
       "definition": "with, accompany; help [cf. /wîc-/]",
       "semanticDefinition": "accompany; help [cf wîc-]",
       "sources": [
-        "WMDD"
+        "CM"
       ]
     }
   ],
