@@ -373,11 +373,12 @@ def test_avoids_cvd_search_if_query_looks_like_cree(query: str) -> None:
     [
         ("wîcihtam", 1, 0, 0, []),
         ("wîcihtam", 5, 1, 10, ["wît-", "-ht2"]),
+        ("wîcihtam", None, 1, 1000, ["wît-", "-ht2"]),
     ],
 )
 def test_search_using_morphemes(
     query: str,
-    max_analyses: int,
+    max_analyses: int | None,
     results_min: int,
     results_max: int,
     results_include: list[str],

@@ -72,7 +72,7 @@ def build_morphemic_wordform(
             )[6:],
             "pos": usable_wordforms[-1].linguist_info.get(
                 "inflectional_category", "Morph-"
-            )[7],
+            )[6],
             "wordclass": usable_wordforms[-1]
             .linguist_info.get("inflectional_category", "Morph-")[6:]
             .split("-")[0],
